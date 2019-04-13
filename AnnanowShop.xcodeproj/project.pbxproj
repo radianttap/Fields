@@ -28,6 +28,12 @@
 		D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */; };
 		D06EF9FF2261EEE600925DFB /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9FE2261EEE600925DFB /* Common.swift */; };
 		D06EFA032261F0A000925DFB /* AnnanowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA022261F0A000925DFB /* AnnanowService.swift */; };
+		D06EFA0A2261F3B600925DFB /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA092261F3B500925DFB /* AppDependency.swift */; };
+		D06EFA0C2261F42D00925DFB /* AnnanowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA0B2261F42D00925DFB /* AnnanowError.swift */; };
+		D06EFA0F2261F48900925DFB /* DataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA0D2261F48900925DFB /* DataError.swift */; };
+		D06EFA102261F48900925DFB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA0E2261F48900925DFB /* DataManager.swift */; };
+		D06EFA132261F62200925DFB /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA112261F62200925DFB /* AccountManager.swift */; };
+		D06EFA142261F62200925DFB /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA122261F62200925DFB /* AccountError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +60,12 @@
 		D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		D06EF9FE2261EEE600925DFB /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		D06EFA022261F0A000925DFB /* AnnanowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnanowService.swift; sourceTree = "<group>"; };
+		D06EFA092261F3B500925DFB /* AppDependency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
+		D06EFA0B2261F42D00925DFB /* AnnanowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnanowError.swift; sourceTree = "<group>"; };
+		D06EFA0D2261F48900925DFB /* DataError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataError.swift; sourceTree = "<group>"; };
+		D06EFA0E2261F48900925DFB /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		D06EFA112261F62200925DFB /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		D06EFA122261F62200925DFB /* AccountError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +228,7 @@
 		D06EFA012261F07100925DFB /* Annanow */ = {
 			isa = PBXGroup;
 			children = (
+				D06EFA0B2261F42D00925DFB /* AnnanowError.swift */,
 				D06EFA022261F0A000925DFB /* AnnanowService.swift */,
 			);
 			path = Annanow;
@@ -224,6 +237,8 @@
 		D06EFA042261F15300925DFB /* DataStorage */ = {
 			isa = PBXGroup;
 			children = (
+				D06EFA0D2261F48900925DFB /* DataError.swift */,
+				D06EFA0E2261F48900925DFB /* DataManager.swift */,
 			);
 			path = DataStorage;
 			sourceTree = "<group>";
@@ -231,6 +246,9 @@
 		D06EFA052261F1FC00925DFB /* Middleware */ = {
 			isa = PBXGroup;
 			children = (
+				D06EFA092261F3B500925DFB /* AppDependency.swift */,
+				D06EFA122261F62200925DFB /* AccountError.swift */,
+				D06EFA112261F62200925DFB /* AccountManager.swift */,
 			);
 			path = Middleware;
 			sourceTree = "<group>";
@@ -330,14 +348,19 @@
 				D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */,
 				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
 				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
+				D06EFA0C2261F42D00925DFB /* AnnanowError.swift in Sources */,
+				D06EFA102261F48900925DFB /* DataManager.swift in Sources */,
 				D06EF9FF2261EEE600925DFB /* Common.swift in Sources */,
 				D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */,
+				D06EFA0A2261F3B600925DFB /* AppDependency.swift in Sources */,
+				D06EFA0F2261F48900925DFB /* DataError.swift in Sources */,
 				D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */,
 				D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */,
 				D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */,
 				D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */,
 				D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */,
 				D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */,
+				D06EFA142261F62200925DFB /* AccountError.swift in Sources */,
 				D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */,
 				D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */,
 				D06EF9F12261ECFB00925DFB /* AsyncOperation.swift in Sources */,
@@ -345,6 +368,7 @@
 				D06EFA032261F0A000925DFB /* AnnanowService.swift in Sources */,
 				D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
+				D06EFA132261F62200925DFB /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
