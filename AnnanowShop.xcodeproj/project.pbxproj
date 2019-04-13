@@ -72,6 +72,7 @@
 			children = (
 				D06EFA002261EFF100925DFB /* Services */,
 				D06EF9FD2261EECC00925DFB /* DataModel */,
+				D06EFA042261F15300925DFB /* DataStorage */,
 				D06EF9D22261E61A00925DFB /* targets */,
 				D06EF9BE2261E45800925DFB /* AnnanowShop */,
 				D06EF9D12261E61A00925DFB /* Vendor */,
@@ -214,6 +215,13 @@
 				D06EFA022261F0A000925DFB /* AnnanowService.swift */,
 			);
 			path = Annanow;
+			sourceTree = "<group>";
+		};
+		D06EFA042261F15300925DFB /* DataStorage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataStorage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
