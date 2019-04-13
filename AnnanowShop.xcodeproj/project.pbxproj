@@ -93,6 +93,9 @@
 			isa = PBXGroup;
 			children = (
 				D06EF9BF2261E45800925DFB /* AppDelegate.swift */,
+				D06EFA062261F28200925DFB /* Coordinators */,
+				D06EFA072261F2AE00925DFB /* Components */,
+				D06EFA082261F2AE00925DFB /* ViewModels */,
 			);
 			path = AnnanowShop;
 			sourceTree = "<group>";
@@ -230,6 +233,27 @@
 			children = (
 			);
 			path = Middleware;
+			sourceTree = "<group>";
+		};
+		D06EFA062261F28200925DFB /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		D06EFA072261F2AE00925DFB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		D06EFA082261F2AE00925DFB /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
