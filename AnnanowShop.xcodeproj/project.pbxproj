@@ -10,6 +10,22 @@
 		D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9BF2261E45800925DFB /* AppDelegate.swift */; };
 		D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C62261E45900925DFB /* Branding.xcassets */; };
 		D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */; };
+		D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9D72261ECFB00925DFB /* Coordinating.swift */; };
+		D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9D82261ECFB00925DFB /* NavigationCoordinator.swift */; };
+		D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9D92261ECFB00925DFB /* Coordinator.swift */; };
+		D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9DA2261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift */; };
+		D06EF9F12261ECFB00925DFB /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9DD2261ECFB00925DFB /* AsyncOperation.swift */; };
+		D06EF9F22261ECFB00925DFB /* UIColor-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9DF2261ECFB00925DFB /* UIColor-Extensions.swift */; };
+		D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E12261ECFB00925DFB /* Date-Extensions.swift */; };
+		D06EF9F42261ECFB00925DFB /* Bundle-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E22261ECFB00925DFB /* Bundle-Extensions.swift */; };
+		D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E32261ECFB00925DFB /* OperationQueue-Extensions.swift */; };
+		D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E42261ECFB00925DFB /* FileManager-Extensions.swift */; };
+		D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E52261ECFB00925DFB /* Atomic.swift */; };
+		D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E72261ECFB00925DFB /* StoryboardLoadable.swift */; };
+		D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9E82261ECFB00925DFB /* Embeddable.swift */; };
+		D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EA2261ECFB00925DFB /* DequeableView.swift */; };
+		D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EB2261ECFB00925DFB /* ReusableView.swift */; };
+		D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +34,22 @@
 		D06EF9C62261E45900925DFB /* Branding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Branding.xcassets; sourceTree = "<group>"; };
 		D06EF9C92261E45900925DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D06EF9D42261E61A00925DFB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06EF9D72261ECFB00925DFB /* Coordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinating.swift; sourceTree = "<group>"; };
+		D06EF9D82261ECFB00925DFB /* NavigationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		D06EF9D92261ECFB00925DFB /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		D06EF9DA2261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit-CoordinatingExtensions.swift"; sourceTree = "<group>"; };
+		D06EF9DD2261ECFB00925DFB /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		D06EF9DF2261ECFB00925DFB /* UIColor-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extensions.swift"; sourceTree = "<group>"; };
+		D06EF9E12261ECFB00925DFB /* Date-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date-Extensions.swift"; sourceTree = "<group>"; };
+		D06EF9E22261ECFB00925DFB /* Bundle-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle-Extensions.swift"; sourceTree = "<group>"; };
+		D06EF9E32261ECFB00925DFB /* OperationQueue-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OperationQueue-Extensions.swift"; sourceTree = "<group>"; };
+		D06EF9E42261ECFB00925DFB /* FileManager-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager-Extensions.swift"; sourceTree = "<group>"; };
+		D06EF9E52261ECFB00925DFB /* Atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
+		D06EF9E72261ECFB00925DFB /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
+		D06EF9E82261ECFB00925DFB /* Embeddable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
+		D06EF9EA2261ECFB00925DFB /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
+		D06EF9EB2261ECFB00925DFB /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +92,8 @@
 		D06EF9D12261E61A00925DFB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D06EF9D62261ECFB00925DFB /* Coordinator */,
+				D06EF9DB2261ECFB00925DFB /* Essentials */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -80,6 +114,76 @@
 				D06EF9D42261E61A00925DFB /* Info.plist */,
 			);
 			path = shop;
+			sourceTree = "<group>";
+		};
+		D06EF9D62261ECFB00925DFB /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9D72261ECFB00925DFB /* Coordinating.swift */,
+				D06EF9D82261ECFB00925DFB /* NavigationCoordinator.swift */,
+				D06EF9D92261ECFB00925DFB /* Coordinator.swift */,
+				D06EF9DA2261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D06EF9DB2261ECFB00925DFB /* Essentials */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9DC2261ECFB00925DFB /* Operation */,
+				D06EF9DE2261ECFB00925DFB /* UIKit */,
+				D06EF9E02261ECFB00925DFB /* Foundation */,
+				D06EF9E52261ECFB00925DFB /* Atomic.swift */,
+				D06EF9E62261ECFB00925DFB /* Controllers */,
+				D06EF9E92261ECFB00925DFB /* Views */,
+			);
+			path = Essentials;
+			sourceTree = "<group>";
+		};
+		D06EF9DC2261ECFB00925DFB /* Operation */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9DD2261ECFB00925DFB /* AsyncOperation.swift */,
+			);
+			path = Operation;
+			sourceTree = "<group>";
+		};
+		D06EF9DE2261ECFB00925DFB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9DF2261ECFB00925DFB /* UIColor-Extensions.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		D06EF9E02261ECFB00925DFB /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9E12261ECFB00925DFB /* Date-Extensions.swift */,
+				D06EF9E22261ECFB00925DFB /* Bundle-Extensions.swift */,
+				D06EF9E32261ECFB00925DFB /* OperationQueue-Extensions.swift */,
+				D06EF9E42261ECFB00925DFB /* FileManager-Extensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		D06EF9E62261ECFB00925DFB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9E72261ECFB00925DFB /* StoryboardLoadable.swift */,
+				D06EF9E82261ECFB00925DFB /* Embeddable.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D06EF9E92261ECFB00925DFB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9EA2261ECFB00925DFB /* DequeableView.swift */,
+				D06EF9EB2261ECFB00925DFB /* ReusableView.swift */,
+				D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +256,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06EF9F42261ECFB00925DFB /* Bundle-Extensions.swift in Sources */,
+				D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */,
+				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
+				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
+				D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */,
+				D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */,
+				D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */,
+				D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */,
+				D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */,
+				D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */,
+				D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */,
+				D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */,
+				D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */,
+				D06EF9F12261ECFB00925DFB /* AsyncOperation.swift in Sources */,
+				D06EF9F22261ECFB00925DFB /* UIColor-Extensions.swift in Sources */,
+				D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
