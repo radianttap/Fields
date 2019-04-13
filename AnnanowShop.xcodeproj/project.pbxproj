@@ -27,6 +27,7 @@
 		D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EB2261ECFB00925DFB /* ReusableView.swift */; };
 		D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */; };
 		D06EF9FF2261EEE600925DFB /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9FE2261EEE600925DFB /* Common.swift */; };
+		D06EFA032261F0A000925DFB /* AnnanowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA022261F0A000925DFB /* AnnanowService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		D06EF9EB2261ECFB00925DFB /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		D06EF9FE2261EEE600925DFB /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		D06EFA022261F0A000925DFB /* AnnanowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnanowService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		D06EF9B32261E45800925DFB = {
 			isa = PBXGroup;
 			children = (
+				D06EFA002261EFF100925DFB /* Services */,
 				D06EF9FD2261EECC00925DFB /* DataModel */,
 				D06EF9D22261E61A00925DFB /* targets */,
 				D06EF9BE2261E45800925DFB /* AnnanowShop */,
@@ -197,6 +200,22 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		D06EFA002261EFF100925DFB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D06EFA012261F07100925DFB /* Annanow */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D06EFA012261F07100925DFB /* Annanow */ = {
+			isa = PBXGroup;
+			children = (
+				D06EFA022261F0A000925DFB /* AnnanowService.swift */,
+			);
+			path = Annanow;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +302,7 @@
 				D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */,
 				D06EF9F12261ECFB00925DFB /* AsyncOperation.swift in Sources */,
 				D06EF9F22261ECFB00925DFB /* UIColor-Extensions.swift in Sources */,
+				D06EFA032261F0A000925DFB /* AnnanowService.swift in Sources */,
 				D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
 			);
