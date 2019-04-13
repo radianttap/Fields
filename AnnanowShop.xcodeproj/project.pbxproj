@@ -26,6 +26,7 @@
 		D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EA2261ECFB00925DFB /* DequeableView.swift */; };
 		D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EB2261ECFB00925DFB /* ReusableView.swift */; };
 		D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */; };
+		D06EF9FF2261EEE600925DFB /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9FE2261EEE600925DFB /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		D06EF9EA2261ECFB00925DFB /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
 		D06EF9EB2261ECFB00925DFB /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		D06EF9EC2261ECFB00925DFB /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		D06EF9FE2261EEE600925DFB /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		D06EF9B32261E45800925DFB = {
 			isa = PBXGroup;
 			children = (
+				D06EF9FD2261EECC00925DFB /* DataModel */,
 				D06EF9D22261E61A00925DFB /* targets */,
 				D06EF9BE2261E45800925DFB /* AnnanowShop */,
 				D06EF9D12261E61A00925DFB /* Vendor */,
@@ -186,6 +189,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		D06EF9FD2261EECC00925DFB /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9FE2261EEE600925DFB /* Common.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -260,6 +271,7 @@
 				D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */,
 				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
 				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
+				D06EF9FF2261EEE600925DFB /* Common.swift in Sources */,
 				D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */,
 				D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */,
 				D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */,
