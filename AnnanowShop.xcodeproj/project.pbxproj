@@ -8,20 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9BF2261E45800925DFB /* AppDelegate.swift */; };
-		D06EF9C22261E45800925DFB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9C12261E45800925DFB /* ViewController.swift */; };
-		D06EF9C52261E45800925DFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C32261E45800925DFB /* Main.storyboard */; };
-		D06EF9C72261E45900925DFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C62261E45900925DFB /* Assets.xcassets */; };
+		D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C62261E45900925DFB /* Branding.xcassets */; };
 		D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D06EF9BC2261E45800925DFB /* AnnanowShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnanowShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06EF9BF2261E45800925DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D06EF9C12261E45800925DFB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D06EF9C42261E45800925DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D06EF9C62261E45900925DFB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D06EF9C62261E45900925DFB /* Branding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Branding.xcassets; sourceTree = "<group>"; };
 		D06EF9C92261E45900925DFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D06EF9CB2261E45900925DFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06EF9D42261E61A00925DFB /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +34,9 @@
 		D06EF9B32261E45800925DFB = {
 			isa = PBXGroup;
 			children = (
+				D06EF9D22261E61A00925DFB /* targets */,
 				D06EF9BE2261E45800925DFB /* AnnanowShop */,
+				D06EF9D12261E61A00925DFB /* Vendor */,
 				D06EF9BD2261E45800925DFB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,13 +53,33 @@
 			isa = PBXGroup;
 			children = (
 				D06EF9BF2261E45800925DFB /* AppDelegate.swift */,
-				D06EF9C12261E45800925DFB /* ViewController.swift */,
-				D06EF9C32261E45800925DFB /* Main.storyboard */,
-				D06EF9C62261E45900925DFB /* Assets.xcassets */,
-				D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */,
-				D06EF9CB2261E45900925DFB /* Info.plist */,
 			);
 			path = AnnanowShop;
+			sourceTree = "<group>";
+		};
+		D06EF9D12261E61A00925DFB /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		D06EF9D22261E61A00925DFB /* targets */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9D32261E61A00925DFB /* shop */,
+			);
+			path = targets;
+			sourceTree = "<group>";
+		};
+		D06EF9D32261E61A00925DFB /* shop */ = {
+			isa = PBXGroup;
+			children = (
+				D06EF9C62261E45900925DFB /* Branding.xcassets */,
+				D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */,
+				D06EF9D42261E61A00925DFB /* Info.plist */,
+			);
+			path = shop;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,8 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */,
-				D06EF9C72261E45900925DFB /* Assets.xcassets in Resources */,
-				D06EF9C52261E45800925DFB /* Main.storyboard in Resources */,
+				D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +152,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06EF9C22261E45800925DFB /* ViewController.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D06EF9C32261E45800925DFB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D06EF9C42261E45800925DFB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -196,6 +204,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 300;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -213,13 +222,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -257,6 +268,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 300;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -268,13 +280,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -283,14 +297,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AnnanowShop/Info.plist;
+				INFOPLIST_FILE = targets/shop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.annanow.AnnanowShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -300,14 +313,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = AnnanowShop/Info.plist;
+				INFOPLIST_FILE = targets/shop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.annanow.AnnanowShop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
