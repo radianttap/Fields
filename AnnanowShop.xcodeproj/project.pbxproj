@@ -34,6 +34,7 @@
 		D06EFA102261F48900925DFB /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA0E2261F48900925DFB /* DataManager.swift */; };
 		D06EFA132261F62200925DFB /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA112261F62200925DFB /* AccountManager.swift */; };
 		D06EFA142261F62200925DFB /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA122261F62200925DFB /* AccountError.swift */; };
+		D06EFA162261F93D00925DFB /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D06EFA0E2261F48900925DFB /* DataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		D06EFA112261F62200925DFB /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		D06EFA122261F62200925DFB /* AccountError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
+		D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 		D06EFA062261F28200925DFB /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */,
 				D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */,
 				D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */,
+				D06EFA162261F93D00925DFB /* ApplicationCoordinator.swift in Sources */,
 				D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */,
 				D06EFA142261F62200925DFB /* AccountError.swift in Sources */,
 				D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */,

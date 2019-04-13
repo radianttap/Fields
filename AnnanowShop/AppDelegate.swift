@@ -12,12 +12,24 @@ import UIKit
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
+	var applicationCoordinator: ApplicationCoordinator!
 
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		window = UIWindow(frame: UIScreen.main.bounds)
+
+		applicationCoordinator = {
+			let c = ApplicationCoordinator(application: application)
+			return c
+		}()
+		window?.rootViewController = applicationCoordinator.rootViewController
+
 		return true
 	}
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+		window?.makeKeyAndVisible()
+		applicationCoordinator.start()
+
 		return true
 	}
 }
