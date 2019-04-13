@@ -6,13 +6,13 @@
 //  Copyright © 2019 Annanow. All rights reserved.
 //
 
+import Foundation
+
 /**
 	Common shared types,
-	usually typealiases for system stuff, to make them more readavle and obvious what they do.
-
+	usually typealiases for system stuff,
+	to make them more readable and obvious what they do.
 */
-
-import Foundation
 
 public typealias JSON = [String: Any]
 
