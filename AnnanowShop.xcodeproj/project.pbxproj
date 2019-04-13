@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D03060E8226244DF0015F1A2 /* Loggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060E6226244DF0015F1A2 /* Loggable.swift */; };
+		D03060E9226244DF0015F1A2 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060E7226244DF0015F1A2 /* LogLevel.swift */; };
+		D03060EB2262477E0015F1A2 /* LoggerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060EA2262477E0015F1A2 /* LoggerType.swift */; };
+		D03060ED226247FD0015F1A2 /* LoggerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060EC226247FD0015F1A2 /* LoggerStub.swift */; };
 		D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9BF2261E45800925DFB /* AppDelegate.swift */; };
 		D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C62261E45900925DFB /* Branding.xcassets */; };
 		D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */; };
@@ -38,6 +42,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D03060E6226244DF0015F1A2 /* Loggable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loggable.swift; sourceTree = "<group>"; };
+		D03060E7226244DF0015F1A2 /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		D03060EA2262477E0015F1A2 /* LoggerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggerType.swift; sourceTree = "<group>"; };
+		D03060EC226247FD0015F1A2 /* LoggerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerStub.swift; sourceTree = "<group>"; };
 		D06EF9BC2261E45800925DFB /* AnnanowShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnanowShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06EF9BF2261E45800925DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D06EF9C62261E45900925DFB /* Branding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Branding.xcassets; sourceTree = "<group>"; };
@@ -81,6 +89,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D03060E5226244DF0015F1A2 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				D03060E7226244DF0015F1A2 /* LogLevel.swift */,
+				D03060E6226244DF0015F1A2 /* Loggable.swift */,
+				D03060EA2262477E0015F1A2 /* LoggerType.swift */,
+				D03060EC226247FD0015F1A2 /* LoggerStub.swift */,
+			);
+			path = Logger;
+			sourceTree = "<group>";
+		};
 		D06EF9B32261E45800925DFB = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +136,7 @@
 		D06EF9D12261E61A00925DFB /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D03060E5226244DF0015F1A2 /* Logger */,
 				D06EF9D62261ECFB00925DFB /* Coordinator */,
 				D06EF9DB2261ECFB00925DFB /* Essentials */,
 			);
@@ -349,6 +369,7 @@
 			files = (
 				D06EF9F42261ECFB00925DFB /* Bundle-Extensions.swift in Sources */,
 				D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */,
+				D03060E8226244DF0015F1A2 /* Loggable.swift in Sources */,
 				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
 				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
 				D06EFA0C2261F42D00925DFB /* AnnanowError.swift in Sources */,
@@ -357,12 +378,15 @@
 				D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */,
 				D06EFA0A2261F3B600925DFB /* AppDependency.swift in Sources */,
 				D06EFA0F2261F48900925DFB /* DataError.swift in Sources */,
+				D03060E9226244DF0015F1A2 /* LogLevel.swift in Sources */,
 				D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */,
+				D03060ED226247FD0015F1A2 /* LoggerStub.swift in Sources */,
 				D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */,
 				D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */,
 				D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */,
 				D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */,
 				D06EFA162261F93D00925DFB /* ApplicationCoordinator.swift in Sources */,
+				D03060EB2262477E0015F1A2 /* LoggerType.swift in Sources */,
 				D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */,
 				D06EFA142261F62200925DFB /* AccountError.swift in Sources */,
 				D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */,

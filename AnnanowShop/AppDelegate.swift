@@ -17,6 +17,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		window = UIWindow(frame: UIScreen.main.bounds)
 
+		setupLogger()
+		setupAnalytics()
+
 		applicationCoordinator = {
 			let c = ApplicationCoordinator(application: application)
 			return c
@@ -27,6 +30,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
 		window?.makeKeyAndVisible()
 		applicationCoordinator.start()
 
@@ -34,3 +38,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 }
 
+extension AppDelegate: Loggable {}
+
+private extension AppDelegate {
+	func setupLogger() {
+		let stub = LoggerStub()
+		stub.minimumLevel = .debug
+
+		Logger.sharedLogger.setupLogger(logger: stub)
+	}
+
+	func setupAnalytics() {
+	}
+}

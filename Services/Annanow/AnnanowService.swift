@@ -9,5 +9,10 @@
 import Foundation
 
 final class Annanow {
-	
+
+	init() {
+		log(level: .all, "Init")
+	}
 }
+
+extension Annanow: Loggable {}

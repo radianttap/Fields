@@ -25,5 +25,9 @@ final class AccountManager: NSObject {
 		self.dataManager = dataManager
 
 		super.init()
+		log(level: .all, "Init")
 	}
 }
+
+extension AccountManager: Loggable {}
+

@@ -22,8 +22,12 @@ final class DataManager {
 
 	init(annanowService: Annanow) {
 		self.annanowService = annanowService
+
+		log(level: .all, "Init")
 	}
 }
+
+extension DataManager: Loggable {}
 
 extension DataManager {
 

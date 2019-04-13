@@ -23,6 +23,8 @@ final class ApplicationCoordinator: NavigationCoordinator {
 	init(application: UIApplication, rootViewController: UINavigationController? = nil) {
 		self.application = application
 		super.init(rootViewController: rootViewController ?? UINavigationController())
+
+		log(level: .all, "Init")
 	}
 
 
@@ -51,15 +53,20 @@ final class ApplicationCoordinator: NavigationCoordinator {
 	//	MARK:- Coordinator Lifecycle
 
 	override func start(with completion: @escaping () -> Void = {}) {
+		log(level: .all, "↘︎")
+
 		buildDependencies()
 		super.start(with: completion)
 
-		// The moment when app logic decices what is the first content VC to show
+		// The moment when app logic decides what is the first content VC to show
 		setupContent()
+
+		log(level: .all, "↗︎")
 	}
 
 }
 
+extension ApplicationCoordinator: Loggable {}
 
 private extension ApplicationCoordinator {
 	///	(re)build `appDependency` value as many times as you need
@@ -67,15 +74,18 @@ private extension ApplicationCoordinator {
 		appDependency = AppDependency(annanowService: annanowService,
 									  dataManager: dataManager,
 									  accountManager: accountManager)
+		log(level: .verbose, "AppDependency re-built.")
 	}
 
 	///	Sets up actual content to show, inside rootViewController
 	func setupContent() {
+		log(level: .all, "")
+
 		switch section {
 		case .splash:
 			let vc = UIViewController()
 			root(vc)
-			break
+			log(level: .info, "root: Splash screen")
 		}
 	}
 }
