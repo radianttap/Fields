@@ -39,4 +39,8 @@ extension AccountManager {
 	var isLoggedIn: Bool {
 		return user != nil
 	}
+
+	func login(username: String, password: String, onQueue queue: OperationQueue? = nil, callback: @escaping (UserResult) -> Void) {
+		
+	}
 }
