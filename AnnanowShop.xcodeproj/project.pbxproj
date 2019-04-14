@@ -13,6 +13,13 @@
 		D03060ED226247FD0015F1A2 /* LoggerStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060EC226247FD0015F1A2 /* LoggerStub.swift */; };
 		D03060F22263445B0015F1A2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060F12263445B0015F1A2 /* LoginController.swift */; };
 		D03060F4226344680015F1A2 /* LoginController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D03060F3226344680015F1A2 /* LoginController.storyboard */; };
+		D03060F8226347070015F1A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060F7226347070015F1A2 /* User.swift */; };
+		D03060FA22634A360015F1A2 /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060F922634A360015F1A2 /* AccountCoordinator.swift */; };
+		D03060FC22634AD50015F1A2 /* Account-CoordinatingResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060FB22634AD50015F1A2 /* Account-CoordinatingResponder.swift */; };
+		D0306103226359170015F1A2 /* AutoBoxable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03060FF226359170015F1A2 /* AutoBoxable.swift */; };
+		D0306104226359170015F1A2 /* autoboxable.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0306100226359170015F1A2 /* autoboxable.generated.swift */; };
+		D0306105226359170015F1A2 /* autoboxable.stencil in Resources */ = {isa = PBXBuildFile; fileRef = D0306102226359170015F1A2 /* autoboxable.stencil */; };
+		D030610722639FBB0015F1A2 /* UserResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D030610622639FBB0015F1A2 /* UserResult.swift */; };
 		D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EF9BF2261E45800925DFB /* AppDelegate.swift */; };
 		D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C62261E45900925DFB /* Branding.xcassets */; };
 		D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D06EF9C82261E45900925DFB /* LaunchScreen.storyboard */; };
@@ -50,6 +57,13 @@
 		D03060EC226247FD0015F1A2 /* LoggerStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerStub.swift; sourceTree = "<group>"; };
 		D03060F12263445B0015F1A2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D03060F3226344680015F1A2 /* LoginController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginController.storyboard; sourceTree = "<group>"; };
+		D03060F7226347070015F1A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D03060F922634A360015F1A2 /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
+		D03060FB22634AD50015F1A2 /* Account-CoordinatingResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Account-CoordinatingResponder.swift"; sourceTree = "<group>"; };
+		D03060FF226359170015F1A2 /* AutoBoxable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoBoxable.swift; sourceTree = "<group>"; };
+		D0306100226359170015F1A2 /* autoboxable.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = autoboxable.generated.swift; sourceTree = "<group>"; };
+		D0306102226359170015F1A2 /* autoboxable.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = autoboxable.stencil; sourceTree = "<group>"; };
+		D030610622639FBB0015F1A2 /* UserResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResult.swift; sourceTree = "<group>"; };
 		D06EF9BC2261E45800925DFB /* AnnanowShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnnanowShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06EF9BF2261E45800925DFB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D06EF9C62261E45900925DFB /* Branding.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Branding.xcassets; sourceTree = "<group>"; };
@@ -111,6 +125,24 @@
 				D03060F3226344680015F1A2 /* LoginController.storyboard */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		D03060FE226359170015F1A2 /* sourcery */ = {
+			isa = PBXGroup;
+			children = (
+				D0306101226359170015F1A2 /* templates */,
+				D03060FF226359170015F1A2 /* AutoBoxable.swift */,
+				D0306100226359170015F1A2 /* autoboxable.generated.swift */,
+			);
+			path = sourcery;
+			sourceTree = "<group>";
+		};
+		D0306101226359170015F1A2 /* templates */ = {
+			isa = PBXGroup;
+			children = (
+				D0306102226359170015F1A2 /* autoboxable.stencil */,
+			);
+			path = templates;
 			sourceTree = "<group>";
 		};
 		D06EF9B32261E45800925DFB = {
@@ -249,6 +281,9 @@
 			isa = PBXGroup;
 			children = (
 				D06EF9FE2261EEE600925DFB /* Common.swift */,
+				D03060FE226359170015F1A2 /* sourcery */,
+				D03060F7226347070015F1A2 /* User.swift */,
+				D030610622639FBB0015F1A2 /* UserResult.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -293,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */,
+				D03060F922634A360015F1A2 /* AccountCoordinator.swift */,
+				D03060FB22634AD50015F1A2 /* Account-CoordinatingResponder.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -318,6 +355,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D06EF9CE2261E45900925DFB /* Build configuration list for PBXNativeTarget "AnnanowShop" */;
 			buildPhases = (
+				D03060FD226358F10015F1A2 /* sourcery */,
 				D06EF9B82261E45800925DFB /* Sources */,
 				D06EF9B92261E45800925DFB /* Frameworks */,
 				D06EF9BA2261E45800925DFB /* Resources */,
@@ -370,12 +408,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				D03060F4226344680015F1A2 /* LoginController.storyboard in Resources */,
+				D0306105226359170015F1A2 /* autoboxable.stencil in Resources */,
 				D06EF9CA2261E45900925DFB /* LaunchScreen.storyboard in Resources */,
 				D06EF9C72261E45900925DFB /* Branding.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D03060FD226358F10015F1A2 /* sourcery */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = sourcery;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "sourcery --sources ${SRCROOT} --templates ${SRCROOT}/DataModel/sourcery/templates/ --output ${SRCROOT}/DataModel/sourcery\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D06EF9B82261E45800925DFB /* Sources */ = {
@@ -386,6 +446,7 @@
 				D06EF9F42261ECFB00925DFB /* Bundle-Extensions.swift in Sources */,
 				D06EF9FC2261ECFB00925DFB /* NibLoadable.swift in Sources */,
 				D03060E8226244DF0015F1A2 /* Loggable.swift in Sources */,
+				D0306103226359170015F1A2 /* AutoBoxable.swift in Sources */,
 				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
 				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
 				D06EFA0C2261F42D00925DFB /* AnnanowError.swift in Sources */,
@@ -394,10 +455,12 @@
 				D06EF9EF2261ECFB00925DFB /* Coordinator.swift in Sources */,
 				D06EFA0A2261F3B600925DFB /* AppDependency.swift in Sources */,
 				D06EFA0F2261F48900925DFB /* DataError.swift in Sources */,
+				D03060FA22634A360015F1A2 /* AccountCoordinator.swift in Sources */,
 				D03060E9226244DF0015F1A2 /* LogLevel.swift in Sources */,
 				D06EF9F72261ECFB00925DFB /* Atomic.swift in Sources */,
 				D03060ED226247FD0015F1A2 /* LoggerStub.swift in Sources */,
 				D06EF9ED2261ECFB00925DFB /* Coordinating.swift in Sources */,
+				D030610722639FBB0015F1A2 /* UserResult.swift in Sources */,
 				D06EF9EE2261ECFB00925DFB /* NavigationCoordinator.swift in Sources */,
 				D06EF9F82261ECFB00925DFB /* StoryboardLoadable.swift in Sources */,
 				D06EF9F32261ECFB00925DFB /* Date-Extensions.swift in Sources */,
@@ -405,6 +468,7 @@
 				D03060EB2262477E0015F1A2 /* LoggerType.swift in Sources */,
 				D06EF9F02261ECFB00925DFB /* UIKit-CoordinatingExtensions.swift in Sources */,
 				D06EFA142261F62200925DFB /* AccountError.swift in Sources */,
+				D0306104226359170015F1A2 /* autoboxable.generated.swift in Sources */,
 				D06EF9FA2261ECFB00925DFB /* DequeableView.swift in Sources */,
 				D06EF9FB2261ECFB00925DFB /* ReusableView.swift in Sources */,
 				D06EF9F12261ECFB00925DFB /* AsyncOperation.swift in Sources */,
@@ -413,6 +477,8 @@
 				D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
 				D06EFA132261F62200925DFB /* AccountManager.swift in Sources */,
+				D03060FC22634AD50015F1A2 /* Account-CoordinatingResponder.swift in Sources */,
+				D03060F8226347070015F1A2 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
