@@ -44,6 +44,7 @@ final class ApplicationCoordinator: NavigationCoordinator {
 	*/
 	enum Section {
 		case splash
+		case account(page: AccountCoordinator.Page?)
 	}
 	var section: Section = .splash
 
@@ -58,7 +59,6 @@ final class ApplicationCoordinator: NavigationCoordinator {
 		buildDependencies()
 		super.start(with: completion)
 
-		// The moment when app logic decides what is the first content VC to show
 		setupContent()
 
 		log(level: .all, "↗︎")
@@ -69,7 +69,7 @@ final class ApplicationCoordinator: NavigationCoordinator {
 extension ApplicationCoordinator: Loggable {}
 
 private extension ApplicationCoordinator {
-	///	(re)build `appDependency` value as many times as you need
+	///	(re)builds `appDependency` value
 	func buildDependencies() {
 		appDependency = AppDependency(annanowService: annanowService,
 									  dataManager: dataManager,
@@ -77,8 +77,21 @@ private extension ApplicationCoordinator {
 		log(level: .verbose, "AppDependency re-built.")
 	}
 
-	///	Sets up actual content to show, inside rootViewController
+	///	Implements initial logic deciding what should be the first UI content to display, when app starts.
 	func setupContent() {
+		if !accountManager.isLoggedIn {
+			log(level: .debug, "User not found, will display login")
+			section = .account(page: .login)
+
+			displayContent()
+			return
+		}
+
+		displayContent()
+	}
+
+	///	Sets up actual content to show, inside rootViewController
+	func displayContent(sender: Any? = nil) {
 		log(level: .all, "")
 
 		switch section {
@@ -86,6 +99,38 @@ private extension ApplicationCoordinator {
 			let vc = UIViewController()
 			root(vc)
 			log(level: .info, "root: Splash screen")
+
+		case .account(let page):
+			displayAccount(page: page, sender: sender)
+
+			if let page = page {
+				log(level: .info, "root: Account, page=\( page )")
+			} else {
+				log(level: .info, "root: Account, page=(default)")
+			}
 		}
+	}
+}
+
+
+private extension ApplicationCoordinator {
+	func displayAccount(page: AccountCoordinator.Page? = nil, sender: Any? = nil) {
+		let identifier = String(describing: AccountCoordinator.self)
+
+		if let c = childCoordinators[identifier] as? AccountCoordinator {
+			c.appDependency = appDependency
+			if let page = page {
+				c.display(page: page, sender: sender)
+			}
+			c.activate()
+			return
+		}
+
+		let c = AccountCoordinator(rootViewController: rootViewController)
+		c.appDependency = appDependency
+		if let page = page {
+			c.display(page: page, sender: sender)
+		}
+		startChild(coordinator: c)
 	}
 }
