@@ -8,8 +8,14 @@
 
 import UIKit
 
-final class AccountCoordinator: NavigationCoordinator {
-	var appDependency: AppDependency?
+final class AccountCoordinator: NavigationCoordinator, NeedsDependency {
+	var appDependency: AppDependency? {
+		didSet {
+			updateChildCoordinatorDependencies()
+			processQueuedMessages()
+		}
+	}
+
 
 
 	enum Page: AutoBoxable {

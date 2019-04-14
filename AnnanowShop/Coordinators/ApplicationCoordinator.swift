@@ -17,7 +17,7 @@ import UIKit
 	NOTE: currently using UINavigationController as main container in the app.
 	Replaced with UITabBarController or whatever is needed by app's design.
 */
-final class ApplicationCoordinator: NavigationCoordinator {
+final class ApplicationCoordinator: NavigationCoordinator, NeedsDependency {
 	private weak var application: UIApplication!
 
 	init(application: UIApplication, rootViewController: UINavigationController? = nil) {
@@ -34,7 +34,12 @@ final class ApplicationCoordinator: NavigationCoordinator {
 	private lazy var dataManager: DataManager = DataManager(annanowService: annanowService)
 	private lazy var accountManager: AccountManager = AccountManager(dataManager: dataManager)
 	//	Rebuild this value anytime a new service/data/middleware entity is instantiated.
-	var appDependency: AppDependency?
+	var appDependency: AppDependency? {
+		didSet {
+			updateChildCoordinatorDependencies()
+			processQueuedMessages()
+		}
+	}
 
 
 
