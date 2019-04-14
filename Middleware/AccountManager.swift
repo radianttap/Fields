@@ -27,7 +27,16 @@ final class AccountManager: NSObject {
 		super.init()
 		log(level: .all, "Init")
 	}
+
+	//	Public
+
+	private(set) var user: User?
 }
 
 extension AccountManager: Loggable {}
 
+extension AccountManager {
+	var isLoggedIn: Bool {
+		return user != nil
+	}
+}
