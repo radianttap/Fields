@@ -38,6 +38,8 @@ extension Annanow {
 	typealias Callback = (JSONResult) -> Void
 
 	func call(_ endpoint: AnnanowEndpoint, callback: @escaping Callback) {
+		execute(urlRequest: endpoint.urlRequest,
+				callback: callback)
 	}
 }
 
