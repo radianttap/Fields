@@ -41,6 +41,18 @@ extension AccountManager {
 	}
 
 	func login(username: String, password: String, onQueue queue: OperationQueue? = nil, callback: @escaping (UserResult) -> Void) {
-		
+		dataManager.login(username: username, password: password) {
+			dataResult in
+
+			switch dataResult {
+			case .success(let user):
+				self.user = user
+
+				OperationQueue.perform( callback(.success(user)), onQueue: queue)
+
+			case .failure(let dataError):
+				OperationQueue.perform( callback(.failure(AccountError.dataError(dataError))), onQueue: queue)
+			}
+		}
 	}
 }
