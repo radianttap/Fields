@@ -21,6 +21,14 @@ final class Annanow {
 
 extension Annanow: Loggable {}
 
+extension Annanow {
+	typealias JSONResult = Result<JSON, AnnanowError>
+	typealias Callback = (JSONResult) -> Void
+
+	func call(endpoint: AnnanowEndpoint, callback: @escaping Callback) {
+	}
+}
+
 private extension Annanow {
 	///	Headers, added by URLSession, to each URLRequest instance
 	static let commonHeaders: [String: String] = {
