@@ -37,7 +37,7 @@ extension Annanow {
 	typealias JSONResult = Result<JSON, AnnanowError>
 	typealias Callback = (JSONResult) -> Void
 
-	func call(endpoint: AnnanowEndpoint, callback: @escaping Callback) {
+	func call(_ endpoint: AnnanowEndpoint, callback: @escaping Callback) {
 	}
 }
 

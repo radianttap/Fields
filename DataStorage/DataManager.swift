@@ -30,5 +30,22 @@ final class DataManager {
 extension DataManager: Loggable {}
 
 extension DataManager {
+	func login(username: String, password: String, callback: @escaping ( Result<User, DataError> ) -> Void) {
+		let endpoint = AnnanowEndpoint.login(username: username, password: password)
+
+		annanowService.call(endpoint) {
+			jsonResult in
+
+			switch jsonResult {
+			case .success(let JSON):
+				//	convert from JSON to User here
+				let user = User()
+				callback( .success(user) )
+
+			case .failure(let annanowError):
+				callback( .failure( DataError.annanowError(annanowError) ) )
+			}
+		}
+	}
 
 }
