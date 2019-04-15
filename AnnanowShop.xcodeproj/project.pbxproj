@@ -50,6 +50,7 @@
 		D06EFA142261F62200925DFB /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA122261F62200925DFB /* AccountError.swift */; };
 		D06EFA162261F93D00925DFB /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */; };
 		D099C8A32264668600D50347 /* AnnanowEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099C8A22264668600D50347 /* AnnanowEndpoint.swift */; };
+		D099C8A52264801900D50347 /* Application-CoordinatingResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099C8A42264801900D50347 /* Application-CoordinatingResponder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		D06EFA122261F62200925DFB /* AccountError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
 		D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
 		D099C8A22264668600D50347 /* AnnanowEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnanowEndpoint.swift; sourceTree = "<group>"; };
+		D099C8A42264801900D50347 /* Application-CoordinatingResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application-CoordinatingResponder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */,
+				D099C8A42264801900D50347 /* Application-CoordinatingResponder.swift */,
 				D03060F922634A360015F1A2 /* AccountCoordinator.swift */,
 				D03060FB22634AD50015F1A2 /* Account-CoordinatingResponder.swift */,
 			);
@@ -454,6 +457,7 @@
 				D03060E8226244DF0015F1A2 /* Loggable.swift in Sources */,
 				D0306103226359170015F1A2 /* AutoBoxable.swift in Sources */,
 				D06EF9F52261ECFB00925DFB /* OperationQueue-Extensions.swift in Sources */,
+				D099C8A52264801900D50347 /* Application-CoordinatingResponder.swift in Sources */,
 				D06EF9F62261ECFB00925DFB /* FileManager-Extensions.swift in Sources */,
 				D06EFA0C2261F42D00925DFB /* AnnanowError.swift in Sources */,
 				D06EFA102261F48900925DFB /* DataManager.swift in Sources */,

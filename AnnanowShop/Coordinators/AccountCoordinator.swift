@@ -61,12 +61,23 @@ final class AccountCoordinator: NavigationCoordinator, NeedsDependency {
 			return
 		}
 		accountManager.login(username: username, password: password, onQueue: queue) {
-			callback( $0.boxed )
+			[weak self] userResult in
+			guard let self = self else { return }
+
+			//	if login is successful, now request switch to main UI
+			if let user = try? userResult.get() {
+				self.log(level: .info, "Logged in as \( user ), switching to main UI")
+				self.coordinatingResponder?.applicationDisplayMainUI(sender: self)
+				return
+			}
+
+			//	if error was encountered, send it back through `callback`
+			callback( userResult.boxed )
 		}
 	}
 }
 
-
+extension AccountCoordinator: Loggable {}
 
 
 extension AccountCoordinator {

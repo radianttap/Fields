@@ -69,6 +69,22 @@ final class ApplicationCoordinator: NavigationCoordinator, NeedsDependency {
 		log(level: .all, "↗︎")
 	}
 
+
+	//	MARK:- coordinatingResponder
+
+	override func applicationDisplayMainUI(onQueue queue: OperationQueue? = .main, sender: Any? = nil) {
+		//	switch `section` to value for main UI
+
+		//	if sender is AccountCoordinator (it should be), then stop it
+		//	(which de-inits all its `viewControllers` thus freeing memory)
+		if let sender = sender as? AccountCoordinator {
+			sender.stop {}
+		} else if let sender = sender {
+			log(level: .warning, "Unexpected sender when switching to main UI:\n\( sender )")
+		} else {
+			log(level: .warning, "Unknown sender when switching to main UI")
+		}
+	}
 }
 
 extension ApplicationCoordinator: Loggable {}
