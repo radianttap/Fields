@@ -49,6 +49,7 @@
 		D06EFA132261F62200925DFB /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA112261F62200925DFB /* AccountManager.swift */; };
 		D06EFA142261F62200925DFB /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA122261F62200925DFB /* AccountError.swift */; };
 		D06EFA162261F93D00925DFB /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */; };
+		D099C8A32264668600D50347 /* AnnanowEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D099C8A22264668600D50347 /* AnnanowEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		D06EFA112261F62200925DFB /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		D06EFA122261F62200925DFB /* AccountError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
 		D06EFA152261F93D00925DFB /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		D099C8A22264668600D50347 /* AnnanowEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnanowEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				D06EFA0B2261F42D00925DFB /* AnnanowError.swift */,
+				D099C8A22264668600D50347 /* AnnanowEndpoint.swift */,
 				D06EFA022261F0A000925DFB /* AnnanowService.swift */,
 			);
 			path = Annanow;
@@ -481,6 +484,7 @@
 				D06EF9F92261ECFB00925DFB /* Embeddable.swift in Sources */,
 				D06EF9C02261E45800925DFB /* AppDelegate.swift in Sources */,
 				D06EFA132261F62200925DFB /* AccountManager.swift in Sources */,
+				D099C8A32264668600D50347 /* AnnanowEndpoint.swift in Sources */,
 				D03060FC22634AD50015F1A2 /* Account-CoordinatingResponder.swift in Sources */,
 				D03060F8226347070015F1A2 /* User.swift in Sources */,
 			);
