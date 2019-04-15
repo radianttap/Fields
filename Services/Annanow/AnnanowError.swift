@@ -16,4 +16,6 @@ import Foundation
 enum AnnanowError: Error {
 	case generalError(Swift.Error)
 	case urlError(URLError)
+	case invalidResponseType //	when it's not HTTPURLResponse
+	case unexpectedResponse(HTTPURLResponse, String?)	//	when JSON conversion fails
 }
