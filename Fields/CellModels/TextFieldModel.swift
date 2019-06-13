@@ -8,15 +8,39 @@
 
 import UIKit
 
+/// Model that corresponds to TextFieldCell instance.
+///
+///	Note: Adjust everything here in any way you need.
 struct TextFieldModel: FieldModel {
+	///	unique identifier (across the containing form) for this field
 	let id: String
 
+	///	String to display in the title label
 	var title: String?
-	var value: String?
-	var placeholder: String?
-	var customSetup: (UITextField) -> Void
 
-	init(id: String, title: String? = nil, value: String? = nil, placeholder: String? = nil, customSetup: @escaping (UITextField) -> Void = {_ in}) {
+	///	Value to show inside the textField
+	var value: String?
+
+	///	Placeholder value to show inside the textField
+	var placeholder: String?
+
+	///	Custom configuration for the textField.
+	///
+	///	Default implementation does nothing.
+	var customSetup: (UITextField) -> Void = {_ in}
+
+	///	Method called every time value inside the field changes.
+	///
+	///	Default implementation does nothing.
+	var valueChanged: (String?) -> Void = {_ in}
+
+	init(id: String,
+		 title: String? = nil,
+		 value: String? = nil,
+		 placeholder: String? = nil,
+		 customSetup: @escaping (UITextField) -> Void = {_ in},
+		 valueChanged: @escaping (String?) -> Void = {_ in}
+	){
 		self.id = id
 
 		self.title = title
@@ -24,6 +48,7 @@ struct TextFieldModel: FieldModel {
 		self.placeholder = placeholder
 
 		self.customSetup = customSetup
+		self.valueChanged = valueChanged
 	}
 }
 

@@ -20,8 +20,6 @@ extension TextFieldCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
-
-		textField.delegate = fieldsController
 	}
 
 	override func prepareForReuse() {
@@ -47,6 +45,8 @@ private extension TextFieldCell {
 		textField.text = nil
 		textField.placeholder = nil
 		titleLabel.text = nil
+
+		textField.removeTarget(self, action: nil, for: .editingChanged)
 	}
 
 	func render() {
@@ -61,6 +61,12 @@ private extension TextFieldCell {
 		}
 
 		model?.customSetup( textField )
+
+		textField.addTarget(self, action: #selector(valueChanged), for: .editingChanged)
+	}
+
+	@objc func valueChanged(_ sender: UITextField) {
+		model?.valueChanged(sender.text)
 	}
 }
 
