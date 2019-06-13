@@ -66,6 +66,7 @@ private extension TextFieldCell {
 	}
 
 	@objc func valueChanged(_ sender: UITextField) {
+		model?.value = sender.text
 		model?.valueChanged(sender.text)
 	}
 }

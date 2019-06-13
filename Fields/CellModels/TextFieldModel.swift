@@ -11,7 +11,7 @@ import UIKit
 /// Model that corresponds to TextFieldCell instance.
 ///
 ///	Note: Adjust everything here in any way you need.
-struct TextFieldModel: FieldModel {
+class TextFieldModel: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
 

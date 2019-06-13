@@ -34,7 +34,7 @@ private extension LoginDataSource {
 
 	func prepareFields() {
 		fields.append({
-			var model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username)
+			let model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username)
 			model.customSetup = { textField in
 				textField.textContentType = .username
 			}
@@ -45,7 +45,7 @@ private extension LoginDataSource {
 		}())
 
 		fields.append({
-			var model = TextFieldModel(id: FieldId.password.rawValue, title: NSLocalizedString("Password", comment: ""), value: user?.password)
+			let model = TextFieldModel(id: FieldId.password.rawValue, title: NSLocalizedString("Password", comment: ""), value: user?.password)
 			model.customSetup = { textField in
 				textField.textContentType = .password
 				textField.isSecureTextEntry = true
