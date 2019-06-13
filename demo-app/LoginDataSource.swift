@@ -34,16 +34,19 @@ private extension LoginDataSource {
 
 	func prepareFields() {
 		fields.append({
-			let model = TextFieldModel(id: FieldId.username.rawValue,
-									   title: NSLocalizedString("Username", comment: ""),
-									   value: user?.username)
+			let model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username) {
+				textField in
+				textField.textContentType = .username
+			}
 			return model
 		}())
 
 		fields.append({
-			let model = TextFieldModel(id: FieldId.password.rawValue,
-									   title: NSLocalizedString("Password", comment: ""),
-									   value: user?.password)
+			let model = TextFieldModel(id: FieldId.password.rawValue, title: NSLocalizedString("Password", comment: ""), value: user?.password) {
+				textField in
+				textField.textContentType = .password
+				textField.isSecureTextEntry = true
+			}
 			return model
 		}())
 
