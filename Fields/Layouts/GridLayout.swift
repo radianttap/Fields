@@ -6,9 +6,22 @@ import UIKit
 
 class BaseGridLayout: UICollectionViewFlowLayout {
 
-	override func prepare() {
-		super.prepare()
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		commonInit()
+	}
 
+	override init() {
+		super.init()
+		commonInit()
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		commonInit()
+	}
+
+	func commonInit() {
 		scrollDirection = .vertical
 		headerReferenceSize = .zero
 		footerReferenceSize = .zero
