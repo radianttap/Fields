@@ -10,6 +10,24 @@
 		D034C74922A53579000FE220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C74822A53579000FE220 /* AppDelegate.swift */; };
 		D034C75022A5357A000FE220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D034C74F22A5357A000FE220 /* Assets.xcassets */; };
 		D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D034C75122A5357A000FE220 /* LaunchScreen.storyboard */; };
+		D034C76022A537F3000FE220 /* FieldsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C75F22A537F3000FE220 /* FieldsController.swift */; };
+		D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76722A53A8A000FE220 /* DequeableView.swift */; };
+		D034C76B22A53A8A000FE220 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76822A53A8A000FE220 /* ReusableView.swift */; };
+		D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76922A53A8A000FE220 /* NibLoadable.swift */; };
+		D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76E22A53B25000FE220 /* TextFieldCell.swift */; };
+		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
+		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
+		D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */; };
+		D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1F22B15B7C004A0A25 /* Notifying.swift */; };
+		D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2422B16A60004A0A25 /* GridLayout.swift */; };
+		D0704C2722B16B06004A0A25 /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */; };
+		D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */; };
+		D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2A22B16F07004A0A25 /* FieldCell.swift */; };
+		D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C75C22A53746000FE220 /* LoginController.swift */; };
+		D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */; };
+		D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */; };
+		D0704C3222B180D7004A0A25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3122B180D7004A0A25 /* User.swift */; };
+		D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3322B18277004A0A25 /* FieldModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +36,25 @@
 		D034C74F22A5357A000FE220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D034C75222A5357A000FE220 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D034C75422A5357A000FE220 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D034C75B22A53746000FE220 /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		D034C75C22A53746000FE220 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D034C75F22A537F3000FE220 /* FieldsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsController.swift; sourceTree = "<group>"; };
+		D034C76722A53A8A000FE220 /* DequeableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DequeableView.swift; sourceTree = "<group>"; };
+		D034C76822A53A8A000FE220 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
+		D034C76922A53A8A000FE220 /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
+		D034C76E22A53B25000FE220 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		D034C76F22A53B25000FE220 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
+		D034C77D22A56A8C000FE220 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
+		D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKeyboard-Notifications.swift"; sourceTree = "<group>"; };
+		D0704C1F22B15B7C004A0A25 /* Notifying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifying.swift; sourceTree = "<group>"; };
+		D0704C2422B16A60004A0A25 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
+		D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightSizingLayout.swift; sourceTree = "<group>"; };
+		D0704C2A22B16F07004A0A25 /* FieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCell.swift; sourceTree = "<group>"; };
+		D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
+		D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsCollectionController.swift; sourceTree = "<group>"; };
+		D0704C3122B180D7004A0A25 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D0704C3322B18277004A0A25 /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +71,7 @@
 		D034C73C22A53579000FE220 = {
 			isa = PBXGroup;
 			children = (
+				D034C76522A53A8A000FE220 /* Vendor */,
 				D034C75A22A535BD000FE220 /* Fields */,
 				D034C74722A53579000FE220 /* demo-app */,
 				D034C74622A53579000FE220 /* Products */,
@@ -52,6 +90,10 @@
 			isa = PBXGroup;
 			children = (
 				D034C74822A53579000FE220 /* AppDelegate.swift */,
+				D0704C3122B180D7004A0A25 /* User.swift */,
+				D034C75C22A53746000FE220 /* LoginController.swift */,
+				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
+				D034C75B22A53746000FE220 /* RegisterController.swift */,
 				D034C74F22A5357A000FE220 /* Assets.xcassets */,
 				D034C75122A5357A000FE220 /* LaunchScreen.storyboard */,
 				D034C75422A5357A000FE220 /* Info.plist */,
@@ -62,8 +104,70 @@
 		D034C75A22A535BD000FE220 /* Fields */ = {
 			isa = PBXGroup;
 			children = (
+				D034C75F22A537F3000FE220 /* FieldsController.swift */,
+				D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */,
+				D0704C2322B16A10004A0A25 /* Layouts */,
+				D0704C2222B15C00004A0A25 /* CellModels */,
+				D034C76D22A53AEC000FE220 /* Cells */,
 			);
 			path = Fields;
+			sourceTree = "<group>";
+		};
+		D034C76522A53A8A000FE220 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C1D22B15B7C004A0A25 /* Notifications */,
+				D034C76622A53A8A000FE220 /* Views */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		D034C76622A53A8A000FE220 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D034C76722A53A8A000FE220 /* DequeableView.swift */,
+				D034C76822A53A8A000FE220 /* ReusableView.swift */,
+				D034C76922A53A8A000FE220 /* NibLoadable.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D034C76D22A53AEC000FE220 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C2A22B16F07004A0A25 /* FieldCell.swift */,
+				D034C76E22A53B25000FE220 /* TextFieldCell.swift */,
+				D034C76F22A53B25000FE220 /* TextFieldCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		D0704C1D22B15B7C004A0A25 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */,
+				D0704C1F22B15B7C004A0A25 /* Notifying.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		D0704C2222B15C00004A0A25 /* CellModels */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C3322B18277004A0A25 /* FieldModel.swift */,
+				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
+			);
+			path = CellModels;
+			sourceTree = "<group>";
+		};
+		D0704C2322B16A10004A0A25 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C2422B16A60004A0A25 /* GridLayout.swift */,
+				D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */,
+				D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +230,7 @@
 			files = (
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
+				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +241,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
+				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
+				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
+				D0704C2722B16B06004A0A25 /* FullWidthLayout.swift in Sources */,
+				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
+				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
+				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
+				D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */,
+				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
+				D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */,
+				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
+				D034C76B22A53A8A000FE220 /* ReusableView.swift in Sources */,
+				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
+				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,
 				D034C74922A53579000FE220 /* AppDelegate.swift in Sources */,
+				D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */,
+				D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */,
+				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
