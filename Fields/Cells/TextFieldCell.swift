@@ -20,6 +20,8 @@ extension TextFieldCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
+
+		textField.delegate = fieldsController
 	}
 
 	override func prepareForReuse() {
@@ -30,6 +32,13 @@ extension TextFieldCell {
 	func populate(with model: TextFieldModel) {
 		self.model = model
 		render()
+	}
+
+	override func didMoveToSuperview() {
+		super.didMoveToSuperview()
+
+		if superview == nil { return }
+		textField.delegate = fieldsController
 	}
 }
 

@@ -28,6 +28,7 @@
 		D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */; };
 		D0704C3222B180D7004A0A25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3122B180D7004A0A25 /* User.swift */; };
 		D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3322B18277004A0A25 /* FieldModel.swift */; };
+		D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsCollectionController.swift; sourceTree = "<group>"; };
 		D0704C3122B180D7004A0A25 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D0704C3322B18277004A0A25 /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
+		D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-FieldsDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 		D034C76D22A53AEC000FE220 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */,
 				D0704C2A22B16F07004A0A25 /* FieldCell.swift */,
 				D034C76E22A53B25000FE220 /* TextFieldCell.swift */,
 				D034C76F22A53B25000FE220 /* TextFieldCell.xib */,
@@ -259,6 +262,7 @@
 				D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */,
 				D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
+				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
