@@ -8,17 +8,18 @@
 
 import UIKit
 
-class TextFieldCell: UICollectionViewCell, NibReusableView {
+final class TextFieldCell: FieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var textField: UITextField!
 
-	var model: TextFieldModel = TextFieldModel()
+	private var model: TextFieldModel?
 }
 
 extension TextFieldCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		cleanup()
 	}
 
 	override func prepareForReuse() {
@@ -35,21 +36,22 @@ extension TextFieldCell {
 private extension TextFieldCell {
 	func cleanup() {
 		textField.text = nil
+		textField.placeholder = nil
 		titleLabel.text = nil
-
-		model = TextFieldModel()
 	}
 
 	func render() {
-		if let title = model.title {
+		if let title = model?.title {
 			titleLabel.text = title
 		}
-		if let value = model.value {
+		if let value = model?.value {
 			textField.text = value
 		}
-		if let placeholder = model.placeholder {
+		if let placeholder = model?.placeholder {
 			textField.placeholder = placeholder
 		}
+
+		model?.customSetup( textField )
 	}
 }
 
