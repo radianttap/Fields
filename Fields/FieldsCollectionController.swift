@@ -40,6 +40,8 @@ private extension FieldsCollectionController {
 		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		cv.translatesAutoresizingMaskIntoConstraints = false
 
+		cv.backgroundColor = .clear
+
 		view.addSubview(cv)
 		cv.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
 		cv.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
