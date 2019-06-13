@@ -22,16 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSY-N7-KlT">
-                                <rect key="frame" x="16" y="8" width="296" height="14.5"/>
+                                <rect key="frame" x="16" y="8" width="296" height="12"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-TH-17W" userLabel="fieldView">
-                                <rect key="frame" x="8" y="30.5" width="304" height="41.5"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-TH-17W" userLabel="fieldView">
+                                <rect key="frame" x="8" y="28" width="304" height="44"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9zD-Yf-vad">
-                                        <rect key="frame" x="8" y="0.0" width="288" height="41.5"/>
+                                        <rect key="frame" x="8" y="0.0" width="288" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="pV5-Cx-J5H"/>
+                                        </constraints>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -44,6 +47,11 @@
                                     <constraint firstAttribute="bottom" secondItem="9zD-Yf-vad" secondAttribute="bottom" id="j9u-gD-hVc"/>
                                     <constraint firstItem="9zD-Yf-vad" firstAttribute="leading" secondItem="8u0-TH-17W" secondAttribute="leadingMargin" id="uCm-c6-Hcv"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <constraints>
