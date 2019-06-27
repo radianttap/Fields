@@ -12,12 +12,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
 		window = UIWindow(frame: UIScreen.main.bounds)
 
+		//	Controller
+		let layout = HeightSizingLayout()
+		let vc = LoginController(layout: layout)
+
+		//	Model (data source)
 		let user = User(username: nil, password: nil)
 		let ds = LoginDataSource(user)
-
-		let vc = LoginController(layout: HeightSizingLayout())
 		vc.dataSource = ds
 
+		//	UIKit setup
 		let nc = UINavigationController(rootViewController: vc)
 		window?.rootViewController = nc
 
