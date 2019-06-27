@@ -42,9 +42,7 @@ final class RegisterDataSource: NSObject {
 		case postcode
 		case country
 	}
-}
 
-private extension RegisterDataSource {
 	struct Section {
 		var header: String? = nil
 		var fields: [FieldModel] = []
@@ -56,7 +54,9 @@ private extension RegisterDataSource {
 			self.fields = fields
 		}
 	}
+}
 
+private extension RegisterDataSource {
 	func buildAccountSection() -> Section {
 		var section = Section(header: NSLocalizedString("Account information", comment: ""),
 							  footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers.", comment: ""))
@@ -93,10 +93,32 @@ extension RegisterDataSource: UICollectionViewDataSource {
 	private func prepareCollectionView() {
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+
+		collectionView?.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
+		collectionView?.register(SectionFooterView.self, kind: SectionFooterView.kind)
 	}
 
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return sections.count
+	}
+
+	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+		let s = sections[indexPath.section]
+
+		switch kind {
+		case SectionHeaderView.kind:
+			let v: SectionHeaderView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
+			v.populate(with: s.header ?? "")
+			return v
+
+		case SectionFooterView.kind:
+			let v: SectionFooterView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
+			v.populate(with: s.footer ?? "")
+			return v
+
+		default:
+			fatalError("Unexpected supplementary view kind: \( kind )")
+		}
 	}
 
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,6 +136,10 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		default:
 			fatalError("Unknown cell model")
 		}
+	}
+
+	func section(at index: Int) -> Section {
+		return sections[index]
 	}
 
 	func field(at indexPath: IndexPath) -> FieldModel {

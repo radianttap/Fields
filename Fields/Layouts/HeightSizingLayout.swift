@@ -5,8 +5,12 @@
 import UIKit
 
 ///	Custom re-implementation of UICollectionViewFlowLayout,
-///	optimized for self-sizing along the vertical axis
+///	optimized for self-sizing along the vertical axis.
+///
+///	It will still consult UICollectionViewDelegateFlowLayout method it present, but will look for `width` adjustments only.
+///	cell's `height` will still be calculated to fit the content.
 open class HeightSizingLayout: UICollectionViewLayout {
+
 	//	MARK: UICollectionViewFlowLayout parameters
 
 	open var minimumLineSpacing: CGFloat = 0
@@ -51,7 +55,7 @@ open class HeightSizingLayout: UICollectionViewLayout {
 		commonInit()
 	}
 
-	func commonInit() {
+	open func commonInit() {
 	}
 
 	override open func prepare() {
@@ -76,25 +80,34 @@ private extension HeightSizingLayout {
 	func build() {
 		guard let cv = collectionView else { return }
 
-		let	sectionCount = cv.numberOfSections
-
 		let w = cv.bounds.width
 		var x: CGFloat = 0
 		var y: CGFloat = 0
 
+		let	sectionCount = cv.numberOfSections
 		for section in (0 ..< sectionCount) {
 			let itemCount = cv.numberOfItems(inSection: section)
 			if itemCount == 0 { continue }
 
+
+			//	header/footer's indexPath
 			let indexPath = IndexPath(item: NSNotFound, section: section)
 
-			if headerReferenceSize != .zero {
-				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
-				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerReferenceSize.height)
-				headers[indexPath] = hattributes
+			//	this section's header
+
+			var headerSize = headerReferenceSize
+			if let customHeaderSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForHeaderInSection: section) {
+				headerSize = customHeaderSize
 			}
 
-			y += headerReferenceSize.height
+			if headerSize != .zero {
+				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
+				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
+				headers[indexPath] = hattributes
+			}
+			y += headerSize.height
+
+			//	this section's cells
 
 			x += sectionInset.left
 			y += sectionInset.top
@@ -102,15 +115,22 @@ private extension HeightSizingLayout {
 
 			var lastYmax: CGFloat = y
 			for item in (0 ..< itemCount) {
+				//	cell's indexPath
 				let indexPath = IndexPath(item: item, section: section)
 
-				if x + estimatedItemSize.width > aw {
+				//	look for custom itemSize from the CV delegate
+				var thisItemSize = itemSize
+				if let customItemSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath) {
+					thisItemSize = customItemSize
+				}
+
+				if x + thisItemSize.width > aw {
 					x = sectionInset.left
 					y = lastYmax + minimumLineSpacing
 				}
 
 				let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-				attributes.frame = CGRect(x: x, y: y, width: aw, height: estimatedItemSize.height)
+				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: itemSize.height)
 				cells[indexPath] = attributes
 
 				lastYmax = attributes.frame.maxY
@@ -120,13 +140,19 @@ private extension HeightSizingLayout {
 			x = 0
 			y = lastYmax + sectionInset.bottom
 
-			if footerReferenceSize != .zero {
-				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
-				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerReferenceSize.height)
-				footers[indexPath] = fattributes
+			//	this section's footer
+
+			var footerSize = footerReferenceSize
+			if let customFooterSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForFooterInSection: section) {
+				footerSize = customFooterSize
 			}
 
-			y += footerReferenceSize.height
+			if footerSize != .zero {
+				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
+				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
+				footers[indexPath] = fattributes
+			}
+			y += footerSize.height
 		}
 
 		calculateTotalContentSize()
