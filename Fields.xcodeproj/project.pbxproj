@@ -24,6 +24,7 @@
 		D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06B0C3822C5157000372445 /* SectionFooterView.xib */; };
 		D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3922C5157000372445 /* SectionFooterView.swift */; };
 		D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3C22C518B000372445 /* FieldSupplementaryView.swift */; };
+		D06B0C3F22C533F100372445 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3E22C533F100372445 /* Address.swift */; };
 		D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */; };
 		D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1F22B15B7C004A0A25 /* Notifying.swift */; };
 		D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2422B16A60004A0A25 /* GridLayout.swift */; };
@@ -59,6 +60,7 @@
 		D06B0C3822C5157000372445 /* SectionFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SectionFooterView.xib; sourceTree = "<group>"; };
 		D06B0C3922C5157000372445 /* SectionFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionFooterView.swift; sourceTree = "<group>"; };
 		D06B0C3C22C518B000372445 /* FieldSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldSupplementaryView.swift; sourceTree = "<group>"; };
+		D06B0C3E22C533F100372445 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKeyboard-Notifications.swift"; sourceTree = "<group>"; };
 		D0704C1F22B15B7C004A0A25 /* Notifying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifying.swift; sourceTree = "<group>"; };
 		D0704C2422B16A60004A0A25 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				D034C74822A53579000FE220 /* AppDelegate.swift */,
 				D0704C3122B180D7004A0A25 /* User.swift */,
+				D06B0C3E22C533F100372445 /* Address.swift */,
 				D034C75C22A53746000FE220 /* LoginController.swift */,
 				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
 				D06B0C3022C50AE200372445 /* RegisterController.swift */,
@@ -274,6 +277,7 @@
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */,
+				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,

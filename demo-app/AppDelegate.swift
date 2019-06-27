@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let vc = LoginController(layout: layout)
 
 		//	Model (data source)
-		let user = User(username: nil, password: nil)
+		let user = User()
 		let ds = LoginDataSource(user)
 		vc.dataSource = ds
 

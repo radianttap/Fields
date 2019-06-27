@@ -18,7 +18,6 @@ class FieldSupplementaryView: UICollectionReusableView {
 												 withHorizontalFittingPriority: UILayoutPriority.required,
 												 verticalFittingPriority: UILayoutPriority.fittingSizeLevel)
 		attr.frame.size.height = ceil(fittedSize.height)
-		attr.frame = attr.frame.integral
 		return attr
 	}
 }

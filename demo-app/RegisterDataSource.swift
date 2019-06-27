@@ -21,9 +21,8 @@ final class RegisterDataSource: NSObject {
 		self.user = user
 		super.init()
 
-		sections.append(
-			buildAccountSection()
-		)
+		sections.append( buildAccountSection() )
+		sections.append( buildAddressSection() )
 	}
 
 
@@ -87,12 +86,66 @@ private extension RegisterDataSource {
 		return section
 	}
 
+	func buildAddressSection() -> Section {
+		var section = Section(header: NSLocalizedString("Postal Address", comment: ""))
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.street.rawValue, title: NSLocalizedString("Street & building/apt no", comment: ""), value: user?.postalAddress?.street)
+			model.customSetup = { textField in
+				textField.textContentType = .fullStreetAddress
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.postalAddress?.street = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.postcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.postalAddress?.postCode)
+			model.customSetup = { textField in
+				textField.textContentType = .postalCode
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.postalAddress?.postCode = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.city.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.postalAddress?.city)
+			model.customSetup = { textField in
+				textField.textContentType = .addressCity
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.postalAddress?.city = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.country.rawValue, title: NSLocalizedString("Country", comment: ""), value: user?.postalAddress?.isoCountryCode)
+			model.customSetup = { textField in
+				textField.textContentType = .countryName
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.postalAddress?.isoCountryCode = string
+			}
+			return model
+			}())
+
+		return section
+	}
 }
 
 extension RegisterDataSource: UICollectionViewDataSource {
 	private func prepareCollectionView() {
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
 
 		collectionView?.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
 		collectionView?.register(SectionFooterView.self, kind: SectionFooterView.kind)
