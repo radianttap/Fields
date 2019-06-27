@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Section footnote" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-KD-6vX">
-                            <rect key="frame" x="16" y="8" width="296" height="34"/>
+                            <rect key="frame" x="16" y="8" width="288" height="34"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -29,7 +29,7 @@
                         <constraint firstItem="tzA-KD-6vX" firstAttribute="top" secondItem="An4-Og-iaG" secondAttribute="topMargin" id="US5-a4-d0S"/>
                         <constraint firstAttribute="bottomMargin" secondItem="tzA-KD-6vX" secondAttribute="bottom" id="UiS-U5-CMW"/>
                         <constraint firstItem="tzA-KD-6vX" firstAttribute="leading" secondItem="An4-Og-iaG" secondAttribute="leadingMargin" constant="8" id="g1d-ST-lhM"/>
-                        <constraint firstAttribute="trailingMargin" secondItem="tzA-KD-6vX" secondAttribute="trailing" id="xCo-95-Hiz"/>
+                        <constraint firstAttribute="trailingMargin" secondItem="tzA-KD-6vX" secondAttribute="trailing" constant="8" id="xCo-95-Hiz"/>
                     </constraints>
                 </view>
             </subviews>
