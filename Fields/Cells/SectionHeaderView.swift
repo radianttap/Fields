@@ -25,7 +25,10 @@ extension SectionHeaderView {
 		cleanup()
 	}
 
-	
+	override func updateConstraints() {
+		titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
+		super.updateConstraints()
+	}
 
 	func populate(with title: String) {
 		self.title = title

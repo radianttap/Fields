@@ -25,6 +25,11 @@ extension SectionFooterView {
 		cleanup()
 	}
 
+	override func updateConstraints() {
+		textLabel.preferredMaxLayoutWidth = textLabel.bounds.width
+		super.updateConstraints()
+	}
+
 	func populate(with text: String) {
 		self.text = text
 		render()

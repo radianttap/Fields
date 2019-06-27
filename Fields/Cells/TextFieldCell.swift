@@ -32,6 +32,11 @@ extension TextFieldCell {
 		render()
 	}
 
+	override func updateConstraints() {
+		titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
+		super.updateConstraints()
+	}
+
 	override func didMoveToSuperview() {
 		super.didMoveToSuperview()
 
