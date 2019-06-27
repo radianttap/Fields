@@ -118,7 +118,7 @@ private extension HeightSizingLayout {
 			}
 
 			x = 0
-			y += sectionInset.bottom
+			y = lastYmax + sectionInset.bottom
 
 			if footerReferenceSize != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
@@ -155,18 +155,26 @@ private extension HeightSizingLayout {
 
 			y += sectionInset.top
 
+			let aw = cv.bounds.width - (sectionInset.left + sectionInset.right)
+			var lastYmax: CGFloat = y
+			var lastXmax: CGFloat = 0
 			for item in (0 ..< itemCount) {
 				let indexPath = IndexPath(item: item, section: section)
 
 				if let attr = cells[indexPath] {
+					if lastXmax + attr.frame.size.width > aw {
+						y = lastYmax + minimumLineSpacing
+					}
+
 					attr.frame.origin.y = y
 					cells[indexPath] = attr
 
-					y = max(y, attr.frame.maxY)
+					lastXmax = attr.frame.maxX + minimumInteritemSpacing
+					lastYmax = max(y, attr.frame.maxY)
 				}
 			}
 
-			y += sectionInset.bottom
+			y = lastYmax + sectionInset.bottom
 
 			if let attr = footers[indexPath] {
 				attr.frame.origin.y = y

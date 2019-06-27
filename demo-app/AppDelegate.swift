@@ -14,6 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 		//	Controller
 		let layout = HeightSizingLayout()
+		layout.minimumLineSpacing = 8
+		layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 		let vc = LoginController(layout: layout)
 
 		//	Model (data source)
