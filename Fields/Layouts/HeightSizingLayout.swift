@@ -109,7 +109,7 @@ private extension HeightSizingLayout {
 
 			//	this section's cells
 
-			x += sectionInset.left
+			x = sectionInset.left
 			y += sectionInset.top
 			let aw = w - (sectionInset.left + sectionInset.right)
 
@@ -124,7 +124,7 @@ private extension HeightSizingLayout {
 					thisItemSize = customItemSize
 				}
 
-				if x + thisItemSize.width > aw {
+				if x + thisItemSize.width > aw + sectionInset.left {
 					x = sectionInset.left
 					y = lastYmax + minimumLineSpacing
 				}
@@ -183,12 +183,12 @@ private extension HeightSizingLayout {
 
 			let aw = cv.bounds.width - (sectionInset.left + sectionInset.right)
 			var lastYmax: CGFloat = y
-			var lastXmax: CGFloat = 0
+			var lastXmax: CGFloat = sectionInset.left
 			for item in (0 ..< itemCount) {
 				let indexPath = IndexPath(item: item, section: section)
 
 				if let attr = cells[indexPath] {
-					if lastXmax + attr.frame.size.width > aw {
+					if lastXmax + attr.frame.size.width > aw + sectionInset.left {
 						y = lastYmax + minimumLineSpacing
 					}
 
