@@ -59,7 +59,7 @@ final class RegisterDataSource: NSObject {
 private extension RegisterDataSource {
 	func buildAccountSection() -> Section {
 		var section = Section(header: NSLocalizedString("Account information", comment: ""),
-							  footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers.", comment: ""))
+							  footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers and generators.", comment: ""))
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username)
