@@ -77,7 +77,15 @@ open class HeightSizingLayout: UICollectionViewLayout {
 }
 
 private extension HeightSizingLayout {
+	func reset() {
+		contentSize = .zero
+		cells.removeAll()
+		headers.removeAll()
+		footers.removeAll()
+	}
+
 	func build() {
+		reset()
 		guard let cv = collectionView else { return }
 
 		let w = cv.bounds.width
@@ -248,6 +256,11 @@ extension HeightSizingLayout {
 		shouldRebuild = true
 		shouldRelayout = false
 		return true
+	}
+
+	open override func invalidateLayout() {
+		shouldRebuild = true
+		super.invalidateLayout()
 	}
 
 	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
