@@ -13,16 +13,20 @@ final class RegisterDataSource: NSObject {
 	//	Model
 	var user: User?
 
+	var shouldAddAddress = false {
+		didSet { processAddressToggle() }
+	}
+
 	private var sections: [Section] = []
 
 	//	Init
 
 	init(_ user: User) {
 		self.user = user
+		self.shouldAddAddress = user.postalAddress != nil
 		super.init()
 
-		sections.append( buildAccountSection() )
-		sections.append( buildAddressSection() )
+		prepareFields()
 	}
 
 
@@ -36,6 +40,7 @@ final class RegisterDataSource: NSObject {
 		case firstName
 		case lastName
 
+		case addressToggle
 		case street
 		case city
 		case postcode
@@ -56,6 +61,30 @@ final class RegisterDataSource: NSObject {
 }
 
 private extension RegisterDataSource {
+	func processContentUpdates() {
+		collectionView?.reloadData()
+	}
+
+	func processAddressToggle() {
+		defer {
+			prepareFields()
+			processContentUpdates()
+		}
+
+		if !shouldAddAddress {
+			user?.postalAddress = nil
+		}
+	}
+
+	//	MARK: Data source for the CV
+
+	func prepareFields() {
+		sections.removeAll()
+
+		sections.append( buildAccountSection() )
+		sections.append( buildAddressSection() )
+	}
+
 	func buildAccountSection() -> Section {
 		var section = Section(header: NSLocalizedString("Account information", comment: ""),
 							  footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers and generators.", comment: ""))
@@ -88,6 +117,18 @@ private extension RegisterDataSource {
 
 	func buildAddressSection() -> Section {
 		var section = Section(header: NSLocalizedString("Postal Address", comment: ""))
+
+		section.fields.append({
+			let model = ToggleModel(id: FieldId.addressToggle.rawValue, title: NSLocalizedString("Add postal address?", comment: ""), value: shouldAddAddress)
+			model.valueChanged = { [weak self] isOn in
+				self?.shouldAddAddress = isOn
+			}
+			return model
+			}())
+
+		if !shouldAddAddress {
+			return section
+		}
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.street.rawValue, title: NSLocalizedString("Street & building/apt no", comment: ""), value: user?.postalAddress?.street)
@@ -142,6 +183,7 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 
+		collectionView?.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
@@ -186,6 +228,12 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
+
+		case let model as ToggleModel:
+			let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
 		default:
 			fatalError("Unknown cell model")
 		}
