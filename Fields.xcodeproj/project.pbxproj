@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D722C7FE830059A52D /* PickerModel.swift */; };
+		D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D922C803A80059A52D /* PickerCell.swift */; };
+		D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8DA22C803A80059A52D /* PickerCell.xib */; };
 		D034C74922A53579000FE220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C74822A53579000FE220 /* AppDelegate.swift */; };
 		D034C75022A5357A000FE220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D034C74F22A5357A000FE220 /* Assets.xcassets */; };
 		D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D034C75122A5357A000FE220 /* LaunchScreen.storyboard */; };
@@ -43,6 +46,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D011B8D722C7FE830059A52D /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
+		D011B8D922C803A80059A52D /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
+		D011B8DA22C803A80059A52D /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
 		D034C74522A53579000FE220 /* Fields-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fields-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D034C74822A53579000FE220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D034C74F22A5357A000FE220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +173,8 @@
 				D06B0C4122C669BF00372445 /* ToggleCell.xib */,
 				D034C76E22A53B25000FE220 /* TextFieldCell.swift */,
 				D034C76F22A53B25000FE220 /* TextFieldCell.xib */,
+				D011B8D922C803A80059A52D /* PickerCell.swift */,
+				D011B8DA22C803A80059A52D /* PickerCell.xib */,
 				D06B0C3422C513E400372445 /* SectionHeaderView.swift */,
 				D06B0C3522C513E400372445 /* SectionHeaderView.xib */,
 				D06B0C3922C5157000372445 /* SectionFooterView.swift */,
@@ -190,6 +198,7 @@
 				D0704C3322B18277004A0A25 /* FieldModel.swift */,
 				D06B0C4422C669CC00372445 /* ToggleModel.swift */,
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
+				D011B8D722C7FE830059A52D /* PickerModel.swift */,
 			);
 			path = CellModels;
 			sourceTree = "<group>";
@@ -268,6 +277,7 @@
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 				D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */,
+				D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +291,7 @@
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
+				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
 				D0704C2722B16B06004A0A25 /* FullWidthLayout.swift in Sources */,
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
@@ -289,6 +300,7 @@
 				D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
+				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
 				D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */,

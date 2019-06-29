@@ -72,6 +72,10 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 			itemSize.width /= 4
 		case RegisterDataSource.FieldId.city.rawValue:
 			itemSize.width /= 2
+		case RegisterDataSource.FieldId.title.rawValue:
+			itemSize.width /= 5
+		case RegisterDataSource.FieldId.firstName.rawValue:
+			itemSize.width *= 4/5
 		default:
 			break
 		}

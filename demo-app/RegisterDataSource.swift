@@ -37,6 +37,7 @@ final class RegisterDataSource: NSObject {
 		case username
 		case password
 
+		case title
 		case firstName
 		case lastName
 
@@ -82,6 +83,7 @@ private extension RegisterDataSource {
 		sections.removeAll()
 
 		sections.append( buildAccountSection() )
+		sections.append( buildPersonalSection() )
 		sections.append( buildAddressSection() )
 	}
 
@@ -108,6 +110,46 @@ private extension RegisterDataSource {
 			}
 			model.valueChanged = { [weak self] string in
 				self?.user?.password = string
+			}
+			return model
+			}())
+
+		return section
+	}
+
+	func buildPersonalSection() -> Section {
+		var section = Section(header: NSLocalizedString("Personal information", comment: ""))
+
+		section.fields.append({
+			let model = PickerModel<PersonTitle>(id: FieldId.title.rawValue,
+											title: NSLocalizedString("Title", comment: ""),
+											value: user?.title,
+											values: PersonTitle.allCases,
+											valueFormatter: { return $0?.rawValue })
+			model.valueChanged = { [weak self] t in
+				self?.user?.title = t
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.firstName.rawValue, title: NSLocalizedString("First (given) name", comment: ""), value: user?.firstName)
+			model.customSetup = { textField in
+				textField.textContentType = .givenName
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.firstName = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.lastName.rawValue, title: NSLocalizedString("Last (family) name", comment: ""), value: user?.lastName)
+			model.customSetup = { textField in
+				textField.textContentType = .familyName
+			}
+			model.valueChanged = { [weak self] string in
+				self?.user?.lastName = string
 			}
 			return model
 			}())
@@ -183,6 +225,10 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 
+		collectionView?.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
+		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
+
 		collectionView?.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
 		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
@@ -231,6 +277,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 
 		case let model as ToggleModel:
 			let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as PickerModel<PersonTitle>:
+			let cell: PickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
