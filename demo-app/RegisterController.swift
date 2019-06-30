@@ -26,9 +26,8 @@ private extension RegisterController {
 	}
 
 	func prepareDataSource() {
-		dataSource?.collectionView = collectionView
+		dataSource?.controller = self
 		collectionView.dataSource = dataSource
-
 		collectionView.delegate = self
 	}
 

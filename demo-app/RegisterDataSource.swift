@@ -6,7 +6,7 @@ import UIKit
 
 final class RegisterDataSource: NSObject {
 	//	Dependencies
-	weak var collectionView: UICollectionView? {
+	weak var controller: FieldsCollectionController? {
 		didSet { prepareCollectionView() }
 	}
 
@@ -63,7 +63,7 @@ final class RegisterDataSource: NSObject {
 
 private extension RegisterDataSource {
 	func processContentUpdates() {
-		collectionView?.reloadData()
+		controller?.collectionView?.reloadData()
 	}
 
 	func processAddressToggle() {
@@ -129,15 +129,15 @@ private extension RegisterDataSource {
 			model.displayPicker = { [weak self] in
 				let vc = PickerOptionsListController<PersonTitle, PickerOptionTextCell>()
 				vc.populate(with: model)
-				self?.collectionView?.fieldsController?.show(vc, sender: nil)
+				self?.controller?.show(vc, sender: nil)
 			}
-			model.valueChanged = { [weak self] t in
+			model.valueChanged = { [weak self, weak model] t in
 				self?.user?.title = t
-				model.value = t
+				model?.value = t
 				//	refresh display
-				self?.collectionView?.reloadData()
+				self?.controller?.collectionView?.reloadData()
 				//	pop VC back to the form
-				self?.collectionView?.fieldsController?.navigationController?.popViewController(animated: true)
+				self?.controller?.navigationController?.popViewController(animated: true)
 			}
 			return model
 			}())
@@ -232,21 +232,29 @@ private extension RegisterDataSource {
 
 extension RegisterDataSource: UICollectionViewDataSource {
 	private func prepareCollectionView() {
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+		guard let cv = controller?.collectionView else { return }
 
-		collectionView?.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
+		//	reusability is not needed here
+		//	(it can actually lead to problems),
+		//	so register separate Cell for each field
 
-		collectionView?.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 
-		collectionView?.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
-		collectionView?.register(SectionFooterView.self, kind: SectionFooterView.kind)
+		cv.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
+
+		cv.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
+
+		//	also for header/footer views
+
+		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
+		cv.register(SectionFooterView.self, kind: SectionFooterView.kind)
 	}
 
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
