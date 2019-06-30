@@ -12,6 +12,8 @@ final class PickerCell: FieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var valueLabel: UILabel!
+
+	private var displayPicker: () -> Void = {}
 }
 
 extension PickerCell {
@@ -25,7 +27,8 @@ extension PickerCell {
 		cleanup()
 	}
 
-	func populate<T>(with model: PickerModel<T>) {
+	func populate<T, Cell>(with model: PickerModel<T, Cell>) {
+		displayPicker = model.displayPicker
 		render(model)
 	}
 
@@ -42,13 +45,17 @@ private extension PickerCell {
 		valueLabel.text = nil
 	}
 
-	func render<T>(_ model: PickerModel<T>) {
+	func render<T, Cell>(_ model: PickerModel<T, Cell>) {
 		if let title = model.title {
 			titleLabel.text = title
 		}
 		if let value = model.value {
 			valueLabel.text = model.valueFormatter(value)
 		}
+	}
+
+	@IBAction func showOptions(_ sender: UIButton) {
+		displayPicker()
 	}
 }
 

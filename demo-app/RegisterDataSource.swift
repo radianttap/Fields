@@ -121,13 +121,23 @@ private extension RegisterDataSource {
 		var section = Section(header: NSLocalizedString("Personal information", comment: ""))
 
 		section.fields.append({
-			let model = PickerModel<PersonTitle>(id: FieldId.title.rawValue,
+			let model = PickerModel<PersonTitle, PickerOptionTextCell>(id: FieldId.title.rawValue,
 											title: NSLocalizedString("Title", comment: ""),
 											value: user?.title,
 											values: PersonTitle.allCases,
 											valueFormatter: { return $0?.rawValue })
+			model.displayPicker = { [weak self] in
+				let vc = PickerOptionsListController<PersonTitle, PickerOptionTextCell>()
+				vc.populate(with: model)
+				self?.collectionView?.fieldsController?.show(vc, sender: nil)
+			}
 			model.valueChanged = { [weak self] t in
 				self?.user?.title = t
+				model.value = t
+				//	refresh display
+				self?.collectionView?.reloadData()
+				//	pop VC back to the form
+				self?.collectionView?.fieldsController?.navigationController?.popViewController(animated: true)
 			}
 			return model
 			}())
@@ -280,7 +290,7 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
-		case let model as PickerModel<PersonTitle>:
+		case let model as PickerModel<PersonTitle, PickerOptionTextCell>:
 			let cell: PickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell

@@ -10,6 +10,9 @@
 		D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D722C7FE830059A52D /* PickerModel.swift */; };
 		D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D922C803A80059A52D /* PickerCell.swift */; };
 		D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8DA22C803A80059A52D /* PickerCell.xib */; };
+		D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8DE22C904080059A52D /* PickerOptionsListController.swift */; };
+		D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */; };
+		D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */; };
 		D034C74922A53579000FE220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C74822A53579000FE220 /* AppDelegate.swift */; };
 		D034C75022A5357A000FE220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D034C74F22A5357A000FE220 /* Assets.xcassets */; };
 		D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D034C75122A5357A000FE220 /* LaunchScreen.storyboard */; };
@@ -49,6 +52,9 @@
 		D011B8D722C7FE830059A52D /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		D011B8D922C803A80059A52D /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		D011B8DA22C803A80059A52D /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
+		D011B8DE22C904080059A52D /* PickerOptionsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsListController.swift; sourceTree = "<group>"; };
+		D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionTextCell.swift; sourceTree = "<group>"; };
+		D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerOptionTextCell.xib; sourceTree = "<group>"; };
 		D034C74522A53579000FE220 /* Fields-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fields-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D034C74822A53579000FE220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D034C74F22A5357A000FE220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +103,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D011B8DD22C903DC0059A52D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D011B8DE22C904080059A52D /* PickerOptionsListController.swift */,
+				D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */,
+				D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		D034C73C22A53579000FE220 = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +156,7 @@
 				D0704C2322B16A10004A0A25 /* Layouts */,
 				D0704C2222B15C00004A0A25 /* CellModels */,
 				D034C76D22A53AEC000FE220 /* Cells */,
+				D011B8DD22C903DC0059A52D /* Controllers */,
 			);
 			path = Fields;
 			sourceTree = "<group>";
@@ -276,6 +293,7 @@
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
+				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
 				D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */,
 				D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */,
 			);
@@ -301,6 +319,7 @@
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
+				D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
 				D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */,
@@ -308,6 +327,7 @@
 				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
 				D034C76B22A53A8A000FE220 /* ReusableView.swift in Sources */,
 				D06B0C4222C669BF00372445 /* ToggleCell.swift in Sources */,
+				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
 				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
 				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,

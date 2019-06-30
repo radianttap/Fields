@@ -53,12 +53,22 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cqt-A1-HUn">
+                                <rect key="frame" x="137" y="25" width="46" height="30"/>
+                                <connections>
+                                    <action selector="showOptions:" destination="8U5-MG-u1I" eventType="primaryActionTriggered" id="7Mc-PE-yTj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="ub5-04-ZmR" firstAttribute="trailing" secondItem="82x-Ym-TzQ" secondAttribute="trailing" id="26p-cv-T3S"/>
                             <constraint firstItem="82x-Ym-TzQ" firstAttribute="top" secondItem="ub5-04-ZmR" secondAttribute="bottom" constant="8" id="49Z-WF-SPd"/>
+                            <constraint firstItem="cqt-A1-HUn" firstAttribute="trailing" secondItem="82x-Ym-TzQ" secondAttribute="trailing" id="9qz-ka-83f"/>
                             <constraint firstItem="ub5-04-ZmR" firstAttribute="leading" secondItem="rBn-ey-PFU" secondAttribute="leading" id="CPS-wr-rJM"/>
+                            <constraint firstItem="cqt-A1-HUn" firstAttribute="top" secondItem="82x-Ym-TzQ" secondAttribute="top" id="En6-iP-5Qh"/>
                             <constraint firstAttribute="bottomMargin" secondItem="82x-Ym-TzQ" secondAttribute="bottom" id="Gfq-iz-r3T"/>
+                            <constraint firstItem="cqt-A1-HUn" firstAttribute="bottom" secondItem="82x-Ym-TzQ" secondAttribute="bottom" id="Yds-oe-K7m"/>
+                            <constraint firstItem="cqt-A1-HUn" firstAttribute="leading" secondItem="82x-Ym-TzQ" secondAttribute="leading" id="mio-M3-mbb"/>
                             <constraint firstItem="82x-Ym-TzQ" firstAttribute="leading" secondItem="bYR-7s-iTM" secondAttribute="leadingMargin" id="osq-MT-b8z"/>
                             <constraint firstItem="ub5-04-ZmR" firstAttribute="top" secondItem="bYR-7s-iTM" secondAttribute="topMargin" id="sgN-xn-MXn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="82x-Ym-TzQ" secondAttribute="trailing" id="yoA-Sb-Alr"/>
