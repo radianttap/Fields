@@ -11,7 +11,7 @@ class FullWidthLayout: BaseGridLayout {
 		guard let cv = collectionView else { return }
 
 		let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
-		itemSize.width = w
+		itemSize.width = max(w, itemSize.width)
 	}
 
 }
