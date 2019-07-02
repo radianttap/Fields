@@ -96,8 +96,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .username
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.username = string
+				model.value = string
 			}
 			return model
 			}())
@@ -108,8 +109,9 @@ private extension RegisterDataSource {
 				textField.textContentType = .password
 				textField.isSecureTextEntry = true
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.password = string
+				model.value = string
 			}
 			return model
 			}())
@@ -131,13 +133,16 @@ private extension RegisterDataSource {
 				vc.populate(with: model)
 				self?.controller?.show(vc, sender: nil)
 			}
-			model.valueChanged = { [weak self, weak model] t in
-				self?.user?.title = t
-				model?.value = t
+			model.valueChanged = { [weak self, weak model] t, cell in
+				guard let self = self, let model = model else { return }
+
+				self.user?.title = t
+				model.value = t
+
 				//	refresh display
-				self?.controller?.collectionView?.reloadData()
+				cell.populate(with: model)
 				//	pop VC back to the form
-				self?.controller?.navigationController?.popViewController(animated: true)
+				self.controller?.navigationController?.popViewController(animated: true)
 			}
 			return model
 			}())
@@ -147,8 +152,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .givenName
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.firstName = string
+				model.value = string
 			}
 			return model
 			}())
@@ -158,8 +164,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .familyName
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.lastName = string
+				model.value = string
 			}
 			return model
 			}())
@@ -175,10 +182,10 @@ private extension RegisterDataSource {
 			model.valueChanged = { [weak self] isOn, cell in
 				//	required: update raw data
 				self?.shouldAddAddress = isOn
-
-				//	optional: update the field model (whatever you need)
 				model.value = isOn
-				//	and repopulate the cell with updated model
+
+				//	optional: after you update the field model,
+				//	repopulate the cell with updated model
 				cell.populate(with: model)
 			}
 			return model
@@ -193,8 +200,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .fullStreetAddress
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.street = string
+				model.value = string
 			}
 			return model
 			}())
@@ -204,8 +212,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .postalCode
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.postCode = string
+				model.value = string
 			}
 			return model
 			}())
@@ -215,8 +224,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .addressCity
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.city = string
+				model.value = string
 			}
 			return model
 			}())
@@ -226,8 +236,9 @@ private extension RegisterDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .countryName
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.isoCountryCode = string
+				model.value = string
 			}
 			return model
 			}())

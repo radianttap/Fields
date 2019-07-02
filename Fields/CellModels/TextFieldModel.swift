@@ -9,8 +9,6 @@
 import UIKit
 
 /// Model that corresponds to TextFieldCell instance.
-///
-///	Note: Adjust everything here in any way you need.
 class TextFieldModel: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
@@ -32,14 +30,14 @@ class TextFieldModel: FieldModel {
 	///	Method called every time value inside the field changes.
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (String?) -> Void = {_ in}
+	var valueChanged: (String?, TextFieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
 		 value: String? = nil,
 		 placeholder: String? = nil,
 		 customSetup: @escaping (UITextField) -> Void = {_ in},
-		 valueChanged: @escaping (String?) -> Void = {_ in}
+		 valueChanged: @escaping (String?, TextFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 

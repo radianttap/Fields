@@ -13,13 +13,15 @@ final class TextFieldCell: FieldCell, NibLoadableFinalView, NibReusableView {
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var textField: UITextField!
 
-	private var model: TextFieldModel?
+	private var valueChanged: (String?, TextFieldCell) -> Void = {_, _ in}
 }
 
 extension TextFieldCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
+
+		textField.addTarget(self, action: #selector(editText), for: .editingChanged)
 	}
 
 	override func prepareForReuse() {
@@ -28,8 +30,8 @@ extension TextFieldCell {
 	}
 
 	func populate(with model: TextFieldModel) {
-		self.model = model
-		render()
+		valueChanged = model.valueChanged
+		render(model)
 	}
 
 	override func updateConstraints() {
@@ -54,25 +56,15 @@ private extension TextFieldCell {
 		textField.removeTarget(self, action: nil, for: .editingChanged)
 	}
 
-	func render() {
-		if let title = model?.title {
-			titleLabel.text = title
-		}
-		if let value = model?.value {
-			textField.text = value
-		}
-		if let placeholder = model?.placeholder {
-			textField.placeholder = placeholder
-		}
-
-		model?.customSetup( textField )
-
-		textField.addTarget(self, action: #selector(valueChanged), for: .editingChanged)
+	func render(_ model: TextFieldModel) {
+		titleLabel.text = model.title
+		textField.text = model.value
+		textField.placeholder = model.placeholder
+		model.customSetup( textField )
 	}
 
-	@objc func valueChanged(_ sender: UITextField) {
-		model?.value = sender.text
-		model?.valueChanged(sender.text)
+	@objc func editText(_ sender: UITextField) {
+		valueChanged(sender.text, self)
 	}
 }
 

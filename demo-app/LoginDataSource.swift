@@ -51,8 +51,9 @@ private extension LoginDataSource {
 			model.customSetup = { textField in
 				textField.textContentType = .username
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.username = string
+				model.value = string
 			}
 			return model
 		}())
@@ -63,8 +64,9 @@ private extension LoginDataSource {
 				textField.textContentType = .password
 				textField.isSecureTextEntry = true
 			}
-			model.valueChanged = { [weak self] string in
+			model.valueChanged = { [weak self] string, _ in
 				self?.user?.password = string
+				model.value = string
 			}
 			return model
 		}())
