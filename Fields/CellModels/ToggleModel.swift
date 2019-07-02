@@ -9,8 +9,6 @@
 import UIKit
 
 /// Model that corresponds to ToggleCell instance.
-///
-///	Note: Adjust everything here in any way you need.
 class ToggleModel: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
@@ -29,14 +27,14 @@ class ToggleModel: FieldModel {
 	///	Method called every time UISwitch is toggled.
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (Bool) -> Void = {_ in}
+	var valueChanged: (Bool, ToggleCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String,
 		 value: Bool,
 		 customSetup: @escaping (UISwitch) -> Void = {_ in},
-		 valueChanged: @escaping (Bool) -> Void = {_ in}
-		){
+		 valueChanged: @escaping (Bool, ToggleCell) -> Void = {_, _ in}
+	){
 		self.id = id
 
 		self.title = title

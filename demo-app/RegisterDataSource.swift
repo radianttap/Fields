@@ -172,8 +172,14 @@ private extension RegisterDataSource {
 
 		section.fields.append({
 			let model = ToggleModel(id: FieldId.addressToggle.rawValue, title: NSLocalizedString("Add postal address?", comment: ""), value: shouldAddAddress)
-			model.valueChanged = { [weak self] isOn in
+			model.valueChanged = { [weak self] isOn, cell in
+				//	required: update raw data
 				self?.shouldAddAddress = isOn
+
+				//	optional: update the field model (whatever you need)
+				model.value = isOn
+				//	and repopulate the cell with updated model
+				cell.populate(with: model)
 			}
 			return model
 			}())

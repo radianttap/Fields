@@ -13,13 +13,15 @@ final class ToggleCell: FieldCell, NibLoadableFinalView, NibReusableView {
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var toggle: UISwitch!
 
-	private var model: ToggleModel?
+	private var valueChanged: (Bool, ToggleCell) -> Void = {_, _ in}
 }
 
 extension ToggleCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
+
+		toggle.addTarget(self, action: #selector(toggled), for: .valueChanged)
 	}
 
 	override func prepareForReuse() {
@@ -28,8 +30,8 @@ extension ToggleCell {
 	}
 
 	func populate(with model: ToggleModel) {
-		self.model = model
-		render()
+		valueChanged = model.valueChanged
+		render(model)
 	}
 
 	override func updateConstraints() {
@@ -42,26 +44,16 @@ private extension ToggleCell {
 	func cleanup() {
 		toggle.isOn = false
 		titleLabel.text = nil
-
-		toggle.removeTarget(self, action: nil, for: .valueChanged)
 	}
 
-	func render() {
-		if let title = model?.title {
-			titleLabel.text = title
-		}
-		if let value = model?.value {
-			toggle.isOn = value
-		}
-
-		model?.customSetup( toggle )
-
-		toggle.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+	func render(_ model: ToggleModel) {
+		titleLabel.text = model.title
+		toggle.isOn = model.value
+		model.customSetup( toggle )
 	}
 
-	@objc func valueChanged(_ sender: UISwitch) {
-		model?.value = sender.isOn
-		model?.valueChanged(sender.isOn)
+	@objc func toggled(_ sender: UISwitch) {
+		valueChanged(sender.isOn, self)
 	}
 }
 
