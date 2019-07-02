@@ -34,7 +34,7 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 	///	Method called every time a value is picked
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (T?) -> Void = {_ in}
+	var valueChanged: (T?, PickerCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
@@ -42,7 +42,7 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 		 values: [T] = [],
 		 valueFormatter: @escaping (T?) -> String?,
 		 displayPicker: @escaping () -> Void = {},
-		 valueChanged: @escaping (T?) -> Void = {_ in}
+		 valueChanged: @escaping (T?, PickerCell) -> Void = {_, _ in}
 	){
 		self.id = id
 
@@ -87,7 +87,7 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let value = values[indexPath.item]
-		valueChanged(value)
+//		valueChanged(value, self)
 	}
 }
 
