@@ -6,13 +6,12 @@
 //  MIT License · http://choosealicense.com/licenses/mit/
 //
 
-import UIKit
+import Foundation
 
 /// Model that corresponds to PickerCell instance.
 ///
-///	This FieldModel type acts as data model for the PickerCell but also for the VC showing the list of options.
-///	As such, it acts as CV DataSource & Delegate, to handle display and (de)selection of the chosen value.
-class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObject, FieldModel, UICollectionViewDataSource, UICollectionViewDelegate {
+///
+class PickerModel<T: Hashable>: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
 
@@ -29,9 +28,9 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 	var valueFormatter: (T?) -> String?
 
 	///	Executted when PickerCell is tapped. It should display the `values` list.
-	var displayPicker: () -> Void = {}
+	var displayPicker: (PickerCell) -> Void = {_ in}
 
-	///	Method called every time a value is picked
+	///	Method called every time a value is picked.
 	///
 	///	Default implementation does nothing.
 	var valueChanged: (T?, PickerCell) -> Void = {_, _ in}
@@ -41,7 +40,7 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 		 value: T? = nil,
 		 values: [T] = [],
 		 valueFormatter: @escaping (T?) -> String?,
-		 displayPicker: @escaping () -> Void = {},
+		 displayPicker: @escaping (PickerCell) -> Void = {_ in},
 		 valueChanged: @escaping (T?, PickerCell) -> Void = {_, _ in}
 	){
 		self.id = id
@@ -54,40 +53,6 @@ class PickerModel<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObj
 
 		self.displayPicker = displayPicker
 		self.valueChanged = valueChanged
-
-		super.init()
-	}
-
-
-	//	UICollectionViewDataSource
-
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return 1
-	}
-
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return values.count
-	}
-
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-		let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-
-		switch cell {
-		case let cell as PickerOptionTextCell:
-			let value = values[indexPath.item]
-			let s = valueFormatter(value) ?? "--"
-			cell.populate(with: s)
-		default:
-			break
-		}
-
-		return cell
-	}
-
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let value = values[indexPath.item]
-//		valueChanged(value, self)
 	}
 }
 

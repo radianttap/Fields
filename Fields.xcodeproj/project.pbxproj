@@ -10,6 +10,7 @@
 		D00A400B22CB41180001625B /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400A22CB41180001625B /* TextModel.swift */; };
 		D00A400E22CB41B00001625B /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400C22CB41B00001625B /* TextCell.swift */; };
 		D00A400F22CB41B00001625B /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00A400D22CB41B00001625B /* TextCell.xib */; };
+		D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */; };
 		D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D722C7FE830059A52D /* PickerModel.swift */; };
 		D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D922C803A80059A52D /* PickerCell.swift */; };
 		D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8DA22C803A80059A52D /* PickerCell.xib */; };
@@ -55,6 +56,7 @@
 		D00A400A22CB41180001625B /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
 		D00A400C22CB41B00001625B /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
 		D00A400D22CB41B00001625B /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
+		D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsProvider.swift; sourceTree = "<group>"; };
 		D011B8D722C7FE830059A52D /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		D011B8D922C803A80059A52D /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		D011B8DA22C803A80059A52D /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		D011B8DD22C903DC0059A52D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */,
 				D011B8DE22C904080059A52D /* PickerOptionsListController.swift */,
 				D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */,
 				D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */,
@@ -335,6 +338,7 @@
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
 				D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */,
+				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
 				D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */,
 				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
 				D034C76B22A53A8A000FE220 /* ReusableView.swift in Sources */,

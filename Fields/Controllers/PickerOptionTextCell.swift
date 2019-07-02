@@ -1,9 +1,9 @@
 //
 //  PickerOptionTextCell.swift
-//  Fields-demo
+//  Fields
 //
-//  Created by Aleksandar Vacić on 6/30/19.
-//  Copyright © 2019 Radiant Tap. All rights reserved.
+//  Copyright © 2019 Radiant Tap
+//  MIT License · http://choosealicense.com/licenses/mit/
 //
 
 import UIKit
