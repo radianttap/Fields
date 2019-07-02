@@ -111,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D00A401222CB56DB0001625B /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D0704C3122B180D7004A0A25 /* User.swift */,
+				D06B0C3E22C533F100372445 /* Address.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		D011B8DD22C903DC0059A52D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,15 +153,14 @@
 			isa = PBXGroup;
 			children = (
 				D034C74822A53579000FE220 /* AppDelegate.swift */,
-				D0704C3122B180D7004A0A25 /* User.swift */,
-				D06B0C3E22C533F100372445 /* Address.swift */,
+				D034C74F22A5357A000FE220 /* Assets.xcassets */,
+				D034C75122A5357A000FE220 /* LaunchScreen.storyboard */,
+				D034C75422A5357A000FE220 /* Info.plist */,
+				D00A401222CB56DB0001625B /* DataModel */,
 				D034C75C22A53746000FE220 /* LoginController.swift */,
 				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
 				D06B0C3022C50AE200372445 /* RegisterController.swift */,
 				D06B0C3222C50B2700372445 /* RegisterDataSource.swift */,
-				D034C74F22A5357A000FE220 /* Assets.xcassets */,
-				D034C75122A5357A000FE220 /* LaunchScreen.storyboard */,
-				D034C75422A5357A000FE220 /* Info.plist */,
 			);
 			path = "demo-app";
 			sourceTree = "<group>";
