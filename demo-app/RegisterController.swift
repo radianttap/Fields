@@ -62,7 +62,7 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard
 			let field = dataSource?.field(at: indexPath),
-			let layout = collectionViewLayout as? HeightSizingLayout
+			let layout = collectionViewLayout as? FieldHeightSizingLayout
 		else { return .zero }
 		var itemSize = layout.itemSize
 

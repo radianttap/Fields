@@ -1,5 +1,9 @@
 //
-//  HeightSizingLayout.swift
+//  FieldHeightSizingLayout.swift
+//  Fields
+//
+//  Copyright © 2019 Radiant Tap
+//  MIT License · http://choosealicense.com/licenses/mit/
 //
 
 import UIKit
@@ -9,7 +13,7 @@ import UIKit
 ///
 ///	It will still consult UICollectionViewDelegateFlowLayout method it present, but will look for `width` adjustments only.
 ///	cell's `height` will still be calculated to fit the content.
-open class HeightSizingLayout: UICollectionViewLayout {
+open class FieldHeightSizingLayout: UICollectionViewLayout {
 
 	//	MARK: UICollectionViewFlowLayout parameters
 
@@ -56,6 +60,7 @@ open class HeightSizingLayout: UICollectionViewLayout {
 	}
 
 	open func commonInit() {
+		sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 	}
 
 	override open func prepare() {
@@ -76,7 +81,7 @@ open class HeightSizingLayout: UICollectionViewLayout {
 	}
 }
 
-private extension HeightSizingLayout {
+private extension FieldHeightSizingLayout {
 	func reset() {
 		contentSize = .zero
 		cells.removeAll()
@@ -243,7 +248,7 @@ private extension HeightSizingLayout {
 	}
 }
 
-extension HeightSizingLayout {
+extension FieldHeightSizingLayout {
 	override open var collectionViewContentSize: CGSize {
 		return contentSize
 	}
@@ -301,20 +306,20 @@ extension HeightSizingLayout {
 	}
 
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
-										 withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
+											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
 	{
 		if preferredAttributes.frame == originalAttributes.frame { return false }
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
-			cells[preferredAttributes.indexPath] = preferredAttributes
+			cells[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
 		case .supplementaryView:
 			if let elementKind = preferredAttributes.representedElementKind {
 				switch elementKind {
 				case UICollectionView.elementKindSectionHeader:
-					headers[preferredAttributes.indexPath] = preferredAttributes
+					headers[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
 				case UICollectionView.elementKindSectionFooter:
-					footers[preferredAttributes.indexPath] = preferredAttributes
+					footers[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
 				default:
 					break
 				}

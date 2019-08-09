@@ -40,9 +40,7 @@
 		D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C4422C669CC00372445 /* ToggleModel.swift */; };
 		D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */; };
 		D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C1F22B15B7C004A0A25 /* Notifying.swift */; };
-		D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2422B16A60004A0A25 /* GridLayout.swift */; };
-		D0704C2722B16B06004A0A25 /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */; };
-		D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */; };
+		D0704C2922B16DD6004A0A25 /* FieldHeightSizingLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2822B16DD6004A0A25 /* FieldHeightSizingLayout.swift */; };
 		D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2A22B16F07004A0A25 /* FieldCell.swift */; };
 		D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C75C22A53746000FE220 /* LoginController.swift */; };
 		D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */; };
@@ -50,6 +48,8 @@
 		D0704C3222B180D7004A0A25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3122B180D7004A0A25 /* User.swift */; };
 		D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3322B18277004A0A25 /* FieldModel.swift */; };
 		D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */; };
+		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
+		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,15 +89,15 @@
 		D06B0C4422C669CC00372445 /* ToggleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleModel.swift; sourceTree = "<group>"; };
 		D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKeyboard-Notifications.swift"; sourceTree = "<group>"; };
 		D0704C1F22B15B7C004A0A25 /* Notifying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifying.swift; sourceTree = "<group>"; };
-		D0704C2422B16A60004A0A25 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
-		D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
-		D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeightSizingLayout.swift; sourceTree = "<group>"; };
+		D0704C2822B16DD6004A0A25 /* FieldHeightSizingLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldHeightSizingLayout.swift; sourceTree = "<group>"; };
 		D0704C2A22B16F07004A0A25 /* FieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldCell.swift; sourceTree = "<group>"; };
 		D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDataSource.swift; sourceTree = "<group>"; };
 		D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsCollectionController.swift; sourceTree = "<group>"; };
 		D0704C3122B180D7004A0A25 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D0704C3322B18277004A0A25 /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 		D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-FieldsDelegate.swift"; sourceTree = "<group>"; };
+		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
+		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,9 +243,9 @@
 		D0704C2322B16A10004A0A25 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				D0704C2422B16A60004A0A25 /* GridLayout.swift */,
-				D0704C2622B16B06004A0A25 /* FullWidthLayout.swift */,
-				D0704C2822B16DD6004A0A25 /* HeightSizingLayout.swift */,
+				D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */,
+				D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */,
+				D0704C2822B16DD6004A0A25 /* FieldHeightSizingLayout.swift */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -327,25 +327,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */,
 				D00A400B22CB41180001625B /* TextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
 				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
-				D0704C2722B16B06004A0A25 /* FullWidthLayout.swift in Sources */,
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D00A400E22CB41B00001625B /* TextCell.swift in Sources */,
-				D0704C2922B16DD6004A0A25 /* HeightSizingLayout.swift in Sources */,
+				D0704C2922B16DD6004A0A25 /* FieldHeightSizingLayout.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
 				D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
-				D0704C2522B16A60004A0A25 /* GridLayout.swift in Sources */,
 				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
 				D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */,
 				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
@@ -353,6 +352,7 @@
 				D06B0C4222C669BF00372445 /* ToggleCell.swift in Sources */,
 				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
 				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
+				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
 				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,
 				D034C74922A53579000FE220 /* AppDelegate.swift in Sources */,
