@@ -6,8 +6,8 @@ import UIKit
 
 final class LoginDataSource: NSObject {
 	//	Dependencies
-	weak var collectionView: UICollectionView? {
-		didSet { prepareCollectionView() }
+	weak var controller: LoginController? {
+		didSet { prepareView() }
 	}
 
 	//	Model
@@ -73,13 +73,22 @@ private extension LoginDataSource {
 	}
 }
 
-extension LoginDataSource: UICollectionViewDataSource {
-	private func prepareCollectionView() {
-		collectionView?.register(TextCell.self, withReuseIdentifier: FieldId.info.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
-		collectionView?.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+private extension LoginDataSource {
+	func prepareView() {
+		guard let cv = controller?.collectionView else { return }
+
+		cv.register(TextCell.self, withReuseIdentifier: FieldId.info.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+		cv.dataSource = self
 	}
 
+	func renderContentUpdates() {
+		controller?.renderContentUpdates()
+	}
+}
+
+extension LoginDataSource: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return fields.count
 	}

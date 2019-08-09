@@ -6,40 +6,50 @@ import UIKit
 
 final class LoginController: FieldsCollectionController {
 
-	var dataSource: LoginDataSource?
+	var dataSource: LoginDataSource? {
+		didSet {
+			if !isViewLoaded { return }
 
-	//	View lifecycle
+			prepare(dataSource)
+			render(dataSource)
+		}
+	}
+
+	//	MARK:- View lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		prepareDataSource()
-		applyTheme()
+		prepare(dataSource)
+		render(dataSource)
 
 		navigationItem.leftBarButtonItem = {
 			let bbi = UIBarButtonItem(title: NSLocalizedString("Sign up", comment: ""), style: .plain, target: self, action: #selector(openAccount))
 			return bbi
 		}()
+
+		applyTheme()
 	}
 }
 
 
 
 private extension LoginController {
+	//	MARK:- Internal
+
 	func applyTheme() {
 		view.backgroundColor = .lightGray
 	}
 
-	func prepareDataSource() {
-		dataSource?.collectionView = collectionView
-		collectionView.dataSource = dataSource
+	func prepare(_ dataSource: LoginDataSource?) {
+		dataSource?.controller = self
 	}
 
-	func submit() {
-//		collectionView.endEditing(true)
-
-
+	func render(_ dataSource: LoginDataSource?) {
+		collectionView.reloadData()
 	}
+
+	//	MARK:- Actions
 
 	@objc func openAccount(_ sender: UIBarButtonItem) {
 		let layout = FieldHeightSizingLayout()
