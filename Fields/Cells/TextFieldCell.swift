@@ -42,8 +42,7 @@ extension TextFieldCell {
 	override func didMoveToSuperview() {
 		super.didMoveToSuperview()
 
-		if superview == nil { return }
-		textField.delegate = fieldsController
+		textField?.delegate = fieldsController
 	}
 }
 
