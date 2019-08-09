@@ -129,6 +129,8 @@ private extension RegisterDataSource {
 											values: PersonTitle.allCases,
 											valueFormatter: { return $0?.rawValue })
 			model.displayPicker = { [weak self] cell in
+				if model.values.count == 0 { return }
+
 				let provider = PickerOptionsProvider<PersonTitle, PickerOptionTextCell>(for: cell, with: model)
 				let vc = PickerOptionsListController(provider: provider)
 				self?.controller?.show(vc, sender: nil)
