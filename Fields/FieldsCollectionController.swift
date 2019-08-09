@@ -33,6 +33,10 @@ class FieldsCollectionController: FieldsController {
 		collectionView.delegate = nil
 		collectionView.dataSource = nil
 	}
+
+	func renderContentUpdates() {
+		collectionView.reloadData()
+	}
 }
 
 private extension FieldsCollectionController {
