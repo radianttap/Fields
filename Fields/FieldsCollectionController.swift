@@ -35,6 +35,8 @@ class FieldsCollectionController: FieldsController {
 	}
 
 	func renderContentUpdates() {
+		if !isViewLoaded { return }
+
 		collectionView.reloadData()
 	}
 }
