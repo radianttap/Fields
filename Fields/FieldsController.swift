@@ -30,7 +30,8 @@ private extension FieldsController {
 			[weak self] kn in
 			guard let self = self else { return }
 
-			self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: kn.endFrame.height, right: 0)
+			let diff = max(0, kn.endFrame.height - self.view.safeAreaInsets.bottom)
+			self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: diff, right: 0)
 		}
 
 		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillHideDescriptor, queue: .main) {
