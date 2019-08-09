@@ -21,7 +21,8 @@ extension TextFieldCell {
 		super.awakeFromNib()
 		cleanup()
 
-		textField.addTarget(self, action: #selector(editText), for: .editingChanged)
+		textField.addTarget(self, action: #selector(editText), for: .editingDidEnd)
+		textField.addTarget(self, action: #selector(editText), for: .editingDidEndOnExit)
 	}
 
 	override func prepareForReuse() {
