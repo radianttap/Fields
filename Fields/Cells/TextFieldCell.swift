@@ -51,8 +51,6 @@ private extension TextFieldCell {
 		textField.text = nil
 		textField.placeholder = nil
 		titleLabel.text = nil
-
-		textField.removeTarget(self, action: nil, for: .editingChanged)
 	}
 
 	func render(_ model: TextFieldModel) {
