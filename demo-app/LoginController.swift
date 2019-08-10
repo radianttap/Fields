@@ -20,6 +20,8 @@ final class LoginController: FieldsCollectionController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		setupUI()
+
 		prepare(dataSource)
 		render(dataSource)
 
@@ -32,13 +34,15 @@ final class LoginController: FieldsCollectionController {
 	}
 }
 
-
-
 private extension LoginController {
 	//	MARK:- Internal
 
 	func applyTheme() {
 		view.backgroundColor = .lightGray
+	}
+
+	func setupUI() {
+		collectionView.delegate = self
 	}
 
 	func prepare(_ dataSource: LoginDataSource?) {
@@ -63,5 +67,21 @@ private extension LoginController {
 		}
 
 		show(vc, sender: self)
+	}
+}
+
+extension LoginController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		guard let field = dataSource?.field(at: indexPath) else { return }
+
+		switch field.id {
+		case LoginDataSource.FieldId.forgotpassword.rawValue:
+			let vc = ForgotPasswordController.instantiate()
+			vc.dataSource = ForgotPasswordDataSource(user: dataSource?.user)
+			show(vc, sender: self)
+
+		default:
+			break
+		}
 	}
 }

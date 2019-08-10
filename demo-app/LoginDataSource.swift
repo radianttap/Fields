@@ -24,15 +24,16 @@ final class LoginDataSource: NSObject {
 
 		prepareFields()
 	}
-}
 
-private extension LoginDataSource {
 	enum FieldId: String {
 		case info
 		case username
 		case password
+		case forgotpassword
 	}
+}
 
+private extension LoginDataSource {
 	func prepareFields() {
 
 		fields.append({
@@ -70,6 +71,11 @@ private extension LoginDataSource {
 			}
 			return model
 		}())
+
+		fields.append({
+			let model = BasicModel(id: FieldId.forgotpassword.rawValue)
+			return model
+		}())
 	}
 }
 
@@ -80,6 +86,7 @@ private extension LoginDataSource {
 		cv.register(TextCell.self, withReuseIdentifier: FieldId.info.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
 		cv.dataSource = self
 	}
 
@@ -107,8 +114,26 @@ extension LoginDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
+		case let model as BasicModel:
+			switch model.id {
+			case FieldId.forgotpassword.rawValue:
+				let cell: ForgotPassCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				return cell
+
+			default:
+				break
+			}
+
 		default:
-			fatalError("Unknown cell model")
+			break
 		}
+
+		fatalError("Unknown cell model")
 	}
+
+	func field(at indexPath: IndexPath) -> FieldModel {
+		let field = fields[indexPath.item]
+		return field
+	}
+
 }
