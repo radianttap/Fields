@@ -38,7 +38,7 @@ private extension LoginController {
 	//	MARK:- Internal
 
 	func applyTheme() {
-		view.backgroundColor = .lightGray
+		view.backgroundColor = UIColor(hex: "EBEBEB")
 	}
 
 	func setupUI() {

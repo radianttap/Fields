@@ -22,7 +22,7 @@ final class RegisterController: FieldsCollectionController {
 
 private extension RegisterController {
 	func applyTheme() {
-		view.backgroundColor = .lightGray
+		view.backgroundColor = UIColor(hex: "EBEBEB")
 	}
 
 	func prepareDataSource() {

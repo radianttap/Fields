@@ -56,6 +56,7 @@
 		D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */; };
 		D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */; };
 		D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575F22FEC8A100256BA6 /* BasicModel.swift */; };
+		D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */; };
 		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
 		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassCell.swift; sourceTree = "<group>"; };
 		D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPassCell.xib; sourceTree = "<group>"; };
 		D086575F22FEC8A100256BA6 /* BasicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicModel.swift; sourceTree = "<group>"; };
+		D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extensions.swift"; sourceTree = "<group>"; };
 		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
 		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 		D034C76522A53A8A000FE220 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D086576122FED1AB00256BA6 /* UIKit */,
 				D086575022FEBB1C00256BA6 /* Controllers */,
 				D0704C1D22B15B7C004A0A25 /* Notifications */,
 				D034C76622A53A8A000FE220 /* Views */,
@@ -280,6 +283,14 @@
 				D086575222FEBB1C00256BA6 /* Embeddable.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D086576122FED1AB00256BA6 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,6 +402,7 @@
 				D06B0C4222C669BF00372445 /* ToggleCell.swift in Sources */,
 				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
 				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
+				D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */,
 				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
 				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,
