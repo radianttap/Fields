@@ -13,6 +13,11 @@ class FieldsController: UIViewController {
 	//	Notification handlers
 	private var tokenKeyboardWillShow: NotificationToken?
 	private var tokenKeyboardWillHide: NotificationToken?
+
+	func renderContentUpdates() {
+		if !isViewLoaded { return }
+
+	}
 }
 
 extension FieldsController {

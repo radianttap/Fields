@@ -34,7 +34,7 @@ class FieldsCollectionController: FieldsController {
 		collectionView.dataSource = nil
 	}
 
-	func renderContentUpdates() {
+	override func renderContentUpdates() {
 		if !isViewLoaded { return }
 
 		collectionView.reloadData()
