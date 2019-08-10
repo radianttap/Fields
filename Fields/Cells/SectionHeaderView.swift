@@ -42,7 +42,7 @@ private extension SectionHeaderView {
 	}
 
 	func render() {
-		titleLabel.text = title
+		titleLabel.text = title?.uppercased()
 	}
 }
 

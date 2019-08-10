@@ -19,25 +19,36 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Section Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tzA-KD-6vX">
-                            <rect key="frame" x="8" y="8" width="304" height="34"/>
+                            <rect key="frame" x="16" y="8" width="296" height="34"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
                         <constraint firstItem="tzA-KD-6vX" firstAttribute="top" secondItem="An4-Og-iaG" secondAttribute="topMargin" id="US5-a4-d0S"/>
                         <constraint firstAttribute="bottomMargin" secondItem="tzA-KD-6vX" secondAttribute="bottom" id="UiS-U5-CMW"/>
-                        <constraint firstItem="tzA-KD-6vX" firstAttribute="leading" secondItem="An4-Og-iaG" secondAttribute="leadingMargin" id="g1d-ST-lhM"/>
+                        <constraint firstItem="tzA-KD-6vX" firstAttribute="leading" secondItem="An4-Og-iaG" secondAttribute="leadingMargin" constant="8" id="g1d-ST-lhM"/>
                         <constraint firstAttribute="trailingMargin" secondItem="tzA-KD-6vX" secondAttribute="trailing" id="xCo-95-Hiz"/>
                     </constraints>
                 </view>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dU-oj-lNB" userLabel="sep">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="qve-Ok-xnE"/>
+                    </constraints>
+                </view>
             </subviews>
+            <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="An4-Og-iaG" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="1VX-lw-cnd"/>
                 <constraint firstItem="An4-Og-iaG" firstAttribute="bottom" secondItem="U6b-Vx-4bR" secondAttribute="bottom" priority="999" id="Ehh-2M-CPq"/>
+                <constraint firstItem="2dU-oj-lNB" firstAttribute="leading" secondItem="An4-Og-iaG" secondAttribute="leading" id="H3e-bV-FvR"/>
                 <constraint firstAttribute="trailing" secondItem="An4-Og-iaG" secondAttribute="trailing" priority="999" id="NLP-pT-EL5"/>
                 <constraint firstAttribute="top" secondItem="An4-Og-iaG" secondAttribute="top" id="eQV-Ad-mhg"/>
+                <constraint firstItem="2dU-oj-lNB" firstAttribute="trailing" secondItem="An4-Og-iaG" secondAttribute="trailing" id="mbt-D3-UOG"/>
+                <constraint firstItem="2dU-oj-lNB" firstAttribute="top" secondItem="An4-Og-iaG" secondAttribute="top" id="oqs-eC-dDm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
