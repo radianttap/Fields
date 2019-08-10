@@ -181,8 +181,8 @@
 				D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */,
 				D06B0C3022C50AE200372445 /* RegisterController.swift */,
 				D06B0C3222C50B2700372445 /* RegisterDataSource.swift */,
-				D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */,
 				D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */,
+				D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */,
 				D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */,
 			);
 			path = "demo-app";
