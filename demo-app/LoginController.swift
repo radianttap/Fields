@@ -32,6 +32,12 @@ final class LoginController: FieldsCollectionController {
 
 		applyTheme()
 	}
+
+	override func renderContentUpdates() {
+		if !isViewLoaded { return }
+
+		render(dataSource)
+	}
 }
 
 private extension LoginController {

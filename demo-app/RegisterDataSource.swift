@@ -7,7 +7,7 @@ import UIKit
 final class RegisterDataSource: NSObject {
 	//	Dependencies
 	weak var controller: FieldsCollectionController? {
-		didSet { prepareCollectionView() }
+		didSet { prepareView() }
 	}
 
 	//	Model
@@ -62,8 +62,36 @@ final class RegisterDataSource: NSObject {
 }
 
 private extension RegisterDataSource {
+	func prepareView() {
+		guard let cv = controller?.collectionView else { return }
+
+		//	reusability is not needed here
+		//	(it can actually lead to problems),
+		//	so register separate Cell for each field
+
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+
+		cv.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
+
+		cv.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
+
+		//	also for header/footer views
+
+		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
+		cv.register(SectionFooterView.self, kind: SectionFooterView.kind)
+
+		cv.dataSource = self
+	}
+
 	func processContentUpdates() {
-		controller?.collectionView?.reloadData()
+		controller?.renderContentUpdates()
 	}
 
 	func processAddressToggle() {
@@ -250,32 +278,6 @@ private extension RegisterDataSource {
 }
 
 extension RegisterDataSource: UICollectionViewDataSource {
-	private func prepareCollectionView() {
-		guard let cv = controller?.collectionView else { return }
-
-		//	reusability is not needed here
-		//	(it can actually lead to problems),
-		//	so register separate Cell for each field
-
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
-
-		cv.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
-
-		cv.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.postcode.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
-
-		//	also for header/footer views
-
-		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
-		cv.register(SectionFooterView.self, kind: SectionFooterView.kind)
-	}
-
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
 		return sections.count
 	}

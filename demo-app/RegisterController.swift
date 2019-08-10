@@ -6,30 +6,57 @@ import UIKit
 
 final class RegisterController: FieldsCollectionController {
 
-	var dataSource: RegisterDataSource?
+	var dataSource: RegisterDataSource? {
+		didSet {
+			if !isViewLoaded { return }
+
+			prepare(dataSource)
+			render(dataSource)
+		}
+	}
 
 	//	View lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		prepareDataSource()
+		setupUI()
+
+		prepare(dataSource)
+		render(dataSource)
+
 		applyTheme()
+	}
+
+	override func renderContentUpdates() {
+		if !isViewLoaded { return }
+
+		render(dataSource)
 	}
 }
 
 
 
 private extension RegisterController {
+	//	MARK:- Internal
+
 	func applyTheme() {
 		view.backgroundColor = UIColor(hex: "EBEBEB")
 	}
 
-	func prepareDataSource() {
-		dataSource?.controller = self
-		collectionView.dataSource = dataSource
+	func setupUI() {
 		collectionView.delegate = self
 	}
+
+	func prepare(_ dataSource: RegisterDataSource?) {
+		dataSource?.controller = self
+	}
+
+	func render(_ dataSource: RegisterDataSource?) {
+		collectionView.reloadData()
+	}
+
+	//	MARK:- Actions
 
 	func submit() {
 	}
