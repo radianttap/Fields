@@ -17,6 +17,8 @@ final class RegisterDataSource: NSObject {
 		didSet { processAddressToggle() }
 	}
 
+	var note: String?
+
 	private var sections: [Section] = []
 
 	//	Init
@@ -46,6 +48,8 @@ final class RegisterDataSource: NSObject {
 		case city
 		case postcode
 		case country
+
+		case note
 	}
 
 	struct Section {
@@ -82,6 +86,8 @@ private extension RegisterDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
 
+		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
+
 		//	also for header/footer views
 
 		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
@@ -113,6 +119,7 @@ private extension RegisterDataSource {
 		sections.append( buildAccountSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildAddressSection() )
+		sections.append( buildOtherSection() )
 	}
 
 	func buildAccountSection() -> Section {
@@ -275,6 +282,24 @@ private extension RegisterDataSource {
 
 		return section
 	}
+
+	func buildOtherSection() -> Section {
+		var section = Section(header: NSLocalizedString("Extra stuff", comment: ""))
+
+		section.fields.append({
+			let model = TextViewModel(id: FieldId.note.rawValue,
+									  minimalHeight: 132,
+									  title: NSLocalizedString("Additional note", comment: ""),
+									  value: note)
+			model.valueChanged = { [weak self] string, _ in
+				self?.note = string
+				model.value = string
+			}
+			return model
+		}())
+
+		return section
+	}
 }
 
 extension RegisterDataSource: UICollectionViewDataSource {
@@ -311,6 +336,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		switch model {
 		case let model as TextFieldModel:
 			let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as TextViewModel:
+			let cell: TextViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
