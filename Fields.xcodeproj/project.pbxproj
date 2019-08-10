@@ -48,6 +48,14 @@
 		D0704C3222B180D7004A0A25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3122B180D7004A0A25 /* User.swift */; };
 		D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3322B18277004A0A25 /* FieldModel.swift */; };
 		D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */; };
+		D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575122FEBB1C00256BA6 /* StoryboardLoadable.swift */; };
+		D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575222FEBB1C00256BA6 /* Embeddable.swift */; };
+		D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */; };
+		D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */; };
+		D086575A22FEBBE400256BA6 /* ForgotPasswordDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */; };
+		D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */; };
+		D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */; };
+		D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575F22FEC8A100256BA6 /* BasicModel.swift */; };
 		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
 		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
 /* End PBXBuildFile section */
@@ -96,6 +104,14 @@
 		D0704C3122B180D7004A0A25 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D0704C3322B18277004A0A25 /* FieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldModel.swift; sourceTree = "<group>"; };
 		D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder-FieldsDelegate.swift"; sourceTree = "<group>"; };
+		D086575122FEBB1C00256BA6 /* StoryboardLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardLoadable.swift; sourceTree = "<group>"; };
+		D086575222FEBB1C00256BA6 /* Embeddable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
+		D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ForgotPasswordController.storyboard; sourceTree = "<group>"; };
+		D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordDataSource.swift; sourceTree = "<group>"; };
+		D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassCell.swift; sourceTree = "<group>"; };
+		D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPassCell.xib; sourceTree = "<group>"; };
+		D086575F22FEC8A100256BA6 /* BasicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicModel.swift; sourceTree = "<group>"; };
 		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
 		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,8 +175,13 @@
 				D00A401222CB56DB0001625B /* DataModel */,
 				D034C75C22A53746000FE220 /* LoginController.swift */,
 				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
+				D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */,
+				D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */,
 				D06B0C3022C50AE200372445 /* RegisterController.swift */,
 				D06B0C3222C50B2700372445 /* RegisterDataSource.swift */,
+				D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */,
+				D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */,
+				D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */,
 			);
 			path = "demo-app";
 			sourceTree = "<group>";
@@ -181,6 +202,7 @@
 		D034C76522A53A8A000FE220 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D086575022FEBB1C00256BA6 /* Controllers */,
 				D0704C1D22B15B7C004A0A25 /* Notifications */,
 				D034C76622A53A8A000FE220 /* Views */,
 			);
@@ -231,6 +253,7 @@
 		D0704C2222B15C00004A0A25 /* CellModels */ = {
 			isa = PBXGroup;
 			children = (
+				D086575F22FEC8A100256BA6 /* BasicModel.swift */,
 				D0704C3322B18277004A0A25 /* FieldModel.swift */,
 				D06B0C4422C669CC00372445 /* ToggleModel.swift */,
 				D00A400A22CB41180001625B /* TextModel.swift */,
@@ -248,6 +271,15 @@
 				D0704C2822B16DD6004A0A25 /* FieldHeightSizingLayout.swift */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		D086575022FEBB1C00256BA6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D086575122FEBB1C00256BA6 /* StoryboardLoadable.swift */,
+				D086575222FEBB1C00256BA6 /* Embeddable.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +342,12 @@
 			files = (
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
+				D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
+				D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */,
 				D00A400F22CB41B00001625B /* TextCell.xib in Resources */,
 				D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */,
 				D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */,
@@ -327,25 +361,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D086575A22FEBBE400256BA6 /* ForgotPasswordDataSource.swift in Sources */,
 				D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */,
 				D00A400B22CB41180001625B /* TextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
+				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
 				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D00A400E22CB41B00001625B /* TextCell.swift in Sources */,
+				D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */,
 				D0704C2922B16DD6004A0A25 /* FieldHeightSizingLayout.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
 				D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */,
+				D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
 				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
+				D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */,
 				D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */,
 				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
 				D034C76B22A53A8A000FE220 /* ReusableView.swift in Sources */,
@@ -355,6 +394,7 @@
 				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
 				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,
+				D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */,
 				D034C74922A53579000FE220 /* AppDelegate.swift in Sources */,
 				D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */,
 				D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */,
