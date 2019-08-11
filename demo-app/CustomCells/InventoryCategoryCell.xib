@@ -21,17 +21,34 @@
                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UC-cs-G0n" userLabel="contentView">
                         <rect key="frame" x="0.0" y="0.0" width="82" height="78"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
+                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYS-sl-aPn">
                                 <rect key="frame" x="8" y="8" width="66" height="62"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
+                                        <rect key="frame" x="8" y="8" width="50" height="46"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </imageView>
+                                <constraints>
+                                    <constraint firstItem="MXH-gG-a8m" firstAttribute="leading" secondItem="vYS-sl-aPn" secondAttribute="leadingMargin" id="B1J-df-2Nb"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="MXH-gG-a8m" secondAttribute="trailing" id="ipQ-Sj-Fha"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="MXH-gG-a8m" secondAttribute="bottom" id="lGx-y2-KSg"/>
+                                    <constraint firstAttribute="topMargin" secondItem="MXH-gG-a8m" secondAttribute="top" id="oXn-BM-26z"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="MXH-gG-a8m" secondAttribute="bottom" id="YfZ-oX-Xyu"/>
-                            <constraint firstAttribute="topMargin" secondItem="MXH-gG-a8m" secondAttribute="top" id="fXf-mJ-IOf"/>
-                            <constraint firstItem="MXH-gG-a8m" firstAttribute="leading" secondItem="6UC-cs-G0n" secondAttribute="leadingMargin" id="lUV-Wv-Wac"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MXH-gG-a8m" secondAttribute="trailing" id="o1M-EB-sG3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vYS-sl-aPn" secondAttribute="trailing" id="SOO-sW-Tqs"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="vYS-sl-aPn" secondAttribute="bottom" id="Zi2-9Z-wa0"/>
+                            <constraint firstAttribute="topMargin" secondItem="vYS-sl-aPn" secondAttribute="top" id="mty-uh-Zmr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="vYS-sl-aPn" secondAttribute="leading" id="tXh-Vw-vrX"/>
                         </constraints>
                     </view>
                 </subviews>
