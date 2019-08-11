@@ -19,7 +19,7 @@ final class RegisterDataSource: NSObject {
 
 	var note: String?
 
-	private var sections: [Section] = []
+	private var sections: [FieldSection] = []
 
 	//	Init
 
@@ -34,6 +34,13 @@ final class RegisterDataSource: NSObject {
 
 	//	Fields
 	//	(placed here to be visible to RegisterController)
+
+	enum SectionId: String {
+		case account
+		case personal
+		case address
+		case other
+	}
 
 	enum FieldId: String {
 		case username
@@ -50,18 +57,6 @@ final class RegisterDataSource: NSObject {
 		case country
 
 		case note
-	}
-
-	struct Section {
-		var header: String? = nil
-		var fields: [FieldModel] = []
-		var footer: String? = nil
-
-		init(header: String? = nil, footer: String? = nil, fields: [FieldModel] = []) {
-			self.header = header
-			self.footer = footer
-			self.fields = fields
-		}
 	}
 }
 
@@ -122,9 +117,12 @@ private extension RegisterDataSource {
 		sections.append( buildOtherSection() )
 	}
 
-	func buildAccountSection() -> Section {
-		var section = Section(header: NSLocalizedString("Account information", comment: ""),
-							  footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers and generators.", comment: ""))
+	func buildAccountSection() -> FieldSection {
+		var section = FieldSection(
+			id: SectionId.account.rawValue,
+			header: NSLocalizedString("Account information", comment: ""),
+			footer: NSLocalizedString("Please use strong passwords. We encourage usage of password keepers and generators.", comment: "")
+		)
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username)
@@ -154,8 +152,11 @@ private extension RegisterDataSource {
 		return section
 	}
 
-	func buildPersonalSection() -> Section {
-		var section = Section(header: NSLocalizedString("Personal information", comment: ""))
+	func buildPersonalSection() -> FieldSection {
+		var section = FieldSection(
+			id: SectionId.personal.rawValue,
+			header: NSLocalizedString("Personal information", comment: "")
+		)
 
 		section.fields.append({
 			let model = PickerModel(id: FieldId.title.rawValue,
@@ -211,8 +212,11 @@ private extension RegisterDataSource {
 		return section
 	}
 
-	func buildAddressSection() -> Section {
-		var section = Section(header: NSLocalizedString("Postal Address", comment: ""))
+	func buildAddressSection() -> FieldSection {
+		var section = FieldSection(
+			id: SectionId.address.rawValue,
+			header: NSLocalizedString("Postal Address", comment: "")
+		)
 
 		section.fields.append({
 			let model = ToggleModel(id: FieldId.addressToggle.rawValue, title: NSLocalizedString("Add postal address?", comment: ""), value: shouldAddAddress)
@@ -283,8 +287,11 @@ private extension RegisterDataSource {
 		return section
 	}
 
-	func buildOtherSection() -> Section {
-		var section = Section(header: NSLocalizedString("Extra stuff", comment: ""))
+	func buildOtherSection() -> FieldSection {
+		var section = FieldSection(
+			id: SectionId.other.rawValue,
+			header: NSLocalizedString("Extra stuff", comment: "")
+		)
 
 		section.fields.append({
 			let model = TextViewModel(id: FieldId.note.rawValue,
@@ -359,7 +366,7 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		}
 	}
 
-	func section(at index: Int) -> Section {
+	func section(at index: Int) -> FieldSection {
 		return sections[index]
 	}
 
