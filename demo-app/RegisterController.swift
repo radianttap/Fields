@@ -63,6 +63,22 @@ private extension RegisterController {
 }
 
 
+extension RegisterController: UICollectionViewDelegate {
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		guard
+			let field = dataSource?.field(at: indexPath),
+			let cell = collectionView.cellForItem(at: indexPath) as? FieldCell
+		else { return }
+
+		switch field {
+		case let field as SingleValueModel<InventoryCategory>:
+			field.valueSelected(cell)
+		default:
+			break
+		}
+	}
+}
+
 extension RegisterController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
 		guard
