@@ -30,6 +30,7 @@ final class LoginDataSource: NSObject {
 		case username
 		case password
 		case forgotpassword
+		case submit
 	}
 }
 
@@ -48,7 +49,9 @@ private extension LoginDataSource {
 		}())
 
 		fields.append({
-			let model = TextFieldModel(id: FieldId.username.rawValue, title: NSLocalizedString("Username", comment: ""), value: user?.username)
+			let model = TextFieldModel(id: FieldId.username.rawValue,
+									   title: NSLocalizedString("Username", comment: ""),
+									   value: user?.username)
 			model.customSetup = { textField in
 				textField.textContentType = .username
 			}
@@ -60,7 +63,9 @@ private extension LoginDataSource {
 		}())
 
 		fields.append({
-			let model = TextFieldModel(id: FieldId.password.rawValue, title: NSLocalizedString("Password", comment: ""), value: user?.password)
+			let model = TextFieldModel(id: FieldId.password.rawValue,
+									   title: NSLocalizedString("Password", comment: ""),
+									   value: user?.password)
 			model.customSetup = { textField in
 				textField.textContentType = .password
 				textField.isSecureTextEntry = true
@@ -76,6 +81,12 @@ private extension LoginDataSource {
 			let model = BasicModel(id: FieldId.forgotpassword.rawValue)
 			return model
 		}())
+
+		fields.append({
+			let model = ButtonModel(id: FieldId.submit.rawValue,
+									title: NSLocalizedString("Sign in", comment: ""))
+			return model
+		}())
 	}
 }
 
@@ -87,6 +98,7 @@ private extension LoginDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
+		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 		cv.dataSource = self
 	}
 
@@ -111,6 +123,11 @@ extension LoginDataSource: UICollectionViewDataSource {
 
 		case let model as TextModel:
 			let cell: TextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as ButtonModel:
+			let cell: ButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 

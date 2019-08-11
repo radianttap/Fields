@@ -28,6 +28,9 @@
 		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
 		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
 		D0628E562300245800D86F63 /* FieldSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E552300245800D86F63 /* FieldSection.swift */; };
+		D0628E58230027C700D86F63 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E57230027C600D86F63 /* ButtonModel.swift */; };
+		D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E59230028A700D86F63 /* ButtonCell.swift */; };
+		D0628E5C230028A700D86F63 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0628E5A230028A700D86F63 /* ButtonCell.xib */; };
 		D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3022C50AE200372445 /* RegisterController.swift */; };
 		D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3222C50B2700372445 /* RegisterDataSource.swift */; };
 		D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3422C513E400372445 /* SectionHeaderView.swift */; };
@@ -90,6 +93,9 @@
 		D034C76F22A53B25000FE220 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		D034C77D22A56A8C000FE220 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
 		D0628E552300245800D86F63 /* FieldSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSection.swift; sourceTree = "<group>"; };
+		D0628E57230027C600D86F63 /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
+		D0628E59230028A700D86F63 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		D0628E5A230028A700D86F63 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
 		D06B0C3022C50AE200372445 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D06B0C3222C50B2700372445 /* RegisterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataSource.swift; sourceTree = "<group>"; };
 		D06B0C3422C513E400372445 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
@@ -246,6 +252,8 @@
 				D00A400D22CB41B00001625B /* TextCell.xib */,
 				D086576722FF0DDA00256BA6 /* TextViewCell.swift */,
 				D086576622FF0DDA00256BA6 /* TextViewCell.xib */,
+				D0628E59230028A700D86F63 /* ButtonCell.swift */,
+				D0628E5A230028A700D86F63 /* ButtonCell.xib */,
 				D06B0C3422C513E400372445 /* SectionHeaderView.swift */,
 				D06B0C3522C513E400372445 /* SectionHeaderView.xib */,
 				D06B0C3922C5157000372445 /* SectionFooterView.swift */,
@@ -274,6 +282,7 @@
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
 				D086576422FF0D4100256BA6 /* TextViewModel.swift */,
 				D011B8D722C7FE830059A52D /* PickerModel.swift */,
+				D0628E57230027C600D86F63 /* ButtonModel.swift */,
 			);
 			path = CellModels;
 			sourceTree = "<group>";
@@ -365,6 +374,7 @@
 			files = (
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
+				D0628E5C230028A700D86F63 /* ButtonCell.xib in Resources */,
 				D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
@@ -400,6 +410,7 @@
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D00A400E22CB41B00001625B /* TextCell.swift in Sources */,
 				D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */,
+				D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */,
 				D0704C2922B16DD6004A0A25 /* FieldHeightSizingLayout.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
@@ -417,6 +428,7 @@
 				D06B0C4222C669BF00372445 /* ToggleCell.swift in Sources */,
 				D0628E562300245800D86F63 /* FieldSection.swift in Sources */,
 				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
+				D0628E58230027C700D86F63 /* ButtonModel.swift in Sources */,
 				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
 				D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */,
 				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,

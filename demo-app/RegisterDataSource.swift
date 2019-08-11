@@ -57,6 +57,7 @@ final class RegisterDataSource: NSObject {
 		case country
 
 		case note
+		case submit
 	}
 }
 
@@ -82,6 +83,7 @@ private extension RegisterDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
 
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
+		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 
 		//	also for header/footer views
 
@@ -305,6 +307,12 @@ private extension RegisterDataSource {
 			return model
 		}())
 
+		section.fields.append({
+			let model = ButtonModel(id: FieldId.submit.rawValue,
+									title: NSLocalizedString("Create account", comment: ""))
+			return model
+		}())
+
 		return section
 	}
 }
@@ -353,6 +361,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 
 		case let model as ToggleModel:
 			let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as ButtonModel:
+			let cell: ButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
