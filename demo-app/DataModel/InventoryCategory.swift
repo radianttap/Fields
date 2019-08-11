@@ -9,7 +9,7 @@
 import Foundation
 
 struct InventoryCategory: Hashable {
-	enum ID: String {
+	enum ID: String, CaseIterable {
 		case watch
 		case dress
 		case handbag
@@ -22,4 +22,8 @@ struct InventoryCategory: Hashable {
 	init(id: ID) {
 		self.id = id
 	}
+}
+
+extension InventoryCategory {
+	static let allCategories = InventoryCategory.ID.allCases.map { InventoryCategory(id: $0) }
 }
