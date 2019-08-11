@@ -318,7 +318,10 @@ extension FieldHeightSizingLayout {
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
-			if let _ = customCellSizes[preferredAttributes.indexPath] {
+			if
+				let customSize = customCellSizes[preferredAttributes.indexPath],
+				preferredAttributes.frame.height < customSize.height
+			{
 				return false
 			}
 			cells[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
