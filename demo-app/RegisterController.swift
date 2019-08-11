@@ -95,7 +95,7 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 		guard
 			let s = dataSource?.section(at: section),
 			s.footer != nil
-			else { return .zero }
+		else { return .zero }
 
 		var size = view.bounds.size
 		size.height = 66
@@ -104,10 +104,23 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard
+			let section = dataSource?.section(at: indexPath.section),
 			let field = dataSource?.field(at: indexPath),
 			let layout = collectionViewLayout as? FieldHeightSizingLayout
 		else { return .zero }
 		var itemSize = layout.itemSize
+
+		switch section.id {
+		case RegisterDataSource.SectionId.prefs.rawValue:
+			let w = collectionView.bounds.width
+			let aw = w - (layout.sectionInset.left + layout.sectionInset.right)
+			itemSize.width = aw / CGFloat(section.fields.count)
+			itemSize.height = itemSize.width
+			return itemSize
+
+		default:
+			break
+		}
 
 		switch field.id {
 		case RegisterDataSource.FieldId.postcode.rawValue, RegisterDataSource.FieldId.country.rawValue:

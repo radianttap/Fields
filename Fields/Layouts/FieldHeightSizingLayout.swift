@@ -34,6 +34,8 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	private var headers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
 	private var footers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
 
+	private var customCellSizes: [IndexPath: CGSize] = [:]
+
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
 	private var shouldRebuild = true
 
@@ -133,7 +135,11 @@ private extension FieldHeightSizingLayout {
 
 				//	look for custom itemSize from the CV delegate
 				var thisItemSize = itemSize
-				if let customItemSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath) {
+				if
+					let customItemSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
+					itemSize != customItemSize
+				{
+					customCellSizes[indexPath] = customItemSize
 					thisItemSize = customItemSize
 				}
 
@@ -143,7 +149,7 @@ private extension FieldHeightSizingLayout {
 				}
 
 				let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: itemSize.height)
+				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: thisItemSize.height)
 				cells[indexPath] = attributes
 
 				lastYmax = attributes.frame.maxY
@@ -312,7 +318,11 @@ extension FieldHeightSizingLayout {
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
+			if let _ = customCellSizes[preferredAttributes.indexPath] {
+				return false
+			}
 			cells[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
+
 		case .supplementaryView:
 			if let elementKind = preferredAttributes.representedElementKind {
 				switch elementKind {
@@ -324,11 +334,14 @@ extension FieldHeightSizingLayout {
 					break
 				}
 			}
+
 		case .decorationView:
 			return false
+
 		@unknown default:
 			return false
 		}
+
 		shouldRelayout = true
 		return true
 	}
