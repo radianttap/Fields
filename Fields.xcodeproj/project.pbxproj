@@ -204,8 +204,6 @@
 				D0628E5F2300386900D86F63 /* CustomCells */,
 				D034C75C22A53746000FE220 /* LoginController.swift */,
 				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
-				D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */,
-				D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */,
 				D06B0C3022C50AE200372445 /* RegisterController.swift */,
 				D06B0C3222C50B2700372445 /* RegisterDataSource.swift */,
 				D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */,
@@ -278,6 +276,8 @@
 		D0628E5F2300386900D86F63 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */,
+				D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */,
 				D0628E6023003A3B00D86F63 /* InventoryCategoryCell.swift */,
 				D0628E6123003A3B00D86F63 /* InventoryCategoryCell.xib */,
 			);
