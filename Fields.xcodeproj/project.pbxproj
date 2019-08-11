@@ -31,6 +31,11 @@
 		D0628E58230027C700D86F63 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E57230027C600D86F63 /* ButtonModel.swift */; };
 		D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E59230028A700D86F63 /* ButtonCell.swift */; };
 		D0628E5C230028A700D86F63 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0628E5A230028A700D86F63 /* ButtonCell.xib */; };
+		D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E5D2300357F00D86F63 /* SingleValueModel.swift */; };
+		D0628E6223003A3B00D86F63 /* InventoryCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E6023003A3B00D86F63 /* InventoryCategoryCell.swift */; };
+		D0628E6323003A3B00D86F63 /* InventoryCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0628E6123003A3B00D86F63 /* InventoryCategoryCell.xib */; };
+		D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E6423005A7300D86F63 /* InventoryCategory.swift */; };
+		D0628E6823005B0D00D86F63 /* InventoryCategory-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E6723005B0D00D86F63 /* InventoryCategory-Extensions.swift */; };
 		D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3022C50AE200372445 /* RegisterController.swift */; };
 		D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3222C50B2700372445 /* RegisterDataSource.swift */; };
 		D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3422C513E400372445 /* SectionHeaderView.swift */; };
@@ -96,6 +101,11 @@
 		D0628E57230027C600D86F63 /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
 		D0628E59230028A700D86F63 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		D0628E5A230028A700D86F63 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonCell.xib; sourceTree = "<group>"; };
+		D0628E5D2300357F00D86F63 /* SingleValueModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleValueModel.swift; sourceTree = "<group>"; };
+		D0628E6023003A3B00D86F63 /* InventoryCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCategoryCell.swift; sourceTree = "<group>"; };
+		D0628E6123003A3B00D86F63 /* InventoryCategoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InventoryCategoryCell.xib; sourceTree = "<group>"; };
+		D0628E6423005A7300D86F63 /* InventoryCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryCategory.swift; sourceTree = "<group>"; };
+		D0628E6723005B0D00D86F63 /* InventoryCategory-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InventoryCategory-Extensions.swift"; sourceTree = "<group>"; };
 		D06B0C3022C50AE200372445 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D06B0C3222C50B2700372445 /* RegisterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDataSource.swift; sourceTree = "<group>"; };
 		D06B0C3422C513E400372445 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
@@ -148,6 +158,7 @@
 			children = (
 				D0704C3122B180D7004A0A25 /* User.swift */,
 				D06B0C3E22C533F100372445 /* Address.swift */,
+				D0628E6423005A7300D86F63 /* InventoryCategory.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -189,6 +200,8 @@
 				D034C75122A5357A000FE220 /* LaunchScreen.storyboard */,
 				D034C75422A5357A000FE220 /* Info.plist */,
 				D00A401222CB56DB0001625B /* DataModel */,
+				D0628E6623005AF300D86F63 /* ViewModels */,
+				D0628E5F2300386900D86F63 /* CustomCells */,
 				D034C75C22A53746000FE220 /* LoginController.swift */,
 				D0704C2D22B1795B004A0A25 /* LoginDataSource.swift */,
 				D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */,
@@ -262,6 +275,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		D0628E5F2300386900D86F63 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				D0628E6023003A3B00D86F63 /* InventoryCategoryCell.swift */,
+				D0628E6123003A3B00D86F63 /* InventoryCategoryCell.xib */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		D0628E6623005AF300D86F63 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D0628E6723005B0D00D86F63 /* InventoryCategory-Extensions.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		D0704C1D22B15B7C004A0A25 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +312,7 @@
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
 				D086576422FF0D4100256BA6 /* TextViewModel.swift */,
 				D011B8D722C7FE830059A52D /* PickerModel.swift */,
+				D0628E5D2300357F00D86F63 /* SingleValueModel.swift */,
 				D0628E57230027C600D86F63 /* ButtonModel.swift */,
 			);
 			path = CellModels;
@@ -378,6 +409,7 @@
 				D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
+				D0628E6323003A3B00D86F63 /* InventoryCategoryCell.xib in Resources */,
 				D086576822FF0DDA00256BA6 /* TextViewCell.xib in Resources */,
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
@@ -400,8 +432,10 @@
 				D00A400B22CB41180001625B /* TextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
+				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
 				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
+				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
 				D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */,
 				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
@@ -412,6 +446,8 @@
 				D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */,
 				D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */,
 				D0704C2922B16DD6004A0A25 /* FieldHeightSizingLayout.swift in Sources */,
+				D0628E6223003A3B00D86F63 /* InventoryCategoryCell.swift in Sources */,
+				D0628E6823005B0D00D86F63 /* InventoryCategory-Extensions.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
 				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
