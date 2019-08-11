@@ -11,15 +11,16 @@ final class RegisterDataSource: NSObject {
 	}
 
 	//	Model
-	var user: User?
+	private var user: User?
 
-	var shouldAddAddress = false {
+	private var shouldAddAddress = false {
 		didSet { processAddressToggle() }
 	}
 
-	var note: String?
+	private var preferredInventoryCategory: InventoryCategory?
+	private let inventoryCategories: [InventoryCategory] = InventoryCategory.allCategories
 
-	private var sections: [FieldSection] = []
+	private var note: String?
 
 	//	Init
 
@@ -35,10 +36,13 @@ final class RegisterDataSource: NSObject {
 	//	Fields
 	//	(placed here to be visible to RegisterController)
 
+	private var sections: [FieldSection] = []
+
 	enum SectionId: String {
 		case account
 		case personal
 		case address
+		case prefs
 		case other
 	}
 
@@ -55,6 +59,8 @@ final class RegisterDataSource: NSObject {
 		case city
 		case postcode
 		case country
+
+		case inventoryCategory
 
 		case note
 		case submit
@@ -85,6 +91,10 @@ private extension RegisterDataSource {
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
 		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 
+		for ic in inventoryCategories {
+			cv.register(InventoryCategoryCell.self, withReuseIdentifier: ic.fieldId)
+		}
+
 		//	also for header/footer views
 
 		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
@@ -93,14 +103,14 @@ private extension RegisterDataSource {
 		cv.dataSource = self
 	}
 
-	func processContentUpdates() {
+	func renderContentUpdates() {
 		controller?.renderContentUpdates()
 	}
 
 	func processAddressToggle() {
 		defer {
 			prepareFields()
-			processContentUpdates()
+			renderContentUpdates()
 		}
 
 		if !shouldAddAddress {
@@ -116,6 +126,7 @@ private extension RegisterDataSource {
 		sections.append( buildAccountSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildAddressSection() )
+		sections.append( buildPrefsSection() )
 		sections.append( buildOtherSection() )
 	}
 
@@ -315,7 +326,48 @@ private extension RegisterDataSource {
 
 		return section
 	}
+
+	func buildPrefsSection() -> FieldSection {
+		var section = FieldSection(
+			id: SectionId.prefs.rawValue,
+			header: NSLocalizedString("Preferred category", comment: "")
+		)
+
+		for ic in inventoryCategories {
+			section.fields.append(
+				inventoryCategoryField(for: ic)
+			)
+		}
+
+		return section
+	}
+
+	func inventoryCategoryField(for item: InventoryCategory) -> FieldModel {
+		let model = SingleValueModel(id: item.fieldId,
+									 value: item,
+									 isSelected: preferredInventoryCategory == item)
+		model.valueSelected = {
+			[weak self] _ in
+			guard let self = self else { return }
+
+			self.preferredInventoryCategory = item
+
+			self.prepareFields()
+			self.renderContentUpdates()
+		}
+		return model
+	}
 }
+
+fileprivate extension InventoryCategory {
+	///	A value to be used as `reuseIdentifier` for each inventory-category form field.
+	var fieldId: String {
+		return "\( RegisterDataSource.FieldId.inventoryCategory.rawValue )-\( id.rawValue )"
+	}
+}
+
+
+//	MARK:- UICV.DataSource
 
 extension RegisterDataSource: UICollectionViewDataSource {
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -366,6 +418,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 
 		case let model as ButtonModel:
 			let cell: ButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as SingleValueModel<InventoryCategory>:
+			let cell: InventoryCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
