@@ -8,14 +8,15 @@
 
 import UIKit
 
-///	Custom re-implementation of UICollectionViewFlowLayout,
+///	Custom re-implementation of `UICollectionViewFlowLayout`,
 ///	optimized for self-sizing along the vertical axis.
 ///
-///	It will still consult UICollectionViewDelegateFlowLayout method it present, but will look for `width` adjustments only.
-///	cell's `height` will still be calculated to fit the content.
+///	It will still consult `UICollectionViewDelegateFlowLayout` methods if they are present,
+///	which gives you the ability to override width of the cells, which by default takes all available horizontal space.
+///	Since `...sizeForItem` returns CGSize, the returned height will be used *only* if it's larger than calculated minimal self-sizing height.
 open class FieldHeightSizingLayout: UICollectionViewLayout {
 
-	//	MARK: UICollectionViewFlowLayout parameters
+	//	MARK: Parameters (replica of UICollectionViewFlowLayout)
 
 	open var minimumLineSpacing: CGFloat = 0
 	open var minimumInteritemSpacing: CGFloat = 0
@@ -34,6 +35,7 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	private var headers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
 	private var footers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
 
+	///	Cell's CGSize values picked up through `UICollectionViewDelegateFlowLayout` methods.
 	private var customCellSizes: [IndexPath: CGSize] = [:]
 
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
@@ -89,6 +91,7 @@ private extension FieldHeightSizingLayout {
 		cells.removeAll()
 		headers.removeAll()
 		footers.removeAll()
+		customCellSizes.removeAll()
 	}
 
 	func build() {
@@ -104,15 +107,17 @@ private extension FieldHeightSizingLayout {
 			let itemCount = cv.numberOfItems(inSection: section)
 			if itemCount == 0 { continue }
 
-
 			//	header/footer's indexPath
 			let indexPath = IndexPath(item: NSNotFound, section: section)
 
 			//	this section's header
 
 			var headerSize = headerReferenceSize
-			if let customHeaderSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForHeaderInSection: section) {
-				headerSize = customHeaderSize
+			if
+				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForHeaderInSection: section),
+				headerSize != customSize
+			{
+				headerSize = customSize
 			}
 
 			if headerSize != .zero {
@@ -136,11 +141,11 @@ private extension FieldHeightSizingLayout {
 				//	look for custom itemSize from the CV delegate
 				var thisItemSize = itemSize
 				if
-					let customItemSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
-					itemSize != customItemSize
+					let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
+					itemSize != customSize
 				{
-					customCellSizes[indexPath] = customItemSize
-					thisItemSize = customItemSize
+					customCellSizes[indexPath] = customSize
+					thisItemSize = customSize
 				}
 
 				if x + thisItemSize.width > aw + sectionInset.left {
@@ -162,8 +167,11 @@ private extension FieldHeightSizingLayout {
 			//	this section's footer
 
 			var footerSize = footerReferenceSize
-			if let customFooterSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForFooterInSection: section) {
-				footerSize = customFooterSize
+			if
+				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForFooterInSection: section),
+				footerSize != customSize
+			{
+				footerSize = customSize
 			}
 
 			if footerSize != .zero {
