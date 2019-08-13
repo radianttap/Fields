@@ -41,6 +41,8 @@ class PickerOptionsListController<T: Hashable, Cell: UICollectionViewCell & Reus
 
 		collectionView.delegate = provider
 		collectionView.dataSource = provider
+
+		applyTheme()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -63,11 +65,15 @@ class PickerOptionsListController<T: Hashable, Cell: UICollectionViewCell & Reus
 }
 
 private extension PickerOptionsListController {
+	func applyTheme() {
+		view.backgroundColor = UIColor(hex: "EBEBEB")
+	}
+
 	func loadCollectionView() {
 		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
 		cv.translatesAutoresizingMaskIntoConstraints = false
 
-		cv.backgroundColor = .lightGray
+		cv.backgroundColor = view.backgroundColor
 
 		view.addSubview(cv)
 		cv.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
