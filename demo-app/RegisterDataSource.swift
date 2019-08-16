@@ -244,12 +244,6 @@ private extension RegisterDataSource {
 
 				self?.user?.dateOfBirth = date
 				model.value = date
-
-				guard
-					let cv = self?.controller?.collectionView,
-					let indexPath = cv.indexPath(for: cell)
-				else { return }
-				cv.reloadItems(at: [indexPath])
 			}
 			return model
 		}())
