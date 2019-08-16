@@ -48,16 +48,23 @@
                                             <action selector="set:" destination="gTV-IL-0wX" eventType="primaryActionTriggered" id="9TW-Hg-xg0"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOU-OV-JvD" userLabel="hider">
+                                        <rect key="frame" x="8" y="0.0" width="252" height="61.5"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="9eq-mx-N0z" firstAttribute="leading" secondItem="GaX-KV-Spe" secondAttribute="trailing" id="7cc-Na-Xhe"/>
                                     <constraint firstItem="GaX-KV-Spe" firstAttribute="leading" secondItem="8u0-TH-17W" secondAttribute="leadingMargin" id="B1n-x5-wxV"/>
+                                    <constraint firstItem="eOU-OV-JvD" firstAttribute="leading" secondItem="GaX-KV-Spe" secondAttribute="leading" id="BS7-UI-G6e"/>
+                                    <constraint firstItem="eOU-OV-JvD" firstAttribute="height" secondItem="GaX-KV-Spe" secondAttribute="height" id="Boc-XV-tdj"/>
                                     <constraint firstItem="GaX-KV-Spe" firstAttribute="top" secondItem="8u0-TH-17W" secondAttribute="top" id="FHA-Ch-5iz"/>
                                     <constraint firstAttribute="bottom" secondItem="GaX-KV-Spe" secondAttribute="bottom" id="O5v-yF-2ai"/>
                                     <constraint firstAttribute="trailing" secondItem="9eq-mx-N0z" secondAttribute="trailing" id="edZ-Wm-T57"/>
                                     <constraint firstItem="9eq-mx-N0z" firstAttribute="bottom" secondItem="GaX-KV-Spe" secondAttribute="bottom" id="jv8-vU-cl4"/>
+                                    <constraint firstItem="eOU-OV-JvD" firstAttribute="width" secondItem="GaX-KV-Spe" secondAttribute="width" id="lGg-2v-K1e"/>
                                     <constraint firstItem="9eq-mx-N0z" firstAttribute="top" secondItem="GaX-KV-Spe" secondAttribute="top" id="rt0-Uv-JoB"/>
+                                    <constraint firstItem="eOU-OV-JvD" firstAttribute="top" secondItem="GaX-KV-Spe" secondAttribute="top" id="swm-gx-uSL"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
