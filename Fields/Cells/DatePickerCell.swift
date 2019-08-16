@@ -11,23 +11,16 @@ import UIKit
 final class DatePickerCell: FieldCell, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
-	@IBOutlet private var valueLabel: UILabel!
-	@IBOutlet private var picker: UIDatePicker!
+	@IBOutlet private var valueField: UITextField!
 
 	@IBOutlet private var setButton: UIButton!
-	@IBOutlet private var saveButton: UIButton!
-	@IBOutlet private var cancelButton: UIButton!
-
-	@IBOutlet private var pickerHiddenConstraint: NSLayoutConstraint!
-	private var isExpanded = false {
-		didSet {
-			setNeedsUpdateConstraints()
-		}
-	}
 
 	private weak var formatter: DateFormatter!
 	private var originalValue: Date?
 	private var valueChanged: (Date?, DatePickerCell) -> Void = {_, _ in}
+	private var customSetup: (UIDatePicker) -> Void = {_ in}
+
+	private var picker: UIDatePicker?
 }
 
 extension DatePickerCell {
@@ -45,13 +38,12 @@ extension DatePickerCell {
 		originalValue = model.value
 		formatter = model.formatter
 		valueChanged = model.valueChanged
+		customSetup = model.customSetup
 		render(model)
 	}
 
 	override func updateConstraints() {
 		titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
-		valueLabel.preferredMaxLayoutWidth = valueLabel.bounds.width
-		pickerHiddenConstraint.isActive = !isExpanded
 
 		super.updateConstraints()
 	}
@@ -60,44 +52,62 @@ extension DatePickerCell {
 private extension DatePickerCell {
 	func cleanup() {
 		titleLabel.text = nil
-		valueLabel.text = nil
+		valueField.text = nil
 	}
 
 	func render(_ model: DatePickerModel) {
 		titleLabel.text = model.title
 		if let date = model.value {
-			valueLabel.text = formatter.string(from: date)
+			valueField.text = formatter.string(from: date)
 		}
+	}
 
-		picker.date = model.value ?? model.placeholder
+	func prepareInputAccessoryView() -> DatePickerCellAccessoryView {
+		let v = DatePickerCellAccessoryView.nibInstance
+		v.frame.size.height = 44
 
-		model.customSetup( picker )
+		v.saveButton.addTarget(self, action: #selector(save), for: .touchUpInside)
+		v.cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+		return v
 	}
 
 	@IBAction func set(_ sender: UIButton) {
-		[valueLabel, setButton].forEach { $0?.isHidden = true }
-		[saveButton, cancelButton].forEach { $0?.isHidden = false }
+		let picker = UIDatePicker(frame: .zero)
+		self.picker = picker
+		customSetup(picker)
 
-		isExpanded = true
+		valueField.inputView = picker
+		valueField.inputAccessoryView = prepareInputAccessoryView()
+		valueField.becomeFirstResponder()
+
+		setButton.isHidden = true
 	}
 
-	@IBAction func cancel(_ sender: UIButton) {
-		[valueLabel, setButton].forEach { $0?.isHidden = false }
-		[saveButton, cancelButton].forEach { $0?.isHidden = true }
+	@objc func save(_ sender: UIButton) {
+		defer {
+			valueField.resignFirstResponder()
+			picker = nil
+			setButton.isHidden = false
+		}
 
-		valueChanged(originalValue, self)
-
-		isExpanded = false
-	}
-
-	@IBAction func save(_ sender: UIButton) {
-		[valueLabel, setButton].forEach { $0?.isHidden = false }
-		[saveButton, cancelButton].forEach { $0?.isHidden = true }
-
-		let date = picker.date
-		valueLabel.text = formatter.string(from: date)
+		guard let date = picker?.date else { return }
+		valueField.text = formatter.string(from: date)
 		valueChanged(date, self)
+	}
 
-		isExpanded = false
+	@objc func cancel(_ sender: UIButton) {
+		defer {
+			valueField.resignFirstResponder()
+			picker = nil
+			setButton.isHidden = false
+		}
+
+		if let date = originalValue {
+			valueField.text = formatter.string(from: date)
+		} else {
+			valueField.text = nil
+		}
+		valueChanged(originalValue, self)
 	}
 }
+

@@ -17,6 +17,8 @@
 		D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8DE22C904080059A52D /* PickerOptionsListController.swift */; };
 		D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */; };
 		D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */; };
+		D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0137EED23070C8D00E46211 /* DatePickerCellAccessoryView.swift */; };
+		D0137EF023070C9D00E46211 /* DatePickerCellAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0137EEF23070C9D00E46211 /* DatePickerCellAccessoryView.xib */; };
 		D034C74922A53579000FE220 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C74822A53579000FE220 /* AppDelegate.swift */; };
 		D034C75022A5357A000FE220 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D034C74F22A5357A000FE220 /* Assets.xcassets */; };
 		D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D034C75122A5357A000FE220 /* LaunchScreen.storyboard */; };
@@ -87,6 +89,8 @@
 		D011B8DE22C904080059A52D /* PickerOptionsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsListController.swift; sourceTree = "<group>"; };
 		D011B8E222C90BA60059A52D /* PickerOptionTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionTextCell.swift; sourceTree = "<group>"; };
 		D011B8E622C90DEF0059A52D /* PickerOptionTextCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerOptionTextCell.xib; sourceTree = "<group>"; };
+		D0137EED23070C8D00E46211 /* DatePickerCellAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCellAccessoryView.swift; sourceTree = "<group>"; };
+		D0137EEF23070C9D00E46211 /* DatePickerCellAccessoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DatePickerCellAccessoryView.xib; sourceTree = "<group>"; };
 		D034C74522A53579000FE220 /* Fields-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fields-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D034C74822A53579000FE220 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D034C74F22A5357A000FE220 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -271,6 +275,8 @@
 				D086576622FF0DDA00256BA6 /* TextViewCell.xib */,
 				D05C45932306ECE80030E0AE /* DatePickerCell.swift */,
 				D05C45922306ECE70030E0AE /* DatePickerCell.xib */,
+				D0137EED23070C8D00E46211 /* DatePickerCellAccessoryView.swift */,
+				D0137EEF23070C9D00E46211 /* DatePickerCellAccessoryView.xib */,
 				D0628E59230028A700D86F63 /* ButtonCell.swift */,
 				D0628E5A230028A700D86F63 /* ButtonCell.xib */,
 				D06B0C3422C513E400372445 /* SectionHeaderView.swift */,
@@ -415,6 +421,7 @@
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
 				D0628E5C230028A700D86F63 /* ButtonCell.xib in Resources */,
+				D0137EF023070C9D00E46211 /* DatePickerCellAccessoryView.xib in Resources */,
 				D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
@@ -487,6 +494,7 @@
 				D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */,
 				D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */,
 				D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */,
+				D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
 				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
 			);

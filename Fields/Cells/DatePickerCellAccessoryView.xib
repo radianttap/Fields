@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="DatePickerCellAccessoryView" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dac-fs-Ath">
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="144"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xub-8c-SoU">
+                    <rect key="frame" x="361" y="0.0" width="53" height="144"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                    <state key="normal" title="SAVE"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="xub-8c-SoU" secondAttribute="bottom" id="3GP-6Z-HS0"/>
+                <constraint firstItem="N4i-pW-6kQ" firstAttribute="trailing" secondItem="xub-8c-SoU" secondAttribute="trailing" id="Vge-qP-bXJ"/>
+                <constraint firstItem="dac-fs-Ath" firstAttribute="top" secondItem="xub-8c-SoU" secondAttribute="top" id="cuB-5s-6SP"/>
+                <constraint firstItem="xub-8c-SoU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eCx-di-4xk"/>
+                <constraint firstItem="dac-fs-Ath" firstAttribute="leading" secondItem="N4i-pW-6kQ" secondAttribute="leading" id="gOj-th-z1n"/>
+                <constraint firstItem="dac-fs-Ath" firstAttribute="bottom" secondItem="xub-8c-SoU" secondAttribute="bottom" id="kyR-T9-B3Y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="N4i-pW-6kQ"/>
+            <connections>
+                <outlet property="cancelButton" destination="dac-fs-Ath" id="bYi-8j-GnX"/>
+                <outlet property="saveButton" destination="xub-8c-SoU" id="Bkv-dm-EIb"/>
+            </connections>
+            <point key="canvasLocation" x="-147.82608695652175" y="265.17857142857144"/>
+        </view>
+    </objects>
+</document>
