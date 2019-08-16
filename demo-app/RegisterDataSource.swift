@@ -10,6 +10,13 @@ final class RegisterDataSource: NSObject {
 		didSet { prepareView() }
 	}
 
+	lazy var dateFormatter: DateFormatter = {
+		let df = DateFormatter()
+		df.dateStyle = .medium
+		df.timeStyle = .none
+		return df
+	}()
+
 	//	Model
 	private var user: User?
 
@@ -53,6 +60,7 @@ final class RegisterDataSource: NSObject {
 		case title
 		case firstName
 		case lastName
+		case dateOfBirth
 
 		case addressToggle
 		case street
@@ -81,6 +89,7 @@ private extension RegisterDataSource {
 		cv.register(PickerCell.self, withReuseIdentifier: FieldId.title.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.firstName.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.lastName.rawValue)
+		cv.register(DatePickerCell.self, withReuseIdentifier: FieldId.dateOfBirth.rawValue)
 
 		cv.register(ToggleCell.self, withReuseIdentifier: FieldId.addressToggle.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.street.rawValue)
@@ -196,7 +205,7 @@ private extension RegisterDataSource {
 				self.controller?.navigationController?.popViewController(animated: true)
 			}
 			return model
-			}())
+		}())
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.firstName.rawValue, title: NSLocalizedString("First (given) name", comment: ""), value: user?.firstName)
@@ -208,7 +217,7 @@ private extension RegisterDataSource {
 				model.value = string
 			}
 			return model
-			}())
+		}())
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.lastName.rawValue, title: NSLocalizedString("Last (family) name", comment: ""), value: user?.lastName)
@@ -220,7 +229,30 @@ private extension RegisterDataSource {
 				model.value = string
 			}
 			return model
-			}())
+		}())
+
+		section.fields.append({
+			let model = DatePickerModel(id: FieldId.dateOfBirth.rawValue,
+										title: NSLocalizedString("Date of birth", comment: ""),
+										value: user?.dateOfBirth,
+										formatter: dateFormatter)
+			model.customSetup = { picker in
+				picker.datePickerMode = .date
+			}
+			model.valueChanged = {
+				[weak self] date, cell in
+
+				self?.user?.dateOfBirth = date
+				model.value = date
+
+				guard
+					let cv = self?.controller?.collectionView,
+					let indexPath = cv.indexPath(for: cell)
+				else { return }
+				cv.reloadItems(at: [indexPath])
+			}
+			return model
+		}())
 
 		return section
 	}
@@ -413,6 +445,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 
 		case let model as ToggleModel:
 			let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as DatePickerModel:
+			let cell: DatePickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 

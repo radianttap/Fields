@@ -27,6 +27,9 @@
 		D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76E22A53B25000FE220 /* TextFieldCell.swift */; };
 		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
 		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
+		D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C45922306ECE70030E0AE /* DatePickerCell.xib */; };
+		D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45932306ECE80030E0AE /* DatePickerCell.swift */; };
+		D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45962306ECF90030E0AE /* DatePickerModel.swift */; };
 		D0628E562300245800D86F63 /* FieldSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E552300245800D86F63 /* FieldSection.swift */; };
 		D0628E58230027C700D86F63 /* ButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E57230027C600D86F63 /* ButtonModel.swift */; };
 		D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E59230028A700D86F63 /* ButtonCell.swift */; };
@@ -97,6 +100,9 @@
 		D034C76E22A53B25000FE220 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		D034C76F22A53B25000FE220 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		D034C77D22A56A8C000FE220 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
+		D05C45922306ECE70030E0AE /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
+		D05C45932306ECE80030E0AE /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		D05C45962306ECF90030E0AE /* DatePickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
 		D0628E552300245800D86F63 /* FieldSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSection.swift; sourceTree = "<group>"; };
 		D0628E57230027C600D86F63 /* ButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonModel.swift; sourceTree = "<group>"; };
 		D0628E59230028A700D86F63 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
@@ -263,6 +269,8 @@
 				D00A400D22CB41B00001625B /* TextCell.xib */,
 				D086576722FF0DDA00256BA6 /* TextViewCell.swift */,
 				D086576622FF0DDA00256BA6 /* TextViewCell.xib */,
+				D05C45932306ECE80030E0AE /* DatePickerCell.swift */,
+				D05C45922306ECE70030E0AE /* DatePickerCell.xib */,
 				D0628E59230028A700D86F63 /* ButtonCell.swift */,
 				D0628E5A230028A700D86F63 /* ButtonCell.xib */,
 				D06B0C3422C513E400372445 /* SectionHeaderView.swift */,
@@ -311,6 +319,7 @@
 				D00A400A22CB41180001625B /* TextModel.swift */,
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
 				D086576422FF0D4100256BA6 /* TextViewModel.swift */,
+				D05C45962306ECF90030E0AE /* DatePickerModel.swift */,
 				D011B8D722C7FE830059A52D /* PickerModel.swift */,
 				D0628E5D2300357F00D86F63 /* SingleValueModel.swift */,
 				D0628E57230027C600D86F63 /* ButtonModel.swift */,
@@ -415,6 +424,7 @@
 				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
 				D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */,
 				D00A400F22CB41B00001625B /* TextCell.xib in Resources */,
+				D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */,
 				D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */,
 				D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */,
 			);
@@ -438,6 +448,7 @@
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
 				D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */,
 				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
+				D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
@@ -455,6 +466,7 @@
 				D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FieldSupplementaryView.swift in Sources */,
+				D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */,
 				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
 				D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */,
 				D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */,

@@ -14,6 +14,8 @@ struct User {
 
 	var postalAddress: Address?
 
+	var dateOfBirth: Date?
+
 	init() {
 	}
 }
