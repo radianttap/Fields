@@ -18,6 +18,15 @@ class FieldsController: UIViewController {
 		if !isViewLoaded { return }
 
 	}
+
+	func keyboardWillShow(notification kn: KeyboardNotification) {
+		let diff = max(0, kn.endFrame.height - view.safeAreaInsets.bottom)
+		additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: diff, right: 0)
+	}
+
+	func keyboardWillHide(notification kn: KeyboardNotification) {
+		additionalSafeAreaInsets = UIEdgeInsets.zero
+	}
 }
 
 extension FieldsController {
@@ -33,17 +42,12 @@ private extension FieldsController {
 
 		tokenKeyboardWillShow = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillShowDescriptor, queue: .main) {
 			[weak self] kn in
-			guard let self = self else { return }
-
-			let diff = max(0, kn.endFrame.height - self.view.safeAreaInsets.bottom)
-			self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: diff, right: 0)
+			self?.keyboardWillShow(notification: kn)
 		}
 
 		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillHideDescriptor, queue: .main) {
 			[weak self] kn in
-			guard let self = self else { return }
-
-			self.additionalSafeAreaInsets = UIEdgeInsets.zero
+			self?.keyboardWillHide(notification: kn)
 		}
 	}
 }

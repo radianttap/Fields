@@ -39,6 +39,15 @@ class FieldsCollectionController: FieldsController {
 
 		collectionView.reloadData()
 	}
+
+	override func keyboardWillShow(notification kn: KeyboardNotification) {
+		let diff = max(0, kn.endFrame.height - view.safeAreaInsets.bottom)
+		collectionView.contentInset.bottom = diff
+	}
+
+	override func keyboardWillHide(notification kn: KeyboardNotification) {
+		collectionView.contentInset.bottom = 0
+	}
 }
 
 private extension FieldsCollectionController {
