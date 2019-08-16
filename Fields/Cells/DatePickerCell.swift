@@ -27,6 +27,8 @@ extension DatePickerCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
+
+		valueField.tintColor = valueField.superview?.backgroundColor
 	}
 
 	override func prepareForReuse() {
