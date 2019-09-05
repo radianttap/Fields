@@ -8,13 +8,13 @@ Good, solid base to build custom forms in iOS apps, using self-sizing `UICollect
 
 This is not a library, nor framework. It will never be a CocoaPod, Carthage or whatever package. Every form is different so you take this lot and adjust it to suit each specific case.
 
-Each cell is self-sizing thanks to [custom built UICVLayout](blob/master/Fields/Layouts/FieldHeightSizingLayout.swift) subclass which closely resembles FlowLayout and supports `UICollectionViewDelegateFlowLayout`. Self-sizing support is implemented in [`FieldCell`](blob/master/Fields/Cells/FieldCell.swift), which is base cell for all other specific cells.
+Each cell is self-sizing thanks to [custom built UICVLayout](Fields/Layouts/FieldHeightSizingLayout.swift) subclass which closely resembles FlowLayout and supports `UICollectionViewDelegateFlowLayout`. Self-sizing support is implemented in [`FieldCell`](Fields/Cells/FieldCell.swift), which is base cell for all other specific cells.
 
 The most trivial cell model is `BasicModel`, which is defined with just one String `id` property. Value of this property should be unique across all fields. All other models, have specific additional properties that directly map into cell display. Things like `title` String, current field `value` etc.
 
 ### Available Cells & Models
 
-Each supported form field has a [reference Cell](tree/master/Fields/Cells) implementation and its accompanying [ViewModel](tree/master/Fields/CellModels).
+Each supported form field has a [reference Cell](Fields/Cells) implementation and its accompanying [ViewModel](Fields/CellModels).
 
 * `TextCell` + `TextModel` – for static text, with support for multiple lines.
 * `TextFieldCell` + `TextFieldModel` – classic text field input
@@ -30,7 +30,7 @@ Fields can be grouped into `FieldSection` arrays, where each section is defined 
 
 You can also specify custom header and footer text for the section and adjust their design + model, as you see fit.
 
-Both of these are subclasses of [`FieldSupplementaryView`](blob/master/Fields/Cells/FieldSupplementaryView.swift) which implements self-sizing support.
+Both of these are subclasses of [`FieldSupplementaryView`](Fields/Cells/FieldSupplementaryView.swift) which implements self-sizing support.
 
 ### Controllers
 
