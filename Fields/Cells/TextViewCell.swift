@@ -39,6 +39,12 @@ extension TextViewCell {
 
 		super.updateConstraints()
 	}
+
+	override func didMoveToSuperview() {
+		super.didMoveToSuperview()
+
+		textView?.delegate = fieldsCollectionController
+	}
 }
 
 private extension TextViewCell {

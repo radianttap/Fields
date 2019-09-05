@@ -66,3 +66,15 @@ private extension FieldsCollectionController {
 		self.collectionView = cv
 	}
 }
+
+extension FieldsCollectionController: UITextViewDelegate {
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		guard
+			let cell: TextViewCell = textView.containingCell(),
+			let indexPath = collectionView.indexPath(for: cell),
+			let attr = collectionView.layoutAttributesForItem(at: indexPath)
+			else { return }
+
+		collectionView.scrollRectToVisible(attr.frame, animated: true)
+	}
+}

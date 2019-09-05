@@ -20,4 +20,28 @@ extension UIResponder {
 
 		return next?.fieldsController
 	}
+
+	var fieldsCollectionController: FieldsCollectionController? {
+		if let c = self as? FieldsCollectionController {
+			return c
+		}
+
+		if let c = next as? FieldsCollectionController {
+			return c
+		}
+
+		return next?.fieldsCollectionController
+	}
+
+	func containingCell<T>() -> T? {
+		if let c = self as? T {
+			return c
+		}
+
+		if let c = next as? T {
+			return c
+		}
+
+		return next?.containingCell()
+	}
 }
