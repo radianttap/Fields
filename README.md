@@ -111,6 +111,10 @@ By default, each field will use entire width of the UICV and height will be calc
 
 You can subclass `FieldHeightSizingLayout` and build on it, if needed. Or your UIVC can implement `UICollectionViewDelegate` or even `UICollectionViewDelegateFlowLayout` and adjust the specific cell size as needed.
 
+## Additional reading
+
+A set of [posts on my blog](https://aplus.rs/tags/fields/), tagged Fields.
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/), as usual.
