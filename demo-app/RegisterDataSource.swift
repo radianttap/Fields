@@ -24,7 +24,7 @@ final class RegisterDataSource: NSObject {
 		didSet { processAddressToggle() }
 	}
 
-	private var preferredInventoryCategory: InventoryCategory?
+	private var preferredInventoryCategory: InventoryCategory? = InventoryCategory.allCategories.first
 	private let inventoryCategories: [InventoryCategory] = InventoryCategory.allCategories
 
 	private var note: String?
@@ -133,9 +133,9 @@ private extension RegisterDataSource {
 		sections.removeAll()
 
 		sections.append( buildAccountSection() )
+		sections.append( buildPrefsSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildAddressSection() )
-		sections.append( buildPrefsSection() )
 		sections.append( buildOtherSection() )
 	}
 
