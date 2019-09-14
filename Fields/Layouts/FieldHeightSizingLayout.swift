@@ -322,7 +322,7 @@ extension FieldHeightSizingLayout {
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
 											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
 	{
-		if preferredAttributes.frame == originalAttributes.frame { return false }
+		if preferredAttributes.frame.size == originalAttributes.frame.size { return false }
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
