@@ -11,7 +11,7 @@ import UIKit
 final class InventoryCategoryCell: FieldCell, NibReusableView {
 	@IBOutlet private var iconView: UIImageView!
 
-	override var isSelected: Bool {
+	var isChosen: Bool = false {
 		didSet {
 			applyTheme()
 		}
@@ -37,18 +37,18 @@ extension InventoryCategoryCell {
 			break
 		}
 
-		isSelected = model.isSelected
+		isChosen = model.isChosen
 	}
 }
 
 private extension InventoryCategoryCell {
 	func cleanup() {
 		iconView.image = nil
-		isSelected = false
+		isChosen = false
 	}
 
 	func applyTheme() {
-		if isSelected {
+		if isChosen {
 			iconView.tintColor = .blue
 		} else {
 			iconView.tintColor = .darkText

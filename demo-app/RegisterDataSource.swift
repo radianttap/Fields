@@ -371,7 +371,7 @@ private extension RegisterDataSource {
 	func inventoryCategoryField(for item: InventoryCategory) -> FieldModel {
 		let model = SingleValueModel(id: item.fieldId,
 									 value: item,
-									 isSelected: preferredInventoryCategory == item)
+									 isChosen: preferredInventoryCategory == item)
 		model.valueSelected = {
 			[weak self] _ in
 			guard let self = self else { return }

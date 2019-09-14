@@ -21,7 +21,7 @@ class SingleValueModel<T: Hashable>: FieldModel {
 	///	Assigned value of type `T`
 	var value: T
 
-	var isSelected = false
+	var isChosen = false
 
 	///	Method that should be called when `FieldCell` using this model's instance is selected.
 	///
@@ -31,11 +31,11 @@ class SingleValueModel<T: Hashable>: FieldModel {
 	init(id: String,
 		 title: String? = nil,
 		 value: T,
-		 isSelected: Bool = false,
+		 isChosen: Bool = false,
 		 valueSelected: @escaping (FieldCell) -> Void = {_ in}
 	){
 		self.id = id
-		self.isSelected = isSelected
+		self.isChosen = isChosen
 
 		self.title = title
 		self.value = value
