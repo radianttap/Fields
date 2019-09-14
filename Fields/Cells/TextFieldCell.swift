@@ -52,6 +52,7 @@ private extension TextFieldCell {
 		textField.text = nil
 		textField.placeholder = nil
 		titleLabel.text = nil
+		valueChanged = {_, _ in}
 	}
 
 	func render(_ model: TextFieldModel) {
