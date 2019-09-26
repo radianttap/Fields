@@ -12,7 +12,6 @@ class FieldCell: UICollectionViewCell {
 
 	override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
 		let attr = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
-		layoutIfNeeded()
 
 		let fittedSize = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize,
 												 withHorizontalFittingPriority: UILayoutPriority.required,
