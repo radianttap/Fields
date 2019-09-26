@@ -282,15 +282,21 @@ extension FieldHeightSizingLayout {
 		return true
 	}
 
-	open override func invalidateLayout() {
-        guard let bounds = collectionView?.bounds, bounds != .zero else {
-            super.invalidateLayout()
-            return
+    open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
+        if context.invalidateEverything || context.invalidateDataSourceCounts {
+            //  reloadData is called, so must re-build from scratch
+            lastBoundsSize = .zero
         }
 
+        //  workaround for the iOS 13 issue, where setting `contentInset` calls `invalidateLayout()`
+        guard let bounds = collectionView?.bounds, bounds != .zero else {
+            super.invalidateLayout(with: context)
+            return
+        }
         shouldRebuild = (bounds.size != lastBoundsSize)
-		super.invalidateLayout()
-	}
+
+        super.invalidateLayout(with: context)
+    }
 
 	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 		var arr: [UICollectionViewLayoutAttributes] = []
