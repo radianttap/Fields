@@ -322,7 +322,7 @@ extension FieldHeightSizingLayout {
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
 											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
 	{
-		if preferredAttributes.frame.size == originalAttributes.frame.size { return false }
+		if preferredAttributes.frame.size.height == originalAttributes.frame.size.height { return false }
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
@@ -332,15 +332,15 @@ extension FieldHeightSizingLayout {
 			{
 				return false
 			}
-			cells[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
+			cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 
 		case .supplementaryView:
 			if let elementKind = preferredAttributes.representedElementKind {
 				switch elementKind {
 				case UICollectionView.elementKindSectionHeader:
-					headers[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
+					headers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				case UICollectionView.elementKindSectionFooter:
-					footers[preferredAttributes.indexPath]?.frame = preferredAttributes.frame
+					footers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				default:
 					break
 				}
