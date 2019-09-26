@@ -14,7 +14,7 @@ class FieldSupplementaryView: UICollectionReusableView {
 		let attr = layoutAttributes.copy() as! UICollectionViewLayoutAttributes
 
 		let fittedSize = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize,
-												 withHorizontalFittingPriority: UILayoutPriority.required,
+												 withHorizontalFittingPriority: UILayoutPriority.fittingSizeLevel,
 												 verticalFittingPriority: UILayoutPriority.fittingSizeLevel)
 		attr.frame.size.height = ceil(fittedSize.height)
 		return attr
