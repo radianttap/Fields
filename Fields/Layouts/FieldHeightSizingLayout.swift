@@ -45,6 +45,9 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	///	then `relayout()` will be called to adjust the origins of the cells/headers/footers
 	private var shouldRelayout = false
 
+    /// Last `UICollectionView.bounds.size` value for which current layoutInfo (cells, headers and footer) was calculated.
+    private var lastBoundsSize: CGSize = .zero
+
 
 	//	MARK: Lifecycle
 
@@ -97,6 +100,8 @@ private extension FieldHeightSizingLayout {
 	func build() {
 		reset()
 		guard let cv = collectionView else { return }
+
+        lastBoundsSize = cv.bounds.size
 
 		let w = cv.bounds.width
 		var x: CGFloat = 0
@@ -278,7 +283,12 @@ extension FieldHeightSizingLayout {
 	}
 
 	open override func invalidateLayout() {
-		shouldRebuild = true
+        guard let bounds = collectionView?.bounds, bounds != .zero else {
+            super.invalidateLayout()
+            return
+        }
+
+        shouldRebuild = (bounds.size != lastBoundsSize)
 		super.invalidateLayout()
 	}
 
