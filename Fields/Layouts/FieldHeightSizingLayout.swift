@@ -45,8 +45,8 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	///	then `relayout()` will be called to adjust the origins of the cells/headers/footers
 	private var shouldRelayout = false
 
-    /// Last `UICollectionView.bounds.size` value for which current layoutInfo (cells, headers and footer) was calculated.
-    private var lastBoundsSize: CGSize = .zero
+	/// Last `UICollectionView.bounds.size` value for which current layoutInfo (cells, headers and footer) was calculated.
+	private var lastBoundsSize: CGSize = .zero
 
 
 	//	MARK: Lifecycle
@@ -101,7 +101,7 @@ private extension FieldHeightSizingLayout {
 		reset()
 		guard let cv = collectionView else { return }
 
-        lastBoundsSize = cv.bounds.size
+		lastBoundsSize = cv.bounds.size
 
 		let w = cv.bounds.width
 		var x: CGFloat = 0
@@ -282,21 +282,21 @@ extension FieldHeightSizingLayout {
 		return true
 	}
 
-    open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
-        if context.invalidateEverything || context.invalidateDataSourceCounts {
-            //  reloadData is called, so must re-build from scratch
-            lastBoundsSize = .zero
-        }
+	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
+		if context.invalidateEverything || context.invalidateDataSourceCounts {
+			//  reloadData is called, so must re-build from scratch
+			lastBoundsSize = .zero
+		}
 
-        //  workaround for the iOS 13 issue, where setting `contentInset` calls `invalidateLayout()`
-        guard let bounds = collectionView?.bounds, bounds != .zero else {
-            super.invalidateLayout(with: context)
-            return
-        }
-        shouldRebuild = (bounds.size != lastBoundsSize)
+		//  workaround for the iOS 13 issue, where setting `contentInset` calls `invalidateLayout()`
+		guard let bounds = collectionView?.bounds, bounds != .zero else {
+			super.invalidateLayout(with: context)
+			return
+		}
+		shouldRebuild = (bounds.size != lastBoundsSize)
 
-        super.invalidateLayout(with: context)
-    }
+		super.invalidateLayout(with: context)
+	}
 
 	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 		var arr: [UICollectionViewLayoutAttributes] = []
