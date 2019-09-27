@@ -22,6 +22,8 @@ extension TextViewCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
+
+		textView.delegate = self
 	}
 
 	override func prepareForReuse() {
@@ -38,12 +40,6 @@ extension TextViewCell {
 		titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
 
 		super.updateConstraints()
-	}
-
-	override func didMoveToSuperview() {
-		super.didMoveToSuperview()
-
-		textView?.delegate = fieldsCollectionController
 	}
 }
 
@@ -64,6 +60,10 @@ private extension TextViewCell {
 }
 
 extension TextViewCell: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        fieldsCollectionController?.textViewDidBeginEditing(textView)
+    }
+
 	func textViewDidChange(_ sender: UITextView) {
 		valueChanged(sender.text, self)
 	}
