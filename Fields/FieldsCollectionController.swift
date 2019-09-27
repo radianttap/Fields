@@ -73,7 +73,7 @@ extension FieldsCollectionController: UITextViewDelegate {
 			let cell: TextViewCell = textView.containingCell(),
 			let indexPath = collectionView.indexPath(for: cell),
 			let attr = collectionView.layoutAttributesForItem(at: indexPath)
-			else { return }
+		else { return }
 
 		collectionView.scrollRectToVisible(attr.frame, animated: true)
 	}
