@@ -47,7 +47,7 @@ private extension PickerCell {
 
 	func render<T>(_ model: PickerModel<T>) {
 		titleLabel.text = model.title
-		valueLabel.text = model.valueFormatter(model.value)
+		valueLabel.text = model.valueFormatter(model.value) ?? model.placeholder
 	}
 
 	@IBAction func showOptions(_ sender: UIButton) {

@@ -18,6 +18,9 @@ class PickerModel<T: Hashable>: FieldModel {
 	///	String to display in the title label
 	var title: String?
 
+    ///    String to display when there is no value
+    var placeholder: String?
+
 	///	Pre-selected value of type `T`
 	var value: T?
 
@@ -37,6 +40,7 @@ class PickerModel<T: Hashable>: FieldModel {
 
 	init(id: String,
 		 title: String? = nil,
+         placeholder: String? = nil,
 		 value: T? = nil,
 		 values: [T] = [],
 		 valueFormatter: @escaping (T?) -> String?,
@@ -46,6 +50,7 @@ class PickerModel<T: Hashable>: FieldModel {
 		self.id = id
 
 		self.title = title
+        self.placeholder = placeholder
 		self.value = value
 		self.values = values
 
