@@ -55,9 +55,6 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	private var currentStore: LayoutStore = LayoutStore()
 	private var cachedStore: LayoutStore = LayoutStore()
 
-	///	Cell's CGSize values picked up through `UICollectionViewDelegateFlowLayout` methods.
-	private var customCellSizes: [IndexPath: CGSize] = [:]
-
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
 	private var shouldRebuild = true
 
@@ -164,7 +161,6 @@ private extension FieldHeightSizingLayout {
 					let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
 					itemSize != customSize
 				{
-					customCellSizes[indexPath] = customSize
 					thisItemSize = customSize
 				}
 
@@ -366,7 +362,6 @@ extension FieldHeightSizingLayout {
 						cachedStore.cells = cachedStore.cells.filter { $0.key.section != indexPath.section }
 					} else {
 						cachedStore.cells[indexPath] = nil
-						customCellSizes[indexPath] = nil
 					}
 				}
 
@@ -380,10 +375,7 @@ extension FieldHeightSizingLayout {
 					let newIndexPath = updateItem.indexPathAfterUpdate
 				{
 					cachedStore.cells[newIndexPath] = cachedStore.cells[oldIndexPath]
-					customCellSizes[newIndexPath] = customCellSizes[oldIndexPath]
-
 					cachedStore.cells[oldIndexPath] = nil
-					customCellSizes[oldIndexPath] = nil
 				}
 
 			case .reload:
@@ -404,12 +396,6 @@ extension FieldHeightSizingLayout {
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
-			if
-				let customSize = customCellSizes[preferredAttributes.indexPath],
-				preferredAttributes.frame.height < customSize.height
-			{
-				return false
-			}
 			currentStore.cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 
 		case .supplementaryView:
