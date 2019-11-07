@@ -50,6 +50,7 @@ private extension RegisterController {
 
 	func prepare(_ dataSource: RegisterDataSource?) {
 		dataSource?.controller = self
+		(collectionView.collectionViewLayout as? FieldHeightSizingLayout)?.heightSizingDelegate = dataSource
 	}
 
 	func render(_ dataSource: RegisterDataSource?) {

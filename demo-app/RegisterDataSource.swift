@@ -484,3 +484,16 @@ extension RegisterDataSource: UICollectionViewDataSource {
 		return field
 	}
 }
+
+
+extension RegisterDataSource: FieldHeightSizingLayoutDelegate {
+	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForHeaderInSection section: Int) -> CGFloat? {
+		guard let _ = sections[section].header else { return nil }
+		return 44
+	}
+
+	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForFooterInSection section: Int) -> CGFloat? {
+		guard let _ = sections[section].footer else { return nil }
+		return 66
+	}
+}

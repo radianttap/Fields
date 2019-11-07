@@ -30,6 +30,13 @@ private struct LayoutStore {
 }
 
 
+public protocol FieldHeightSizingLayoutDelegate: class {
+	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForHeaderInSection section: Int) -> CGFloat?
+	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForFooterInSection section: Int) -> CGFloat?
+}
+
+
+
 ///	Custom re-implementation of `UICollectionViewFlowLayout`,
 ///	optimized for self-sizing along the vertical axis.
 ///
@@ -37,6 +44,8 @@ private struct LayoutStore {
 ///	which gives you the ability to override width of the cells, which by default takes all available horizontal space.
 ///	Since `...sizeForItem` returns CGSize, the returned height will be used *only* if it's larger than calculated minimal self-sizing height.
 open class FieldHeightSizingLayout: UICollectionViewLayout {
+	open weak var heightSizingDelegate: FieldHeightSizingLayoutDelegate?
+
 	//	MARK: Parameters (replica of UICollectionViewFlowLayout)
 
 	open var minimumLineSpacing: CGFloat = 0
@@ -127,8 +136,12 @@ private extension FieldHeightSizingLayout {
 			let indexPath = IndexPath(item: 0, section: section)
 
 			//	this section's header
+			var estimatedHeaderSize = headerReferenceSize
+			if let height = heightSizingDelegate?.fieldHeightSizingLayout(layout: self, estimatedHeightForHeaderInSection: section) {
+				estimatedHeaderSize.height = height
+			}
 
-			let headerSize = cachedStore.headers[indexPath]?.size ?? headerReferenceSize
+			let headerSize = cachedStore.headers[indexPath]?.size ?? estimatedHeaderSize
 			if headerSize != .zero {
 				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
 				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
@@ -174,8 +187,12 @@ private extension FieldHeightSizingLayout {
 			y = lastYmax + sectionInset.bottom
 
 			//	this section's footer
+			var estimatedFooterSize = footerReferenceSize
+			if let height = heightSizingDelegate?.fieldHeightSizingLayout(layout: self, estimatedHeightForFooterInSection: section) {
+				estimatedFooterSize.height = height
+			}
 
-			let footerSize = cachedStore.footers[indexPath]?.size ?? footerReferenceSize
+			let footerSize = cachedStore.footers[indexPath]?.size ?? estimatedFooterSize
 			if footerSize != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
 				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
