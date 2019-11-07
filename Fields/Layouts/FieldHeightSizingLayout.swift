@@ -410,15 +410,15 @@ extension FieldHeightSizingLayout {
 			{
 				return false
 			}
-			cachedStore.cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+			currentStore.cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 
 		case .supplementaryView:
 			if let elementKind = preferredAttributes.representedElementKind {
 				switch elementKind {
 				case UICollectionView.elementKindSectionHeader:
-					cachedStore.headers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+					currentStore.headers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				case UICollectionView.elementKindSectionFooter:
-					cachedStore.footers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+					currentStore.footers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				default:
 					break
 				}
