@@ -8,6 +8,28 @@
 
 import UIKit
 
+private struct LayoutStore {
+	var cells: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+	var headers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+	var footers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+
+	/// Last `UICollectionView.bounds.size` value for which this layout store was calculated.
+	var boundsSize: CGSize = .zero {
+		didSet {
+			if boundsSize == .zero {
+				reset()
+			}
+		}
+	}
+
+	private mutating func reset() {
+		cells.removeAll()
+		headers.removeAll()
+		footers.removeAll()
+	}
+}
+
+
 ///	Custom re-implementation of `UICollectionViewFlowLayout`,
 ///	optimized for self-sizing along the vertical axis.
 ///
@@ -15,7 +37,6 @@ import UIKit
 ///	which gives you the ability to override width of the cells, which by default takes all available horizontal space.
 ///	Since `...sizeForItem` returns CGSize, the returned height will be used *only* if it's larger than calculated minimal self-sizing height.
 open class FieldHeightSizingLayout: UICollectionViewLayout {
-
 	//	MARK: Parameters (replica of UICollectionViewFlowLayout)
 
 	open var minimumLineSpacing: CGFloat = 0
@@ -31,9 +52,8 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	//	MARK: Internal layout tracking
 
 	private var contentSize: CGSize = .zero
-	private var cells: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-	private var headers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-	private var footers: [IndexPath: UICollectionViewLayoutAttributes] = [:]
+	private var currentStore: LayoutStore = LayoutStore()
+	private var cachedStore: LayoutStore = LayoutStore()
 
 	///	Cell's CGSize values picked up through `UICollectionViewDelegateFlowLayout` methods.
 	private var customCellSizes: [IndexPath: CGSize] = [:]
@@ -44,9 +64,6 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	///	When self-sizing is triggered, sizes will be updated in the internal layout trackers,
 	///	then `relayout()` will be called to adjust the origins of the cells/headers/footers
 	private var shouldRelayout = false
-
-	/// Last `UICollectionView.bounds.size` value for which current layoutInfo (cells, headers and footer) was calculated.
-	private var lastBoundsSize: CGSize = .zero
 
 
 	//	MARK: Lifecycle
@@ -91,17 +108,14 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 private extension FieldHeightSizingLayout {
 	func reset() {
 		contentSize = .zero
-		cells.removeAll()
-		headers.removeAll()
-		footers.removeAll()
-		customCellSizes.removeAll()
+		currentStore = LayoutStore()
 	}
 
 	func build() {
 		reset()
 		guard let cv = collectionView else { return }
 
-		lastBoundsSize = cv.bounds.size
+		currentStore.boundsSize = cv.bounds.size
 
 		let w = cv.bounds.width
 		var x: CGFloat = 0
@@ -117,7 +131,7 @@ private extension FieldHeightSizingLayout {
 
 			//	this section's header
 
-			var headerSize = headerReferenceSize
+			var headerSize = cachedStore.headers[indexPath]?.size ?? headerReferenceSize
 			if
 				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForHeaderInSection: section),
 				headerSize != customSize
@@ -128,7 +142,7 @@ private extension FieldHeightSizingLayout {
 			if headerSize != .zero {
 				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
 				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
-				headers[indexPath] = hattributes
+				currentStore.headers[indexPath] = hattributes
 			}
 			y += headerSize.height
 
@@ -144,7 +158,8 @@ private extension FieldHeightSizingLayout {
 				let indexPath = IndexPath(item: item, section: section)
 
 				//	look for custom itemSize from the CV delegate
-				var thisItemSize = itemSize
+				//	do we have calculated size from previous self-sizing pass?
+				var thisItemSize = cachedStore.cells[indexPath]?.size ?? estimatedItemSize
 				if
 					let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
 					itemSize != customSize
@@ -160,7 +175,7 @@ private extension FieldHeightSizingLayout {
 
 				let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: thisItemSize.height)
-				cells[indexPath] = attributes
+				currentStore.cells[indexPath] = attributes
 
 				lastYmax = attributes.frame.maxY
 				x = attributes.frame.maxX + minimumInteritemSpacing
@@ -171,7 +186,7 @@ private extension FieldHeightSizingLayout {
 
 			//	this section's footer
 
-			var footerSize = footerReferenceSize
+			var footerSize = cachedStore.footers[indexPath]?.size ?? footerReferenceSize
 			if
 				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForFooterInSection: section),
 				footerSize != customSize
@@ -182,10 +197,12 @@ private extension FieldHeightSizingLayout {
 			if footerSize != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
 				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
-				footers[indexPath] = fattributes
+				currentStore.footers[indexPath] = fattributes
 			}
 			y += footerSize.height
 		}
+
+		cachedStore = currentStore
 
 		calculateTotalContentSize()
 
@@ -204,9 +221,9 @@ private extension FieldHeightSizingLayout {
 
 			let indexPath = IndexPath(item: 0, section: section)
 
-			if let attr = headers[indexPath] {
+			if let attr = currentStore.headers[indexPath] {
 				attr.frame.origin.y = y
-				headers[indexPath] = attr
+				currentStore.headers[indexPath] = attr
 
 				y = attr.frame.maxY
 			}
@@ -219,13 +236,13 @@ private extension FieldHeightSizingLayout {
 			for item in (0 ..< itemCount) {
 				let indexPath = IndexPath(item: item, section: section)
 
-				if let attr = cells[indexPath] {
+				if let attr = currentStore.cells[indexPath] {
 					if lastXmax + attr.frame.size.width > aw + sectionInset.left {
 						y = lastYmax + minimumLineSpacing
 					}
 
 					attr.frame.origin.y = y
-					cells[indexPath] = attr
+					currentStore.cells[indexPath] = attr
 
 					lastXmax = attr.frame.maxX + minimumInteritemSpacing
 					lastYmax = max(y, attr.frame.maxY)
@@ -234,13 +251,15 @@ private extension FieldHeightSizingLayout {
 
 			y = lastYmax + sectionInset.bottom
 
-			if let attr = footers[indexPath] {
+			if let attr = currentStore.footers[indexPath] {
 				attr.frame.origin.y = y
-				footers[indexPath] = attr
+				currentStore.footers[indexPath] = attr
 
 				y = attr.frame.maxY
 			}
 		}
+
+		cachedStore = currentStore
 
 		calculateTotalContentSize()
 
@@ -250,15 +269,15 @@ private extension FieldHeightSizingLayout {
 	func calculateTotalContentSize() {
 		var	f: CGRect = .zero
 
-		for (_, attr) in cells {
+		for (_, attr) in currentStore.cells {
 			let frame = attr.frame
 			f = f.union(frame)
 		}
-		for (_, attr) in headers {
+		for (_, attr) in currentStore.headers {
 			let frame = attr.frame
 			f = f.union(frame)
 		}
-		for (_, attr) in footers {
+		for (_, attr) in currentStore.footers {
 			let frame = attr.frame
 			f = f.union(frame)
 		}
@@ -285,7 +304,7 @@ extension FieldHeightSizingLayout {
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
 		if context.invalidateEverything || context.invalidateDataSourceCounts {
 			//  reloadData is called, so must re-build from scratch
-			lastBoundsSize = .zero
+			currentStore.boundsSize = .zero
 		}
 
 		//  workaround for the iOS 13 issue, where setting `contentInset` calls `invalidateLayout()`
@@ -293,7 +312,7 @@ extension FieldHeightSizingLayout {
 			super.invalidateLayout(with: context)
 			return
 		}
-		shouldRebuild = (bounds.size != lastBoundsSize)
+		shouldRebuild = (bounds.size != currentStore.boundsSize)
 
 		super.invalidateLayout(with: context)
 	}
@@ -301,17 +320,17 @@ extension FieldHeightSizingLayout {
 	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 		var arr: [UICollectionViewLayoutAttributes] = []
 
-		for (_, attr) in cells {
+		for (_, attr) in currentStore.cells {
 			if rect.intersects(attr.frame) {
 				arr.append(attr)
 			}
 		}
-		for (_, attr) in headers {
+		for (_, attr) in currentStore.headers {
 			if rect.intersects(attr.frame) {
 				arr.append(attr)
 			}
 		}
-		for (_, attr) in footers {
+		for (_, attr) in currentStore.footers {
 			if rect.intersects(attr.frame) {
 				arr.append(attr)
 			}
@@ -321,18 +340,61 @@ extension FieldHeightSizingLayout {
 	}
 
 	override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-		return cells[indexPath]
+		return currentStore.cells[indexPath]
 	}
 
 	override open func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
 		switch elementKind {
 		case UICollectionView.elementKindSectionHeader:
-			return headers[indexPath]
+			return currentStore.headers[indexPath]
 		case UICollectionView.elementKindSectionFooter:
-			return footers[indexPath]
+			return currentStore.footers[indexPath]
 		default:
 			return nil
 		}
+	}
+
+	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+		for updateItem in updateItems {
+			switch updateItem.updateAction {
+			case .delete:
+				//	remove its previously cached calculated size
+				if let indexPath = updateItem.indexPathBeforeUpdate {
+					if indexPath.item == NSNotFound {	//	reloadSections
+						cachedStore.headers = cachedStore.headers.filter { $0.key.section == indexPath.section }
+						cachedStore.footers = cachedStore.footers.filter { $0.key.section == indexPath.section }
+						cachedStore.cells = cachedStore.cells.filter { $0.key.section == indexPath.section }
+					} else {
+						cachedStore.cells[indexPath] = nil
+						customCellSizes[indexPath] = nil
+					}
+				}
+
+			case .insert:
+				//	nothing to do, this will be self-sized when it appears
+				break
+
+			case .move:
+				if
+					let oldIndexPath = updateItem.indexPathBeforeUpdate,
+					let newIndexPath = updateItem.indexPathAfterUpdate
+				{
+					cachedStore.cells[newIndexPath] = cachedStore.cells[oldIndexPath]
+					customCellSizes[newIndexPath] = customCellSizes[oldIndexPath]
+
+					cachedStore.cells[oldIndexPath] = nil
+					customCellSizes[oldIndexPath] = nil
+				}
+
+			case .reload:
+				break
+
+			default:	//.none
+				break
+			}
+		}
+
+		super.prepare(forCollectionViewUpdates: updateItems)
 	}
 
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
@@ -348,15 +410,15 @@ extension FieldHeightSizingLayout {
 			{
 				return false
 			}
-			cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+			cachedStore.cells[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 
 		case .supplementaryView:
 			if let elementKind = preferredAttributes.representedElementKind {
 				switch elementKind {
 				case UICollectionView.elementKindSectionHeader:
-					headers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+					cachedStore.headers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				case UICollectionView.elementKindSectionFooter:
-					footers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
+					cachedStore.footers[preferredAttributes.indexPath]?.frame.size.height = preferredAttributes.frame.size.height
 				default:
 					break
 				}
