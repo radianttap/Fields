@@ -118,8 +118,16 @@ private extension RegisterDataSource {
 
 	func processAddressToggle() {
 		defer {
-			prepareFields()
-			renderContentUpdates()
+			if
+				let cv = self.controller?.collectionView,
+				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
+			{
+				cv.performBatchUpdates({
+					prepareFields()
+					let indexSet = IndexSet(integer: index)
+					cv.reloadSections(indexSet)
+				}, completion: nil)
+			}
 		}
 
 		if !shouldAddAddress {
@@ -133,9 +141,9 @@ private extension RegisterDataSource {
 		sections.removeAll()
 
 		sections.append( buildAccountSection() )
+		sections.append( buildAddressSection() )
 		sections.append( buildPrefsSection() )
 		sections.append( buildPersonalSection() )
-		sections.append( buildAddressSection() )
 		sections.append( buildOtherSection() )
 	}
 
