@@ -113,7 +113,7 @@ private extension FieldHeightSizingLayout {
 			if itemCount == 0 { continue }
 
 			//	header/footer's indexPath
-			let indexPath = IndexPath(item: NSNotFound, section: section)
+			let indexPath = IndexPath(item: 0, section: section)
 
 			//	this section's header
 
@@ -202,7 +202,7 @@ private extension FieldHeightSizingLayout {
 			let itemCount = cv.numberOfItems(inSection: section)
 			if itemCount == 0 { continue }
 
-			let indexPath = IndexPath(item: NSNotFound, section: section)
+			let indexPath = IndexPath(item: 0, section: section)
 
 			if let attr = headers[indexPath] {
 				attr.frame.origin.y = y
