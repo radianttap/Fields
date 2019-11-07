@@ -108,7 +108,7 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 private extension FieldHeightSizingLayout {
 	func reset() {
 		contentSize = .zero
-		currentStore = LayoutStore()
+		currentStore.boundsSize = .zero
 	}
 
 	func build() {
@@ -360,10 +360,10 @@ extension FieldHeightSizingLayout {
 			case .delete:
 				//	remove its previously cached calculated size
 				if let indexPath = updateItem.indexPathBeforeUpdate {
-					if indexPath.item == NSNotFound {	//	reloadSections
-						cachedStore.headers = cachedStore.headers.filter { $0.key.section == indexPath.section }
-						cachedStore.footers = cachedStore.footers.filter { $0.key.section == indexPath.section }
-						cachedStore.cells = cachedStore.cells.filter { $0.key.section == indexPath.section }
+					if indexPath.item == NSNotFound {	//	deleteSections
+						cachedStore.headers = cachedStore.headers.filter { $0.key.section != indexPath.section }
+						cachedStore.footers = cachedStore.footers.filter { $0.key.section != indexPath.section }
+						cachedStore.cells = cachedStore.cells.filter { $0.key.section != indexPath.section }
 					} else {
 						cachedStore.cells[indexPath] = nil
 						customCellSizes[indexPath] = nil
