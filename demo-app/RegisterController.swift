@@ -80,28 +80,6 @@ extension RegisterController: UICollectionViewDelegate {
 }
 
 extension RegisterController: UICollectionViewDelegateFlowLayout {
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-		guard
-			let s = dataSource?.section(at: section),
-			s.header != nil
-		else { return .zero }
-
-		var size = view.bounds.size
-		size.height = 44
-		return size
-	}
-
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-		guard
-			let s = dataSource?.section(at: section),
-			s.footer != nil
-		else { return .zero }
-
-		var size = view.bounds.size
-		size.height = 66
-		return size
-	}
-
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard
 			let section = dataSource?.section(at: indexPath.section),

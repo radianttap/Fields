@@ -128,14 +128,7 @@ private extension FieldHeightSizingLayout {
 
 			//	this section's header
 
-			var headerSize = cachedStore.headers[indexPath]?.size ?? headerReferenceSize
-			if
-				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForHeaderInSection: section),
-				headerSize != customSize
-			{
-				headerSize = customSize
-			}
-
+			let headerSize = cachedStore.headers[indexPath]?.size ?? headerReferenceSize
 			if headerSize != .zero {
 				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
 				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
@@ -182,14 +175,7 @@ private extension FieldHeightSizingLayout {
 
 			//	this section's footer
 
-			var footerSize = cachedStore.footers[indexPath]?.size ?? footerReferenceSize
-			if
-				let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, referenceSizeForFooterInSection: section),
-				footerSize != customSize
-			{
-				footerSize = customSize
-			}
-
+			let footerSize = cachedStore.footers[indexPath]?.size ?? footerReferenceSize
 			if footerSize != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
 				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
