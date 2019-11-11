@@ -112,13 +112,9 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 }
 
 private extension FieldHeightSizingLayout {
-	func reset() {
-		contentSize = .zero
-		currentStore.boundsSize = .zero
-	}
-
 	func build() {
-		reset()
+		cachedStore = currentStore
+		contentSize = .zero
 		guard let cv = collectionView else { return }
 
 		currentStore.boundsSize = cv.bounds.size
@@ -200,8 +196,6 @@ private extension FieldHeightSizingLayout {
 			}
 			y += footerSize.height
 		}
-
-		cachedStore = currentStore
 
 		calculateTotalContentSize()
 
@@ -303,15 +297,8 @@ extension FieldHeightSizingLayout {
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
 		if context.invalidateEverything || context.invalidateDataSourceCounts {
 			//  reloadData is called, so must re-build from scratch
-			currentStore.boundsSize = .zero
+			shouldRebuild = true
 		}
-
-		//  workaround for the iOS 13 issue, where setting `contentInset` calls `invalidateLayout()`
-		guard let bounds = collectionView?.bounds, bounds != .zero else {
-			super.invalidateLayout(with: context)
-			return
-		}
-		shouldRebuild = (bounds.size != currentStore.boundsSize)
 
 		super.invalidateLayout(with: context)
 	}
@@ -351,96 +338,6 @@ extension FieldHeightSizingLayout {
 		default:
 			return nil
 		}
-	}
-
-	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
-		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
-
-		for updateItem in updateItems {
-			switch updateItem.updateAction {
-			case .delete:
-				//	remove its previously cached calculated size
-				if let indexPath = updateItem.indexPathBeforeUpdate {
-
-					if indexPath.item == NSNotFound {	//	deleteSections
-						//	remove the cached layout info for removed stuff
-						cachedStore.headers = cachedStore.headers.filter { $0.key.section != indexPath.section }
-						cachedStore.footers = cachedStore.footers.filter { $0.key.section != indexPath.section }
-						cachedStore.cells = cachedStore.cells.filter { $0.key.section != indexPath.section }
-
-						//  also shuffle all subsequent sections one index down
-						var store = cachedStore
-						for (var ip, attr) in cachedStore.headers {
-							if ip.section < indexPath.section { continue }
-							ip.section -= 1
-							store.headers[ip] = attr
-						}
-						for (var ip, attr) in cachedStore.footers {
-							if ip.section < indexPath.section { continue }
-							ip.section -= 1
-							store.footers[ip] = attr
-						}
-						for (var ip, attr) in cachedStore.cells {
-							if ip.section < indexPath.section { continue }
-							ip.section -= 1
-							store.cells[ip] = attr
-						}
-						cachedStore = store
-
-					} else {
-						cachedStore.cells[indexPath] = nil
-					}
-				}
-
-			case .insert:
-				if let indexPath = updateItem.indexPathAfterUpdate {
-					if indexPath.item == NSNotFound {    //    insertSections
-						//  shuffle all (future) subsequent sections one index up
-						//  if we are inserting section 2, then previous section 2 will now be section 3, 3 goes to 4 etc
-						var store = LayoutStore()
-						for (var ip, attr) in cachedStore.headers {
-							if ip.section >= indexPath.section {
-								ip.section += 1
-							}
-							store.headers[ip] = attr
-						}
-						for (var ip, attr) in cachedStore.footers {
-							if ip.section >= indexPath.section {
-								ip.section += 1
-							}
-							store.footers[ip] = attr
-						}
-						for (var ip, attr) in cachedStore.cells {
-							if ip.section >= indexPath.section {
-								ip.section += 1
-							}
-							store.cells[ip] = attr
-						}
-						cachedStore = store
-
-					} else {
-						cachedStore.cells[indexPath] = nil
-					}
-				}
-
-			case .move:
-				if
-					let oldIndexPath = updateItem.indexPathBeforeUpdate,
-					let newIndexPath = updateItem.indexPathAfterUpdate
-				{
-					cachedStore.cells[newIndexPath] = cachedStore.cells[oldIndexPath]
-					cachedStore.cells[oldIndexPath] = nil
-				}
-
-			case .reload:
-				break
-
-			default:	//.none
-				break
-			}
-		}
-
-		super.prepare(forCollectionViewUpdates: updateItems)
 	}
 
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
