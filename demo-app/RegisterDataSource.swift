@@ -82,6 +82,7 @@ final class RegisterDataSource: NSObject {
 		case billingCity
 		case billingPostcode
 		case billingCountry
+		case billingNote
 
 		case inventoryCategory
 
@@ -117,6 +118,7 @@ private extension RegisterDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingPostcode.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCity.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCountry.rawValue)
+		cv.register(TextCell.self, withReuseIdentifier: FieldId.billingNote.rawValue)
 
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
 		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
@@ -407,57 +409,67 @@ private extension RegisterDataSource {
 			return model
 			}())
 
-		if usePostalAsBillingAddress {
-			return section
+		if !usePostalAsBillingAddress {
+
+			section.fields.append({
+				let model = TextFieldModel(id: FieldId.billingStreet.rawValue, title: NSLocalizedString("Billing Street & building/apt no", comment: ""), value: user?.billingAddress?.street)
+				model.customSetup = { textField in
+					textField.textContentType = .fullStreetAddress
+				}
+				model.valueChanged = { [weak self] string, _ in
+					self?.user?.billingAddress?.street = string
+					model.value = string
+				}
+				return model
+				}())
+
+			section.fields.append({
+				let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.billingAddress?.postCode)
+				model.customSetup = { textField in
+					textField.textContentType = .postalCode
+				}
+				model.valueChanged = { [weak self] string, _ in
+					self?.user?.billingAddress?.postCode = string
+					model.value = string
+				}
+				return model
+				}())
+
+			section.fields.append({
+				let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.billingAddress?.city)
+				model.customSetup = { textField in
+					textField.textContentType = .addressCity
+				}
+				model.valueChanged = { [weak self] string, _ in
+					self?.user?.billingAddress?.city = string
+					model.value = string
+				}
+				return model
+				}())
+
+			section.fields.append({
+				let model = TextFieldModel(id: FieldId.billingCountry.rawValue, title: NSLocalizedString("Country", comment: ""), value: user?.billingAddress?.isoCountryCode)
+				model.customSetup = { textField in
+					textField.textContentType = .countryName
+				}
+				model.valueChanged = { [weak self] string, _ in
+					self?.user?.billingAddress?.isoCountryCode = string
+					model.value = string
+				}
+				return model
+				}())
 		}
 
 		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingStreet.rawValue, title: NSLocalizedString("Billing Street & building/apt no", comment: ""), value: user?.billingAddress?.street)
-			model.customSetup = { textField in
-				textField.textContentType = .fullStreetAddress
-			}
-			model.valueChanged = { [weak self] string, _ in
-				self?.user?.billingAddress?.street = string
-				model.value = string
-			}
-			return model
-			}())
-
-		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.billingAddress?.postCode)
-			model.customSetup = { textField in
-				textField.textContentType = .postalCode
-			}
-			model.valueChanged = { [weak self] string, _ in
-				self?.user?.billingAddress?.postCode = string
-				model.value = string
+			let model = TextModel(id: FieldId.billingNote.rawValue,
+								  title: "",
+								  value: NSLocalizedString("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", comment: ""))
+			model.customSetup = { label in
+				label.textColor = .gray
+				label.superview?.backgroundColor = .clear
 			}
 			return model
-			}())
-
-		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.billingAddress?.city)
-			model.customSetup = { textField in
-				textField.textContentType = .addressCity
-			}
-			model.valueChanged = { [weak self] string, _ in
-				self?.user?.billingAddress?.city = string
-				model.value = string
-			}
-			return model
-			}())
-
-		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingCountry.rawValue, title: NSLocalizedString("Country", comment: ""), value: user?.billingAddress?.isoCountryCode)
-			model.customSetup = { textField in
-				textField.textContentType = .countryName
-			}
-			model.valueChanged = { [weak self] string, _ in
-				self?.user?.billingAddress?.isoCountryCode = string
-				model.value = string
-			}
-			return model
-			}())
+		}())
 
 		return section
 	}
@@ -570,6 +582,11 @@ extension RegisterDataSource: UICollectionViewDataSource {
 
 		case let model as TextViewModel:
 			let cell: TextViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+			cell.populate(with: model)
+			return cell
+
+		case let model as TextModel:
+			let cell: TextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
