@@ -305,7 +305,12 @@ extension FieldHeightSizingLayout {
 	}
 
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
-		if context.invalidateEverything || context.invalidateDataSourceCounts {
+		if context.invalidateDataSourceCounts {
+			//  insert/reload/delete Items/Sections is called
+			shouldRebuild = false
+		}
+
+		if context.invalidateEverything {
 			//  reloadData is called, so must re-build from scratch
 			shouldRebuild = true
 		}
@@ -380,5 +385,55 @@ extension FieldHeightSizingLayout {
 
 		shouldRelayout = true
 		return true
+	}
+
+
+
+	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
+
+		var store = cachedStore
+
+		for updateItem in updateItems {
+			switch updateItem.updateAction {
+			case .delete:
+				//	remove its previously cached calculated size
+				if let indexPath = updateItem.indexPathBeforeUpdate {
+					if indexPath.item == NSNotFound {	//	deleteSections
+
+					} else {
+					}
+				}
+
+			case .insert:
+				if let indexPath = updateItem.indexPathAfterUpdate {
+					if indexPath.item == NSNotFound {    //    insertSections
+
+
+					} else {
+						let arr = store.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+						arr.forEach { $0.indexPath.item += 1 }
+					}
+				}
+
+			case .move:
+				if
+					let oldIndexPath = updateItem.indexPathBeforeUpdate,
+					let newIndexPath = updateItem.indexPathAfterUpdate
+				{
+					store.cell(at: oldIndexPath)?.indexPath = newIndexPath
+				}
+
+			case .reload:
+				break
+
+			default:	//.none
+				break
+			}
+		}
+		cachedStore = store
+		build()
+
+		super.prepare(forCollectionViewUpdates: updateItems)
 	}
 }
