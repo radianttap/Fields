@@ -165,9 +165,9 @@ private extension FieldHeightSizingLayout {
 				var thisItemSize = cachedStore.cells[indexPath]?.size ?? estimatedItemSize
 				if
 					let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
-					itemSize != customSize
+					itemSize.width != customSize.width
 				{
-					thisItemSize = customSize
+					thisItemSize.width = customSize.width
 				}
 
 				if x + thisItemSize.width > aw + sectionInset.left {
@@ -354,23 +354,74 @@ extension FieldHeightSizingLayout {
 	}
 
 	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
+
 		for updateItem in updateItems {
 			switch updateItem.updateAction {
 			case .delete:
 				//	remove its previously cached calculated size
 				if let indexPath = updateItem.indexPathBeforeUpdate {
+
 					if indexPath.item == NSNotFound {	//	deleteSections
+						//	remove the cached layout info for removed stuff
 						cachedStore.headers = cachedStore.headers.filter { $0.key.section != indexPath.section }
 						cachedStore.footers = cachedStore.footers.filter { $0.key.section != indexPath.section }
 						cachedStore.cells = cachedStore.cells.filter { $0.key.section != indexPath.section }
+
+						//  also shuffle all subsequent sections one index down
+						var store = cachedStore
+						for (var ip, attr) in cachedStore.headers {
+							if ip.section < indexPath.section { continue }
+							ip.section -= 1
+							store.headers[ip] = attr
+						}
+						for (var ip, attr) in cachedStore.footers {
+							if ip.section < indexPath.section { continue }
+							ip.section -= 1
+							store.footers[ip] = attr
+						}
+						for (var ip, attr) in cachedStore.cells {
+							if ip.section < indexPath.section { continue }
+							ip.section -= 1
+							store.cells[ip] = attr
+						}
+						cachedStore = store
+
 					} else {
 						cachedStore.cells[indexPath] = nil
 					}
 				}
 
 			case .insert:
-				//	nothing to do, this will be self-sized when it appears
-				break
+				if let indexPath = updateItem.indexPathAfterUpdate {
+					if indexPath.item == NSNotFound {    //    insertSections
+						//  shuffle all (future) subsequent sections one index up
+						//  if we are inserting section 2, then previous section 2 will now be section 3, 3 goes to 4 etc
+						var store = LayoutStore()
+						for (var ip, attr) in cachedStore.headers {
+							if ip.section >= indexPath.section {
+								ip.section += 1
+							}
+							store.headers[ip] = attr
+						}
+						for (var ip, attr) in cachedStore.footers {
+							if ip.section >= indexPath.section {
+								ip.section += 1
+							}
+							store.footers[ip] = attr
+						}
+						for (var ip, attr) in cachedStore.cells {
+							if ip.section >= indexPath.section {
+								ip.section += 1
+							}
+							store.cells[ip] = attr
+						}
+						cachedStore = store
+
+					} else {
+						cachedStore.cells[indexPath] = nil
+					}
+				}
 
 			case .move:
 				if
