@@ -83,10 +83,11 @@ extension RegisterController: UICollectionViewDelegate {
 extension RegisterController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard
+			let layout = collectionViewLayout as? FieldHeightSizingLayout,
 			let section = dataSource?.section(at: indexPath.section),
-			let field = dataSource?.field(at: indexPath),
-			let layout = collectionViewLayout as? FieldHeightSizingLayout
+			let field = dataSource?.field(at: indexPath)
 		else { return .zero }
+
 		var itemSize = layout.itemSize
 
 		switch section.id {
@@ -102,9 +103,10 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 		}
 
 		switch field.id {
-		case RegisterDataSource.FieldId.postcode.rawValue, RegisterDataSource.FieldId.country.rawValue:
+		case RegisterDataSource.FieldId.postcode.rawValue, RegisterDataSource.FieldId.country.rawValue,
+			 RegisterDataSource.FieldId.billingPostcode.rawValue, RegisterDataSource.FieldId.billingCountry.rawValue:
 			itemSize.width /= 4
-		case RegisterDataSource.FieldId.city.rawValue:
+		case RegisterDataSource.FieldId.city.rawValue, RegisterDataSource.FieldId.billingCity.rawValue:
 			itemSize.width /= 2
 		case RegisterDataSource.FieldId.title.rawValue:
 			itemSize.width /= 5

@@ -20,7 +20,7 @@ final class RegisterDataSource: NSObject {
 	//	Model
 	private var user: User?
 
-	private var shouldAddAddress = false {
+	private var shouldAddAddress = true {
 		didSet { processAddressToggle() }
 	}
 
@@ -37,8 +37,12 @@ final class RegisterDataSource: NSObject {
 
 	init(_ user: User) {
 		self.user = user
-		self.shouldAddAddress = user.postalAddress != nil
-		self.usePostalAsBillingAddress = (user.postalAddress != user.billingAddress)
+		if user.postalAddress != nil {
+			self.shouldAddAddress = true
+		}
+		if user.postalAddress == user.billingAddress {
+			self.usePostalAsBillingAddress = true
+		}
 		super.init()
 
 		prepareFields()
@@ -420,7 +424,7 @@ private extension RegisterDataSource {
 			}())
 
 		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Billing Post code", comment: ""), value: user?.billingAddress?.postCode)
+			let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.billingAddress?.postCode)
 			model.customSetup = { textField in
 				textField.textContentType = .postalCode
 			}
@@ -432,7 +436,7 @@ private extension RegisterDataSource {
 			}())
 
 		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("Billing City", comment: ""), value: user?.billingAddress?.city)
+			let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.billingAddress?.city)
 			model.customSetup = { textField in
 				textField.textContentType = .addressCity
 			}
@@ -444,7 +448,7 @@ private extension RegisterDataSource {
 			}())
 
 		section.fields.append({
-			let model = TextFieldModel(id: FieldId.billingCountry.rawValue, title: NSLocalizedString("Billing Country", comment: ""), value: user?.billingAddress?.isoCountryCode)
+			let model = TextFieldModel(id: FieldId.billingCountry.rawValue, title: NSLocalizedString("Country", comment: ""), value: user?.billingAddress?.isoCountryCode)
 			model.customSetup = { textField in
 				textField.textContentType = .countryName
 			}
