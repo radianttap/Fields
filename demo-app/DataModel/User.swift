@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct User {
+struct User: Equatable {
 	var username: String?
 	var password: String?
 
@@ -13,6 +13,7 @@ struct User {
 	var lastName: String?
 
 	var postalAddress: Address?
+	var billingAddress: Address?
 
 	var dateOfBirth: Date?
 
