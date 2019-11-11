@@ -24,6 +24,10 @@ final class RegisterDataSource: NSObject {
 		didSet { processAddressToggle() }
 	}
 
+	private var usePostalAsBillingAddress = true {
+		didSet { processBillingAddressToggle() }
+	}
+
 	private var preferredInventoryCategory: InventoryCategory? = InventoryCategory.allCategories.first
 	private let inventoryCategories: [InventoryCategory] = InventoryCategory.allCategories
 
@@ -34,6 +38,7 @@ final class RegisterDataSource: NSObject {
 	init(_ user: User) {
 		self.user = user
 		self.shouldAddAddress = user.postalAddress != nil
+		self.usePostalAsBillingAddress = (user.postalAddress != user.billingAddress)
 		super.init()
 
 		prepareFields()
@@ -68,6 +73,12 @@ final class RegisterDataSource: NSObject {
 		case postcode
 		case country
 
+		case billingAddressToggle
+		case billingStreet
+		case billingCity
+		case billingPostcode
+		case billingCountry
+
 		case inventoryCategory
 
 		case note
@@ -97,6 +108,12 @@ private extension RegisterDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.city.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.country.rawValue)
 
+		cv.register(ToggleCell.self, withReuseIdentifier: FieldId.billingAddressToggle.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingStreet.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingPostcode.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCity.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCountry.rawValue)
+
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
 		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 
@@ -119,19 +136,67 @@ private extension RegisterDataSource {
 	func processAddressToggle() {
 		defer {
 			if
-				let cv = self.controller?.collectionView,
-				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
+				let cv = self.controller?.collectionView
 			{
 				cv.performBatchUpdates({
 					prepareFields()
-					let indexSet = IndexSet(integer: index)
-					cv.reloadSections(indexSet)
+
+					if self.shouldAddAddress {
+						if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+							//	insert after account section
+							let indexSet = IndexSet(integer: index + 1)
+							cv.insertSections(indexSet)
+						} else {
+							cv.reloadData()
+						}
+					} else {
+						if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+							let indexSet = IndexSet(integer: index + 1)
+							cv.deleteSections(indexSet)
+						} else {
+							cv.reloadData()
+						}
+					}
 				}, completion: nil)
 			}
 		}
 
 		if !shouldAddAddress {
 			user?.postalAddress = nil
+			user?.billingAddress = nil
+		}
+	}
+
+	func processBillingAddressToggle() {
+		defer {
+			if
+				let cv = self.controller?.collectionView,
+				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
+			{
+				cv.performBatchUpdates({
+					prepareFields()
+					if
+						let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
+						let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
+					{
+						let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
+						if usePostalAsBillingAddress {
+							cv.deleteItems(at: indexPaths)
+						} else {
+							cv.insertItems(at: indexPaths)
+						}
+					} else {
+						cv.reloadData()
+					}
+				}, completion: nil)
+			}
+		}
+
+		if usePostalAsBillingAddress {
+			let a = user?.postalAddress
+			user?.billingAddress = a
+		} else {
+			user?.billingAddress = nil
 		}
 	}
 
@@ -141,7 +206,9 @@ private extension RegisterDataSource {
 		sections.removeAll()
 
 		sections.append( buildAccountSection() )
-		sections.append( buildAddressSection() )
+		if shouldAddAddress {
+			sections.append( buildAddressSection() )
+		}
 		sections.append( buildPrefsSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildOtherSection() )
@@ -178,6 +245,20 @@ private extension RegisterDataSource {
 			}
 			return model
 			}())
+
+		section.fields.append({
+			let model = ToggleModel(id: FieldId.addressToggle.rawValue, title: NSLocalizedString("Add postal address?", comment: ""), value: shouldAddAddress)
+			model.valueChanged = { [weak self] isOn, cell in
+				//	required: update raw data
+				self?.shouldAddAddress = isOn
+				model.value = isOn
+
+				//	optional: after you update the field model,
+				//	repopulate the cell with updated model
+				cell.populate(with: model)
+			}
+			return model
+		}())
 
 		return section
 	}
@@ -266,24 +347,6 @@ private extension RegisterDataSource {
 		)
 
 		section.fields.append({
-			let model = ToggleModel(id: FieldId.addressToggle.rawValue, title: NSLocalizedString("Add postal address?", comment: ""), value: shouldAddAddress)
-			model.valueChanged = { [weak self] isOn, cell in
-				//	required: update raw data
-				self?.shouldAddAddress = isOn
-				model.value = isOn
-
-				//	optional: after you update the field model,
-				//	repopulate the cell with updated model
-				cell.populate(with: model)
-			}
-			return model
-			}())
-
-		if !shouldAddAddress {
-			return section
-		}
-
-		section.fields.append({
 			let model = TextFieldModel(id: FieldId.street.rawValue, title: NSLocalizedString("Street & building/apt no", comment: ""), value: user?.postalAddress?.street)
 			model.customSetup = { textField in
 				textField.textContentType = .fullStreetAddress
@@ -326,6 +389,67 @@ private extension RegisterDataSource {
 			}
 			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.isoCountryCode = string
+				model.value = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = ToggleModel(id: FieldId.billingAddressToggle.rawValue, title: NSLocalizedString("Use as billing address?", comment: ""), value: usePostalAsBillingAddress)
+			model.valueChanged = { [weak self] isOn, cell in
+				//	required: update raw data
+				self?.usePostalAsBillingAddress = isOn
+			}
+			return model
+			}())
+
+		if usePostalAsBillingAddress {
+			return section
+		}
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.billingStreet.rawValue, title: NSLocalizedString("Billing Street & building/apt no", comment: ""), value: user?.billingAddress?.street)
+			model.customSetup = { textField in
+				textField.textContentType = .fullStreetAddress
+			}
+			model.valueChanged = { [weak self] string, _ in
+				self?.user?.billingAddress?.street = string
+				model.value = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Billing Post code", comment: ""), value: user?.billingAddress?.postCode)
+			model.customSetup = { textField in
+				textField.textContentType = .postalCode
+			}
+			model.valueChanged = { [weak self] string, _ in
+				self?.user?.billingAddress?.postCode = string
+				model.value = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("Billing City", comment: ""), value: user?.billingAddress?.city)
+			model.customSetup = { textField in
+				textField.textContentType = .addressCity
+			}
+			model.valueChanged = { [weak self] string, _ in
+				self?.user?.billingAddress?.city = string
+				model.value = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.billingCountry.rawValue, title: NSLocalizedString("Billing Country", comment: ""), value: user?.billingAddress?.isoCountryCode)
+			model.customSetup = { textField in
+				textField.textContentType = .countryName
+			}
+			model.valueChanged = { [weak self] string, _ in
+				self?.user?.billingAddress?.isoCountryCode = string
 				model.value = string
 			}
 			return model
