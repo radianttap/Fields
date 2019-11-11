@@ -392,8 +392,6 @@ extension FieldHeightSizingLayout {
 	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
 		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
 
-		var store = cachedStore
-
 		for updateItem in updateItems {
 			switch updateItem.updateAction {
 			case .delete:
@@ -411,7 +409,7 @@ extension FieldHeightSizingLayout {
 
 
 					} else {
-						let arr = store.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+						let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
 						arr.forEach { $0.indexPath.item += 1 }
 					}
 				}
@@ -421,7 +419,7 @@ extension FieldHeightSizingLayout {
 					let oldIndexPath = updateItem.indexPathBeforeUpdate,
 					let newIndexPath = updateItem.indexPathAfterUpdate
 				{
-					store.cell(at: oldIndexPath)?.indexPath = newIndexPath
+					cachedStore.cell(at: oldIndexPath)?.indexPath = newIndexPath
 				}
 
 			case .reload:
@@ -431,7 +429,6 @@ extension FieldHeightSizingLayout {
 				break
 			}
 		}
-		cachedStore = store
 		build()
 
 		super.prepare(forCollectionViewUpdates: updateItems)
