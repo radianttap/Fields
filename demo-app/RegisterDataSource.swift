@@ -144,7 +144,6 @@ private extension RegisterDataSource {
 			if
 				let cv = self.controller?.collectionView
 			{
-				UIView.performWithoutAnimation {
 					cv.performBatchUpdates({
 						prepareFields()
 
@@ -165,7 +164,6 @@ private extension RegisterDataSource {
 							}
 						}
 					}, completion: nil)
-				}
 			}
 		}
 
@@ -181,7 +179,6 @@ private extension RegisterDataSource {
 				let cv = self.controller?.collectionView,
 				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
 			{
-				UIView.performWithoutAnimation {
 					cv.performBatchUpdates({
 						prepareFields()
 						if
@@ -198,7 +195,6 @@ private extension RegisterDataSource {
 							cv.reloadData()
 						}
 					}, completion: nil)
-				}
 			}
 		}
 
