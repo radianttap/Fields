@@ -426,7 +426,10 @@ private extension FieldHeightSizingLayout {
 				//	remove its previously cached calculated size
 				if let indexPath = updateItem.indexPathBeforeUpdate {
 					if indexPath.item == NSNotFound {	//	deleteSections
-
+						//	remove the cached layout info for removed stuff
+						cachedStore.headers = cachedStore.headers.filter { $0.indexPath.section != indexPath.section }
+						cachedStore.footers = cachedStore.footers.filter { $0.indexPath.section != indexPath.section }
+						cachedStore.cells = cachedStore.cells.filter { $0.indexPath.section != indexPath.section }
 
 					} else {
 						if let attr = cachedStore.cell(at: indexPath) {
@@ -438,6 +441,18 @@ private extension FieldHeightSizingLayout {
 			case .insert:
 				if let indexPath = updateItem.indexPathAfterUpdate {
 					if indexPath.item == NSNotFound {    //    insertSections
+						cachedStore.headers.forEach {
+							if $0.indexPath.section < indexPath.section { return }
+							$0.indexPath.section += 1
+						}
+						cachedStore.footers.forEach {
+							if $0.indexPath.section < indexPath.section { return }
+							$0.indexPath.section += 1
+						}
+						cachedStore.cells.forEach {
+							if $0.indexPath.section < indexPath.section { return }
+							$0.indexPath.section += 1
+						}
 
 					} else {
 						let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
@@ -462,8 +477,24 @@ private extension FieldHeightSizingLayout {
 		}
 
 		for indexPath in deletedIndexPaths {
-			let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
-			arr.forEach { $0.indexPath.item -= 1 }
+			if indexPath.item == NSNotFound {    //    sections
+				cachedStore.headers.forEach {
+					if $0.indexPath.section < indexPath.section { return }
+					$0.indexPath.section -= 1
+				}
+				cachedStore.footers.forEach {
+					if $0.indexPath.section < indexPath.section { return }
+					$0.indexPath.section -= 1
+				}
+				cachedStore.cells.forEach {
+					if $0.indexPath.section < indexPath.section { return }
+					$0.indexPath.section -= 1
+				}
+
+			} else {
+				let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+				arr.forEach { $0.indexPath.item -= 1 }
+			}
 		}
 	}
 }
