@@ -123,7 +123,6 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 			//	enable self-sizing
 			estimatedItemSize = itemSize
 
-
 			build()
 		}
 	}
