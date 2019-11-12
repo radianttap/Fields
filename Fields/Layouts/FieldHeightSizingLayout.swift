@@ -113,15 +113,17 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		super.prepare()
 		guard let cv = collectionView else { return }
 
-		let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
-		itemSize.width = w
-
-		//	enable self-sizing
-		estimatedItemSize = itemSize
-
 		if shouldRelayout {
 			relayout()
+
 		} else if shouldRebuild {
+			let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
+			itemSize.width = w
+
+			//	enable self-sizing
+			estimatedItemSize = itemSize
+
+
 			build()
 		}
 	}
@@ -390,4 +392,5 @@ extension FieldHeightSizingLayout {
 		shouldRelayout = true
 		return true
 	}
+
 }
