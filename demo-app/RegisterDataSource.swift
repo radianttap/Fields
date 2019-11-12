@@ -144,26 +144,28 @@ private extension RegisterDataSource {
 			if
 				let cv = self.controller?.collectionView
 			{
-				cv.performBatchUpdates({
-					prepareFields()
+				UIView.performWithoutAnimation {
+					cv.performBatchUpdates({
+						prepareFields()
 
-					if self.shouldAddAddress {
-						if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-							//	insert after account section
-							let indexSet = IndexSet(integer: index + 1)
-							cv.insertSections(indexSet)
+						if self.shouldAddAddress {
+							if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+								//	insert after account section
+								let indexSet = IndexSet(integer: index + 1)
+								cv.insertSections(indexSet)
+							} else {
+								cv.reloadData()
+							}
 						} else {
-							cv.reloadData()
+							if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+								let indexSet = IndexSet(integer: index + 1)
+								cv.deleteSections(indexSet)
+							} else {
+								cv.reloadData()
+							}
 						}
-					} else {
-						if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-							let indexSet = IndexSet(integer: index + 1)
-							cv.deleteSections(indexSet)
-						} else {
-							cv.reloadData()
-						}
-					}
-				}, completion: nil)
+					}, completion: nil)
+				}
 			}
 		}
 
@@ -179,22 +181,24 @@ private extension RegisterDataSource {
 				let cv = self.controller?.collectionView,
 				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
 			{
-				cv.performBatchUpdates({
-					prepareFields()
-					if
-						let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
-						let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
-					{
-						let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
-						if usePostalAsBillingAddress {
-							cv.deleteItems(at: indexPaths)
+				UIView.performWithoutAnimation {
+					cv.performBatchUpdates({
+						prepareFields()
+						if
+							let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
+							let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
+						{
+							let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
+							if usePostalAsBillingAddress {
+								cv.deleteItems(at: indexPaths)
+							} else {
+								cv.insertItems(at: indexPaths)
+							}
 						} else {
-							cv.insertItems(at: indexPaths)
+							cv.reloadData()
 						}
-					} else {
-						cv.reloadData()
-					}
-				}, completion: nil)
+					}, completion: nil)
+				}
 			}
 		}
 
