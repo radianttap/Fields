@@ -77,7 +77,11 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	private var cachedStore: LayoutStore = LayoutStore()
 
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
-	private var shouldRebuild = true
+	private var shouldRebuild = true {
+		didSet {
+			if shouldRebuild { shouldRelayout = false }
+		}
+	}
 
 	///	When self-sizing is triggered, sizes will be updated in the internal layout trackers,
 	///	then `relayout()` will be called to adjust the origins of the cells/headers/footers
@@ -125,11 +129,10 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 
 private extension FieldHeightSizingLayout {
 	func build() {
-		cachedStore = currentStore
-		contentSize = .zero
-		currentStore.reset()
 		guard let cv = collectionView else { return }
 
+		contentSize = .zero
+		currentStore.reset()
 		currentStore.boundsSize = cv.bounds.size
 
 		let w = cv.bounds.width
@@ -209,6 +212,8 @@ private extension FieldHeightSizingLayout {
 			}
 			y += footerSize.height
 		}
+
+		cachedStore = currentStore
 
 		calculateTotalContentSize()
 
@@ -300,18 +305,17 @@ extension FieldHeightSizingLayout {
 		if bounds.width == newBounds.width { return false }
 
 		shouldRebuild = true
-		shouldRelayout = false
 		return true
 	}
 
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
-		if context.invalidateDataSourceCounts {
-			//  insert/reload/delete Items/Sections is called
-			shouldRebuild = false
-		}
+		if context.invalidateEverything {	//  reloadData
+			shouldRebuild = true
 
-		if context.invalidateEverything {
-			//  reloadData is called, so must re-build from scratch
+		} else if context.invalidateDataSourceCounts {	//  insert/reload/delete Items/Sections
+			//	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
+			//	`layoutAttributesForElements(in:)` is also called before `prepare(forCollectionViewUpdates:)`.
+
 			shouldRebuild = true
 		}
 
@@ -385,52 +389,5 @@ extension FieldHeightSizingLayout {
 
 		shouldRelayout = true
 		return true
-	}
-
-
-
-	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
-		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
-
-		for updateItem in updateItems {
-			switch updateItem.updateAction {
-			case .delete:
-				//	remove its previously cached calculated size
-				if let indexPath = updateItem.indexPathBeforeUpdate {
-					if indexPath.item == NSNotFound {	//	deleteSections
-
-					} else {
-					}
-				}
-
-			case .insert:
-				if let indexPath = updateItem.indexPathAfterUpdate {
-					if indexPath.item == NSNotFound {    //    insertSections
-
-
-					} else {
-						let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
-						arr.forEach { $0.indexPath.item += 1 }
-					}
-				}
-
-			case .move:
-				if
-					let oldIndexPath = updateItem.indexPathBeforeUpdate,
-					let newIndexPath = updateItem.indexPathAfterUpdate
-				{
-					cachedStore.cell(at: oldIndexPath)?.indexPath = newIndexPath
-				}
-
-			case .reload:
-				break
-
-			default:	//.none
-				break
-			}
-		}
-		build()
-
-		super.prepare(forCollectionViewUpdates: updateItems)
 	}
 }
