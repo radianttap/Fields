@@ -152,9 +152,6 @@ private extension FieldHeightSizingLayout {
 
 		let	sectionCount = cv.numberOfSections
 		for section in (0 ..< sectionCount) {
-			let itemCount = cv.numberOfItems(inSection: section)
-			if itemCount == 0 { continue }
-
 			//	header/footer's indexPath
 			let indexPath = IndexPath(item: 0, section: section)
 
@@ -165,7 +162,7 @@ private extension FieldHeightSizingLayout {
 			}
 
 			let headerSize = cachedStore.header(at: indexPath)?.size ?? estimatedHeaderSize
-			if headerSize != .zero {
+			if headerSize.height != .zero {
 				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
 				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
 				currentStore.headers.insert(hattributes)
@@ -173,6 +170,7 @@ private extension FieldHeightSizingLayout {
 			y += headerSize.height
 
 			//	this section's cells
+			let itemCount = cv.numberOfItems(inSection: section)
 
 			x = sectionInset.left
 			y += sectionInset.top
@@ -216,7 +214,7 @@ private extension FieldHeightSizingLayout {
 			}
 
 			let footerSize = cachedStore.footer(at: indexPath)?.size ?? estimatedFooterSize
-			if footerSize != .zero {
+			if footerSize.height != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
 				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
 				currentStore.footers.insert(fattributes)
