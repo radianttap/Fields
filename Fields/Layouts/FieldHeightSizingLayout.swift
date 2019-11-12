@@ -47,7 +47,13 @@ public protocol FieldHeightSizingLayoutDelegate: class {
 	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForFooterInSection section: Int) -> CGFloat?
 }
 
+public class FieldHeightSizingInvalidationContext: UICollectionViewLayoutInvalidationContext {
+	private var key: String { "_updateItems" }
 
+	var updateItems: [UICollectionViewUpdateItem] {
+		return (value(forKey: key) as? [UICollectionViewUpdateItem]) ?? []
+	}
+}
 
 ///	Custom re-implementation of `UICollectionViewFlowLayout`,
 ///	optimized for self-sizing along the vertical axis.
@@ -57,6 +63,10 @@ public protocol FieldHeightSizingLayoutDelegate: class {
 ///	Since `...sizeForItem` returns CGSize, the returned height will be used *only* if it's larger than calculated minimal self-sizing height.
 open class FieldHeightSizingLayout: UICollectionViewLayout {
 	open weak var heightSizingDelegate: FieldHeightSizingLayoutDelegate?
+
+	open override class var invalidationContextClass: AnyClass {
+		return FieldHeightSizingInvalidationContext.self
+	}
 
 	//	MARK: Parameters (replica of UICollectionViewFlowLayout)
 
@@ -306,16 +316,25 @@ extension FieldHeightSizingLayout {
 		if bounds.width == newBounds.width { return false }
 
 		shouldRebuild = true
+		cachedStore.reset()
+
 		return true
 	}
 
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
 		if context.invalidateEverything {	//  reloadData
 			shouldRebuild = true
+			cachedStore.reset()
 
 		} else if context.invalidateDataSourceCounts {	//  insert/reload/delete Items/Sections
-			//	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
-			//	`layoutAttributesForElements(in:)` is also called before `prepare(forCollectionViewUpdates:)`.
+			///	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
+			///	`layoutAttributesForElements(in:)` is also called before `prepare(forCollectionViewUpdates:)`.
+			///	Hence `prepare(forCollectionViewUpdates:)` is useless as it's called too late.
+			///
+			///	We must **now** update `cachedStore` with "future" indexPaths so that `build()` reuses proper self-sized frames.
+			if let context = context as? FieldHeightSizingInvalidationContext {
+				updateLayoutStore(with: context.updateItems)
+			}
 
 			shouldRebuild = true
 		}
@@ -392,7 +411,10 @@ extension FieldHeightSizingLayout {
 		return true
 	}
 
-	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+}
+
+private extension FieldHeightSizingLayout {
+	func updateLayoutStore(with updateItems: [UICollectionViewUpdateItem]) {
 		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
 
 		let deleted: [UICollectionViewUpdateItem] = updateItems.filter{ $0.updateAction == .delete }.sorted { $0.indexPathBeforeUpdate! > $1.indexPathBeforeUpdate! }
@@ -443,9 +465,5 @@ extension FieldHeightSizingLayout {
 			let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
 			arr.forEach { $0.indexPath.item -= 1 }
 		}
-
-		build()
-
-		super.prepare(forCollectionViewUpdates: updateItems)
 	}
 }
