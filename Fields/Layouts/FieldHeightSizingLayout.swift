@@ -392,4 +392,60 @@ extension FieldHeightSizingLayout {
 		return true
 	}
 
+	open override func prepare(forCollectionViewUpdates updateItems: [UICollectionViewUpdateItem]) {
+		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
+
+		let deleted: [UICollectionViewUpdateItem] = updateItems.filter{ $0.updateAction == .delete }.sorted { $0.indexPathBeforeUpdate! > $1.indexPathBeforeUpdate! }
+		let deletedIndexPaths = deleted.compactMap { $0.indexPathBeforeUpdate }
+
+		for updateItem in updateItems {
+			switch updateItem.updateAction {
+			case .delete:
+				//	remove its previously cached calculated size
+				if let indexPath = updateItem.indexPathBeforeUpdate {
+					if indexPath.item == NSNotFound {	//	deleteSections
+
+
+					} else {
+						if let attr = cachedStore.cell(at: indexPath) {
+							cachedStore.cells.remove(attr)
+						}
+					}
+				}
+
+			case .insert:
+				if let indexPath = updateItem.indexPathAfterUpdate {
+					if indexPath.item == NSNotFound {    //    insertSections
+
+					} else {
+						let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+						arr.forEach { $0.indexPath.item += 1 }
+					}
+				}
+
+			case .move:
+				if
+					let oldIndexPath = updateItem.indexPathBeforeUpdate,
+					let newIndexPath = updateItem.indexPathAfterUpdate
+				{
+					cachedStore.cell(at: oldIndexPath)?.indexPath = newIndexPath
+				}
+
+			case .reload:
+				break
+
+			default:	//.none
+				break
+			}
+		}
+
+		for indexPath in deletedIndexPaths {
+			let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+			arr.forEach { $0.indexPath.item -= 1 }
+		}
+
+		build()
+
+		super.prepare(forCollectionViewUpdates: updateItems)
+	}
 }
