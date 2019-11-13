@@ -13,6 +13,7 @@ class FieldsController: UIViewController {
 	//	Notification handlers
 	private var tokenKeyboardWillShow: NotificationToken?
 	private var tokenKeyboardWillHide: NotificationToken?
+	private var tokenContentSizeCategoryChanged: NotificationToken?
 
 	func renderContentUpdates() {
 		if !isViewLoaded { return }
@@ -26,6 +27,9 @@ class FieldsController: UIViewController {
 
 	func keyboardWillHide(notification kn: KeyboardNotification) {
 		additionalSafeAreaInsets = UIEdgeInsets.zero
+	}
+
+	func contentSizeCategoryChanged(notification kn: ContentSizeCategoryNotification) {
 	}
 }
 
@@ -48,6 +52,11 @@ private extension FieldsController {
 		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillHideDescriptor, queue: .main) {
 			[weak self] kn in
 			self?.keyboardWillHide(notification: kn)
+		}
+
+		tokenContentSizeCategoryChanged = nc.addObserver(forConvertedDescriptor: ContentSizeCategoryNotification.didChangeDescriptor, queue: .main) {
+			[weak self] kn in
+			self?.contentSizeCategoryChanged(notification: kn)
 		}
 	}
 }

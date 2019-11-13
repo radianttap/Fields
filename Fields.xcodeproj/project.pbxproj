@@ -77,6 +77,7 @@
 		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
 		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
 		D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C845237C124B0064842F /* UIButton-Extensions.swift */; };
+		D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
 		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		D0A3C845237C124B0064842F /* UIButton-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
+		D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContentSizeCategory-Notifications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				D0704C1E22B15B7C004A0A25 /* UIKeyboard-Notifications.swift */,
+				D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */,
 				D0704C1F22B15B7C004A0A25 /* Notifying.swift */,
 			);
 			path = Notifications;
@@ -488,6 +491,7 @@
 				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
 				D0628E58230027C700D86F63 /* ButtonModel.swift in Sources */,
 				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
+				D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */,
 				D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */,
 				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,

@@ -48,6 +48,10 @@ class FieldsCollectionController: FieldsController {
 	override func keyboardWillHide(notification kn: KeyboardNotification) {
 		collectionView.contentInset.bottom = 0
 	}
+
+	override func contentSizeCategoryChanged(notification kn: ContentSizeCategoryNotification) {
+		collectionView.reloadData()
+	}
 }
 
 private extension FieldsCollectionController {
