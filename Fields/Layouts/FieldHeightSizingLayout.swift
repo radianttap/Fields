@@ -138,6 +138,114 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	}
 }
 
+extension FieldHeightSizingLayout {
+	override open var collectionViewContentSize: CGSize {
+		return contentSize
+	}
+
+	override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+		guard let bounds = collectionView?.bounds else { return true }
+
+		if bounds.width == newBounds.width { return false }
+
+		shouldRebuild = true
+		cachedStore.reset()
+
+		return true
+	}
+
+	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
+		if context.invalidateEverything {	//  reloadData
+			shouldRebuild = true
+			cachedStore.reset()
+
+		} else if context.invalidateDataSourceCounts {	//  insert/reload/delete Items/Sections
+			///	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
+			///	`layoutAttributesForElements(in:)` is also called before `prepare(forCollectionViewUpdates:)`.
+			///	Hence `prepare(forCollectionViewUpdates:)` is useless as it's called too late.
+			///
+			///	We must **now** update `cachedStore` with "future" indexPaths so that `build()` reuses proper self-sized frames.
+			if let context = context as? FieldHeightSizingInvalidationContext {
+				updateLayoutStore(with: context.updateItems)
+			}
+
+			shouldRebuild = true
+		}
+
+		super.invalidateLayout(with: context)
+	}
+
+	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+		var arr: [UICollectionViewLayoutAttributes] = []
+
+		for attr in currentStore.cells {
+			if rect.intersects(attr.frame) {
+				arr.append(attr)
+			}
+		}
+		for attr in currentStore.headers {
+			if rect.intersects(attr.frame) {
+				arr.append(attr)
+			}
+		}
+		for attr in currentStore.footers {
+			if rect.intersects(attr.frame) {
+				arr.append(attr)
+			}
+		}
+
+		return arr
+	}
+
+	override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+		return currentStore.cell(at: indexPath)
+	}
+
+	override open func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+		switch elementKind {
+		case UICollectionView.elementKindSectionHeader:
+			return currentStore.header(at: indexPath)
+		case UICollectionView.elementKindSectionFooter:
+			return currentStore.footer(at: indexPath)
+		default:
+			return nil
+		}
+	}
+
+	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
+											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
+	{
+		if preferredAttributes.frame.size.height == originalAttributes.frame.size.height { return false }
+
+		switch preferredAttributes.representedElementCategory {
+		case .cell:
+			currentStore.cell(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
+
+		case .supplementaryView:
+			if let elementKind = preferredAttributes.representedElementKind {
+				switch elementKind {
+				case UICollectionView.elementKindSectionHeader:
+					currentStore.header(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
+				case UICollectionView.elementKindSectionFooter:
+					currentStore.footer(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
+				default:
+					break
+				}
+			}
+
+		case .decorationView:
+			return false
+
+		@unknown default:
+			return false
+		}
+
+		shouldRelayout = true
+		return true
+	}
+
+}
+
 private extension FieldHeightSizingLayout {
 	func build() {
 		guard let cv = collectionView else { return }
@@ -301,117 +409,7 @@ private extension FieldHeightSizingLayout {
 
 		self.contentSize = f.size
 	}
-}
 
-extension FieldHeightSizingLayout {
-	override open var collectionViewContentSize: CGSize {
-		return contentSize
-	}
-
-	override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-		guard let bounds = collectionView?.bounds else { return true }
-
-		if bounds.width == newBounds.width { return false }
-
-		shouldRebuild = true
-		cachedStore.reset()
-
-		return true
-	}
-
-	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
-		if context.invalidateEverything {	//  reloadData
-			shouldRebuild = true
-			cachedStore.reset()
-
-		} else if context.invalidateDataSourceCounts {	//  insert/reload/delete Items/Sections
-			///	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
-			///	`layoutAttributesForElements(in:)` is also called before `prepare(forCollectionViewUpdates:)`.
-			///	Hence `prepare(forCollectionViewUpdates:)` is useless as it's called too late.
-			///
-			///	We must **now** update `cachedStore` with "future" indexPaths so that `build()` reuses proper self-sized frames.
-			if let context = context as? FieldHeightSizingInvalidationContext {
-				updateLayoutStore(with: context.updateItems)
-			}
-
-			shouldRebuild = true
-		}
-
-		super.invalidateLayout(with: context)
-	}
-
-	override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-		var arr: [UICollectionViewLayoutAttributes] = []
-
-		for attr in currentStore.cells {
-			if rect.intersects(attr.frame) {
-				arr.append(attr)
-			}
-		}
-		for attr in currentStore.headers {
-			if rect.intersects(attr.frame) {
-				arr.append(attr)
-			}
-		}
-		for attr in currentStore.footers {
-			if rect.intersects(attr.frame) {
-				arr.append(attr)
-			}
-		}
-
-		return arr
-	}
-
-	override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-		return currentStore.cell(at: indexPath)
-	}
-
-	override open func layoutAttributesForSupplementaryView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-		switch elementKind {
-		case UICollectionView.elementKindSectionHeader:
-			return currentStore.header(at: indexPath)
-		case UICollectionView.elementKindSectionFooter:
-			return currentStore.footer(at: indexPath)
-		default:
-			return nil
-		}
-	}
-
-	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
-											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
-	{
-		if preferredAttributes.frame.size.height == originalAttributes.frame.size.height { return false }
-
-		switch preferredAttributes.representedElementCategory {
-		case .cell:
-			currentStore.cell(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
-
-		case .supplementaryView:
-			if let elementKind = preferredAttributes.representedElementKind {
-				switch elementKind {
-				case UICollectionView.elementKindSectionHeader:
-					currentStore.header(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
-				case UICollectionView.elementKindSectionFooter:
-					currentStore.footer(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
-				default:
-					break
-				}
-			}
-
-		case .decorationView:
-			return false
-
-		@unknown default:
-			return false
-		}
-
-		shouldRelayout = true
-		return true
-	}
-
-}
-
-private extension FieldHeightSizingLayout {
 	func updateLayoutStore(with updateItems: [UICollectionViewUpdateItem]) {
 		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
 
