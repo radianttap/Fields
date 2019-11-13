@@ -94,8 +94,8 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 		case RegisterDataSource.SectionId.prefs.rawValue:
 			let w = collectionView.bounds.width
 			let aw = w - (layout.sectionInset.left + layout.sectionInset.right)
-			itemSize.width = aw / CGFloat(section.fields.count)
-			itemSize.height = itemSize.width
+			itemSize.width = max(80, aw / min(inventoryColumnSplit, CGFloat(section.fields.count)))
+			itemSize.height = min(120, itemSize.width)
 			return itemSize
 
 		default:
@@ -105,13 +105,17 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 		switch field.id {
 		case RegisterDataSource.FieldId.postcode.rawValue, RegisterDataSource.FieldId.country.rawValue,
 			 RegisterDataSource.FieldId.billingPostcode.rawValue, RegisterDataSource.FieldId.billingCountry.rawValue:
-			itemSize.width /= 4
+			itemSize.width *= 1 / addressColumnSplit
+
 		case RegisterDataSource.FieldId.city.rawValue, RegisterDataSource.FieldId.billingCity.rawValue:
-			itemSize.width /= 2
+			itemSize.width *= min((1 / addressColumnSplit) * 2, 1)
+
 		case RegisterDataSource.FieldId.title.rawValue:
-			itemSize.width /= 5
+			itemSize.width *= 1 / personTitleColumnSplit
+
 		case RegisterDataSource.FieldId.firstName.rawValue:
-			itemSize.width *= 4/5
+			itemSize.width *= max(1, personTitleColumnSplit - 1) / personTitleColumnSplit
+
 		default:
 			break
 		}
@@ -120,3 +124,44 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 	}
 }
 
+private extension RegisterController {
+    var addressColumnSplit: CGFloat {
+        let c = traitCollection.preferredContentSizeCategory
+
+        if c <= .medium {
+            return 4
+        } else if c <= .accessibilityMedium {
+            return 2
+        } else {
+            return 1
+        }
+    }
+
+    var personTitleColumnSplit: CGFloat {
+        let c = traitCollection.preferredContentSizeCategory
+
+        if c <= .medium {
+            return 5
+        } else if c <= .accessibilityMedium {
+            return 4
+        } else if c <= .accessibilityExtraLarge {
+            return 3
+        } else {
+            return 1
+        }
+    }
+
+	var inventoryColumnSplit: CGFloat {
+        let c = traitCollection.preferredContentSizeCategory
+
+        if c <= .medium {
+            return 4
+		} else if c <= .extraExtraLarge {
+			return 3
+        } else if c <= .accessibilityMedium {
+            return 2
+        } else {
+            return 1
+        }
+	}
+}

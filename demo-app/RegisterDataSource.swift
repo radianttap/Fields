@@ -365,24 +365,24 @@ private extension RegisterDataSource {
 			}())
 
 		section.fields.append({
-			let model = TextFieldModel(id: FieldId.postcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.postalAddress?.postCode)
-			model.customSetup = { textField in
-				textField.textContentType = .postalCode
-			}
-			model.valueChanged = { [weak self] string, _ in
-				self?.user?.postalAddress?.postCode = string
-				model.value = string
-			}
-			return model
-			}())
-
-		section.fields.append({
 			let model = TextFieldModel(id: FieldId.city.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.postalAddress?.city)
 			model.customSetup = { textField in
 				textField.textContentType = .addressCity
 			}
 			model.valueChanged = { [weak self] string, _ in
 				self?.user?.postalAddress?.city = string
+				model.value = string
+			}
+			return model
+			}())
+
+		section.fields.append({
+			let model = TextFieldModel(id: FieldId.postcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.postalAddress?.postCode)
+			model.customSetup = { textField in
+				textField.textContentType = .postalCode
+			}
+			model.valueChanged = { [weak self] string, _ in
+				self?.user?.postalAddress?.postCode = string
 				model.value = string
 			}
 			return model
@@ -424,24 +424,24 @@ private extension RegisterDataSource {
 				}())
 
 			section.fields.append({
-				let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.billingAddress?.postCode)
-				model.customSetup = { textField in
-					textField.textContentType = .postalCode
-				}
-				model.valueChanged = { [weak self] string, _ in
-					self?.user?.billingAddress?.postCode = string
-					model.value = string
-				}
-				return model
-				}())
-
-			section.fields.append({
 				let model = TextFieldModel(id: FieldId.billingCity.rawValue, title: NSLocalizedString("City", comment: ""), value: user?.billingAddress?.city)
 				model.customSetup = { textField in
 					textField.textContentType = .addressCity
 				}
 				model.valueChanged = { [weak self] string, _ in
 					self?.user?.billingAddress?.city = string
+					model.value = string
+				}
+				return model
+				}())
+
+			section.fields.append({
+				let model = TextFieldModel(id: FieldId.billingPostcode.rawValue, title: NSLocalizedString("Post code", comment: ""), value: user?.billingAddress?.postCode)
+				model.customSetup = { textField in
+					textField.textContentType = .postalCode
+				}
+				model.valueChanged = { [weak self] string, _ in
+					self?.user?.billingAddress?.postCode = string
 					model.value = string
 				}
 				return model
