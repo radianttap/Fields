@@ -344,9 +344,6 @@ private extension FieldHeightSizingLayout {
 
 		let	sectionCount = cv.numberOfSections
 		for section in (0 ..< sectionCount) {
-			let itemCount = cv.numberOfItems(inSection: section)
-			if itemCount == 0 { continue }
-
 			let indexPath = IndexPath(item: 0, section: section)
 
 			if let attr = currentStore.header(at: indexPath) {
@@ -360,6 +357,8 @@ private extension FieldHeightSizingLayout {
 			let aw = cv.bounds.width - (sectionInset.left + sectionInset.right)
 			var lastYmax: CGFloat = y
 			var lastXmax: CGFloat = sectionInset.left
+
+			let itemCount = cv.numberOfItems(inSection: section)
 			for item in (0 ..< itemCount) {
 				let indexPath = IndexPath(item: item, section: section)
 
