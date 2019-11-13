@@ -128,7 +128,7 @@ private extension RegisterController {
     var addressColumnSplit: CGFloat {
         let c = traitCollection.preferredContentSizeCategory
 
-        if c <= .medium {
+        if c <= .large {
             return 4
         } else if c <= .accessibilityMedium {
             return 2
@@ -140,7 +140,7 @@ private extension RegisterController {
     var personTitleColumnSplit: CGFloat {
         let c = traitCollection.preferredContentSizeCategory
 
-        if c <= .medium {
+        if c <= .large {
             return 5
         } else if c <= .accessibilityMedium {
             return 4
@@ -154,7 +154,7 @@ private extension RegisterController {
 	var inventoryColumnSplit: CGFloat {
         let c = traitCollection.preferredContentSizeCategory
 
-        if c <= .medium {
+        if c <= .large {
             return 4
 		} else if c <= .extraExtraLarge {
 			return 3
