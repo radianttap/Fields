@@ -76,6 +76,7 @@
 		D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086576722FF0DDA00256BA6 /* TextViewCell.swift */; };
 		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
 		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
+		D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C845237C124B0064842F /* UIButton-Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +151,7 @@
 		D086576722FF0DDA00256BA6 /* TextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
 		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
 		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		D0A3C845237C124B0064842F /* UIButton-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,6 +357,7 @@
 		D086576122FED1AB00256BA6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				D0A3C845237C124B0064842F /* UIButton-Extensions.swift */,
 				D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */,
 			);
 			path = UIKit;
@@ -489,6 +492,7 @@
 				D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
 				D0704C2122B15B7C004A0A25 /* Notifying.swift in Sources */,
+				D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */,
 				D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */,
 				D034C74922A53579000FE220 /* AppDelegate.swift in Sources */,
 				D0704C2B22B16F07004A0A25 /* FieldCell.swift in Sources */,
