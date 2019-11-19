@@ -144,9 +144,7 @@ extension FieldHeightSizingLayout {
 	}
 
 	override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-		guard let bounds = collectionView?.bounds else { return true }
-
-		if bounds.width == newBounds.width { return false }
+		if (collectionView?.bounds ?? .zero).width == newBounds.width { return false }
 
 		shouldRebuild = true
 		cachedStore.reset()
