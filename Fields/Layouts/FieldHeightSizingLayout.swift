@@ -123,10 +123,7 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		super.prepare()
 		guard let cv = collectionView else { return }
 
-		if shouldRelayout {
-			relayout()
-
-		} else if shouldRebuild {
+		if shouldRebuild {
 			let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
 			itemSize.width = w
 
@@ -134,6 +131,9 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 			estimatedItemSize = itemSize
 
 			build()
+
+		} else if shouldRelayout {
+			relayout()
 		}
 	}
 }
@@ -227,7 +227,7 @@ extension FieldHeightSizingLayout {
 				case UICollectionView.elementKindSectionFooter:
 					currentStore.footer(at: preferredAttributes.indexPath)?.frame.size.height = preferredAttributes.frame.size.height
 				default:
-					break
+					return false
 				}
 			}
 
@@ -333,6 +333,7 @@ private extension FieldHeightSizingLayout {
 		calculateTotalContentSize()
 
 		shouldRebuild = false
+		shouldRelayout = false
 	}
 
 	func relayout() {
