@@ -38,7 +38,7 @@ class BaseGridLayout: UICollectionViewFlowLayout {
 		case .vertical:
 			return newBounds.width != collectionView?.bounds.width
 		@unknown default:
-			return true
+			return super.shouldInvalidateLayout(forBoundsChange: newBounds)
 		}
 	}
 }

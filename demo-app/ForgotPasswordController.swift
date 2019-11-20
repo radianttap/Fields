@@ -70,4 +70,10 @@ private extension ForgotPasswordController {
 		guard let url = URL(string: "https://www.iconfinder.com/rizal999") else { return }
 		UIApplication.shared.open(url)
 	}
+
+	@IBAction func displayOptions(_ sender: UIBarButtonItem) {
+		let l = FullWidthLayout()
+		let vc = OptionsController(collectionViewLayout: l)
+		show(vc, sender: self)
+	}
 }
