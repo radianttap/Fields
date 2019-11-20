@@ -167,6 +167,12 @@ extension FieldHeightSizingLayout {
 			}
 
 			shouldRebuild = true
+
+		} else if let cv = collectionView, cv.bounds.size != currentStore.boundsSize {
+			///	for some reason, `shouldInvalidateLayout(forBoundsChange:)`
+			///	is not always called when rotating the device
+			shouldRebuild = true
+			cachedStore.reset()
 		}
 
 		super.invalidateLayout(with: context)
