@@ -28,7 +28,7 @@ class BaseGridLayout: UICollectionViewFlowLayout {
 		minimumLineSpacing = 0
 		minimumInteritemSpacing = 0
 		sectionInset = .zero
-		itemSize = CGSize(width: 50, height: 50)
+		itemSize = CGSize(width: 260, height: 50)
 	}
 
 	override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
