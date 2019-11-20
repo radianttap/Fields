@@ -119,11 +119,31 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 	}
 
-	override open func prepare() {
-		super.prepare()
+	func adjustSectionInsetsForSafeArea() {
 		guard let cv = collectionView else { return }
 
-		if shouldRebuild {
+		sectionInset = cv.safeAreaInsets
+
+		switch scrollDirection {
+		case .horizontal:
+			sectionInset.left = 0
+			sectionInset.right = 0
+
+		case .vertical:
+			sectionInset.top = 0
+			sectionInset.bottom = 0
+
+		@unknown default:
+			sectionInset = .zero
+		}
+	}
+
+	override open func prepare() {
+		super.prepare()
+
+		if shouldRebuild, let cv = collectionView {
+			adjustSectionInsetsForSafeArea()
+
 			let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
 			itemSize.width = w
 
