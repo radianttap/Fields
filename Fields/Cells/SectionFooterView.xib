@@ -33,9 +33,9 @@
                 </view>
             </subviews>
             <constraints>
-                <constraint firstItem="An4-Og-iaG" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="1VX-lw-cnd"/>
+                <constraint firstItem="An4-Og-iaG" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="1VX-lw-cnd"/>
                 <constraint firstItem="An4-Og-iaG" firstAttribute="bottom" secondItem="U6b-Vx-4bR" secondAttribute="bottom" priority="999" id="Ehh-2M-CPq"/>
-                <constraint firstAttribute="trailing" secondItem="An4-Og-iaG" secondAttribute="trailing" priority="999" id="NLP-pT-EL5"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="An4-Og-iaG" secondAttribute="trailing" priority="999" id="NLP-pT-EL5"/>
                 <constraint firstAttribute="top" secondItem="An4-Og-iaG" secondAttribute="top" id="eQV-Ad-mhg"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
