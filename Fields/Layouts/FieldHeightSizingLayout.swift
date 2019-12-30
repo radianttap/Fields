@@ -141,9 +141,10 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	override open func prepare() {
 		super.prepare()
 
-		if shouldRebuild, let cv = collectionView {
-			adjustSectionInsetsForSafeArea()
+		guard let cv = collectionView else { return }
+		adjustSectionInsetsForSafeArea()
 
+		if shouldRebuild {
 			let w = cv.bounds.width - (sectionInset.left + sectionInset.right)
 			itemSize.width = w
 
