@@ -17,7 +17,20 @@ final class OptionsController: UICollectionViewController {
 		applyTheme()
 
 		collectionView.register(OptionCell.self)
-    }
+	}
+
+	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+		collectionView.collectionViewLayout.invalidateLayout()
+
+		if size != view.bounds.size {
+			coordinator.animate(alongsideTransition: {
+				_ in
+				self.collectionView.collectionViewLayout.invalidateLayout()
+			}, completion: nil)
+		}
+
+		super.viewWillTransition(to: size, with: coordinator)
+	}
 
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return options.count
