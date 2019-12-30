@@ -140,37 +140,33 @@ private extension RegisterDataSource {
 	}
 
 	func processAddressToggle() {
-		defer {
-			if
-				let cv = self.controller?.collectionView
-			{
-					cv.performBatchUpdates({
-						prepareFields()
-
-						if self.shouldAddAddress {
-							if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-								//	insert after account section
-								let indexSet = IndexSet(integer: index + 1)
-								cv.insertSections(indexSet)
-							} else {
-								cv.reloadData()
-							}
-						} else {
-							if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-								let indexSet = IndexSet(integer: index + 1)
-								cv.deleteSections(indexSet)
-							} else {
-								cv.reloadData()
-							}
-						}
-					}, completion: nil)
-			}
-		}
-
 		if !shouldAddAddress {
 			user?.postalAddress = nil
 			user?.billingAddress = nil
 		}
+
+		guard let cv = self.controller?.collectionView else { return }
+
+		cv.performBatchUpdates({
+			prepareFields()
+
+			if self.shouldAddAddress {
+				if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+					//	insert after account section
+					let indexSet = IndexSet(integer: index + 1)
+					cv.insertSections(indexSet)
+				} else {
+					cv.reloadData()
+				}
+			} else {
+				if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
+					let indexSet = IndexSet(integer: index + 1)
+					cv.deleteSections(indexSet)
+				} else {
+					cv.reloadData()
+				}
+			}
+		}, completion: nil)
 	}
 
 	func processBillingAddressToggle() {
