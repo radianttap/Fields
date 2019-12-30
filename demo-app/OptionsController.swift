@@ -35,3 +35,14 @@ final class OptionsController: UICollectionViewController {
 		return cell
 	}
 }
+
+private extension OptionsController {
+	func applyTheme() {
+		if #available(iOS 13.0, *) {
+			view.backgroundColor = UIColor.systemBackground
+		} else {
+			view.backgroundColor = .white
+		}
+		collectionView.backgroundColor = view.backgroundColor
+	}
+}
