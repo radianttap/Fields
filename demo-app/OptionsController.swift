@@ -12,15 +12,9 @@ final class OptionsController: UICollectionViewController {
 
 	private var options: [String] = ["One", "Two", "Three", "Four"]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-		if #available(iOS 13.0, *) {
-			view.backgroundColor = UIColor.systemBackground
-		} else {
-			view.backgroundColor = .white
-		}
-		collectionView.backgroundColor = view.backgroundColor
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		applyTheme()
 
 		collectionView.register(OptionCell.self)
     }
