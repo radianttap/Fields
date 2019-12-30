@@ -170,36 +170,33 @@ private extension RegisterDataSource {
 	}
 
 	func processBillingAddressToggle() {
-		defer {
-			if
-				let cv = self.controller?.collectionView,
-				let index = sections.firstIndex(where: { $0.id == SectionId.address.rawValue })
-			{
-					cv.performBatchUpdates({
-						prepareFields()
-						if
-							let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
-							let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
-						{
-							let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
-							if usePostalAsBillingAddress {
-								cv.deleteItems(at: indexPaths)
-							} else {
-								cv.insertItems(at: indexPaths)
-							}
-						} else {
-							cv.reloadData()
-						}
-					}, completion: nil)
-			}
-		}
-
 		if usePostalAsBillingAddress {
 			let a = user?.postalAddress
 			user?.billingAddress = a
 		} else {
 			user?.billingAddress = nil
 		}
+
+
+		guard let cv = self.controller?.collectionView else { return }
+
+		cv.performBatchUpdates({
+			prepareFields()
+
+			if
+				let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
+				let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
+			{
+				let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
+				if usePostalAsBillingAddress {
+					cv.deleteItems(at: indexPaths)
+				} else {
+					cv.insertItems(at: indexPaths)
+				}
+			} else {
+				cv.reloadData()
+			}
+		}, completion: nil)
 	}
 
 	//	MARK: Data source for the CV
@@ -260,7 +257,7 @@ private extension RegisterDataSource {
 				cell.populate(with: model)
 			}
 			return model
-		}())
+			}())
 
 		return section
 	}
@@ -273,10 +270,10 @@ private extension RegisterDataSource {
 
 		section.fields.append({
 			let model = PickerModel(id: FieldId.title.rawValue,
-											title: NSLocalizedString("Title", comment: ""),
-											value: user?.title,
-											values: PersonTitle.allCases,
-											valueFormatter: { return $0?.rawValue })
+									title: NSLocalizedString("Title", comment: ""),
+									value: user?.title,
+									values: PersonTitle.allCases,
+									valueFormatter: { return $0?.rawValue })
 			model.displayPicker = { [weak self] cell in
 				if model.values.count == 0 { return }
 
@@ -296,7 +293,7 @@ private extension RegisterDataSource {
 				self.controller?.navigationController?.popViewController(animated: true)
 			}
 			return model
-		}())
+			}())
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.firstName.rawValue, title: NSLocalizedString("First (given) name", comment: ""), value: user?.firstName)
@@ -308,7 +305,7 @@ private extension RegisterDataSource {
 				model.value = string
 			}
 			return model
-		}())
+			}())
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.lastName.rawValue, title: NSLocalizedString("Last (family) name", comment: ""), value: user?.lastName)
@@ -320,7 +317,7 @@ private extension RegisterDataSource {
 				model.value = string
 			}
 			return model
-		}())
+			}())
 
 		section.fields.append({
 			let model = DatePickerModel(id: FieldId.dateOfBirth.rawValue,
@@ -337,7 +334,7 @@ private extension RegisterDataSource {
 				model.value = date
 			}
 			return model
-		}())
+			}())
 
 		return section
 	}
@@ -465,7 +462,7 @@ private extension RegisterDataSource {
 				label.superview?.backgroundColor = .clear
 			}
 			return model
-		}())
+			}())
 
 		return section
 	}
@@ -486,13 +483,13 @@ private extension RegisterDataSource {
 				model.value = string
 			}
 			return model
-		}())
+			}())
 
 		section.fields.append({
 			let model = ButtonModel(id: FieldId.submit.rawValue,
 									title: NSLocalizedString("Create account", comment: ""))
 			return model
-		}())
+			}())
 
 		return section
 	}
