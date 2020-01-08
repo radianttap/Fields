@@ -27,7 +27,7 @@ extension PickerCell {
 		cleanup()
 	}
 
-	func populate<T>(with model: PickerModel<T>) {
+	func populate<T>(with model: PickerModel<T, PickerCell>) {
 		displayPicker = model.displayPicker
 		render(model)
 	}
@@ -45,7 +45,7 @@ private extension PickerCell {
 		valueLabel.text = nil
 	}
 
-	func render<T>(_ model: PickerModel<T>) {
+	func render<T>(_ model: PickerModel<T, PickerCell>) {
 		titleLabel.text = model.title
 		valueLabel.text = model.valueFormatter(model.value) ?? model.placeholder
 	}
