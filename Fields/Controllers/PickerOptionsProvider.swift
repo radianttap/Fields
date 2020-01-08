@@ -14,7 +14,7 @@ import UIKit
 final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	///	PickerModel, to fetch list of values from
-	private(set) var model: PickerModel<T>
+	private(set) var model: PickerModel<T, PickerCell>
 
 	///	PickerCell instance which initiated the display of the options list
 	private var pickerCell: PickerCell
@@ -22,7 +22,7 @@ final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & Reus
 
 
 	init(for cell: PickerCell,
-		 with model: PickerModel<T>
+		 with model: PickerModel<T, PickerCell>
 	){
 		self.pickerCell = cell
 		self.model = model
@@ -59,9 +59,7 @@ final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & Reus
 	//	MARK: UICollectionViewDelegate
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		let value = model.values[indexPath.item]
-
-		model.valueChanged(value, pickerCell)
+		model.selectedValueAtIndex(indexPath.item, pickerCell)
 	}
 }
 
