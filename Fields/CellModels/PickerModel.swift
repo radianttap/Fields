@@ -6,12 +6,12 @@
 //  MIT License · http://choosealicense.com/licenses/mit/
 //
 
-import Foundation
+import UIKit
 
 /// Model that corresponds to PickerCell instance.
 ///
 ///
-class PickerModel<T: Hashable>: FieldModel {
+class PickerModel<T: Hashable, FieldCell>: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
 
@@ -31,12 +31,12 @@ class PickerModel<T: Hashable>: FieldModel {
 	var valueFormatter: (T?) -> String?
 
 	///	Executted when PickerCell is tapped. It should display the `values` list.
-	var displayPicker: (PickerCell) -> Void = {_ in}
+	var displayPicker: (FieldCell) -> Void = {_ in}
 
 	///	Method called every time a value is picked.
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (T?, PickerCell) -> Void = {_, _ in}
+	var selectedValueAtIndex: (Int?, FieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
@@ -44,8 +44,8 @@ class PickerModel<T: Hashable>: FieldModel {
 		 value: T? = nil,
 		 values: [T] = [],
 		 valueFormatter: @escaping (T?) -> String?,
-		 displayPicker: @escaping (PickerCell) -> Void = {_ in},
-		 valueChanged: @escaping (T?, PickerCell) -> Void = {_, _ in}
+		 displayPicker: @escaping (FieldCell) -> Void = {_ in},
+		 selectedValueAtIndex: @escaping (Int?, FieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 
@@ -57,7 +57,7 @@ class PickerModel<T: Hashable>: FieldModel {
 		self.valueFormatter = valueFormatter
 
 		self.displayPicker = displayPicker
-		self.valueChanged = valueChanged
+		self.selectedValueAtIndex = selectedValueAtIndex
 	}
 }
 
