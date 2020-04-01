@@ -309,6 +309,8 @@ private extension FieldHeightSizingLayout {
 			let aw = w - (sectionInset.left + sectionInset.right)
 
 			var lastYmax: CGFloat = y
+			var currentSectionCells: [CGFloat: [UICollectionViewLayoutAttributes]] = [:]
+			
 			for item in (0 ..< itemCount) {
 				//	cell's indexPath
 				let indexPath = IndexPath(item: item, section: section)
@@ -331,11 +333,37 @@ private extension FieldHeightSizingLayout {
 				let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: thisItemSize.height)
 				currentStore.cells.insert(attributes)
+				
+				var arr = currentSectionCells[y] ?? []
+				arr.append(attributes)
+				currentSectionCells[y] = arr
 
 				lastYmax = attributes.frame.maxY
 				x = attributes.frame.maxX + minimumInteritemSpacing
 			}
 
+			//	when we have multiple cells in a row, make sure they are all equal height
+			let orderedYKeys = currentSectionCells.keys.sorted()
+			if orderedYKeys.count > 0 {
+				var currentY: CGFloat = orderedYKeys.first ?? y
+				for y in orderedYKeys {
+					guard
+						let attrs = currentSectionCells[y],
+						let maxHeight = attrs.map({ $0.frame.height }).max()
+						else { continue }
+					
+					attrs.forEach {
+						var f = $0.frame
+						f.origin.y = currentY
+						f.size.height = maxHeight
+						$0.frame = f
+					}
+					currentY += maxHeight
+				}
+				lastYmax = currentY
+			}
+			
+			//	ok, now finish with this section and prepare for the next one
 			x = 0
 			y = lastYmax + sectionInset.bottom
 
@@ -384,6 +412,8 @@ private extension FieldHeightSizingLayout {
 			var lastXmax: CGFloat = sectionInset.left
 
 			let itemCount = cv.numberOfItems(inSection: section)
+			var currentSectionCells: [CGFloat: [UICollectionViewLayoutAttributes]] = [:]
+			
 			for item in (0 ..< itemCount) {
 				let indexPath = IndexPath(item: item, section: section)
 
@@ -394,11 +424,37 @@ private extension FieldHeightSizingLayout {
 
 					attr.frame.origin.y = y
 
+					var arr = currentSectionCells[y] ?? []
+					arr.append(attr)
+					currentSectionCells[y] = arr
+					
 					lastXmax = attr.frame.maxX + minimumInteritemSpacing
 					lastYmax = max(y, attr.frame.maxY)
 				}
 			}
 
+			//	when we have multiple cells in a row, make sure they are all equal height
+			let orderedYKeys = currentSectionCells.keys.sorted()
+			if orderedYKeys.count > 0 {
+				var currentY: CGFloat = orderedYKeys.first ?? y
+				for y in orderedYKeys {
+					guard
+						let attrs = currentSectionCells[y],
+						let maxHeight = attrs.map({ $0.frame.height }).max()
+						else { continue }
+					
+					attrs.forEach {
+						var f = $0.frame
+						f.origin.y = currentY
+						f.size.height = maxHeight
+						$0.frame = f
+					}
+					currentY += maxHeight
+				}
+				lastYmax = currentY
+			}
+			
+			//	ok, now finish with this section and prepare for the next one
 			y = lastYmax + sectionInset.bottom
 
 			if let attr = currentStore.footer(at: indexPath) {
