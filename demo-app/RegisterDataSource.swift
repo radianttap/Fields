@@ -261,6 +261,38 @@ private extension RegisterDataSource {
 
 		return section
 	}
+	
+	func buildPersonTitleModel1() -> FieldModel {
+		let model = PickerModel<PersonTitle>(id: FieldId.title.rawValue,
+								title: NSLocalizedString("Title", comment: ""),
+								value: user?.title,
+								values: PersonTitle.allCases,
+								valueFormatter: { return $0?.rawValue })
+		model.displayPicker = {
+			[weak self] cell in
+			if model.values.count == 0 { return }
+
+			let provider = PickerOptionsProvider<PersonTitle, PickerOptionTextCell>(for: cell, with: model)
+			let vc = PickerOptionsListController(provider: provider)
+			self?.controller?.show(vc, sender: nil)
+		}
+		model.selectedValueAtIndex = {
+			[weak self, weak model] index, cell in
+			guard let self = self, let index = index, let model = model else { return }
+
+			let t = model.values[index]
+			self.user?.title = t
+			model.value = t
+
+			//	refresh originating's Cell display
+			if let cell = cell as? PickerCell {
+				cell.populate(with: model)
+			}
+			//	pop VC back to the form
+			self.controller?.navigationController?.popViewController(animated: true)
+		}
+		return model
+	}
 
 	func buildPersonalSection() -> FieldSection {
 		var section = FieldSection(
@@ -268,37 +300,9 @@ private extension RegisterDataSource {
 			header: NSLocalizedString("Personal information", comment: "")
 		)
 
-		section.fields.append({
-			let model = PickerModel<PersonTitle>(id: FieldId.title.rawValue,
-									title: NSLocalizedString("Title", comment: ""),
-									value: user?.title,
-									values: PersonTitle.allCases,
-									valueFormatter: { return $0?.rawValue })
-			model.displayPicker = {
-				[weak self] cell in
-				if model.values.count == 0 { return }
-
-				let provider = PickerOptionsProvider<PersonTitle, PickerOptionTextCell>(for: cell, with: model)
-				let vc = PickerOptionsListController(provider: provider)
-				self?.controller?.show(vc, sender: nil)
-			}
-			model.selectedValueAtIndex = {
-				[weak self, weak model] index, cell in
-				guard let self = self, let index = index, let model = model else { return }
-
-				let t = model.values[index]
-				self.user?.title = t
-				model.value = t
-
-				//	refresh originating's Cell display
-				if let cell = cell as? PickerCell {
-					cell.populate(with: model)
-				}
-				//	pop VC back to the form
-				self.controller?.navigationController?.popViewController(animated: true)
-			}
-			return model
-			}())
+		section.fields.append(
+			buildPersonTitleModel1()
+		)
 
 		section.fields.append({
 			let model = TextFieldModel(id: FieldId.firstName.rawValue, title: NSLocalizedString("First (given) name", comment: ""), value: user?.firstName)
