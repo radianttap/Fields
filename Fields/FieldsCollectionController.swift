@@ -13,7 +13,7 @@ class FieldsCollectionController: FieldsController {
 	private(set) var collectionView: UICollectionView!
 	private var layout: UICollectionViewLayout
 
-	init(layout: UICollectionViewLayout) {
+	init(layout: UICollectionViewLayout = FieldHeightSizingLayout()) {
 		self.layout = layout
 		super.init(nibName: nil, bundle: nil)
 	}
