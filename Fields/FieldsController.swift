@@ -15,10 +15,14 @@ class FieldsController: UIViewController {
 	private var tokenKeyboardWillHide: NotificationToken?
 	private var tokenContentSizeCategoryChanged: NotificationToken?
 
+	//	Entry point for DataSource object to ask VC to redraw itself
+
 	func renderContentUpdates() {
 		if !isViewLoaded { return }
 
 	}
+	
+	//	Override these methods, if you need to change default behavior
 
 	func keyboardWillShow(notification kn: KeyboardNotification) {
 		let diff = max(0, kn.endFrame.height - view.safeAreaInsets.bottom)
@@ -36,6 +40,7 @@ class FieldsController: UIViewController {
 extension FieldsController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
+
 		setupKeyboardNotificationHandlers()
 	}
 }

@@ -21,6 +21,8 @@ class FieldsCollectionController: FieldsController {
 	required init?(coder aDecoder: NSCoder) {
 		preconditionFailure("init(coder:) has not been implemented")
 	}
+	
+	//	View lifecycle
 
 	override func loadView() {
 		super.loadView()
@@ -33,12 +35,16 @@ class FieldsCollectionController: FieldsController {
 		collectionView.delegate = nil
 		collectionView.dataSource = nil
 	}
+	
+	//	Entry point for DataSource object to ask VC to redraw itself
 
 	override func renderContentUpdates() {
 		if !isViewLoaded { return }
 
 		collectionView.reloadData()
 	}
+	
+	//	Override these methods, if you need to change default behavior
 
 	override func keyboardWillShow(notification kn: KeyboardNotification) {
 		let diff = max(0, kn.endFrame.height - view.safeAreaInsets.bottom)
