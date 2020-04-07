@@ -239,6 +239,7 @@
 			children = (
 				D034C75F22A537F3000FE220 /* FieldsController.swift */,
 				D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */,
+				D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */,
 				D0704C2322B16A10004A0A25 /* Layouts */,
 				D0704C2222B15C00004A0A25 /* CellModels */,
 				D034C76D22A53AEC000FE220 /* Cells */,
@@ -271,7 +272,6 @@
 		D034C76D22A53AEC000FE220 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */,
 				D06B0C3C22C518B000372445 /* FormSupplementaryView.swift */,
 				D0704C2A22B16F07004A0A25 /* FormFieldCell.swift */,
 				D06B0C4022C669BF00372445 /* ToggleCell.swift */,
@@ -332,8 +332,8 @@
 		D0704C2222B15C00004A0A25 /* CellModels */ = {
 			isa = PBXGroup;
 			children = (
-				D0704C3322B18277004A0A25 /* FieldModel.swift */,
 				D0628E552300245800D86F63 /* FieldSection.swift */,
+				D0704C3322B18277004A0A25 /* FieldModel.swift */,
 				D086575F22FEC8A100256BA6 /* BasicModel.swift */,
 				D06B0C4422C669CC00372445 /* ToggleModel.swift */,
 				D00A400A22CB41180001625B /* FormTextModel.swift */,
