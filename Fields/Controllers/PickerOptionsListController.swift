@@ -23,7 +23,7 @@ class PickerOptionsListController<T: Hashable, Cell: UICollectionViewCell & Reus
 	}
 
 	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		preconditionFailure("init(coder:) has not been implemented")
 	}
 
 	//	View lifecycle

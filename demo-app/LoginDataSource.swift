@@ -145,7 +145,7 @@ extension LoginDataSource: UICollectionViewDataSource {
 			break
 		}
 
-		fatalError("Unknown cell model")
+		preconditionFailure("Unknown cell model")
 	}
 
 	func field(at indexPath: IndexPath) -> FieldModel {

@@ -561,7 +561,7 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			return v
 
 		default:
-			fatalError("Unexpected supplementary view kind: \( kind )")
+			preconditionFailure("Unexpected supplementary view kind: \( kind )")
 		}
 	}
 
@@ -614,7 +614,7 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			return cell
 
 		default:
-			fatalError("Unknown cell model")
+			preconditionFailure("Unknown cell model")
 		}
 	}
 

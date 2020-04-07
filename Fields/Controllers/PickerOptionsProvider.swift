@@ -50,7 +50,7 @@ final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & Reus
 			let s = model.valueFormatter(value) ?? "--"
 			cell.populate(with: s)
 		default:
-			fatalError("Unhandled PickerOption*Cell: \( cell.self )")
+			preconditionFailure("Unhandled PickerOption*Cell: \( cell.self )")
 		}
 
 		return cell
