@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InventoryCategoryCell: FieldCell, NibReusableView {
+final class InventoryCategoryCell: FormFieldCell, NibReusableView {
 	@IBOutlet private var iconView: UIImageView!
 
 	var isChosen: Bool = false {

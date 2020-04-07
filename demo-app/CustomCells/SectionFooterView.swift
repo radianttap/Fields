@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class SectionFooterView: FieldSupplementaryView, NibReusableView {
+final class SectionFooterView: FormSupplementaryView, NibReusableView {
 	static let kind: String = UICollectionView.elementKindSectionFooter
 
 	//	UI

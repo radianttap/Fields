@@ -68,7 +68,7 @@ extension RegisterController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		guard
 			let field = dataSource?.field(at: indexPath),
-			let cell = collectionView.cellForItem(at: indexPath) as? FieldCell
+			let cell = collectionView.cellForItem(at: indexPath) as? FormFieldCell
 		else { return }
 
 		switch field {

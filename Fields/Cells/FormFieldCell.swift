@@ -1,5 +1,5 @@
 //
-//  FieldSupplementaryView.swift
+//  FormFieldCell.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FieldSupplementaryView: UICollectionReusableView {
+class FormFieldCell: UICollectionViewCell {
 
 	override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
 		let attr = layoutAttributes.copy() as! UICollectionViewLayoutAttributes

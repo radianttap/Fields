@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ToggleCell: FieldCell, NibLoadableFinalView, NibReusableView {
+final class ToggleCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var toggle: UISwitch!

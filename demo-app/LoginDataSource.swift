@@ -83,7 +83,7 @@ private extension LoginDataSource {
 		}())
 
 		fields.append({
-			let model = ButtonModel(id: FieldId.submit.rawValue,
+			let model = FormButtonModel(id: FieldId.submit.rawValue,
 									title: NSLocalizedString("Sign in", comment: ""))
 			return model
 		}())
@@ -98,7 +98,7 @@ private extension LoginDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
-		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
+		cv.register(FormButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 		cv.dataSource = self
 	}
 
@@ -126,8 +126,8 @@ extension LoginDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
-		case let model as ButtonModel:
-			let cell: ButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+		case let model as FormButtonModel:
+			let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 

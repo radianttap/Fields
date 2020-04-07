@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TextFieldCell: FieldCell, NibLoadableFinalView, NibReusableView {
+final class TextFieldCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var textField: UITextField!

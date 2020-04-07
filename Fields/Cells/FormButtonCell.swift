@@ -1,5 +1,5 @@
 //
-//  ButtonCell.swift
+//  FormButtonCell.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap
@@ -27,7 +27,7 @@ extension FormButtonCell {
 		cleanup()
 	}
 
-	func populate(with model: ButtonModel) {
+	func populate(with model: FormButtonModel) {
 		render(model)
 	}
 }
@@ -40,7 +40,7 @@ private extension FormButtonCell {
 		button.removeTarget(self, action: nil, for: .touchUpInside)
 	}
 
-	func render(_ model: ButtonModel) {
+	func render(_ model: FormButtonModel) {
 		button.setTitle(model.title, for: .normal)
 		model.customSetup(button)
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DatePickerCell: FieldCell, NibReusableView {
+final class DatePickerCell: FormFieldCell, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var valueField: UITextField!

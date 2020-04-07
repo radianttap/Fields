@@ -121,7 +121,7 @@ private extension RegisterDataSource {
 		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.billingNote.rawValue)
 
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
-		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
+		cv.register(FormButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
 
 		for ic in inventoryCategories {
 			cv.register(InventoryCategoryCell.self, withReuseIdentifier: ic.fieldId)
@@ -489,7 +489,7 @@ private extension RegisterDataSource {
 			}())
 
 		section.fields.append({
-			let model = ButtonModel(id: FieldId.submit.rawValue,
+			let model = FormButtonModel(id: FieldId.submit.rawValue,
 									title: NSLocalizedString("Create account", comment: ""))
 			return model
 			}())
@@ -596,8 +596,8 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
-		case let model as ButtonModel:
-			let cell: ButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+		case let model as FormButtonModel:
+			let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 

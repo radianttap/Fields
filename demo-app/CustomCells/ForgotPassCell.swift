@@ -8,5 +8,5 @@
 
 import UIKit
 
-final class ForgotPassCell: FieldCell, NibReusableView {
+final class ForgotPassCell: FormFieldCell, NibReusableView {
 }

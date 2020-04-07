@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class SectionHeaderView: FieldSupplementaryView, NibReusableView {
+final class SectionHeaderView: FormSupplementaryView, NibReusableView {
 	static let kind: String = UICollectionView.elementKindSectionHeader
 
 	//	UI

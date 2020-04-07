@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PickerCell: FieldCell, NibLoadableFinalView, NibReusableView {
+final class PickerCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var valueLabel: UILabel!
