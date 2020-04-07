@@ -14,15 +14,15 @@ import UIKit
 final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & ReusableView>: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	///	PickerModel, to fetch list of values from
-	private(set) var model: PickerModel<T, PickerCell>
+	private(set) var model: PickerModel<T>
 
 	///	PickerCell instance which initiated the display of the options list
-	private var pickerCell: PickerCell
+	private var pickerCell: FormFieldCell
 
 
 
-	init(for cell: PickerCell,
-		 with model: PickerModel<T, PickerCell>
+	init(for cell: FormFieldCell,
+		 with model: PickerModel<T>
 	){
 		self.pickerCell = cell
 		self.model = model

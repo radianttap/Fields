@@ -11,7 +11,7 @@ import UIKit
 /// Model that corresponds to PickerCell instance.
 ///
 ///
-class PickerModel<T: Hashable, FieldCell>: FieldModel {
+class PickerModel<T: Hashable>: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
 
@@ -31,12 +31,12 @@ class PickerModel<T: Hashable, FieldCell>: FieldModel {
 	var valueFormatter: (T?) -> String?
 
 	///	Executted when PickerCell is tapped. It should display the `values` list.
-	var displayPicker: (FieldCell) -> Void = {_ in}
+	var displayPicker: (FormFieldCell) -> Void = {_ in}
 
 	///	Method called every time a value is picked.
 	///
 	///	Default implementation does nothing.
-	var selectedValueAtIndex: (Int?, FieldCell) -> Void = {_, _ in}
+	var selectedValueAtIndex: (Int?, FormFieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
@@ -44,8 +44,8 @@ class PickerModel<T: Hashable, FieldCell>: FieldModel {
 		 value: T? = nil,
 		 values: [T] = [],
 		 valueFormatter: @escaping (T?) -> String?,
-		 displayPicker: @escaping (FieldCell) -> Void = {_ in},
-		 selectedValueAtIndex: @escaping (Int?, FieldCell) -> Void = {_, _ in}
+		 displayPicker: @escaping (FormFieldCell) -> Void = {_ in},
+		 selectedValueAtIndex: @escaping (Int?, FormFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 
