@@ -1,5 +1,5 @@
 //
-//  TextModel.swift
+//  FormTextModel.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap
@@ -9,7 +9,7 @@
 import UIKit
 
 /// Model that corresponds to TextCell instance.
-class TextModel: FieldModel {
+class FormTextModel: FieldModel {
 	///	unique identifier (across the containing form) for this field
 	let id: String
 

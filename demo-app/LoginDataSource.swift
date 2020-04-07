@@ -38,7 +38,7 @@ private extension LoginDataSource {
 	func prepareFields() {
 
 		fields.append({
-			let model = TextModel(id: FieldId.info.rawValue,
+			let model = FormTextModel(id: FieldId.info.rawValue,
 								  title: NSLocalizedString("Announcement", comment: ""),
 								  value: NSLocalizedString("System will be offline tonight for maintenance, from midnight to 6 AM. Please submit your work before that.", comment: ""))
 			model.customSetup = { label in
@@ -94,7 +94,7 @@ private extension LoginDataSource {
 	func prepareView() {
 		guard let cv = controller?.collectionView else { return }
 
-		cv.register(TextCell.self, withReuseIdentifier: FieldId.info.rawValue)
+		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
@@ -121,8 +121,8 @@ extension LoginDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
-		case let model as TextModel:
-			let cell: TextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+		case let model as FormTextModel:
+			let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 

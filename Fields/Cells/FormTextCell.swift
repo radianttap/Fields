@@ -1,5 +1,5 @@
 //
-//  TextCell.swift
+//  FormTextCell.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap
@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class TextCell: FieldCell, NibLoadableFinalView, NibReusableView {
+final class FormTextCell: FieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var valueLabel: UILabel!
 }
 
-extension TextCell {
+extension FormTextCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		cleanup()
@@ -25,7 +25,7 @@ extension TextCell {
 		cleanup()
 	}
 
-	func populate(with model: TextModel) {
+	func populate(with model: FormTextModel) {
 		render(model)
 	}
 
@@ -36,13 +36,13 @@ extension TextCell {
 	}
 }
 
-private extension TextCell {
+private extension FormTextCell {
 	func cleanup() {
 		titleLabel.text = nil
 		valueLabel.text = nil
 	}
 
-	func render(_ model: TextModel) {
+	func render(_ model: FormTextModel) {
 		titleLabel.text = model.title
 		valueLabel.text = model.value
 

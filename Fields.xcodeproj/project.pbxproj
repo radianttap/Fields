@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D00A400B22CB41180001625B /* TextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400A22CB41180001625B /* TextModel.swift */; };
-		D00A400E22CB41B00001625B /* TextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400C22CB41B00001625B /* TextCell.swift */; };
-		D00A400F22CB41B00001625B /* TextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00A400D22CB41B00001625B /* TextCell.xib */; };
+		D00A400B22CB41180001625B /* FormTextModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400A22CB41180001625B /* FormTextModel.swift */; };
+		D00A400E22CB41B00001625B /* FormTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400C22CB41B00001625B /* FormTextCell.swift */; };
+		D00A400F22CB41B00001625B /* FormTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00A400D22CB41B00001625B /* FormTextCell.xib */; };
 		D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */; };
 		D00C70F92385972100E40BB4 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C70F82385972100E40BB4 /* OptionsController.swift */; };
 		D00C70FB2385975900E40BB4 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C70FA2385975900E40BB4 /* OptionCell.swift */; };
@@ -84,9 +84,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D00A400A22CB41180001625B /* TextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModel.swift; sourceTree = "<group>"; };
-		D00A400C22CB41B00001625B /* TextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCell.swift; sourceTree = "<group>"; };
-		D00A400D22CB41B00001625B /* TextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextCell.xib; sourceTree = "<group>"; };
+		D00A400A22CB41180001625B /* FormTextModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextModel.swift; sourceTree = "<group>"; };
+		D00A400C22CB41B00001625B /* FormTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextCell.swift; sourceTree = "<group>"; };
+		D00A400D22CB41B00001625B /* FormTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextCell.xib; sourceTree = "<group>"; };
 		D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsProvider.swift; sourceTree = "<group>"; };
 		D00C70F82385972100E40BB4 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		D00C70FA2385975900E40BB4 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 				D034C76F22A53B25000FE220 /* TextFieldCell.xib */,
 				D011B8D922C803A80059A52D /* PickerCell.swift */,
 				D011B8DA22C803A80059A52D /* PickerCell.xib */,
-				D00A400C22CB41B00001625B /* TextCell.swift */,
-				D00A400D22CB41B00001625B /* TextCell.xib */,
+				D00A400C22CB41B00001625B /* FormTextCell.swift */,
+				D00A400D22CB41B00001625B /* FormTextCell.xib */,
 				D086576722FF0DDA00256BA6 /* TextViewCell.swift */,
 				D086576622FF0DDA00256BA6 /* TextViewCell.xib */,
 				D05C45932306ECE80030E0AE /* DatePickerCell.swift */,
@@ -336,7 +336,7 @@
 				D0628E552300245800D86F63 /* FieldSection.swift */,
 				D086575F22FEC8A100256BA6 /* BasicModel.swift */,
 				D06B0C4422C669CC00372445 /* ToggleModel.swift */,
-				D00A400A22CB41180001625B /* TextModel.swift */,
+				D00A400A22CB41180001625B /* FormTextModel.swift */,
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
 				D086576422FF0D4100256BA6 /* TextViewModel.swift */,
 				D05C45962306ECF90030E0AE /* DatePickerModel.swift */,
@@ -445,7 +445,7 @@
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
 				D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */,
-				D00A400F22CB41B00001625B /* TextCell.xib in Resources */,
+				D00A400F22CB41B00001625B /* FormTextCell.xib in Resources */,
 				D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */,
 				D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */,
 				D019902E23859CE5007ED4B0 /* OptionCell.xib in Resources */,
@@ -462,7 +462,7 @@
 			files = (
 				D086575A22FEBBE400256BA6 /* ForgotPasswordDataSource.swift in Sources */,
 				D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */,
-				D00A400B22CB41180001625B /* TextModel.swift in Sources */,
+				D00A400B22CB41180001625B /* FormTextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
@@ -476,7 +476,7 @@
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
-				D00A400E22CB41B00001625B /* TextCell.swift in Sources */,
+				D00A400E22CB41B00001625B /* FormTextCell.swift in Sources */,
 				D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */,
 				D00C70F92385972100E40BB4 /* OptionsController.swift in Sources */,
 				D0628E5B230028A700D86F63 /* ButtonCell.swift in Sources */,

@@ -118,7 +118,7 @@ private extension RegisterDataSource {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingPostcode.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCity.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.billingCountry.rawValue)
-		cv.register(TextCell.self, withReuseIdentifier: FieldId.billingNote.rawValue)
+		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.billingNote.rawValue)
 
 		cv.register(TextViewCell.self, withReuseIdentifier: FieldId.note.rawValue)
 		cv.register(ButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
@@ -457,7 +457,7 @@ private extension RegisterDataSource {
 		}
 
 		section.fields.append({
-			let model = TextModel(id: FieldId.billingNote.rawValue,
+			let model = FormTextModel(id: FieldId.billingNote.rawValue,
 								  title: "",
 								  value: NSLocalizedString("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", comment: ""))
 			model.customSetup = { label in
@@ -581,8 +581,8 @@ extension RegisterDataSource: UICollectionViewDataSource {
 			cell.populate(with: model)
 			return cell
 
-		case let model as TextModel:
-			let cell: TextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+		case let model as FormTextModel:
+			let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
 			cell.populate(with: model)
 			return cell
 
