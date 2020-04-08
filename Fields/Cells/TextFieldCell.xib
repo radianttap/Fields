@@ -4,79 +4,67 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TextFieldCell" customModule="Fields_demo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XRx-FN-N8q" customClass="TextFieldCell" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="222" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Zal-nf-0cS">
+                <rect key="frame" x="0.0" y="0.0" width="222" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkh-s1-ohC" userLabel="contentView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSY-N7-KlT">
+                        <rect key="frame" x="24" y="52" width="182" height="14.5"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-TH-17W" userLabel="fieldView">
+                        <rect key="frame" x="16" y="74.5" width="190" height="57.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSY-N7-KlT">
-                                <rect key="frame" x="16" y="8" width="296" height="12"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8u0-TH-17W" userLabel="fieldView">
-                                <rect key="frame" x="8" y="28" width="304" height="44"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9zD-Yf-vad">
-                                        <rect key="frame" x="8" y="0.0" width="288" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="pV5-Cx-J5H"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9zD-Yf-vad">
+                                <rect key="frame" x="8" y="0.0" width="174" height="57.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="9zD-Yf-vad" secondAttribute="trailing" id="VHO-oO-wzC"/>
-                                    <constraint firstItem="9zD-Yf-vad" firstAttribute="top" secondItem="8u0-TH-17W" secondAttribute="top" id="W4q-X9-fcL"/>
-                                    <constraint firstAttribute="bottom" secondItem="9zD-Yf-vad" secondAttribute="bottom" id="j9u-gD-hVc"/>
-                                    <constraint firstItem="9zD-Yf-vad" firstAttribute="leading" secondItem="8u0-TH-17W" secondAttribute="leadingMargin" id="uCm-c6-Hcv"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="pV5-Cx-J5H"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="FSY-N7-KlT" firstAttribute="trailing" secondItem="8u0-TH-17W" secondAttribute="trailing" id="Bpu-c6-rc4"/>
-                            <constraint firstItem="FSY-N7-KlT" firstAttribute="top" secondItem="Bkh-s1-ohC" secondAttribute="topMargin" id="GNa-yw-VYv"/>
-                            <constraint firstItem="8u0-TH-17W" firstAttribute="top" secondItem="FSY-N7-KlT" secondAttribute="bottom" constant="8" id="Hpc-4i-Enx"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="8u0-TH-17W" secondAttribute="bottom" id="NIp-LP-ylX"/>
-                            <constraint firstItem="8u0-TH-17W" firstAttribute="leading" secondItem="Bkh-s1-ohC" secondAttribute="leadingMargin" id="fzt-N5-T6l"/>
-                            <constraint firstItem="9zD-Yf-vad" firstAttribute="leading" secondItem="FSY-N7-KlT" secondAttribute="leading" id="okp-Jr-YiF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8u0-TH-17W" secondAttribute="trailing" id="pkd-Q2-Xxd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9zD-Yf-vad" secondAttribute="trailing" id="VHO-oO-wzC"/>
+                            <constraint firstItem="9zD-Yf-vad" firstAttribute="top" secondItem="8u0-TH-17W" secondAttribute="top" id="W4q-X9-fcL"/>
+                            <constraint firstAttribute="bottom" secondItem="9zD-Yf-vad" secondAttribute="bottom" id="j9u-gD-hVc"/>
+                            <constraint firstItem="9zD-Yf-vad" firstAttribute="leading" secondItem="8u0-TH-17W" secondAttribute="leadingMargin" id="uCm-c6-Hcv"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-            </view>
-            <constraints>
-                <constraint firstAttribute="top" secondItem="Bkh-s1-ohC" secondAttribute="top" id="0VW-Gw-3CY"/>
-                <constraint firstItem="Bkh-s1-ohC" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" priority="999" id="8pC-Z6-m2w"/>
-                <constraint firstAttribute="trailing" secondItem="Bkh-s1-ohC" secondAttribute="trailing" priority="999" id="Cej-ev-6Q8"/>
-                <constraint firstItem="Bkh-s1-ohC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="JQr-SG-00c"/>
-            </constraints>
-            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="295" height="76"/>
+                <constraints>
+                    <constraint firstItem="8u0-TH-17W" firstAttribute="leading" secondItem="Zal-nf-0cS" secondAttribute="leadingMargin" id="3Uk-Uk-z60"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="8u0-TH-17W" secondAttribute="bottom" priority="999" id="CeV-rB-IJ0"/>
+                    <constraint firstItem="FSY-N7-KlT" firstAttribute="top" secondItem="Zal-nf-0cS" secondAttribute="topMargin" id="GJq-iH-Inz"/>
+                    <constraint firstItem="8u0-TH-17W" firstAttribute="top" secondItem="FSY-N7-KlT" secondAttribute="bottom" constant="8" symbolic="YES" id="ak5-KB-la9"/>
+                    <constraint firstItem="FSY-N7-KlT" firstAttribute="trailing" secondItem="8u0-TH-17W" secondAttribute="trailing" id="aqu-yE-lVu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8u0-TH-17W" secondAttribute="trailing" priority="999" id="gyu-42-4QY"/>
+                    <constraint firstItem="FSY-N7-KlT" firstAttribute="leading" secondItem="9zD-Yf-vad" secondAttribute="leading" id="qoN-Cn-iK4"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="222" height="140"/>
             <connections>
-                <outlet property="textField" destination="9zD-Yf-vad" id="O4l-LW-Ezs"/>
-                <outlet property="titleLabel" destination="FSY-N7-KlT" id="c3h-KY-2Oi"/>
+                <outlet property="textField" destination="9zD-Yf-vad" id="Sgs-v2-yOg"/>
+                <outlet property="titleLabel" destination="FSY-N7-KlT" id="TT6-gA-08X"/>
             </connections>
-            <point key="canvasLocation" x="-4.3478260869565224" y="117.85714285714285"/>
+            <point key="canvasLocation" x="120.28985507246378" y="211.60714285714286"/>
         </collectionViewCell>
     </objects>
 </document>
