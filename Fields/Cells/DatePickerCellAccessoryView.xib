@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -38,14 +37,13 @@
             <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="xub-8c-SoU" secondAttribute="bottom" id="3GP-6Z-HS0"/>
-                <constraint firstItem="N4i-pW-6kQ" firstAttribute="trailing" secondItem="xub-8c-SoU" secondAttribute="trailing" id="Vge-qP-bXJ"/>
+                <constraint firstAttribute="trailing" secondItem="xub-8c-SoU" secondAttribute="trailing" id="Vge-qP-bXJ"/>
                 <constraint firstItem="dac-fs-Ath" firstAttribute="top" secondItem="xub-8c-SoU" secondAttribute="top" id="cuB-5s-6SP"/>
                 <constraint firstItem="xub-8c-SoU" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eCx-di-4xk"/>
-                <constraint firstItem="dac-fs-Ath" firstAttribute="leading" secondItem="N4i-pW-6kQ" secondAttribute="leading" id="gOj-th-z1n"/>
+                <constraint firstItem="dac-fs-Ath" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gOj-th-z1n"/>
                 <constraint firstItem="dac-fs-Ath" firstAttribute="bottom" secondItem="xub-8c-SoU" secondAttribute="bottom" id="kyR-T9-B3Y"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="N4i-pW-6kQ"/>
             <connections>
                 <outlet property="cancelButton" destination="dac-fs-Ath" id="bYi-8j-GnX"/>
                 <outlet property="saveButton" destination="xub-8c-SoU" id="Bkv-dm-EIb"/>

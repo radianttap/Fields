@@ -4,82 +4,70 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bmx-n7-QBD" customClass="FormButtonCell" customModule="Fields_demo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
-                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="kFp-ew-b7n" customClass="FormButtonCell" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="302" height="129"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="089-Zn-O9c">
+                <rect key="frame" x="0.0" y="0.0" width="302" height="129"/>
+                <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xe-qA-Dap" userLabel="contentView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-3X-RiA" userLabel="fieldView">
+                        <rect key="frame" x="16" y="52" width="270" height="69"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-3X-RiA" userLabel="fieldView">
-                                <rect key="frame" x="8" y="8" width="304" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-fp-1Vi">
-                                        <rect key="frame" x="0.0" y="0.0" width="304" height="64"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="7fp-GO-iqi"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
-                                        <state key="normal" title="Submit">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsFontForContentSizeCategory" value="YES"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cNQ-7a-noJ">
-                                        <rect key="frame" x="259" y="13.5" width="37" height="37"/>
-                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </activityIndicatorView>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-fp-1Vi">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="69"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="cNQ-7a-noJ" firstAttribute="centerY" secondItem="HcH-fp-1Vi" secondAttribute="centerY" id="2F5-Jl-I4H"/>
-                                    <constraint firstItem="cNQ-7a-noJ" firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" constant="-8" id="9kk-VQ-0TP"/>
-                                    <constraint firstItem="HcH-fp-1Vi" firstAttribute="top" secondItem="JVF-3X-RiA" secondAttribute="top" id="HxT-V6-OJA"/>
-                                    <constraint firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" id="cY7-he-bOq"/>
-                                    <constraint firstItem="HcH-fp-1Vi" firstAttribute="leading" secondItem="JVF-3X-RiA" secondAttribute="leading" id="mJq-tG-Tnz"/>
-                                    <constraint firstAttribute="bottom" secondItem="HcH-fp-1Vi" secondAttribute="bottom" id="uL3-9h-F4c"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="7fp-GO-iqi"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <inset key="contentEdgeInsets" minX="15" minY="8" maxX="15" maxY="8"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsFontForContentSizeCategory" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                            </view>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cNQ-7a-noJ">
+                                <rect key="frame" x="225" y="16" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="JVF-3X-RiA" firstAttribute="top" secondItem="0xe-qA-Dap" secondAttribute="topMargin" id="FV1-3z-uq2"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="JVF-3X-RiA" secondAttribute="trailing" id="Mw4-1w-JrS"/>
-                            <constraint firstItem="JVF-3X-RiA" firstAttribute="leading" secondItem="0xe-qA-Dap" secondAttribute="leadingMargin" id="NKw-cX-1sd"/>
-                            <constraint firstItem="JVF-3X-RiA" firstAttribute="bottom" secondItem="0xe-qA-Dap" secondAttribute="bottomMargin" id="erD-P7-CG8"/>
+                            <constraint firstItem="cNQ-7a-noJ" firstAttribute="centerY" secondItem="HcH-fp-1Vi" secondAttribute="centerY" id="2F5-Jl-I4H"/>
+                            <constraint firstItem="cNQ-7a-noJ" firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" constant="-8" id="9kk-VQ-0TP"/>
+                            <constraint firstItem="HcH-fp-1Vi" firstAttribute="top" secondItem="JVF-3X-RiA" secondAttribute="top" id="HxT-V6-OJA"/>
+                            <constraint firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" id="cY7-he-bOq"/>
+                            <constraint firstItem="HcH-fp-1Vi" firstAttribute="leading" secondItem="JVF-3X-RiA" secondAttribute="leading" id="mJq-tG-Tnz"/>
+                            <constraint firstAttribute="bottom" secondItem="HcH-fp-1Vi" secondAttribute="bottom" id="uL3-9h-F4c"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-            </view>
-            <constraints>
-                <constraint firstItem="0xe-qA-Dap" firstAttribute="leading" secondItem="bmx-n7-QBD" secondAttribute="leading" id="1YQ-Kt-Mhu"/>
-                <constraint firstAttribute="trailing" secondItem="0xe-qA-Dap" secondAttribute="trailing" priority="999" id="5RM-r6-h8x"/>
-                <constraint firstAttribute="top" secondItem="0xe-qA-Dap" secondAttribute="top" id="LBx-eT-cf3"/>
-                <constraint firstItem="0xe-qA-Dap" firstAttribute="bottom" secondItem="bmx-n7-QBD" secondAttribute="bottom" priority="999" id="XJT-el-K5l"/>
-            </constraints>
-            <viewLayoutGuide key="safeArea" id="6gc-yi-zQs"/>
-            <size key="customSize" width="295" height="76"/>
+                <constraints>
+                    <constraint firstItem="JVF-3X-RiA" firstAttribute="leading" secondItem="089-Zn-O9c" secondAttribute="leadingMargin" id="DwF-PT-NgL"/>
+                    <constraint firstItem="JVF-3X-RiA" firstAttribute="top" secondItem="089-Zn-O9c" secondAttribute="topMargin" id="Sbe-2y-XrL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JVF-3X-RiA" secondAttribute="trailing" priority="999" id="bTY-nN-anh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="JVF-3X-RiA" secondAttribute="bottom" priority="999" id="nnI-cZ-JQD"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="302" height="129"/>
             <connections>
-                <outlet property="button" destination="HcH-fp-1Vi" id="dlh-wU-kWT"/>
-                <outlet property="processingIndicatorView" destination="cNQ-7a-noJ" id="YXG-cc-oZY"/>
+                <outlet property="button" destination="HcH-fp-1Vi" id="zem-2i-ANC"/>
+                <outlet property="processingIndicatorView" destination="cNQ-7a-noJ" id="vjn-ho-duL"/>
             </connections>
-            <point key="canvasLocation" x="-5407" y="-2201"/>
+            <point key="canvasLocation" x="-5376.811594202899" y="-2292.5223214285711"/>
         </collectionViewCell>
     </objects>
 </document>
