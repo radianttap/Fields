@@ -35,6 +35,7 @@
 		D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C45922306ECE70030E0AE /* DatePickerCell.xib */; };
 		D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45932306ECE80030E0AE /* DatePickerCell.swift */; };
 		D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45962306ECF90030E0AE /* DatePickerModel.swift */; };
+		D05D9327243DC593006AD319 /* UIEdgeInsets-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05D9326243DC593006AD319 /* UIEdgeInsets-Extensions.swift */; };
 		D0628E562300245800D86F63 /* FieldSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E552300245800D86F63 /* FieldSection.swift */; };
 		D0628E58230027C700D86F63 /* FormButtonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E57230027C600D86F63 /* FormButtonModel.swift */; };
 		D0628E5B230028A700D86F63 /* FormButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E59230028A700D86F63 /* FormButtonCell.swift */; };
@@ -115,6 +116,7 @@
 		D05C45922306ECE70030E0AE /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
 		D05C45932306ECE80030E0AE /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		D05C45962306ECF90030E0AE /* DatePickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
+		D05D9326243DC593006AD319 /* UIEdgeInsets-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets-Extensions.swift"; sourceTree = "<group>"; };
 		D0628E552300245800D86F63 /* FieldSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSection.swift; sourceTree = "<group>"; };
 		D0628E57230027C600D86F63 /* FormButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormButtonModel.swift; sourceTree = "<group>"; };
 		D0628E59230028A700D86F63 /* FormButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormButtonCell.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			children = (
 				D0A3C845237C124B0064842F /* UIButton-Extensions.swift */,
 				D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */,
+				D05D9326243DC593006AD319 /* UIEdgeInsets-Extensions.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */,
 				D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
+				D05D9327243DC593006AD319 /* UIEdgeInsets-Extensions.swift in Sources */,
 				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
