@@ -122,7 +122,7 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	func adjustSectionInsetsForSafeArea() {
 		guard let cv = collectionView else { return }
 		
-		sectionInset = cv.layoutMargins - cv.safeAreaInsets
+		sectionInset = cv.safeAreaInsets
 
 		switch scrollDirection {
 		case .horizontal:
