@@ -119,6 +119,7 @@
 		D05C45962306ECF90030E0AE /* DatePickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
 		D05D9326243DC593006AD319 /* UIEdgeInsets-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets-Extensions.swift"; sourceTree = "<group>"; };
 		D05D9328243DD1AB006AD319 /* SelfSizingHeightCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfSizingHeightCell.swift; sourceTree = "<group>"; };
+		D05D932A243DD4A4006AD319 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D0628E552300245800D86F63 /* FieldSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FieldSection.swift; sourceTree = "<group>"; };
 		D0628E57230027C600D86F63 /* FormButtonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormButtonModel.swift; sourceTree = "<group>"; };
 		D0628E59230028A700D86F63 /* FormButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormButtonCell.swift; sourceTree = "<group>"; };
@@ -201,6 +202,7 @@
 		D034C73C22A53579000FE220 = {
 			isa = PBXGroup;
 			children = (
+				D05D932A243DD4A4006AD319 /* README.md */,
 				D034C76522A53A8A000FE220 /* Vendor */,
 				D034C75A22A535BD000FE220 /* Fields */,
 				D034C74722A53579000FE220 /* demo-app */,
