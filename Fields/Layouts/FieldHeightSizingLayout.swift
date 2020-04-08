@@ -115,14 +115,17 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		commonInit()
 	}
 
-	open func commonInit() {
-		sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-	}
+	///	Additional padding around the sections, which is visually added to existing layoutMargins (which is also adjusted for safeArea) of the CV
+	open var baseSectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 
+	open func commonInit() {
+		sectionInset = baseSectionInset
+	}
+	
 	func adjustSectionInsetsForSafeArea() {
 		guard let cv = collectionView else { return }
 		
-		sectionInset = cv.safeAreaInsets
+		sectionInset = baseSectionInset + cv.safeAreaInsets
 
 		switch scrollDirection {
 		case .horizontal:
