@@ -32,6 +32,8 @@
 		D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76E22A53B25000FE220 /* TextFieldCell.swift */; };
 		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
 		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
+		D048B0CD2526175A00FEA0F3 /* SlideTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */; };
+		D048B0CF2526177C00FEA0F3 /* SlideTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */; };
 		D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C45922306ECE70030E0AE /* DatePickerCell.xib */; };
 		D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45932306ECE80030E0AE /* DatePickerCell.swift */; };
 		D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45962306ECF90030E0AE /* DatePickerModel.swift */; };
@@ -114,6 +116,8 @@
 		D034C76E22A53B25000FE220 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		D034C76F22A53B25000FE220 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		D034C77D22A56A8C000FE220 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
+		D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTestController.swift; sourceTree = "<group>"; };
+		D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTestDataSource.swift; sourceTree = "<group>"; };
 		D05C45922306ECE70030E0AE /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
 		D05C45932306ECE80030E0AE /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		D05C45962306ECF90030E0AE /* DatePickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */,
 				D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */,
 				D00C70F82385972100E40BB4 /* OptionsController.swift */,
+				D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */,
+				D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */,
 			);
 			path = "demo-app";
 			sourceTree = "<group>";
@@ -474,6 +480,7 @@
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
+				D048B0CF2526177C00FEA0F3 /* SlideTestDataSource.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
 				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
@@ -525,6 +532,7 @@
 				D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */,
 				D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
+				D048B0CD2526175A00FEA0F3 /* SlideTestController.swift in Sources */,
 				D05D9327243DC593006AD319 /* UIEdgeInsets-Extensions.swift in Sources */,
 				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
 			);
