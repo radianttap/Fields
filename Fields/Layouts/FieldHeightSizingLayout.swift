@@ -45,6 +45,11 @@ private struct LayoutStore {
 public protocol FieldHeightSizingLayoutDelegate: class {
 	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForHeaderInSection section: Int) -> CGFloat?
 	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForFooterInSection section: Int) -> CGFloat?
+	func fieldHeightSizingLayout(_ layout: FieldHeightSizingLayout, customizeLayoutAttributes attr: UICollectionViewLayoutAttributes)
+}
+
+extension FieldHeightSizingLayoutDelegate {
+	func fieldHeightSizingLayout(_ layout: FieldHeightSizingLayout, customizeLayoutAttributes attr: UICollectionViewLayoutAttributes) {}
 }
 
 public class FieldHeightSizingInvalidationContext: UICollectionViewLayoutInvalidationContext {
@@ -335,6 +340,7 @@ private extension FieldHeightSizingLayout {
 
 				let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
 				attributes.frame = CGRect(x: x, y: y, width: thisItemSize.width, height: thisItemSize.height)
+				heightSizingDelegate?.fieldHeightSizingLayout(self, customizeLayoutAttributes: attributes)
 				currentStore.cells.insert(attributes)
 				
 				var arr = currentSectionCells[y] ?? []
