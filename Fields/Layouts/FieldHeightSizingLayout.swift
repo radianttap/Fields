@@ -165,6 +165,10 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 			relayout()
 		}
 	}
+	
+	@objc func _estimatesSizes() -> Bool {
+		return true
+	}
 }
 
 extension FieldHeightSizingLayout {
