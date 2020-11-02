@@ -18,7 +18,7 @@ final class SlideTestDataSource: NSObject {
 	
 	//	Init
 	
-	init(_ flag: Bool = false) {
+	init(_ flag: Bool = true) {
 		self.flag = flag
 		super.init()
 		
