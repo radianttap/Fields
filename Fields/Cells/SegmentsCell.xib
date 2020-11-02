@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="MdM-17-JFI" customClass="SegmentsCell" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhq-qx-p7E" userLabel="contentView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a pick" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000001192092896" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZQx-AW-lim">
+                                <rect key="frame" x="16" y="53" width="84.5" height="20.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXT-gM-VPU" userLabel="fieldView">
+                                <rect key="frame" x="200" y="8" width="112" height="110"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hkx-uP-d58">
+                                        <rect key="frame" x="0.0" y="37" width="112" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="NaW-Fn-wBR"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="changeSelection:" destination="MdM-17-JFI" eventType="valueChanged" id="GYJ-3h-5Zh"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Hkx-uP-d58" firstAttribute="centerY" secondItem="KXT-gM-VPU" secondAttribute="centerY" id="0ww-bQ-fDe"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="7ns-5K-xdZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Hkx-uP-d58" secondAttribute="trailing" id="Du5-iq-b5X"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Hkx-uP-d58" secondAttribute="bottom" id="QtO-d6-aKv"/>
+                                    <constraint firstItem="Hkx-uP-d58" firstAttribute="leading" secondItem="KXT-gM-VPU" secondAttribute="leading" id="X8p-rg-AOH"/>
+                                    <constraint firstItem="Hkx-uP-d58" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KXT-gM-VPU" secondAttribute="top" id="ZPJ-ys-0OR"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="KXT-gM-VPU" firstAttribute="top" secondItem="Zhq-qx-p7E" secondAttribute="topMargin" id="0Tc-lg-Juj"/>
+                            <constraint firstItem="ZQx-AW-lim" firstAttribute="leading" secondItem="Zhq-qx-p7E" secondAttribute="leadingMargin" constant="8" id="14a-6e-B7f"/>
+                            <constraint firstItem="Hkx-uP-d58" firstAttribute="centerY" secondItem="ZQx-AW-lim" secondAttribute="centerY" id="Xs0-99-imJ"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="KXT-gM-VPU" secondAttribute="bottom" id="es3-NU-e45"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KXT-gM-VPU" secondAttribute="trailing" id="g64-Ta-xmP"/>
+                            <constraint firstItem="ZQx-AW-lim" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Zhq-qx-p7E" secondAttribute="topMargin" id="jCs-cq-M8S"/>
+                            <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ZQx-AW-lim" secondAttribute="bottom" id="m2x-Bb-teJ"/>
+                            <constraint firstItem="KXT-gM-VPU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZQx-AW-lim" secondAttribute="trailing" constant="8" symbolic="YES" id="pA0-r1-WQ2"/>
+                        </constraints>
+                    </view>
+                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lrv-2O-lDb" userLabel="separator">
+                        <rect key="frame" x="0.0" y="125" width="320" height="1"/>
+                        <viewLayoutGuide key="safeArea" id="yYt-HN-mSc"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="HoS-eX-YX1"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="1FM-1Y-S7g"/>
+            <constraints>
+                <constraint firstAttribute="top" secondItem="Zhq-qx-p7E" secondAttribute="top" id="Cix-pP-AZ8"/>
+                <constraint firstAttribute="trailing" secondItem="Zhq-qx-p7E" secondAttribute="trailing" priority="999" id="DjU-eW-1qo"/>
+                <constraint firstItem="lrv-2O-lDb" firstAttribute="trailing" secondItem="Zhq-qx-p7E" secondAttribute="trailing" id="I8k-lC-ySr"/>
+                <constraint firstItem="Zhq-qx-p7E" firstAttribute="bottom" secondItem="MdM-17-JFI" secondAttribute="bottom" priority="999" id="N9K-L9-nkm"/>
+                <constraint firstItem="lrv-2O-lDb" firstAttribute="bottom" secondItem="Zhq-qx-p7E" secondAttribute="bottom" id="XKd-r8-anc"/>
+                <constraint firstItem="lrv-2O-lDb" firstAttribute="leading" secondItem="Zhq-qx-p7E" secondAttribute="leading" id="jGb-0K-e1I"/>
+                <constraint firstItem="Zhq-qx-p7E" firstAttribute="leading" secondItem="MdM-17-JFI" secondAttribute="leading" id="taN-xE-sF2"/>
+            </constraints>
+            <size key="customSize" width="295" height="122"/>
+            <connections>
+                <outlet property="segmentedControl" destination="Hkx-uP-d58" id="0yb-Yf-B78"/>
+                <outlet property="separator" destination="lrv-2O-lDb" id="fJz-Dg-oAJ"/>
+                <outlet property="titleLabel" destination="ZQx-AW-lim" id="Apw-qI-Cxm"/>
+            </connections>
+            <point key="canvasLocation" x="-4.3478260869565224" y="133.25892857142856"/>
+        </collectionViewCell>
+    </objects>
+</document>

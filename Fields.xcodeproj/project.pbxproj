@@ -83,6 +83,8 @@
 		D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086576722FF0DDA00256BA6 /* TextViewCell.swift */; };
 		D09AABD122FDFE3E00F6A2DC /* FullWidthLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */; };
 		D09AABD222FDFE3E00F6A2DC /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */; };
+		D09D0EF225507904001EBC01 /* SegmentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09D0EF025507904001EBC01 /* SegmentsCell.swift */; };
+		D09D0EF325507904001EBC01 /* SegmentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09D0EF125507904001EBC01 /* SegmentsCell.xib */; };
 		D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C845237C124B0064842F /* UIButton-Extensions.swift */; };
 		D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */; };
 /* End PBXBuildFile section */
@@ -167,6 +169,8 @@
 		D086576722FF0DDA00256BA6 /* TextViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewCell.swift; sourceTree = "<group>"; };
 		D09AABCF22FDFE3E00F6A2DC /* FullWidthLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthLayout.swift; sourceTree = "<group>"; };
 		D09AABD022FDFE3E00F6A2DC /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		D09D0EF025507904001EBC01 /* SegmentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentsCell.swift; sourceTree = "<group>"; };
+		D09D0EF125507904001EBC01 /* SegmentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentsCell.xib; sourceTree = "<group>"; };
 		D0A3C845237C124B0064842F /* UIButton-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
 		D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContentSizeCategory-Notifications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +305,8 @@
 				D05C45922306ECE70030E0AE /* DatePickerCell.xib */,
 				D0137EED23070C8D00E46211 /* DatePickerCellAccessoryView.swift */,
 				D0137EEF23070C9D00E46211 /* DatePickerCellAccessoryView.xib */,
+				D09D0EF025507904001EBC01 /* SegmentsCell.swift */,
+				D09D0EF125507904001EBC01 /* SegmentsCell.xib */,
 				D0628E59230028A700D86F63 /* FormButtonCell.swift */,
 				D0628E5A230028A700D86F63 /* FormButtonCell.xib */,
 			);
@@ -456,6 +462,7 @@
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
 				D0628E6323003A3B00D86F63 /* InventoryCategoryCell.xib in Resources */,
 				D086576822FF0DDA00256BA6 /* TextViewCell.xib in Resources */,
+				D09D0EF325507904001EBC01 /* SegmentsCell.xib in Resources */,
 				D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */,
 				D011B8E722C90DEF0059A52D /* PickerOptionTextCell.xib in Resources */,
 				D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */,
@@ -507,6 +514,7 @@
 				D06B0C3D22C518B000372445 /* FormSupplementaryView.swift in Sources */,
 				D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */,
 				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
+				D09D0EF225507904001EBC01 /* SegmentsCell.swift in Sources */,
 				D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */,
 				D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */,
 				D0704C2E22B1795B004A0A25 /* LoginDataSource.swift in Sources */,
