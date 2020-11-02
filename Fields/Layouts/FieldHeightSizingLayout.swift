@@ -163,8 +163,9 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		}
 	}
 	
+	var est = false
 	@objc func _estimatesSizes() -> Bool {
-		return true
+		return est
 	}
 }
 
@@ -204,7 +205,7 @@ extension FieldHeightSizingLayout {
 			shouldRebuild = true
 			cachedStore.reset()
 		}
-
+		
 		super.invalidateLayout(with: context)
 	}
 
