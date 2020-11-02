@@ -97,8 +97,12 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	//	MARK: Internal layout tracking
 
 	private var contentSize: CGSize = .zero
+	
+	///	Current, active LayoutAttributes
 	private var currentStore: LayoutStore = LayoutStore()
-	private var cachedStore: LayoutStore = LayoutStore()
+
+	///	Cache of properly self-sized LayoutAttributes, copied from `currentStore` and used when rebuilding new curent store.
+	private var cachedSizingStore: LayoutStore = LayoutStore()
 
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
 	private var shouldRebuild = true
@@ -185,7 +189,7 @@ extension FieldHeightSizingLayout {
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {
 		if context.invalidateEverything {	//  reloadData
 			shouldRebuild = true
-			cachedStore.reset()
+			cachedSizingStore.reset()
 
 		} else if context.invalidateDataSourceCounts {	//  insert/reload/delete Items/Sections
 			///	UICVL goes directly to `prepare()` after this, before `prepare(forCollectionViewUpdates:)` is called.
@@ -194,7 +198,7 @@ extension FieldHeightSizingLayout {
 			///
 			///	We must **now** update `cachedStore` with "future" indexPaths so that `build()` reuses proper self-sized frames.
 			if let context = context as? FieldHeightSizingInvalidationContext {
-				updateLayoutStore(with: context.updateItems)
+				updateCachedSizingStore(with: context.updateItems)
 			}
 
 			shouldRebuild = true
@@ -203,7 +207,7 @@ extension FieldHeightSizingLayout {
 			///	for some reason, `shouldInvalidateLayout(forBoundsChange:)`
 			///	is not always called when rotating the device
 			shouldRebuild = true
-			cachedStore.reset()
+			cachedSizingStore.reset()
 		}
 		
 		super.invalidateLayout(with: context)
@@ -277,7 +281,6 @@ extension FieldHeightSizingLayout {
 		relayout()
 		return true
 	}
-
 }
 
 private extension FieldHeightSizingLayout {
@@ -303,7 +306,7 @@ private extension FieldHeightSizingLayout {
 				estimatedHeaderSize.height = height
 			}
 
-			let headerSize = cachedStore.header(at: indexPath)?.size ?? estimatedHeaderSize
+			let headerSize = cachedSizingStore.header(at: indexPath)?.size ?? estimatedHeaderSize
 			if headerSize.height != .zero {
 				let hattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, with: indexPath)
 				hattributes.frame = CGRect(x: x, y: y, width: w, height: headerSize.height)
@@ -327,7 +330,7 @@ private extension FieldHeightSizingLayout {
 
 				//	look for custom itemSize from the CV delegate
 				//	do we have calculated size from previous self-sizing pass?
-				var thisItemSize = cachedStore.cell(at: indexPath)?.size ?? estimatedItemSize
+				var thisItemSize = cachedSizingStore.cell(at: indexPath)?.size ?? estimatedItemSize
 				if
 					let customSize = (cv.delegate as? UICollectionViewDelegateFlowLayout)?.collectionView?(cv, layout: self, sizeForItemAt: indexPath),
 					itemSize.width != customSize.width
@@ -384,7 +387,7 @@ private extension FieldHeightSizingLayout {
 				estimatedFooterSize.height = height
 			}
 
-			let footerSize = cachedStore.footer(at: indexPath)?.size ?? estimatedFooterSize
+			let footerSize = cachedSizingStore.footer(at: indexPath)?.size ?? estimatedFooterSize
 			if footerSize.height != .zero {
 				let fattributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, with: indexPath)
 				fattributes.frame = CGRect(x: x, y: y, width: w, height: footerSize.height)
@@ -393,7 +396,7 @@ private extension FieldHeightSizingLayout {
 			y += footerSize.height
 		}
 
-		cachedStore = LayoutStore(copy: currentStore)
+		cachedSizingStore = LayoutStore(copy: currentStore)
 
 		calculateTotalContentSize()
 
@@ -474,7 +477,7 @@ private extension FieldHeightSizingLayout {
 			}
 		}
 
-		cachedStore = LayoutStore(copy: currentStore)
+		cachedSizingStore = LayoutStore(copy: currentStore)
 
 		calculateTotalContentSize()
 	}
@@ -498,7 +501,7 @@ private extension FieldHeightSizingLayout {
 		self.contentSize = f.size
 	}
 
-	func updateLayoutStore(with updateItems: [UICollectionViewUpdateItem]) {
+	func updateCachedSizingStore(with updateItems: [UICollectionViewUpdateItem]) {
 		//	Note: in this method, if `indexPath.item` is `NSNotFound`, it means `updateItem` is entire section
 
 		let deleted: [UICollectionViewUpdateItem] = updateItems.filter{ $0.updateAction == .delete }.sorted { $0.indexPathBeforeUpdate! > $1.indexPathBeforeUpdate! }
@@ -511,13 +514,13 @@ private extension FieldHeightSizingLayout {
 				if let indexPath = updateItem.indexPathBeforeUpdate {
 					if indexPath.item == NSNotFound {	//	deleteSections
 						//	remove the cached layout info for removed stuff
-						cachedStore.headers = cachedStore.headers.filter { $0.indexPath.section != indexPath.section }
-						cachedStore.footers = cachedStore.footers.filter { $0.indexPath.section != indexPath.section }
-						cachedStore.cells = cachedStore.cells.filter { $0.indexPath.section != indexPath.section }
+						cachedSizingStore.headers = cachedSizingStore.headers.filter { $0.indexPath.section != indexPath.section }
+						cachedSizingStore.footers = cachedSizingStore.footers.filter { $0.indexPath.section != indexPath.section }
+						cachedSizingStore.cells = cachedSizingStore.cells.filter { $0.indexPath.section != indexPath.section }
 
 					} else {
-						if let attr = cachedStore.cell(at: indexPath) {
-							cachedStore.cells.remove(attr)
+						if let attr = cachedSizingStore.cell(at: indexPath) {
+							cachedSizingStore.cells.remove(attr)
 						}
 					}
 				}
@@ -525,21 +528,21 @@ private extension FieldHeightSizingLayout {
 			case .insert:
 				if let indexPath = updateItem.indexPathAfterUpdate {
 					if indexPath.item == NSNotFound {    //    insertSections
-						cachedStore.headers.forEach {
+						cachedSizingStore.headers.forEach {
 							if $0.indexPath.section < indexPath.section { return }
 							$0.indexPath.section += 1
 						}
-						cachedStore.footers.forEach {
+						cachedSizingStore.footers.forEach {
 							if $0.indexPath.section < indexPath.section { return }
 							$0.indexPath.section += 1
 						}
-						cachedStore.cells.forEach {
+						cachedSizingStore.cells.forEach {
 							if $0.indexPath.section < indexPath.section { return }
 							$0.indexPath.section += 1
 						}
 
 					} else {
-						let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+						let arr = cachedSizingStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
 						arr.forEach { $0.indexPath.item += 1 }
 					}
 				}
@@ -549,7 +552,7 @@ private extension FieldHeightSizingLayout {
 					let oldIndexPath = updateItem.indexPathBeforeUpdate,
 					let newIndexPath = updateItem.indexPathAfterUpdate
 				{
-					cachedStore.cell(at: oldIndexPath)?.indexPath = newIndexPath
+					cachedSizingStore.cell(at: oldIndexPath)?.indexPath = newIndexPath
 				}
 
 			case .reload:
@@ -562,21 +565,21 @@ private extension FieldHeightSizingLayout {
 
 		for indexPath in deletedIndexPaths {
 			if indexPath.item == NSNotFound {    //    sections
-				cachedStore.headers.forEach {
+				cachedSizingStore.headers.forEach {
 					if $0.indexPath.section < indexPath.section { return }
 					$0.indexPath.section -= 1
 				}
-				cachedStore.footers.forEach {
+				cachedSizingStore.footers.forEach {
 					if $0.indexPath.section < indexPath.section { return }
 					$0.indexPath.section -= 1
 				}
-				cachedStore.cells.forEach {
+				cachedSizingStore.cells.forEach {
 					if $0.indexPath.section < indexPath.section { return }
 					$0.indexPath.section -= 1
 				}
 
 			} else {
-				let arr = cachedStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
+				let arr = cachedSizingStore.cells.filter { $0.indexPath.section == indexPath.section && $0.indexPath.item >= indexPath.item }
 				arr.forEach { $0.indexPath.item -= 1 }
 			}
 		}
