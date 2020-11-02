@@ -24,13 +24,23 @@ class FieldsController: UIViewController {
 	
 	//	Override these methods, if you need to change default behavior
 
+    private var originalAdditionalSafeAreaInsets: UIEdgeInsets = .zero
+    private var originalViewSafeAreaInsets: UIEdgeInsets = .zero
+    private var keyboardAdditionalSafeAreaInsets: UIEdgeInsets = .zero
+
 	func keyboardWillShow(notification kn: KeyboardNotification) {
-		let diff = max(0, kn.endFrame.height - view.safeAreaInsets.bottom)
-		additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: diff, right: 0)
+		//	Keyboard appears on top of entire UI. So the 'endFrame' we get here includes bottom safeAreaInsets already.
+		//	Our embedded VC's UI is laid-out obeying safeAreaInsets of the device,
+		//	thus we must subtract bottom part of safeAreaInsets from reported keyboard height.
+		//	That will give us value to use for local (embedded) VC.view
+		let kb = kn.endFrame.height - originalViewSafeAreaInsets.bottom
+		keyboardAdditionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: kb, right: 0)
+		//	Now, set VC additionalSafeAreaInsets to use the maximum values between its original or keyboard 
+        additionalSafeAreaInsets = keyboardAdditionalSafeAreaInsets.union(originalAdditionalSafeAreaInsets)
 	}
 
 	func keyboardWillHide(notification kn: KeyboardNotification) {
-		additionalSafeAreaInsets = UIEdgeInsets.zero
+        additionalSafeAreaInsets = originalAdditionalSafeAreaInsets
 	}
 
 	func contentSizeCategoryChanged(notification kn: ContentSizeCategoryNotification) {
@@ -42,6 +52,13 @@ extension FieldsController {
 		super.viewDidLoad()
 
 		setupKeyboardNotificationHandlers()
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		originalViewSafeAreaInsets = view.safeAreaInsets
+		originalAdditionalSafeAreaInsets = additionalSafeAreaInsets
 	}
 }
 
@@ -67,12 +84,12 @@ private extension FieldsController {
 }
 
 extension FieldsController: UITextFieldDelegate {
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+	@objc func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		textField.resignFirstResponder()
 		return false
 	}
 
-	func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+	@objc func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
 		return true
 	}
 }
