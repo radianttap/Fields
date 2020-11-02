@@ -101,16 +101,7 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 	private var cachedStore: LayoutStore = LayoutStore()
 
 	///	Layout Invalidation will set this to `true` and everything will be recomputed
-	private var shouldRebuild = true {
-		didSet {
-			if shouldRebuild { shouldRelayout = false }
-		}
-	}
-
-	///	When self-sizing is triggered, sizes will be updated in the internal layout trackers,
-	///	then `relayout()` will be called to adjust the origins of the cells/headers/footers
-	private var shouldRelayout = false
-
+	private var shouldRebuild = true
 
 	//	MARK: Lifecycle
 
@@ -169,9 +160,6 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 			estimatedItemSize = itemSize
 
 			build()
-
-		} else if shouldRelayout {
-			relayout()
 		}
 	}
 	
@@ -260,7 +248,7 @@ extension FieldHeightSizingLayout {
 	override open func shouldInvalidateLayout(forPreferredLayoutAttributes preferredAttributes: UICollectionViewLayoutAttributes,
 											  withOriginalAttributes originalAttributes: UICollectionViewLayoutAttributes) -> Bool
 	{
-		if preferredAttributes.frame.size.height <= originalAttributes.frame.size.height { return false }
+		if preferredAttributes.frame.size.height == originalAttributes.frame.size.height { return false }
 
 		switch preferredAttributes.representedElementCategory {
 		case .cell:
@@ -285,7 +273,7 @@ extension FieldHeightSizingLayout {
 			return false
 		}
 
-		shouldRelayout = true
+		relayout()
 		return true
 	}
 
@@ -409,7 +397,6 @@ private extension FieldHeightSizingLayout {
 		calculateTotalContentSize()
 
 		shouldRebuild = false
-		shouldRelayout = false
 	}
 
 	func relayout() {
@@ -489,8 +476,6 @@ private extension FieldHeightSizingLayout {
 		cachedStore = LayoutStore(copy: currentStore)
 
 		calculateTotalContentSize()
-
-		shouldRelayout = false
 	}
 
 	func calculateTotalContentSize() {
