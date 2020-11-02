@@ -30,14 +30,14 @@ class TextFieldModel: FieldModel {
 	///	Method called every time value inside the field changes.
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (String?, TextFieldCell) -> Void = {_, _ in}
+	var valueChanged: (String?, FormFieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
 		 value: String? = nil,
 		 placeholder: String? = nil,
 		 customSetup: @escaping (UITextField) -> Void = {_ in},
-		 valueChanged: @escaping (String?, TextFieldCell) -> Void = {_, _ in}
+		 valueChanged: @escaping (String?, FormFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 
