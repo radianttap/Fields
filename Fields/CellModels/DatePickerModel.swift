@@ -33,7 +33,7 @@ class DatePickerModel: FieldModel {
 	///	Method called every time value of the picker changes.
 	///
 	///	Default implementation does nothing.
-	var valueChanged: (Date?, DatePickerCell) -> Void = {_, _ in}
+	var valueChanged: (Date?, FormFieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
@@ -41,7 +41,7 @@ class DatePickerModel: FieldModel {
 		 placeholder: Date = Date(),
 		 formatter: DateFormatter,
 		 customSetup: @escaping (UIDatePicker) -> Void = {_ in},
-		 valueChanged: @escaping (Date?, DatePickerCell) -> Void = {_, _ in}
+		 valueChanged: @escaping (Date?, FormFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 
