@@ -41,6 +41,15 @@ private struct LayoutStore {
 	}
 }
 
+extension LayoutStore {
+	init(copy store: LayoutStore) {
+		self.boundsSize = store.boundsSize
+		self.cells = Set(store.cells.map({ $0.copy() as! UICollectionViewLayoutAttributes }))
+		self.headers = Set(store.headers.map({ $0.copy() as! UICollectionViewLayoutAttributes }))
+		self.footers = Set(store.footers.map({ $0.copy() as! UICollectionViewLayoutAttributes }))
+	}
+}
+
 
 public protocol FieldHeightSizingLayoutDelegate: class {
 	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForHeaderInSection section: Int) -> CGFloat?
@@ -395,7 +404,7 @@ private extension FieldHeightSizingLayout {
 			y += footerSize.height
 		}
 
-		cachedStore = currentStore
+		cachedStore = LayoutStore(copy: currentStore)
 
 		calculateTotalContentSize()
 
@@ -477,7 +486,7 @@ private extension FieldHeightSizingLayout {
 			}
 		}
 
-		cachedStore = currentStore
+		cachedStore = LayoutStore(copy: currentStore)
 
 		calculateTotalContentSize()
 
