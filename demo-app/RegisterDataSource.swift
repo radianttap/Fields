@@ -254,7 +254,7 @@ private extension RegisterDataSource {
 
 				//	optional: after you update the field model,
 				//	repopulate the cell with updated model
-				cell.populate(with: model)
+				(cell as? ToggleCell)?.populate(with: model)
 			}
 			return model
 			}())
