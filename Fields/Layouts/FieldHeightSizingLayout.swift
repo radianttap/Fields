@@ -167,9 +167,9 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 		}
 	}
 	
-	var est = false
+	var estimatesSizesEnabled = false
 	@objc func _estimatesSizes() -> Bool {
-		return est
+		return estimatesSizesEnabled
 	}
 }
 

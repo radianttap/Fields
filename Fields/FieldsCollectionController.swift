@@ -36,6 +36,12 @@ class FieldsCollectionController: FieldsController {
 		collectionView.dataSource = nil
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		(collectionView.collectionViewLayout as! FieldHeightSizingLayout).estimatesSizesEnabled = true
+	}
+
 	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
 		collectionView.collectionViewLayout.invalidateLayout()
 

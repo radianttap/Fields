@@ -29,12 +29,6 @@ final class SlideTestController: FieldsCollectionController {
 		
 		render(dataSource)
 	}
-	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		(collectionView.collectionViewLayout as! FieldHeightSizingLayout).est = true
-	}
 }
 
 private extension SlideTestController {
