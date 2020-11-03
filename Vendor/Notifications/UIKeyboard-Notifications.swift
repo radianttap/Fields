@@ -57,9 +57,9 @@ struct KeyboardNotification {
 }
 
 extension KeyboardNotification {
-	static let keyboardWillShowDescriptor = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillShowNotification, convert: KeyboardNotification.init)
-	static let keyboardDidShowDescriptor = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidShowNotification, convert: KeyboardNotification.init)
+	static let willShow = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillShowNotification, convert: KeyboardNotification.init)
+	static let didShow = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidShowNotification, convert: KeyboardNotification.init)
 
-	static let keyboardWillHideDescriptor = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillHideNotification, convert: KeyboardNotification.init)
-	static let keyboardDidHideDescriptor = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidHideNotification, convert: KeyboardNotification.init)
+	static let willHide = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillHideNotification, convert: KeyboardNotification.init)
+	static let didHide = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidHideNotification, convert: KeyboardNotification.init)
 }

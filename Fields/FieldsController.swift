@@ -66,17 +66,17 @@ private extension FieldsController {
 	func setupKeyboardNotificationHandlers() {
 		let nc = NotificationCenter.default
 
-		tokenKeyboardWillShow = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillShowDescriptor, queue: .main) {
+		tokenKeyboardWillShow = nc.addObserver(forConvertedDescriptor: KeyboardNotification.willShow, queue: .main) {
 			[weak self] kn in
 			self?.keyboardWillShow(notification: kn)
 		}
 
-		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.keyboardWillHideDescriptor, queue: .main) {
+		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.willHide, queue: .main) {
 			[weak self] kn in
 			self?.keyboardWillHide(notification: kn)
 		}
 
-		tokenContentSizeCategoryChanged = nc.addObserver(forConvertedDescriptor: ContentSizeCategoryNotification.didChangeDescriptor, queue: .main) {
+		tokenContentSizeCategoryChanged = nc.addObserver(forConvertedDescriptor: ContentSizeCategoryNotification.didChange, queue: .main) {
 			[weak self] kn in
 			self?.contentSizeCategoryChanged(notification: kn)
 		}

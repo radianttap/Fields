@@ -23,6 +23,7 @@ struct ContentSizeCategoryNotification {
 	}
 }
 
+@available(iOS 10.0, *)
 extension ContentSizeCategoryNotification {
-	static let didChangeDescriptor = NotificationDescriptor<ContentSizeCategoryNotification>(name: UIContentSizeCategory.didChangeNotification, convert: ContentSizeCategoryNotification.init)
+	static let didChange = NotificationDescriptor<ContentSizeCategoryNotification>(name: UIContentSizeCategory.didChangeNotification, convert: ContentSizeCategoryNotification.init)
 }
