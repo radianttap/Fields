@@ -28,7 +28,7 @@ class DatePickerModel: FieldModel {
 	///	Custom configuration for the date picker.
 	///
 	///	Default implementation does nothing.
-	var customSetup: (UIDatePicker) -> Void = {_ in}
+	var customSetup: (UIDatePicker, FormFieldCell) -> Void = {_, _ in}
 
 	///	Method called every time value of the picker changes.
 	///
@@ -40,7 +40,7 @@ class DatePickerModel: FieldModel {
 		 value: Date? = nil,
 		 placeholder: Date = Date(),
 		 formatter: DateFormatter,
-		 customSetup: @escaping (UIDatePicker) -> Void = {_ in},
+		 customSetup: @escaping (UIDatePicker, FormFieldCell) -> Void = {_, _ in},
 		 valueChanged: @escaping (Date?, FormFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id

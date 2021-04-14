@@ -333,7 +333,7 @@ private extension RegisterDataSource {
 										title: NSLocalizedString("Date of birth", comment: ""),
 										value: user?.dateOfBirth,
 										formatter: dateFormatter)
-			model.customSetup = { picker in
+			model.customSetup = { picker, cell in
 				picker.datePickerMode = .date
 			}
 			model.valueChanged = {

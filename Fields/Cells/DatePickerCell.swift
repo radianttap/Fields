@@ -18,7 +18,7 @@ final class DatePickerCell: FormFieldCell, NibReusableView {
 	private weak var formatter: DateFormatter!
 	private var originalValue: Date?
 	private var valueChanged: (Date?, DatePickerCell) -> Void = {_, _ in}
-	private var customSetup: (UIDatePicker) -> Void = {_ in}
+	private var customSetup: (UIDatePicker, FormFieldCell) -> Void = {_, _ in}
 
 	private var picker: UIDatePicker?
 }
@@ -75,8 +75,14 @@ private extension DatePickerCell {
 
 	@IBAction func set(_ sender: UIButton) {
 		let picker = UIDatePicker(frame: .zero)
+		if #available(iOS 14.0, *) {
+			picker.preferredDatePickerStyle = .wheels
+		}
+		if let value = originalValue {
+			picker.date = value
+		}
 		self.picker = picker
-		customSetup(picker)
+		customSetup(picker, self)
 
 		valueField.inputView = picker
 		valueField.inputAccessoryView = prepareInputAccessoryView()
@@ -93,6 +99,8 @@ private extension DatePickerCell {
 		}
 
 		guard let date = picker?.date else { return }
+		originalValue = date
+
 		valueField.text = formatter.string(from: date)
 		valueChanged(date, self)
 	}
