@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JVF-3X-RiA" userLabel="fieldView">
                         <rect key="frame" x="16" y="52" width="270" height="69"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-fp-1Vi">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcH-fp-1Vi">
                                 <rect key="frame" x="0.0" y="0.0" width="270" height="69"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -35,14 +35,8 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsFontForContentSizeCategory" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cNQ-7a-noJ">
-                                <rect key="frame" x="225" y="16" width="37" height="37"/>
-                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cNQ-7a-noJ" firstAttribute="centerY" secondItem="HcH-fp-1Vi" secondAttribute="centerY" id="2F5-Jl-I4H"/>
-                            <constraint firstItem="cNQ-7a-noJ" firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" constant="-8" id="9kk-VQ-0TP"/>
                             <constraint firstItem="HcH-fp-1Vi" firstAttribute="top" secondItem="JVF-3X-RiA" secondAttribute="top" id="HxT-V6-OJA"/>
                             <constraint firstAttribute="trailing" secondItem="HcH-fp-1Vi" secondAttribute="trailing" id="cY7-he-bOq"/>
                             <constraint firstItem="HcH-fp-1Vi" firstAttribute="leading" secondItem="JVF-3X-RiA" secondAttribute="leading" id="mJq-tG-Tnz"/>
@@ -65,7 +59,6 @@
             <size key="customSize" width="302" height="129"/>
             <connections>
                 <outlet property="button" destination="HcH-fp-1Vi" id="zem-2i-ANC"/>
-                <outlet property="processingIndicatorView" destination="cNQ-7a-noJ" id="vjn-ho-duL"/>
             </connections>
             <point key="canvasLocation" x="-5376.811594202899" y="-2292.5223214285711"/>
         </collectionViewCell>

@@ -24,12 +24,12 @@ class FormButtonModel: FieldModel {
 	///	Action to perform when button is tapped, with completion closure that must be called at the end of your `action` implementation.
 	///
 	///	The common UI flow here is that activity-indicator will appear and start animating when you tap; then `completed()` closure would stop indicator animation and hide it.
-	var action: (_ completed: @escaping () -> Void) -> Void = { $0() }
+	var action: () -> Void = {}
 
 	init(id: String,
 		 title: String,
 		 customSetup: @escaping (UIButton) -> Void = {_ in},
-		 action: @escaping (_ completed: @escaping () -> Void) -> Void = { $0() }
+		 action: @escaping () -> Void = {}
 	){
 		self.id = id
 		self.title = title

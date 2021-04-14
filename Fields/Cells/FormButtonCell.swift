@@ -11,9 +11,8 @@ import UIKit
 final class FormButtonCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var button: UIButton!
-    @IBOutlet private var processingIndicatorView: UIActivityIndicatorView!
 
-	private var action: (_ completed: @escaping () -> Void) -> Void = { $0() }
+	private var action: () -> Void = {}
 }
 
 extension FormButtonCell {
@@ -35,7 +34,6 @@ extension FormButtonCell {
 private extension FormButtonCell {
 	func cleanup() {
 		button.setTitle(nil, for: .normal)
-        processingIndicatorView.stopAnimating()
 
 		button.removeTarget(self, action: nil, for: .touchUpInside)
 	}
@@ -50,12 +48,7 @@ private extension FormButtonCell {
 	}
 
 	@objc func tapped(_ sender: UIButton) {
-        processingIndicatorView.startAnimating()
-
-		action() {
-			[weak self] in
-			self?.processingIndicatorView.stopAnimating()
-		}
+		action()
 	}
 }
 
