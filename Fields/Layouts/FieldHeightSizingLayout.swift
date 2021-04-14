@@ -166,11 +166,6 @@ open class FieldHeightSizingLayout: UICollectionViewLayout {
 			build()
 		}
 	}
-	
-	var estimatesSizesEnabled = false
-	@objc func _estimatesSizes() -> Bool {
-		return estimatesSizesEnabled
-	}
 }
 
 extension FieldHeightSizingLayout {
@@ -179,11 +174,11 @@ extension FieldHeightSizingLayout {
 	}
 
 	override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-		if (collectionView?.bounds ?? .zero).width != newBounds.width {
-			return true
+		guard let bounds = collectionView?.bounds else {
+			return false
 		}
 
-		return super.shouldInvalidateLayout(forBoundsChange: newBounds)
+		return bounds.width != newBounds.width
 	}
 
 	open override func invalidateLayout(with context: UICollectionViewLayoutInvalidationContext) {

@@ -36,25 +36,6 @@ class FieldsCollectionController: FieldsController {
 		collectionView.dataSource = nil
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
-		super.viewDidAppear(animated)
-		
-		(collectionView.collectionViewLayout as! FieldHeightSizingLayout).estimatesSizesEnabled = true
-	}
-
-	override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-		collectionView.collectionViewLayout.invalidateLayout()
-
-		if size != view.bounds.size {
-			coordinator.animate(alongsideTransition: {
-				_ in
-				self.collectionView.collectionViewLayout.invalidateLayout()
-			}, completion: nil)
-		}
-
-		super.viewWillTransition(to: size, with: coordinator)
-	}
-	
 	//	Entry point for DataSource object to ask VC to redraw itself
 
 	override func renderContentUpdates() {
