@@ -208,7 +208,7 @@ private extension RegisterDataSource {
 		if shouldAddAddress {
 			sections.append( buildAddressSection() )
 		}
-		sections.append( buildPrefsSection() )
+//		sections.append( buildPrefsSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildOtherSection() )
 	}
