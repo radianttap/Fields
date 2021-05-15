@@ -119,3 +119,7 @@ A set of [posts on my blog](https://aplus.rs/tags/fields/), tagged Fields.
 
 [MIT](https://choosealicense.com/licenses/mit/), as usual.
 
+
+## Give back
+
+If you found this code useful, please consider [buying me a coffee](https://www.buymeacoffee.com/radianttap) or two. ☕️😋
