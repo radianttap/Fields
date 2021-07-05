@@ -8,7 +8,6 @@
 
 import UIKit
 
-@available(iOS 10.0, *)
 struct ContentSizeCategoryNotification {
 	var category: UIContentSizeCategory = .unspecified
 
@@ -23,7 +22,6 @@ struct ContentSizeCategoryNotification {
 	}
 }
 
-@available(iOS 10.0, *)
 extension ContentSizeCategoryNotification {
 	static let didChange = NotificationDescriptor<ContentSizeCategoryNotification>(name: UIContentSizeCategory.didChangeNotification, convert: ContentSizeCategoryNotification.init)
 }

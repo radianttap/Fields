@@ -24,9 +24,9 @@ class FieldsController: UIViewController {
 	
 	//	Override these methods, if you need to change default behavior
 
-    private var originalAdditionalSafeAreaInsets: UIEdgeInsets = .zero
-    private var originalViewSafeAreaInsets: UIEdgeInsets = .zero
-    private var keyboardAdditionalSafeAreaInsets: UIEdgeInsets = .zero
+    private(set) var originalAdditionalSafeAreaInsets: UIEdgeInsets = .zero
+    private(set) var originalViewSafeAreaInsets: UIEdgeInsets = .zero
+    private(set) var keyboardAdditionalSafeAreaInsets: UIEdgeInsets = .zero
 
 	func keyboardWillShow(notification kn: KeyboardNotification) {
 		//	Keyboard appears on top of entire UI. So the 'endFrame' we get here includes bottom safeAreaInsets already.
