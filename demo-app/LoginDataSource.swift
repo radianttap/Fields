@@ -4,12 +4,7 @@
 
 import UIKit
 
-final class LoginDataSource: NSObject {
-	//	Dependencies
-	weak var controller: LoginController? {
-		didSet { prepareView() }
-	}
-
+final class LoginDataSource: FieldsDataSource {
 	//	Model
 	var user: User?
 
@@ -25,12 +20,67 @@ final class LoginDataSource: NSObject {
 		prepareFields()
 	}
 
-	enum FieldId: String {
+	enum FieldId: String, CaseIterable {
 		case info
 		case username
 		case password
 		case forgotpassword
 		case submit
+	}
+
+	override func registerReusableElements(for cv: UICollectionView) {
+		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
+		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
+		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
+		cv.register(FormButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
+	}
+
+	override func cell(collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell {
+		let model = fields[indexPath.item]
+
+		switch model {
+			case let model as TextFieldModel:
+				let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as FormTextModel:
+				let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as FormButtonModel:
+				let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as BasicModel:
+				switch model.id {
+					case FieldId.forgotpassword.rawValue:
+						let cell: ForgotPassCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+						return cell
+
+					default:
+						break
+				}
+
+			default:
+				break
+		}
+
+		preconditionFailure("Unknown cell model")
+	}
+
+	override func populateSnapshot() -> FieldsDataSource.Snapshot {
+		var snapshot = Snapshot()
+
+		snapshot.appendSections(["0"])
+		snapshot.appendItems(
+			FieldId.allCases.map { $0.rawValue }
+		)
+
+		return snapshot
 	}
 }
 
@@ -88,69 +138,4 @@ private extension LoginDataSource {
 			return model
 		}())
 	}
-}
-
-private extension LoginDataSource {
-	func prepareView() {
-		guard let cv = controller?.collectionView else { return }
-
-		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
-		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
-		cv.register(FormButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
-		cv.dataSource = self
-	}
-
-	func renderContentUpdates() {
-		controller?.renderContentUpdates()
-	}
-}
-
-extension LoginDataSource: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return fields.count
-	}
-
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let model = fields[indexPath.item]
-
-		switch model {
-		case let model as TextFieldModel:
-			let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as FormTextModel:
-			let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as FormButtonModel:
-			let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as BasicModel:
-			switch model.id {
-			case FieldId.forgotpassword.rawValue:
-				let cell: ForgotPassCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-				return cell
-
-			default:
-				break
-			}
-
-		default:
-			break
-		}
-
-		preconditionFailure("Unknown cell model")
-	}
-
-	func field(at indexPath: IndexPath) -> FieldModel {
-		let field = fields[indexPath.item]
-		return field
-	}
-
 }

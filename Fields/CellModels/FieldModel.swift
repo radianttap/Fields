@@ -9,5 +9,6 @@
 import Foundation
 
 protocol FieldModel {
+	///	unique identifier (across the containing form) for this field
 	var id: String { get }
 }

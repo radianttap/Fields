@@ -15,7 +15,7 @@ class PickerOptionsListController<T: Hashable, Cell: UICollectionViewCell & Reus
 	private var provider: PickerOptionsProvider<T, Cell>
 	private var fieldTitle: String?
 
-	init(layout: UICollectionViewLayout = FullWidthLayout(), title: String? = nil, provider: PickerOptionsProvider<T, Cell>) {
+	init(layout: UICollectionViewLayout = UICollectionViewFlowLayout(), title: String? = nil, provider: PickerOptionsProvider<T, Cell>) {
 		self.layout = layout
 		self.provider = provider
 		self.fieldTitle = title ?? provider.model.title

@@ -11,8 +11,8 @@
 		D00A400E22CB41B00001625B /* FormTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A400C22CB41B00001625B /* FormTextCell.swift */; };
 		D00A400F22CB41B00001625B /* FormTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00A400D22CB41B00001625B /* FormTextCell.xib */; };
 		D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */; };
-		D00C70F92385972100E40BB4 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C70F82385972100E40BB4 /* OptionsController.swift */; };
 		D00C70FB2385975900E40BB4 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00C70FA2385975900E40BB4 /* OptionCell.swift */; };
+		D0106B7C2693274D007BC819 /* FieldsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0106B7B2693274D007BC819 /* FieldsDataSource.swift */; };
 		D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D722C7FE830059A52D /* PickerModel.swift */; };
 		D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D011B8D922C803A80059A52D /* PickerCell.swift */; };
 		D011B8DC22C803A80059A52D /* PickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D011B8DA22C803A80059A52D /* PickerCell.xib */; };
@@ -32,8 +32,6 @@
 		D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76E22A53B25000FE220 /* TextFieldCell.swift */; };
 		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
 		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
-		D048B0CD2526175A00FEA0F3 /* SlideTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */; };
-		D048B0CF2526177C00FEA0F3 /* SlideTestDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */; };
 		D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C45922306ECE70030E0AE /* DatePickerCell.xib */; };
 		D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45932306ECE80030E0AE /* DatePickerCell.swift */; };
 		D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45962306ECF90030E0AE /* DatePickerModel.swift */; };
@@ -48,8 +46,6 @@
 		D0628E6323003A3B00D86F63 /* InventoryCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0628E6123003A3B00D86F63 /* InventoryCategoryCell.xib */; };
 		D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E6423005A7300D86F63 /* InventoryCategory.swift */; };
 		D0628E6823005B0D00D86F63 /* InventoryCategory-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0628E6723005B0D00D86F63 /* InventoryCategory-Extensions.swift */; };
-		D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3022C50AE200372445 /* RegisterController.swift */; };
-		D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3222C50B2700372445 /* RegisterDataSource.swift */; };
 		D06B0C3622C513E400372445 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3422C513E400372445 /* SectionHeaderView.swift */; };
 		D06B0C3722C513E400372445 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06B0C3522C513E400372445 /* SectionHeaderView.xib */; };
 		D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D06B0C3822C5157000372445 /* SectionFooterView.xib */; };
@@ -70,9 +66,6 @@
 		D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */; };
 		D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575122FEBB1C00256BA6 /* StoryboardLoadable.swift */; };
 		D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575222FEBB1C00256BA6 /* Embeddable.swift */; };
-		D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */; };
-		D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */; };
-		D086575A22FEBBE400256BA6 /* ForgotPasswordDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */; };
 		D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */; };
 		D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */; };
 		D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575F22FEC8A100256BA6 /* BasicModel.swift */; };
@@ -93,6 +86,7 @@
 		D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsProvider.swift; sourceTree = "<group>"; };
 		D00C70F82385972100E40BB4 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		D00C70FA2385975900E40BB4 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		D0106B7B2693274D007BC819 /* FieldsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsDataSource.swift; sourceTree = "<group>"; };
 		D011B8D722C7FE830059A52D /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
 		D011B8D922C803A80059A52D /* PickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCell.swift; sourceTree = "<group>"; };
 		D011B8DA22C803A80059A52D /* PickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCell.xib; sourceTree = "<group>"; };
@@ -249,6 +243,7 @@
 			children = (
 				D034C75F22A537F3000FE220 /* FieldsController.swift */,
 				D0704C2F22B17EF2004A0A25 /* FieldsCollectionController.swift */,
+				D0106B7B2693274D007BC819 /* FieldsDataSource.swift */,
 				D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */,
 				D0704C2222B15C00004A0A25 /* CellModels */,
 				D034C76D22A53AEC000FE220 /* Cells */,
@@ -440,7 +435,6 @@
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
 				D0628E5C230028A700D86F63 /* FormButtonCell.xib in Resources */,
 				D0137EF023070C9D00E46211 /* DatePickerCellAccessoryView.xib in Resources */,
-				D086575822FEBB4F00256BA6 /* ForgotPasswordController.storyboard in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
 				D06B0C4322C669BF00372445 /* ToggleCell.xib in Resources */,
 				D0628E6323003A3B00D86F63 /* InventoryCategoryCell.xib in Resources */,
@@ -464,12 +458,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D086575A22FEBBE400256BA6 /* ForgotPasswordDataSource.swift in Sources */,
 				D00A400B22CB41180001625B /* FormTextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
-				D048B0CF2526177C00FEA0F3 /* SlideTestDataSource.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
 				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
@@ -481,13 +473,10 @@
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D00A400E22CB41B00001625B /* FormTextCell.swift in Sources */,
-				D086575622FEBB4400256BA6 /* ForgotPasswordController.swift in Sources */,
-				D00C70F92385972100E40BB4 /* OptionsController.swift in Sources */,
 				D0628E5B230028A700D86F63 /* FormButtonCell.swift in Sources */,
 				D0628E6223003A3B00D86F63 /* InventoryCategoryCell.swift in Sources */,
 				D0628E6823005B0D00D86F63 /* InventoryCategory-Extensions.swift in Sources */,
 				D06B0C3F22C533F100372445 /* Address.swift in Sources */,
-				D06B0C3322C50B2700372445 /* RegisterDataSource.swift in Sources */,
 				D011B8D822C7FE830059A52D /* PickerModel.swift in Sources */,
 				D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */,
 				D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */,
@@ -507,7 +496,6 @@
 				D0628E562300245800D86F63 /* FieldSection.swift in Sources */,
 				D011B8DF22C904080059A52D /* PickerOptionsListController.swift in Sources */,
 				D0628E58230027C700D86F63 /* FormButtonModel.swift in Sources */,
-				D06B0C3122C50AE200372445 /* RegisterController.swift in Sources */,
 				D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */,
 				D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */,
 				D034C76022A537F3000FE220 /* FieldsController.swift in Sources */,
@@ -519,8 +507,8 @@
 				D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */,
 				D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */,
 				D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */,
+				D0106B7C2693274D007BC819 /* FieldsDataSource.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
-				D048B0CD2526175A00FEA0F3 /* SlideTestController.swift in Sources */,
 				D05D9327243DC593006AD319 /* UIEdgeInsets-Extensions.swift in Sources */,
 				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
 			);
@@ -592,7 +580,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -649,7 +637,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

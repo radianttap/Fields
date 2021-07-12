@@ -1,5 +1,4 @@
 //
-//  UIResponder-FieldsDelegate.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap

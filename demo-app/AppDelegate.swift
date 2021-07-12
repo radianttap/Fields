@@ -30,10 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 private extension AppDelegate {
 	func prepareLogin() -> LoginController {
-		let layout = FieldHeightSizingLayout()
-		layout.minimumLineSpacing = 8
-		layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-		let vc = LoginController(layout: layout)
+		let vc = LoginController()
 
 		//	Model (data source)
 		let user = User()
@@ -43,16 +40,16 @@ private extension AppDelegate {
 		return vc
 	}
 
-	func prepareSlideTest() -> SlideTestController {
-		let layout = FieldHeightSizingLayout()
-		layout.minimumLineSpacing = 8
-		layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-		let vc = SlideTestController(layout: layout)
-		
-		//	Model (data source)
-		let ds = SlideTestDataSource()
-		vc.dataSource = ds
-		
-		return vc
-	}
+//	func prepareSlideTest() -> SlideTestController {
+//		let layout = FieldHeightSizingLayout()
+//		layout.minimumLineSpacing = 8
+//		layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+//		let vc = SlideTestController(layout: layout)
+//
+//		//	Model (data source)
+//		let ds = SlideTestDataSource()
+//		vc.dataSource = ds
+//
+//		return vc
+//	}
 }

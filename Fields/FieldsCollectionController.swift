@@ -1,5 +1,4 @@
 //
-//  FieldsCollectionController.swift
 //  Fields
 //
 //  Copyright © 2019 Radiant Tap
@@ -9,19 +8,8 @@
 import UIKit
 
 class FieldsCollectionController: FieldsController {
-
 	private(set) var collectionView: UICollectionView!
-	private var layout: UICollectionViewLayout
 
-	init(layout: UICollectionViewLayout = FieldHeightSizingLayout()) {
-		self.layout = layout
-		super.init(nibName: nil, bundle: nil)
-	}
-
-	required init?(coder aDecoder: NSCoder) {
-		preconditionFailure("init(coder:) has not been implemented")
-	}
-	
 	//	View lifecycle
 
 	override func loadView() {
@@ -29,11 +17,17 @@ class FieldsCollectionController: FieldsController {
 		loadCollectionView()
 	}
 
+	var dataSource: FieldsDataSourceable? {
+		didSet {
+			if !isViewLoaded { return }
+			prepareDataSource()
+		}
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		collectionView.delegate = nil
-		collectionView.dataSource = nil
+		prepareDataSource()
 	}
 	
 	//	Entry point for DataSource object to ask VC to redraw itself
@@ -62,7 +56,7 @@ class FieldsCollectionController: FieldsController {
 
 private extension FieldsCollectionController {
 	func loadCollectionView() {
-		let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		let cv = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
 		cv.translatesAutoresizingMaskIntoConstraints = false
 
 		cv.backgroundColor = .clear
@@ -74,6 +68,13 @@ private extension FieldsCollectionController {
 		cv.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
 
 		self.collectionView = cv
+	}
+
+	func prepareDataSource() {
+		collectionView.delegate = nil
+		collectionView.dataSource = nil
+
+		dataSource?.controller = self
 	}
 }
 
