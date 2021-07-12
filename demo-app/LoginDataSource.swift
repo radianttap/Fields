@@ -77,7 +77,7 @@ final class LoginDataSource: FieldsDataSource {
 
 		snapshot.appendSections(["0"])
 		snapshot.appendItems(
-			FieldId.allCases.map { $0.rawValue }
+			fields.map { $0.id }
 		)
 
 		return snapshot
@@ -133,9 +133,19 @@ private extension LoginDataSource {
 		}())
 
 		fields.append({
-			let model = FormButtonModel(id: FieldId.submit.rawValue,
-									title: NSLocalizedString("Sign in", comment: ""))
+			let model = FormButtonModel(
+				id: FieldId.submit.rawValue,
+				title: NSLocalizedString("Sign in", comment: "")
+			)
+			model.action = realSubmit
 			return model
 		}())
+	}
+
+	func realSubmit() {
+		//	validate
+		//	submit to middleware/data
+
+		//	in essence: re-run `prepareFields()` and update `fields` array
 	}
 }
