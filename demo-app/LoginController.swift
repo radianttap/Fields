@@ -7,11 +7,7 @@ final class LoginController: FieldsCollectionController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		navigationItem.leftBarButtonItem = {
-			let bbi = UIBarButtonItem(title: NSLocalizedString("Sign up", comment: ""), style: .plain, target: self, action: #selector(openAccount))
-			return bbi
-		}()
-
+		setupUI()
 		applyTheme()
 	}
 }
@@ -24,6 +20,13 @@ private extension LoginController {
 	}
 
 	func setupUI() {
+		title = "Login"
+
+		navigationItem.leftBarButtonItem = {
+			let bbi = UIBarButtonItem(title: NSLocalizedString("Sign up", comment: ""), style: .plain, target: self, action: #selector(openAccount))
+			return bbi
+		}()
+
 		collectionView.delegate = self
 	}
 
@@ -43,16 +46,20 @@ private extension LoginController {
 
 extension LoginController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//		guard let field = dataSource?.field(at: indexPath) else { return }
-//
-//		switch field.id {
-//		case LoginDataSource.FieldId.forgotpassword.rawValue:
-//			let vc = ForgotPasswordController.instantiate()
-//			vc.dataSource = ForgotPasswordDataSource(user: dataSource?.user)
-//			show(vc, sender: self)
-//
-//		default:
-//			break
-//		}
+		guard
+			let ds = dataSource as? LoginDataSource
+		else { return }
+
+		let field = ds.field(at: indexPath)
+
+		switch field.id {
+		case LoginDataSource.FieldId.forgotpassword.rawValue:
+			let vc = ForgotPasswordController.instantiate()
+			vc.dataSource = ForgotPasswordDataSource(user: ds.user)
+			show(vc, sender: self)
+
+		default:
+			break
+		}
 	}
 }

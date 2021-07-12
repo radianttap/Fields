@@ -1,11 +1,3 @@
-//
-//  ForgotPasswordDataSource.swift
-//  Fields-demo
-//
-//  Created by Aleksandar Vacić on 8/10/19.
-//  Copyright © 2019 Radiant Tap. All rights reserved.
-//
-
 import Foundation
 
 final class ForgotPasswordDataSource: NSObject {

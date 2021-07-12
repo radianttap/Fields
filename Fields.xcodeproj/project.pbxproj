@@ -64,6 +64,9 @@
 		D0704C3222B180D7004A0A25 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3122B180D7004A0A25 /* User.swift */; };
 		D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3322B18277004A0A25 /* FieldModel.swift */; };
 		D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0704C3522B25184004A0A25 /* UIResponder-FieldsDelegate.swift */; };
+		D0776C6A269CC271002CA92C /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */; };
+		D0776C6B269CC271002CA92C /* ForgotPasswordDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */; };
+		D0776C6C269CC271002CA92C /* ForgotPasswordController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */; };
 		D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575122FEBB1C00256BA6 /* StoryboardLoadable.swift */; };
 		D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575222FEBB1C00256BA6 /* Embeddable.swift */; };
 		D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */; };
@@ -84,7 +87,6 @@
 		D00A400C22CB41B00001625B /* FormTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextCell.swift; sourceTree = "<group>"; };
 		D00A400D22CB41B00001625B /* FormTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextCell.xib; sourceTree = "<group>"; };
 		D00A401022CB4CEC0001625B /* PickerOptionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerOptionsProvider.swift; sourceTree = "<group>"; };
-		D00C70F82385972100E40BB4 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		D00C70FA2385975900E40BB4 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		D0106B7B2693274D007BC819 /* FieldsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldsDataSource.swift; sourceTree = "<group>"; };
 		D011B8D722C7FE830059A52D /* PickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerModel.swift; sourceTree = "<group>"; };
@@ -109,8 +111,6 @@
 		D034C76E22A53B25000FE220 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		D034C76F22A53B25000FE220 /* TextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextFieldCell.xib; sourceTree = "<group>"; };
 		D034C77D22A56A8C000FE220 /* TextFieldModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModel.swift; sourceTree = "<group>"; };
-		D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTestController.swift; sourceTree = "<group>"; };
-		D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTestDataSource.swift; sourceTree = "<group>"; };
 		D05C45922306ECE70030E0AE /* DatePickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerCell.xib; sourceTree = "<group>"; };
 		D05C45932306ECE80030E0AE /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		D05C45962306ECF90030E0AE /* DatePickerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerModel.swift; sourceTree = "<group>"; };
@@ -231,9 +231,6 @@
 				D086575522FEBB4400256BA6 /* ForgotPasswordController.swift */,
 				D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */,
 				D086575722FEBB4F00256BA6 /* ForgotPasswordController.storyboard */,
-				D00C70F82385972100E40BB4 /* OptionsController.swift */,
-				D048B0CC2526175A00FEA0F3 /* SlideTestController.swift */,
-				D048B0CE2526177C00FEA0F3 /* SlideTestDataSource.swift */,
 			);
 			path = "demo-app";
 			sourceTree = "<group>";
@@ -433,6 +430,7 @@
 			files = (
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
+				D0776C6C269CC271002CA92C /* ForgotPasswordController.storyboard in Resources */,
 				D0628E5C230028A700D86F63 /* FormButtonCell.xib in Resources */,
 				D0137EF023070C9D00E46211 /* DatePickerCellAccessoryView.xib in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
@@ -471,8 +469,10 @@
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,
 				D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */,
 				D0704C3022B17EF2004A0A25 /* FieldsCollectionController.swift in Sources */,
+				D0776C6A269CC271002CA92C /* ForgotPasswordController.swift in Sources */,
 				D0704C2022B15B7C004A0A25 /* UIKeyboard-Notifications.swift in Sources */,
 				D00A400E22CB41B00001625B /* FormTextCell.swift in Sources */,
+				D0776C6B269CC271002CA92C /* ForgotPasswordDataSource.swift in Sources */,
 				D0628E5B230028A700D86F63 /* FormButtonCell.swift in Sources */,
 				D0628E6223003A3B00D86F63 /* InventoryCategoryCell.swift in Sources */,
 				D0628E6823005B0D00D86F63 /* InventoryCategory-Extensions.swift in Sources */,

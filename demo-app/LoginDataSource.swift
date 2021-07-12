@@ -28,6 +28,8 @@ final class LoginDataSource: FieldsDataSource {
 		case submit
 	}
 
+	//	MARK: FieldDataSource
+
 	override func registerReusableElements(for cv: UICollectionView) {
 		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
@@ -81,6 +83,14 @@ final class LoginDataSource: FieldsDataSource {
 		)
 
 		return snapshot
+	}
+}
+
+//	MARK: Internal
+
+extension LoginDataSource {
+	func field(at indexPath: IndexPath) -> FieldModel {
+		return fields[indexPath.item]
 	}
 }
 

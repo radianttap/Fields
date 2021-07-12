@@ -1,11 +1,3 @@
-//
-//  ForgotPasswordController.swift
-//  Fields-demo
-//
-//  Created by Aleksandar Vacić on 8/10/19.
-//  Copyright © 2019 Radiant Tap. All rights reserved.
-//
-
 import UIKit
 
 final class ForgotPasswordController: FieldsController, StoryboardLoadable {
@@ -43,6 +35,8 @@ extension ForgotPasswordController {
 
 private extension ForgotPasswordController {
 	func setupUI() {
+		title = "Password reset"
+
 		//	hack to use UICVCell subclass inside storyboard, outside of UICV
 		[emailField].forEach {
 			$0?.contentView.removeFromSuperview()
@@ -69,11 +63,5 @@ private extension ForgotPasswordController {
 	@IBAction func openCredits(_ sender: UIButton) {
 		guard let url = URL(string: "https://www.iconfinder.com/rizal999") else { return }
 		UIApplication.shared.open(url)
-	}
-
-	@IBAction func displayOptions(_ sender: UIBarButtonItem) {
-		let l = FullWidthLayout()
-		let vc = OptionsController(collectionViewLayout: l)
-		show(vc, sender: self)
 	}
 }
