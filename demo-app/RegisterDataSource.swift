@@ -218,6 +218,45 @@ final class RegisterDataSource: FieldsDataSource {
 		}
 	}
 
+	override func createLayoutSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+		let id = sections[sectionIndex].id
+
+		switch id {
+			case SectionId.prefs.rawValue:
+				return createLayoutPrefsSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+
+			default:
+				return super.createLayoutSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+		}
+	}
+
+	private func createLayoutPrefsSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+		let aw = layoutEnvironment.container.contentSize.width
+		let fieldsCount = sections[sectionIndex].fields.count
+		let itemWidth = max(80, aw / min(inventoryColumnSplit, CGFloat(fieldsCount)))
+		let itemHeight = min(120, itemWidth)
+
+		let item = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .absolute(itemWidth),
+				heightDimension: .absolute(itemHeight)
+			)
+		)
+
+		let group = NSCollectionLayoutGroup.horizontal(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(itemHeight)
+			),
+			subitem: item,
+			count: fieldsCount
+		)
+
+		let section = NSCollectionLayoutSection(group: group)
+		section.boundarySupplementaryItems = layoutSectionSupplementaryItems(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+		return section
+	}
+
 	override func populateSnapshot() -> FieldsDataSource.Snapshot {
 		var snapshot = Snapshot()
 
@@ -267,7 +306,7 @@ private extension RegisterDataSource {
 		if shouldAddAddress {
 			sections.append( buildAddressSection() )
 		}
-//		sections.append( buildPrefsSection() )
+		sections.append( buildPrefsSection() )
 		sections.append( buildPersonalSection() )
 		sections.append( buildOtherSection() )
 	}
@@ -610,5 +649,47 @@ extension RegisterDataSource {
 	func field(at indexPath: IndexPath) -> FieldModel {
 		let field = sections[indexPath.section].fields[indexPath.item]
 		return field
+	}
+}
+
+private extension RegisterDataSource {
+	var addressColumnSplit: CGFloat {
+		let c = controller?.traitCollection.preferredContentSizeCategory ?? .large
+
+		if c <= .large {
+			return 4
+		} else if c <= .accessibilityMedium {
+			return 2
+		} else {
+			return 1
+		}
+	}
+
+	var personTitleColumnSplit: CGFloat {
+		let c = controller?.traitCollection.preferredContentSizeCategory ?? .large
+
+		if c <= .large {
+			return 5
+		} else if c <= .accessibilityMedium {
+			return 4
+		} else if c <= .accessibilityExtraLarge {
+			return 3
+		} else {
+			return 1
+		}
+	}
+
+	var inventoryColumnSplit: CGFloat {
+		let c = controller?.traitCollection.preferredContentSizeCategory ?? .large
+
+		if c <= .large {
+			return 4
+		} else if c <= .extraExtraLarge {
+			return 3
+		} else if c <= .accessibilityMedium {
+			return 2
+		} else {
+			return 1
+		}
 	}
 }

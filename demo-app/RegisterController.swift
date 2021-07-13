@@ -21,28 +21,11 @@ private extension RegisterController {
 	}
 
 	func setupUI() {
-//		collectionView.delegate = self
 	}
 }
 
 
 /*
-extension RegisterController: UICollectionViewDelegate {
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		guard
-			let field = dataSource?.field(at: indexPath),
-			let cell = collectionView.cellForItem(at: indexPath) as? FormFieldCell
-		else { return }
-
-		switch field {
-		case let field as SingleValueModel<InventoryCategory>:
-			field.valueSelected(cell)
-		default:
-			break
-		}
-	}
-}
-
 extension RegisterController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		guard
@@ -52,18 +35,6 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 		else { return .zero }
 
 		var itemSize = layout.itemSize
-
-		switch section.id {
-		case RegisterDataSource.SectionId.prefs.rawValue:
-			let w = collectionView.bounds.width
-			let aw = w - (layout.sectionInset.left + layout.sectionInset.right)
-			itemSize.width = max(80, aw / min(inventoryColumnSplit, CGFloat(section.fields.count)))
-			itemSize.height = min(120, itemSize.width)
-			return itemSize
-
-		default:
-			break
-		}
 
 		switch field.id {
 		case RegisterDataSource.FieldId.postcode.rawValue, RegisterDataSource.FieldId.country.rawValue,
@@ -87,45 +58,4 @@ extension RegisterController: UICollectionViewDelegateFlowLayout {
 	}
 }
 
-private extension RegisterController {
-    var addressColumnSplit: CGFloat {
-        let c = traitCollection.preferredContentSizeCategory
-
-        if c <= .large {
-            return 4
-        } else if c <= .accessibilityMedium {
-            return 2
-        } else {
-            return 1
-        }
-    }
-
-    var personTitleColumnSplit: CGFloat {
-        let c = traitCollection.preferredContentSizeCategory
-
-        if c <= .large {
-            return 5
-        } else if c <= .accessibilityMedium {
-            return 4
-        } else if c <= .accessibilityExtraLarge {
-            return 3
-        } else {
-            return 1
-        }
-    }
-
-	var inventoryColumnSplit: CGFloat {
-        let c = traitCollection.preferredContentSizeCategory
-
-        if c <= .large {
-            return 4
-		} else if c <= .extraExtraLarge {
-			return 3
-        } else if c <= .accessibilityMedium {
-            return 2
-        } else {
-            return 1
-        }
-	}
-}
 */
