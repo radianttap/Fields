@@ -30,14 +30,6 @@ class FieldsCollectionController: FieldsController {
 		prepareDataSource()
 	}
 	
-	//	Entry point for DataSource object to ask VC to redraw itself
-
-	override func renderContentUpdates() {
-		if !isViewLoaded { return }
-
-		collectionView.reloadData()
-	}
-	
 	//	Override these methods, if you need to change default behavior
 
 	override func keyboardWillShow(notification kn: KeyboardNotification) {

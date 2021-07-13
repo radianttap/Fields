@@ -32,6 +32,8 @@
 		D034C77022A53B25000FE220 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C76E22A53B25000FE220 /* TextFieldCell.swift */; };
 		D034C77122A53B25000FE220 /* TextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D034C76F22A53B25000FE220 /* TextFieldCell.xib */; };
 		D034C77E22A56A8C000FE220 /* TextFieldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D034C77D22A56A8C000FE220 /* TextFieldModel.swift */; };
+		D0468DE9269DD7DA00D77D1A /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3022C50AE200372445 /* RegisterController.swift */; };
+		D0468DEA269DD7DA00D77D1A /* RegisterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06B0C3222C50B2700372445 /* RegisterDataSource.swift */; };
 		D05C45942306ECE80030E0AE /* DatePickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D05C45922306ECE70030E0AE /* DatePickerCell.xib */; };
 		D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45932306ECE80030E0AE /* DatePickerCell.swift */; };
 		D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05C45962306ECF90030E0AE /* DatePickerModel.swift */; };
@@ -508,9 +510,11 @@
 				D06B0C4522C669CC00372445 /* ToggleModel.swift in Sources */,
 				D0137EEE23070C8D00E46211 /* DatePickerCellAccessoryView.swift in Sources */,
 				D0106B7C2693274D007BC819 /* FieldsDataSource.swift in Sources */,
+				D0468DE9269DD7DA00D77D1A /* RegisterController.swift in Sources */,
 				D0704C2C22B177CF004A0A25 /* LoginController.swift in Sources */,
 				D05D9327243DC593006AD319 /* UIEdgeInsets-Extensions.swift in Sources */,
 				D0704C3622B25184004A0A25 /* UIResponder-FieldsDelegate.swift in Sources */,
+				D0468DEA269DD7DA00D77D1A /* RegisterDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

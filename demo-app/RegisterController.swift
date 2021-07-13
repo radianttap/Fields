@@ -1,37 +1,13 @@
-//
-//  RegisterController.swift
-//
-
 import UIKit
 
 final class RegisterController: FieldsCollectionController {
-
-	var dataSource: RegisterDataSource? {
-		didSet {
-			if !isViewLoaded { return }
-
-			prepare(dataSource)
-			render(dataSource)
-		}
-	}
-
 	//	View lifecycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		setupUI()
-
-		prepare(dataSource)
-		render(dataSource)
-
 		applyTheme()
-	}
-
-	override func renderContentUpdates() {
-		if !isViewLoaded { return }
-
-		render(dataSource)
 	}
 }
 
@@ -45,25 +21,12 @@ private extension RegisterController {
 	}
 
 	func setupUI() {
-		collectionView.delegate = self
-	}
-
-	func prepare(_ dataSource: RegisterDataSource?) {
-		dataSource?.controller = self
-		(collectionView.collectionViewLayout as? FieldHeightSizingLayout)?.heightSizingDelegate = dataSource
-	}
-
-	func render(_ dataSource: RegisterDataSource?) {
-		collectionView.reloadData()
-	}
-
-	//	MARK:- Actions
-
-	func submit() {
+//		collectionView.delegate = self
 	}
 }
 
 
+/*
 extension RegisterController: UICollectionViewDelegate {
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		guard
@@ -165,3 +128,4 @@ private extension RegisterController {
         }
 	}
 }
+*/

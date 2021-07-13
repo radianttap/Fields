@@ -1,15 +1,6 @@
-//
-//  RegisterDataSource.swift
-//
-
 import UIKit
 
-final class RegisterDataSource: NSObject {
-	//	Dependencies
-	weak var controller: FieldsCollectionController? {
-		didSet { prepareView() }
-	}
-
+final class RegisterDataSource: FieldsDataSource {
 	lazy var dateFormatter: DateFormatter = {
 		let df = DateFormatter()
 		df.dateStyle = .medium
@@ -89,16 +80,10 @@ final class RegisterDataSource: NSObject {
 		case note
 		case submit
 	}
-}
 
-private extension RegisterDataSource {
-	func prepareView() {
-		guard let cv = controller?.collectionView else { return }
+	//	MARK: FieldDataSource
 
-		//	reusability is not needed here
-		//	(it can actually lead to problems),
-		//	so register separate Cell for each field
-
+	override func registerReusableElements(for cv: UICollectionView) {
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 
@@ -131,42 +116,134 @@ private extension RegisterDataSource {
 
 		cv.register(SectionHeaderView.self, kind: SectionHeaderView.kind)
 		cv.register(SectionFooterView.self, kind: SectionFooterView.kind)
-
-		cv.dataSource = self
 	}
 
-	func renderContentUpdates() {
-		controller?.renderContentUpdates()
+	override func cell(collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell {
+		let model = sections[indexPath.section].fields[indexPath.item]
+
+		switch model {
+			case let model as TextFieldModel:
+				let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as TextViewModel:
+				let cell: TextViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as FormTextModel:
+				let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as ToggleModel:
+				let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as DatePickerModel:
+				let cell: DatePickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as FormButtonModel:
+				let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as SingleValueModel<InventoryCategory>:
+				let cell: InventoryCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			case let model as PickerModel<PersonTitle>:
+				let cell: PickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+				cell.populate(with: model)
+				return cell
+
+			default:
+				preconditionFailure("Unknown cell model")
+		}
 	}
 
+	override func layoutSectionSupplementaryItems(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> [NSCollectionLayoutBoundarySupplementaryItem] {
+		var arr: [NSCollectionLayoutBoundarySupplementaryItem] = []
+
+		if sections[sectionIndex].header != nil {
+			let size = NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(44)
+			)
+			let element = NSCollectionLayoutBoundarySupplementaryItem(
+				layoutSize: size,
+				elementKind: SectionHeaderView.kind,
+				alignment: .topLeading
+			)
+			arr.append(element)
+		}
+
+		if sections[sectionIndex].footer != nil {
+			let size = NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(66)
+			)
+			let element = NSCollectionLayoutBoundarySupplementaryItem(
+				layoutSize: size,
+				elementKind: SectionFooterView.kind,
+				alignment: .bottomLeading
+			)
+			arr.append(element)
+		}
+
+		return arr
+	}
+
+	override func supplementary(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView {
+		let s = sections[indexPath.section]
+
+		switch kind {
+			case SectionHeaderView.kind:
+				let v: SectionHeaderView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
+				v.populate(with: s.header ?? "")
+				return v
+
+			case SectionFooterView.kind:
+				let v: SectionFooterView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
+				v.populate(with: s.footer ?? "")
+				return v
+
+			default:
+				preconditionFailure("Unexpected supplementary view kind: \( kind )")
+		}
+	}
+
+	override func populateSnapshot() -> FieldsDataSource.Snapshot {
+		var snapshot = Snapshot()
+
+		snapshot.appendSections(
+			sections.map { $0.id }
+		)
+		for section in sections {
+			snapshot.appendItems(
+				section.fields.map { $0.id },
+				toSection: section.id
+			)
+		}
+
+		return snapshot
+	}
+}
+
+private extension RegisterDataSource {
 	func processAddressToggle() {
 		if !shouldAddAddress {
 			user?.postalAddress = nil
 			user?.billingAddress = nil
 		}
 
-		guard let cv = self.controller?.collectionView else { return }
-
-		cv.performBatchUpdates({
-			prepareFields()
-
-			if self.shouldAddAddress {
-				if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-					//	insert after account section
-					let indexSet = IndexSet(integer: index + 1)
-					cv.insertSections(indexSet)
-				} else {
-					cv.reloadData()
-				}
-			} else {
-				if let index = sections.firstIndex(where: { $0.id == SectionId.account.rawValue }) {
-					let indexSet = IndexSet(integer: index + 1)
-					cv.deleteSections(indexSet)
-				} else {
-					cv.reloadData()
-				}
-			}
-		}, completion: nil)
+		prepareFields()
+		render(animated: true)
 	}
 
 	func processBillingAddressToggle() {
@@ -177,26 +254,8 @@ private extension RegisterDataSource {
 			user?.billingAddress = nil
 		}
 
-
-		guard let cv = self.controller?.collectionView else { return }
-
-		cv.performBatchUpdates({
-			prepareFields()
-
-			if
-				let sec = sections.firstIndex(where: { $0.id == SectionId.address.rawValue }),
-				let toggleItemIndex = sections[sec].fields.firstIndex(where: { $0.id == FieldId.billingAddressToggle.rawValue })
-			{
-				let indexPaths: [IndexPath] = (toggleItemIndex + 1 ... toggleItemIndex + 4).map { IndexPath(item: $0, section: sec) }
-				if usePostalAsBillingAddress {
-					cv.deleteItems(at: indexPaths)
-				} else {
-					cv.insertItems(at: indexPaths)
-				}
-			} else {
-				cv.reloadData()
-			}
-		}, completion: nil)
+		prepareFields()
+		render(animated: true)
 	}
 
 	//	MARK: Data source for the CV
@@ -529,7 +588,7 @@ private extension RegisterDataSource {
 			self.preferredInventoryCategory = item
 
 			self.prepareFields()
-			self.renderContentUpdates()
+//			self.renderContentUpdates()
 		}
 		return model
 	}
@@ -543,85 +602,7 @@ fileprivate extension InventoryCategory {
 }
 
 
-//	MARK:- UICV.DataSource
-
-extension RegisterDataSource: UICollectionViewDataSource {
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		return sections.count
-	}
-
-	func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-		let s = sections[indexPath.section]
-
-		switch kind {
-		case SectionHeaderView.kind:
-			let v: SectionHeaderView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
-			v.populate(with: s.header ?? "")
-			return v
-
-		case SectionFooterView.kind:
-			let v: SectionFooterView = collectionView.dequeueReusableView(kind: kind, atIndexPath: indexPath)
-			v.populate(with: s.footer ?? "")
-			return v
-
-		default:
-			preconditionFailure("Unexpected supplementary view kind: \( kind )")
-		}
-	}
-
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return sections[section].fields.count
-	}
-
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let model = sections[indexPath.section].fields[indexPath.item]
-
-		switch model {
-		case let model as TextFieldModel:
-			let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as TextViewModel:
-			let cell: TextViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as FormTextModel:
-			let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as ToggleModel:
-			let cell: ToggleCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as DatePickerModel:
-			let cell: DatePickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as FormButtonModel:
-			let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as SingleValueModel<InventoryCategory>:
-			let cell: InventoryCategoryCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		case let model as PickerModel<PersonTitle>:
-			let cell: PickerCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-			cell.populate(with: model)
-			return cell
-
-		default:
-			preconditionFailure("Unknown cell model")
-		}
-	}
-
+extension RegisterDataSource {
 	func section(at index: Int) -> FieldSection {
 		return sections[index]
 	}
@@ -629,18 +610,5 @@ extension RegisterDataSource: UICollectionViewDataSource {
 	func field(at indexPath: IndexPath) -> FieldModel {
 		let field = sections[indexPath.section].fields[indexPath.item]
 		return field
-	}
-}
-
-
-extension RegisterDataSource: FieldHeightSizingLayoutDelegate {
-	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForHeaderInSection section: Int) -> CGFloat? {
-		guard let _ = sections[section].header else { return nil }
-		return 44
-	}
-
-	func fieldHeightSizingLayout(layout: FieldHeightSizingLayout, estimatedHeightForFooterInSection section: Int) -> CGFloat? {
-		guard let _ = sections[section].footer else { return nil }
-		return 66
 	}
 }

@@ -41,6 +41,15 @@ private extension LoginController {
 	//	MARK:- Actions
 
 	@objc func openAccount(_ sender: UIBarButtonItem) {
+		guard
+			let ds = dataSource as? LoginDataSource,
+			let user = ds.user
+		else { return }
+
+		let vc = RegisterController()
+		vc.dataSource = RegisterDataSource(user)
+
+		show(vc, sender: self)
 	}
 }
 

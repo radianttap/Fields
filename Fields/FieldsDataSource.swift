@@ -101,6 +101,14 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 		section.boundarySupplementaryItems = layoutSectionSupplementaryItems(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
 		return section
 	}
+
+	//	MARK: Utility
+
+	func render(animated: Bool = true) {
+		if controller == nil { return }
+
+		snapshot(animated: animated)
+	}
 }
 
 private extension FieldsDataSource {
@@ -108,8 +116,7 @@ private extension FieldsDataSource {
 	typealias GridSource = UICollectionViewDiffableDataSource<String, String>
 
 	func prepareView() {
-		guard
-			let cv = controller?.collectionView
+		guard let cv = controller?.collectionView
 		else { return }
 
 		registerReusableElements(for: cv)
