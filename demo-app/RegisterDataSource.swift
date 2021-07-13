@@ -225,6 +225,9 @@ final class RegisterDataSource: FieldsDataSource {
 			case SectionId.prefs.rawValue:
 				return createLayoutPrefsSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
 
+			case SectionId.address.rawValue:
+				return createLayoutAddressSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+
 			default:
 				return super.createLayoutSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
 		}
@@ -250,6 +253,68 @@ final class RegisterDataSource: FieldsDataSource {
 			),
 			subitem: item,
 			count: fieldsCount
+		)
+
+		let section = NSCollectionLayoutSection(group: group)
+		section.boundarySupplementaryItems = layoutSectionSupplementaryItems(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+		return section
+	}
+
+	private func createLayoutAddressSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+		//	regular item
+		let defitem = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth( 1.0 ),
+				heightDimension: .estimated(estimatedFieldHeight)
+			)
+		)
+
+		//	postcode, country
+		let postcodeitem = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth( 1 / addressColumnSplit ),
+				heightDimension: .estimated(estimatedFieldHeight)
+			)
+		)
+
+		//	city
+		let cityitem = NSCollectionLayoutItem(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth( min(1, 1 / addressColumnSplit * 2) ),
+				heightDimension: .estimated(estimatedFieldHeight)
+			)
+		)
+
+		let citygroup = NSCollectionLayoutGroup.horizontal(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedFieldHeight)
+			),
+			subitems: [cityitem, postcodeitem, postcodeitem]	//	city, post code, country
+		)
+
+		let streetgroup = NSCollectionLayoutGroup.vertical(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedFieldHeight)
+			),
+			subitems: [defitem]
+		)
+
+		let addressgroup = NSCollectionLayoutGroup.vertical(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedFieldHeight * 2)
+			),
+			subitems: [streetgroup, citygroup]
+		)
+
+		let group = NSCollectionLayoutGroup.vertical(
+			layoutSize: NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1.0),
+				heightDimension: .estimated(estimatedFieldHeight * (usePostalAsBillingAddress ? 3 : 5))
+			),
+			subitems: usePostalAsBillingAddress ? [addressgroup, defitem] : [addressgroup, defitem, addressgroup]
 		)
 
 		let section = NSCollectionLayoutSection(group: group)
