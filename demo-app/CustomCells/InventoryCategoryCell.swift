@@ -16,6 +16,9 @@ final class InventoryCategoryCell: FormFieldCell, NibReusableView {
 			applyTheme()
 		}
 	}
+
+	private var ic: InventoryCategory?
+	private var valueSelected: (InventoryCategory, FormFieldCell) -> Void = {_, _ in}
 }
 
 extension InventoryCategoryCell {
@@ -33,6 +36,9 @@ extension InventoryCategoryCell {
 		switch model {
 		case let model as SingleValueModel<InventoryCategory>:
 			iconView.image = model.value.icon
+			ic = model.value
+			valueSelected = model.valueSelected
+
 		default:
 			break
 		}
@@ -54,5 +60,9 @@ private extension InventoryCategoryCell {
 			iconView.tintColor = .darkText
 		}
 	}
-}
 
+	@IBAction func tapped(_ sender: UIControl) {
+		guard let ic = ic else { return }
+		valueSelected(ic, self)
+	}
+}

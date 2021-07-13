@@ -621,13 +621,13 @@ private extension RegisterDataSource {
 									 value: item,
 									 isChosen: preferredInventoryCategory == item)
 		model.valueSelected = {
-			[weak self] _ in
+			[weak self] item, cell in
 			guard let self = self else { return }
 
 			self.preferredInventoryCategory = item
 
 			self.prepareFields()
-//			self.renderContentUpdates()
+			self.render(animated: false)
 		}
 		return model
 	}

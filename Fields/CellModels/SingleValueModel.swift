@@ -26,13 +26,13 @@ class SingleValueModel<T: Hashable>: FieldModel {
 	///	Method that should be called when `FieldCell` using this model's instance is selected.
 	///
 	///	Default implementation does nothing.
-	var valueSelected: (FormFieldCell) -> Void = {_ in}
+	var valueSelected: (T, FormFieldCell) -> Void = {_, _ in}
 
 	init(id: String,
 		 title: String? = nil,
 		 value: T,
 		 isChosen: Bool = false,
-		 valueSelected: @escaping (FormFieldCell) -> Void = {_ in}
+		 valueSelected: @escaping (T, FormFieldCell) -> Void = {_, _ in}
 	){
 		self.id = id
 		self.isChosen = isChosen
