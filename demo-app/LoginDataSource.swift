@@ -17,6 +17,7 @@ final class LoginDataSource: FieldsDataSource {
 		self.user = user
 		super.init()
 
+		areSeparatorsEnabled = false
 		prepareFields()
 	}
 
@@ -31,6 +32,8 @@ final class LoginDataSource: FieldsDataSource {
 	//	MARK: FieldDataSource
 
 	override func registerReusableElements(for cv: UICollectionView) {
+		super.registerReusableElements(for: cv)
+
 		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)

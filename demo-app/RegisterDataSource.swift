@@ -36,6 +36,7 @@ final class RegisterDataSource: FieldsDataSource {
 		}
 		super.init()
 
+		areSeparatorsEnabled = false
 		prepareFields()
 	}
 
@@ -84,6 +85,8 @@ final class RegisterDataSource: FieldsDataSource {
 	//	MARK: FieldDataSource
 
 	override func registerReusableElements(for cv: UICollectionView) {
+		super.registerReusableElements(for: cv)
+
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
 		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
 
@@ -214,7 +217,7 @@ final class RegisterDataSource: FieldsDataSource {
 				return v
 
 			default:
-				preconditionFailure("Unexpected supplementary view kind: \( kind )")
+				return super.supplementary(collectionView: collectionView, kind: kind, indexPath: indexPath)
 		}
 	}
 
@@ -347,7 +350,7 @@ private extension RegisterDataSource {
 		}
 
 		prepareFields()
-		render(animated: true)
+		render(populateSnapshot(), animated: true)
 	}
 
 	func processBillingAddressToggle() {
@@ -359,7 +362,7 @@ private extension RegisterDataSource {
 		}
 
 		prepareFields()
-		render(animated: true)
+		render(populateSnapshot(), animated: true)
 	}
 
 	//	MARK: Data source for the CV
@@ -692,7 +695,7 @@ private extension RegisterDataSource {
 			self.preferredInventoryCategory = item
 
 			self.prepareFields()
-			self.render(animated: false)
+			self.render(self.populateSnapshot(), animated: false)
 		}
 		return model
 	}

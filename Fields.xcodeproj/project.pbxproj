@@ -82,6 +82,7 @@
 		D09D0EF325507904001EBC01 /* SegmentsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D09D0EF125507904001EBC01 /* SegmentsCell.xib */; };
 		D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C845237C124B0064842F /* UIButton-Extensions.swift */; };
 		D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */; };
+		D0E131F72703795F0050E109 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E131F62703795F0050E109 /* SeparatorLineView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +164,7 @@
 		D09D0EF125507904001EBC01 /* SegmentsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentsCell.xib; sourceTree = "<group>"; };
 		D0A3C845237C124B0064842F /* UIButton-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
 		D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContentSizeCategory-Notifications.swift"; sourceTree = "<group>"; };
+		D0E131F62703795F0050E109 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +298,7 @@
 				D09D0EF125507904001EBC01 /* SegmentsCell.xib */,
 				D0628E59230028A700D86F63 /* FormButtonCell.swift */,
 				D0628E5A230028A700D86F63 /* FormButtonCell.xib */,
+				D0E131F62703795F0050E109 /* SeparatorLineView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
 				D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */,
+				D0E131F72703795F0050E109 /* SeparatorLineView.swift in Sources */,
 				D011B8DB22C803A80059A52D /* PickerCell.swift in Sources */,
 				D05C45952306ECE80030E0AE /* DatePickerCell.swift in Sources */,
 				D0704C3422B18277004A0A25 /* FieldModel.swift in Sources */,

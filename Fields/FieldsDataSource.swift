@@ -29,15 +29,29 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 	var estimatedFieldHeight: CGFloat = 66
 	var interSectionVerticalSpacing: CGFloat = 0
 
+	var areSeparatorsEnabled = true
+	var lineSeparatorColor: UIColor = UIColor.black.withAlphaComponent(0.12)
+
 	//	Local data model
 
 	private var gridSource: GridSource!
 
 	//	MARK: Override points
 
+	@objc func prepareView() {
+		guard let cv = controller?.collectionView
+		else { return }
+
+		registerReusableElements(for: cv)
+
+		let layout = createLayout()
+		cv.setCollectionViewLayout(layout, animated: false)
+		configureCVDataSource(for: cv)
+	}
+
 	///	This is where you register your custom `UICVCell` and `UICVReusableView` subclasses.
 	@objc func registerReusableElements(for cv: UICollectionView) {
-		preconditionFailure("Must override this method and register cell and supplemenetary instances that UICV will use.")
+		cv.register(SeparatorLineView.self, kind: SeparatorLineView.kind)
 	}
 
 	///	`UICVCell` factory.
@@ -47,7 +61,15 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 
 	///	`UICVReusableView` factory.
 	@objc func supplementary(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView {
-		preconditionFailure("Must override this method and return proper supplementary view instances.")
+		switch kind {
+			case SeparatorLineView.kind:
+				let v: SeparatorLineView = collectionView.dequeueReusableView(kind: SeparatorLineView.kind, atIndexPath: indexPath)
+				v.backgroundColor = lineSeparatorColor
+				return v
+
+			default:
+				preconditionFailure("Unexpected supplementary kind: \( kind )")
+		}
 	}
 
 	///	Diffable data source for the UICV: `FieldSection.id, FieldModel.id`
@@ -82,11 +104,25 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 
 	///	If not override, will create simple section
 	@objc func createLayoutSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+		var itemSupplementaryItems: [NSCollectionLayoutSupplementaryItem] = []
+		if areSeparatorsEnabled {
+			let lineAnchor = NSCollectionLayoutAnchor(edges: [.bottom, .trailing])
+			let lineSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+												  heightDimension: .absolute(1))
+			let line = NSCollectionLayoutSupplementaryItem(
+				layoutSize: lineSize,
+				elementKind: SeparatorLineView.kind,
+				containerAnchor: lineAnchor)
+
+			itemSupplementaryItems = [line]
+		}
+
 		let item = NSCollectionLayoutItem(
 			layoutSize: NSCollectionLayoutSize(
 				widthDimension: .fractionalWidth( 1.0 ),
 				heightDimension: .estimated(estimatedFieldHeight)
-			)
+			),
+			supplementaryItems: itemSupplementaryItems
 		)
 
 		let group = NSCollectionLayoutGroup.vertical(
@@ -104,10 +140,13 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 
 	//	MARK: Utility
 
-	func render(animated: Bool = true) {
-		if controller == nil { return }
+	var currentSnapshot: Snapshot {
+		gridSource.snapshot()
+	}
 
-		snapshot(animated: animated)
+	func render(_ snapshot: Snapshot, animated: Bool = true) {
+		if controller == nil { return }
+		gridSource.apply(snapshot, animatingDifferences: animated)
 	}
 }
 
@@ -115,29 +154,19 @@ private extension FieldsDataSource {
 	///	`FieldSection.id, FieldModel.id`
 	typealias GridSource = UICollectionViewDiffableDataSource<String, String>
 
-	func prepareView() {
-		guard let cv = controller?.collectionView
-		else { return }
-
-		registerReusableElements(for: cv)
-
-		let layout = createLayout()
-		cv.setCollectionViewLayout(layout, animated: false)
-		configureCVDataSource(for: cv)
-	}
-
 	func configureCVDataSource(for cv: UICollectionView) {
 		gridSource = GridSource(
 			collectionView: cv,
-			cellProvider: cell(collectionView:indexPath:item:)
+			cellProvider: { [unowned self] cv, indexPath, item in
+				return self.cell(collectionView: cv, indexPath: indexPath, item: item)
+			}
 		)
-		gridSource.supplementaryViewProvider = supplementary(collectionView:kind:indexPath:)
+		gridSource.supplementaryViewProvider = {
+			[unowned self] cv, kind, indexPath in
+			return self.supplementary(collectionView: cv, kind: kind, indexPath: indexPath)
+		}
 
-		snapshot(animated: false)
-	}
-
-	func snapshot(animated: Bool) {
 		let snapshot = populateSnapshot()
-		gridSource.apply(snapshot, animatingDifferences: animated)
+		render(snapshot, animated: false)
 	}
 }
