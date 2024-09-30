@@ -24,8 +24,8 @@
                             <view clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYS-sl-aPn" customClass="UIControl">
                                 <rect key="frame" x="8" y="56" width="131" height="73"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="light.recessed.3.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
-                                        <rect key="frame" x="37" y="10.5" width="57" height="55.5"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-dress" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
+                                        <rect key="frame" x="37" y="8" width="57" height="57"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="MXH-gG-a8m" secondAttribute="height" multiplier="1:1" priority="699" id="WHU-FE-hoV"/>
@@ -74,7 +74,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="light.recessed.3.inverse" catalog="system" width="128" height="74"/>
+        <image name="icon-dress" width="29" height="39"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
