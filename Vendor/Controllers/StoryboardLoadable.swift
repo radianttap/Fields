@@ -9,7 +9,7 @@
 
 import UIKit
 
-
+@MainActor
 public protocol StoryboardLoadable {
 	static var storyboardName: String { get }
 	static var storyboardIdentifier: String { get }

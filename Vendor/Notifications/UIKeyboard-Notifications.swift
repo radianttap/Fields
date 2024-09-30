@@ -6,6 +6,7 @@
 //  MIT License · http://choosealicense.com/licenses/mit/
 //
 
+#if canImport(UIKit)
 import UIKit
 
 //	@available(iOS 3.2, *)
@@ -28,12 +29,13 @@ import UIKit
 //	public let UIKeyboardIsLocalUserInfoKey: String
 // NSNumber of BOOL
 
-struct KeyboardNotification {
-	var beginFrame: CGRect = .zero
-	var endFrame: CGRect = .zero
-	var animationCurve: UIView.AnimationCurve = .linear
-	var animationDuration: TimeInterval = 0.3
-	var isLocalForCurrentApp: Bool = false
+@MainActor
+public struct KeyboardNotification: Sendable {
+	public var beginFrame: CGRect = .zero
+	public var endFrame: CGRect = .zero
+	public var animationCurve: UIView.AnimationCurve = .linear
+	public var animationDuration: TimeInterval = 0.3
+	public var isLocalForCurrentApp: Bool = false
 
 	init?(notification: Notification) {
 		guard let userInfo = notification.userInfo as? [String: Any] else { return nil }
@@ -56,10 +58,11 @@ struct KeyboardNotification {
 	}
 }
 
-extension KeyboardNotification {
+public extension KeyboardNotification {
 	static let willShow = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillShowNotification, convert: KeyboardNotification.init)
 	static let didShow = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidShowNotification, convert: KeyboardNotification.init)
 
 	static let willHide = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardWillHideNotification, convert: KeyboardNotification.init)
 	static let didHide = NotificationDescriptor<KeyboardNotification>(name: UIResponder.keyboardDidHideNotification, convert: KeyboardNotification.init)
 }
+#endif

@@ -6,10 +6,12 @@
 //  MIT License · http://choosealicense.com/licenses/mit/
 //
 
+#if canImport(UIKit)
 import UIKit
 
-struct ContentSizeCategoryNotification {
-	var category: UIContentSizeCategory = .unspecified
+@available(iOS 10.0, *) @MainActor
+public struct ContentSizeCategoryNotification: Sendable {
+	public var category: UIContentSizeCategory = .unspecified
 
 	init?(notification: Notification) {
 		guard let userInfo = notification.userInfo as? [String: Any] else { return nil }
@@ -22,6 +24,11 @@ struct ContentSizeCategoryNotification {
 	}
 }
 
-extension ContentSizeCategoryNotification {
-	static let didChange = NotificationDescriptor<ContentSizeCategoryNotification>(name: UIContentSizeCategory.didChangeNotification, convert: ContentSizeCategoryNotification.init)
+@available(iOS 10.0, *)
+public extension ContentSizeCategoryNotification {
+	static let didChange = NotificationDescriptor<ContentSizeCategoryNotification>(
+		name: UIContentSizeCategory.didChangeNotification,
+		convert: ContentSizeCategoryNotification.init
+	)
 }
+#endif

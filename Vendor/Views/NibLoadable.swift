@@ -11,6 +11,7 @@ import UIKit
 
 ///	Adopt this protocol on all subclasses of UITableViewCell and UICollectionViewCell
 ///	that use their own .xib file
+@MainActor
 public protocol NibLoadableView {
 	///	By default, it returns the subclass name
 	static var nibName: String { get }
@@ -29,12 +30,14 @@ extension NibLoadableView where Self: UIView {
 	}
 }
 
+@MainActor
 public protocol NibReusableView : ReusableView, NibLoadableView {}
 
 
 
 ///	Adopt this in cases where you need to create an ad-hoc instance of the given view
 ///	Can be adopted only by classes marked as `final`, due to `Self` constraint
+@MainActor
 public protocol NibLoadableFinalView: NibLoadableView {
 	///	Creates an instance of the cell from the `nibName`.xib file
 	static var nibInstance : Self { get }

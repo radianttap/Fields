@@ -67,24 +67,24 @@ extension UICollectionView {
 extension UITableView {
 
 	//	register for the Class-based cell
-	public func register<T: UITableViewCell>(_: T.Type)
+	public func register<T: UITableViewCell>(_: T.Type, withReuseIdentifier reuseIdentifier: String = T.reuseIdentifier)
 		where T: ReusableView
 	{
-		register(T.self, forCellReuseIdentifier: T.reuseIdentifier)
+		register(T.self, forCellReuseIdentifier: reuseIdentifier)
 	}
 
 	//	register for the Nib-based cell
-	public func register<T: UITableViewCell>(_: T.Type)
+	public func register<T: UITableViewCell>(_: T.Type, withReuseIdentifier reuseIdentifier: String = T.reuseIdentifier)
 		where T:NibReusableView
 	{
-		register(T.nib, forCellReuseIdentifier: T.reuseIdentifier)
+		register(T.nib, forCellReuseIdentifier: reuseIdentifier)
 	}
 
-	public func dequeueReusableCell<T: UITableViewCell>(forIndexPath indexPath: IndexPath) -> T
+	public func dequeueReusableCell<T: UITableViewCell>(withReuseIdentifier reuseIdentifier: String = T.reuseIdentifier, forIndexPath indexPath: IndexPath) -> T
 		where T:ReusableView
 	{
-		guard let cell = dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
-			fatalError("Dequeing a cell with identifier: \(T.reuseIdentifier) failed.\nDid you maybe forget to register it in viewDidLoad?")
+		guard let cell = dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? T else {
+			fatalError("Dequeing a cell with identifier: \(reuseIdentifier) failed.\nDid you maybe forget to register it in viewDidLoad?")
 		}
 		return cell
 	}

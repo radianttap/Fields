@@ -10,6 +10,7 @@
 import UIKit
 
 ///	Protocol to allow any UIView to become reusable view
+@MainActor
 public protocol ReusableView {
 	///	By default, it returns the subclass name
 	static var reuseIdentifier: String { get }
