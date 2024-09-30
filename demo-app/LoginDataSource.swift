@@ -7,20 +7,21 @@ import UIKit
 final class LoginDataSource: FieldsDataSource {
 	//	Model
 	var user: User?
-
-	private var fields: [FieldModel] = []
-
-
+	
+	///	View-model for the form fields
+	private var fieldIds: [FieldSection.ID] = []
+	private var fieldsMap: [FieldModel.ID: FieldModel] = [:]
+	
 	//	Init
-
+	
 	init(_ user: User) {
 		self.user = user
 		super.init()
-
+		
 		areSeparatorsEnabled = false
 		prepareFields()
 	}
-
+	
 	enum FieldId: String, CaseIterable {
 		case info
 		case username
@@ -28,63 +29,71 @@ final class LoginDataSource: FieldsDataSource {
 		case forgotpassword
 		case submit
 	}
-
+	
 	//	MARK: FieldDataSource
-
+	
 	override func registerReusableElements(for cv: UICollectionView) {
 		super.registerReusableElements(for: cv)
-
-		cv.register(FormTextCell.self, withReuseIdentifier: FieldId.info.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.username.rawValue)
-		cv.register(TextFieldCell.self, withReuseIdentifier: FieldId.password.rawValue)
-		cv.register(ForgotPassCell.self, withReuseIdentifier: FieldId.forgotpassword.rawValue)
-		cv.register(FormButtonCell.self, withReuseIdentifier: FieldId.submit.rawValue)
-	}
-
-	override func cell(collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell {
-		let model = fields[indexPath.item]
-
-		switch model {
-			case let model as TextFieldModel:
-				let cell: TextFieldCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
+		
+		[FieldId.username, .password].forEach {
+			[unowned self] fieldId in
+			
+			self.cellRegistrations[fieldId.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, TextFieldModel.ID>(cellNib: TextFieldCell.nib) {
+				[weak self] cell, indexPath, itemIdentifier in
+				guard
+					let cell = cell as? TextFieldCell,
+					let model = self?.fieldsMap[itemIdentifier] as? TextFieldModel
+				else { return }
+				
 				cell.populate(with: model)
-				return cell
-
-			case let model as FormTextModel:
-				let cell: FormTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-				cell.populate(with: model)
-				return cell
-
-			case let model as FormButtonModel:
-				let cell: FormButtonCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-				cell.populate(with: model)
-				return cell
-
-			case let model as BasicModel:
-				switch model.id {
-					case FieldId.forgotpassword.rawValue:
-						let cell: ForgotPassCell = collectionView.dequeueReusableCell(withReuseIdentifier: model.id, forIndexPath: indexPath)
-						return cell
-
-					default:
-						break
-				}
-
-			default:
-				break
+			}
 		}
-
-		preconditionFailure("Unknown cell model")
+		
+		[FieldId.submit].forEach {
+			[unowned self] fieldId in
+			
+			self.cellRegistrations[fieldId.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, FormButtonModel.ID>(cellNib: FormButtonCell.nib) {
+				[weak self] cell, indexPath, itemIdentifier in
+				guard
+					let cell = cell as? FormButtonCell,
+					let model = self?.fieldsMap[itemIdentifier] as? FormButtonModel
+				else { return }
+				
+				cell.populate(with: model)
+			}
+		}
+		
+		[FieldId.info].forEach {
+			[unowned self] fieldId in
+			
+			self.cellRegistrations[fieldId.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, FormTextModel.ID>(cellNib: FormTextCell.nib) {
+				[weak self] cell, indexPath, itemIdentifier in
+				guard
+					let cell = cell as? FormTextCell,
+					let model = self?.fieldsMap[itemIdentifier] as? FormTextModel
+				else { return }
+				
+				cell.populate(with: model)
+			}
+		}
+		
+		[FieldId.forgotpassword].forEach {
+			[unowned self] fieldId in
+			
+			self.cellRegistrations[fieldId.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, FieldModel.ID>(cellNib: ForgotPassCell.nib) {
+				_, _, _ in
+			}
+		}
 	}
-
-	override func populateSnapshot() -> FieldsDataSource.Snapshot {
+	
+	override func populateSnapshot(flowIdentifier fid: String) -> FieldsDataSource.Snapshot {
 		var snapshot = Snapshot()
-
-		snapshot.appendSections(["0"])
-		snapshot.appendItems(
-			fields.map { $0.id }
-		)
-
+		
+		let sectionId = "form"
+		snapshot.appendSections([sectionId])
+		snapshot.appendItems(fieldIds, toSection: sectionId)
+		snapshot.reconfigureItems(fieldIds)
+		
 		return snapshot
 	}
 }
@@ -92,29 +101,37 @@ final class LoginDataSource: FieldsDataSource {
 //	MARK: Internal
 
 extension LoginDataSource {
-	func field(at indexPath: IndexPath) -> FieldModel {
-		return fields[indexPath.item]
+	func field(at indexPath: IndexPath) -> FieldId? {
+		guard let itemIdentifier = gridSource.itemIdentifier(for: indexPath) else { return nil }
+		return FieldId(rawValue: itemIdentifier)
 	}
 }
 
 private extension LoginDataSource {
 	func prepareFields() {
-
+		fieldIds.removeAll()
+		fieldsMap.removeAll()
+		
+		var fields: [FieldModel] = []
 		fields.append({
-			let model = FormTextModel(id: FieldId.info.rawValue,
-								  title: NSLocalizedString("Announcement", comment: ""),
-								  value: NSLocalizedString("System will be offline tonight for maintenance, from midnight to 6 AM. Please submit your work before that.", comment: ""))
+			let model = FormTextModel(
+				id: FieldId.info.rawValue,
+				title: NSLocalizedString("Announcement", comment: ""),
+				value: NSLocalizedString("System will be offline tonight for maintenance, from midnight to 6 AM. Please submit your work before that.", comment: "")
+			)
 			model.customSetup = { label in
 				label.textColor = .blue
 				label.superview?.backgroundColor = .clear	//	sneaky little hack
 			}
 			return model
 		}())
-
+		
 		fields.append({
-			let model = TextFieldModel(id: FieldId.username.rawValue,
-									   title: NSLocalizedString("Username", comment: ""),
-									   value: user?.username)
+			let model = TextFieldModel(
+				id: FieldId.username.rawValue,
+				title: NSLocalizedString("Username", comment: ""),
+				value: user?.username
+			)
 			model.customSetup = { textField in
 				textField.textContentType = .username
 			}
@@ -124,11 +141,13 @@ private extension LoginDataSource {
 			}
 			return model
 		}())
-
+		
 		fields.append({
-			let model = TextFieldModel(id: FieldId.password.rawValue,
-									   title: NSLocalizedString("Password", comment: ""),
-									   value: user?.password)
+			let model = TextFieldModel(
+				id: FieldId.password.rawValue,
+				title: NSLocalizedString("Password", comment: ""),
+				value: user?.password
+			)
 			model.customSetup = { textField in
 				textField.textContentType = .password
 				textField.isSecureTextEntry = true
@@ -139,12 +158,12 @@ private extension LoginDataSource {
 			}
 			return model
 		}())
-
+		
 		fields.append({
-			let model = BasicModel(id: FieldId.forgotpassword.rawValue)
+			let model = FieldModel(id: FieldId.forgotpassword.rawValue)
 			return model
 		}())
-
+		
 		fields.append({
 			let model = FormButtonModel(
 				id: FieldId.submit.rawValue,
@@ -153,12 +172,15 @@ private extension LoginDataSource {
 			model.action = realSubmit
 			return model
 		}())
+		
+		fieldIds = fields.map { $0.id }
+		fields.forEach { fieldsMap[$0.id] = $0 }
 	}
-
+	
 	func realSubmit() {
 		//	validate
 		//	submit to middleware/data
-
+		
 		//	in essence: re-run `prepareFields()` and update `fields` array
 	}
 }
