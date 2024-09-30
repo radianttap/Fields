@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="9wP-eA-1XO" customClass="PickerStackItem" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="119"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALw-HU-9kl">
+                    <rect key="frame" x="16" y="8" width="317" height="103"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="edn-Ga-ar5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Par-WD-GN8">
+                    <rect key="frame" x="341" y="42.333333333333329" width="36" height="34.666666666666671"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="4VX-et-Lqg"/>
+                        <constraint firstAttribute="width" secondItem="Par-WD-GN8" secondAttribute="height" multiplier="1:1" id="ljj-BW-NkF"/>
+                    </constraints>
+                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    </preferredSymbolConfiguration>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="cHx-yH-AeK"/>
+            <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Par-WD-GN8" firstAttribute="centerY" secondItem="9wP-eA-1XO" secondAttribute="centerYWithinMargins" id="Abc-kd-Aag"/>
+                <constraint firstItem="Par-WD-GN8" firstAttribute="leading" secondItem="ALw-HU-9kl" secondAttribute="trailing" constant="8" symbolic="YES" id="Bd4-nV-Fct"/>
+                <constraint firstAttribute="bottomMargin" secondItem="ALw-HU-9kl" secondAttribute="bottom" id="SIz-6l-6oM"/>
+                <constraint firstItem="ALw-HU-9kl" firstAttribute="top" secondItem="9wP-eA-1XO" secondAttribute="topMargin" id="iLm-jU-Wef"/>
+                <constraint firstItem="ALw-HU-9kl" firstAttribute="leading" secondItem="9wP-eA-1XO" secondAttribute="leadingMargin" id="q5p-9E-5NH"/>
+                <constraint firstAttribute="trailingMargin" secondItem="Par-WD-GN8" secondAttribute="trailing" id="ylg-pH-vaz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="chosenIndicatorView" destination="Par-WD-GN8" id="i2p-6q-lE0"/>
+                <outlet property="nameLabel" destination="ALw-HU-9kl" id="PkM-aG-Oa4"/>
+            </connections>
+            <point key="canvasLocation" x="32.824427480916029" y="-37.676056338028168"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkmark.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

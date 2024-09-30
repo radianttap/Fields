@@ -49,6 +49,8 @@ final class RegisterDataSource: FieldsDataSource {
 	private var sectionsMap: [FieldSection.ID: FieldSection] = [:]
 	private var fieldsMap: [FieldModel.ID: FieldModel] = [:]
 	
+	private var isPersonTitlePickerExpanded = false
+	
 	enum SectionId: String {
 		case account
 		case personal
@@ -132,10 +134,10 @@ final class RegisterDataSource: FieldsDataSource {
 			}
 		}
 		
-		self.cellRegistrations[FieldId.title.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, PickerModel<PersonTitle>.ID>(cellNib: PickerCell.nib) {
+		self.cellRegistrations[FieldId.title.rawValue] = UICollectionView.CellRegistration<UICollectionViewCell, PickerModel<PersonTitle>.ID>(cellNib: PickerStackCell.nib) {
 			[weak self] cell, indexPath, itemIdentifier in
 			guard
-				let cell = cell as? PickerCell,
+				let cell = cell as? PickerStackCell,
 				let model = self?.fieldsMap[itemIdentifier] as? PickerModel<PersonTitle>
 			else { return }
 			
@@ -370,6 +372,7 @@ final class RegisterDataSource: FieldsDataSource {
 				toSection: sectionId
 			)
 		}
+		snapshot.reconfigureItems(Array(fieldsMap.keys))
 		
 		return snapshot
 	}
@@ -473,33 +476,36 @@ private extension RegisterDataSource {
 	}
 	
 	func buildPersonTitleModel1() -> FieldModel {
-		let model = PickerModel<PersonTitle>(id: FieldId.title.rawValue,
+		let model = PickerModel<PersonTitle>(
+			id: FieldId.title.rawValue,
 											 title: NSLocalizedString("Title", comment: ""),
 											 value: user?.title,
 											 values: PersonTitle.allCases,
-											 valueFormatter: { return $0?.rawValue })
+											 valueFormatter: { return $0?.rawValue }
+		)
+		model.isPickerShown = isPersonTitlePickerExpanded
 		model.displayPicker = {
-			[weak self] cell in
+			[unowned self] cell in
 			if model.values.count == 0 { return }
-			
-			let provider = PickerOptionsProvider<PersonTitle, PickerOptionTextCell>(for: cell, with: model)
-			let vc = PickerOptionsListController(provider: provider)
-			self?.controller?.show(vc, sender: nil)
+			self.isPersonTitlePickerExpanded = !self.isPersonTitlePickerExpanded
+
+			let fid = UUID().uuidString
+			self.prepareFields()
+			self.render(self.populateSnapshot(flowIdentifier: fid), animated: true)
 		}
 		model.selectedValueAtIndex = {
-			[weak self, weak model] index, cell in
-			guard let self = self, let index = index, let model = model else { return }
-			
-			let t = model.values[index]
-			self.user?.title = t
-			model.value = t
-			
-			//	refresh originating's Cell display
-			if let cell = cell as? PickerCell {
-				cell.populate(with: model)
+			[unowned self] selectedIndex, cell, shouldCollapse in
+			if let selectedIndex {
+				let c = model.values[selectedIndex]
+				self.user?.title = c
 			}
-			//	pop VC back to the form
-			self.controller?.navigationController?.popViewController(animated: true)
+			if shouldCollapse {
+				self.isPersonTitlePickerExpanded = false
+			}
+			
+			let fid = UUID().uuidString
+			self.prepareFields()
+			self.render(self.populateSnapshot(flowIdentifier: fid), animated: true)
 		}
 		return model
 	}

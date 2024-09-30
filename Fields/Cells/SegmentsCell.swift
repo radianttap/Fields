@@ -14,7 +14,7 @@ final class SegmentsCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	@IBOutlet private var segmentedControl: UISegmentedControl!
 	@IBOutlet private var separator: UIView!
 
-	private var selectedValueAtIndex: (Int?, SegmentsCell) -> Void = {_, _ in}
+	private var selectedValueAtIndex: (Int?, SegmentsCell, Bool) -> Void = {_, _, _ in}
 }
 
 extension SegmentsCell {
@@ -60,6 +60,6 @@ private extension SegmentsCell {
 	}
 
 	@IBAction func changeSelection(_ sender: UISegmentedControl) {
-		selectedValueAtIndex(sender.selectedSegmentIndex, self)
+		selectedValueAtIndex(sender.selectedSegmentIndex, self, true)
 	}
 }

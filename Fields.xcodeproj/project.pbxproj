@@ -82,6 +82,12 @@
 		D0A3C846237C124B0064842F /* UIButton-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C845237C124B0064842F /* UIButton-Extensions.swift */; };
 		D0A3C848237C1CA50064842F /* UIContentSizeCategory-Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */; };
 		D0E131F72703795F0050E109 /* SeparatorLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E131F62703795F0050E109 /* SeparatorLineView.swift */; };
+		D0FA22D32CAA9999001F64E4 /* PickerStackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA22D12CAA9999001F64E4 /* PickerStackItem.swift */; };
+		D0FA22D42CAA9999001F64E4 /* PickerStackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA22CF2CAA9999001F64E4 /* PickerStackCell.swift */; };
+		D0FA22D52CAA9999001F64E4 /* PickerStackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FA22D02CAA9999001F64E4 /* PickerStackCell.xib */; };
+		D0FA22D62CAA9999001F64E4 /* PickerStackItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0FA22D22CAA9999001F64E4 /* PickerStackItem.xib */; };
+		D0FA22D82CAA9A9D001F64E4 /* UIStackView-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA22D72CAA9A9D001F64E4 /* UIStackView-Extensions.swift */; };
+		D0FA22DA2CAA9ADF001F64E4 /* ActionClosurable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FA22D92CAA9ADF001F64E4 /* ActionClosurable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +169,12 @@
 		D0A3C845237C124B0064842F /* UIButton-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton-Extensions.swift"; sourceTree = "<group>"; };
 		D0A3C847237C1CA50064842F /* UIContentSizeCategory-Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIContentSizeCategory-Notifications.swift"; sourceTree = "<group>"; };
 		D0E131F62703795F0050E109 /* SeparatorLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorLineView.swift; sourceTree = "<group>"; };
+		D0FA22CF2CAA9999001F64E4 /* PickerStackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerStackCell.swift; sourceTree = "<group>"; };
+		D0FA22D02CAA9999001F64E4 /* PickerStackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerStackCell.xib; sourceTree = "<group>"; };
+		D0FA22D12CAA9999001F64E4 /* PickerStackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerStackItem.swift; sourceTree = "<group>"; };
+		D0FA22D22CAA9999001F64E4 /* PickerStackItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerStackItem.xib; sourceTree = "<group>"; };
+		D0FA22D72CAA9A9D001F64E4 /* UIStackView-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView-Extensions.swift"; sourceTree = "<group>"; };
+		D0FA22D92CAA9ADF001F64E4 /* ActionClosurable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionClosurable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +296,10 @@
 				D034C76F22A53B25000FE220 /* TextFieldCell.xib */,
 				D011B8D922C803A80059A52D /* PickerCell.swift */,
 				D011B8DA22C803A80059A52D /* PickerCell.xib */,
+				D0FA22CF2CAA9999001F64E4 /* PickerStackCell.swift */,
+				D0FA22D02CAA9999001F64E4 /* PickerStackCell.xib */,
+				D0FA22D12CAA9999001F64E4 /* PickerStackItem.swift */,
+				D0FA22D22CAA9999001F64E4 /* PickerStackItem.xib */,
 				D00A400C22CB41B00001625B /* FormTextCell.swift */,
 				D00A400D22CB41B00001625B /* FormTextCell.xib */,
 				D086576722FF0DDA00256BA6 /* TextViewCell.swift */,
@@ -365,6 +381,8 @@
 		D086576122FED1AB00256BA6 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				D0FA22D92CAA9ADF001F64E4 /* ActionClosurable.swift */,
+				D0FA22D72CAA9A9D001F64E4 /* UIStackView-Extensions.swift */,
 				D0A3C845237C124B0064842F /* UIButton-Extensions.swift */,
 				D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */,
 				D05D9326243DC593006AD319 /* UIEdgeInsets-Extensions.swift */,
@@ -434,6 +452,8 @@
 				D034C75322A5357A000FE220 /* LaunchScreen.storyboard in Resources */,
 				D034C75022A5357A000FE220 /* Assets.xcassets in Resources */,
 				D0776C6C269CC271002CA92C /* ForgotPasswordController.storyboard in Resources */,
+				D0FA22D52CAA9999001F64E4 /* PickerStackCell.xib in Resources */,
+				D0FA22D62CAA9999001F64E4 /* PickerStackItem.xib in Resources */,
 				D0628E5C230028A700D86F63 /* FormButtonCell.xib in Resources */,
 				D0137EF023070C9D00E46211 /* DatePickerCellAccessoryView.xib in Resources */,
 				D06B0C3A22C5157000372445 /* SectionFooterView.xib in Resources */,
@@ -461,7 +481,10 @@
 			files = (
 				D00A400B22CB41180001625B /* FormTextModel.swift in Sources */,
 				D034C76A22A53A8A000FE220 /* DequeableView.swift in Sources */,
+				D0FA22DA2CAA9ADF001F64E4 /* ActionClosurable.swift in Sources */,
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
+				D0FA22D32CAA9999001F64E4 /* PickerStackItem.swift in Sources */,
+				D0FA22D42CAA9999001F64E4 /* PickerStackCell.swift in Sources */,
 				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
@@ -484,6 +507,7 @@
 				D011B8E322C90BA60059A52D /* PickerOptionTextCell.swift in Sources */,
 				D086575322FEBB1C00256BA6 /* StoryboardLoadable.swift in Sources */,
 				D0704C3222B180D7004A0A25 /* User.swift in Sources */,
+				D0FA22D82CAA9A9D001F64E4 /* UIStackView-Extensions.swift in Sources */,
 				D06B0C3D22C518B000372445 /* FormSupplementaryView.swift in Sources */,
 				D05C45972306ECF90030E0AE /* DatePickerModel.swift in Sources */,
 				D00A401122CB4CEC0001625B /* PickerOptionsProvider.swift in Sources */,
