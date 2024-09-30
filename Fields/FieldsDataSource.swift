@@ -9,6 +9,7 @@ import UIKit
 
 
 
+@MainActor
 protocol FieldsDataSourceable: AnyObject {
 	var controller: FieldsCollectionController? { get set }
 }
@@ -16,11 +17,18 @@ protocol FieldsDataSourceable: AnyObject {
 
 ///	Base class which defines layout and handles diffable data source for `UICollectionView`.
 ///
-///	Make sure to subclass this one and override at least:
-///	- `registerReusableElements(for:)`
-///	- `cell(collectionView:indexPath:item:)`
+///	Make sure to subclass this file and override the following methods:
 ///
+///	- `registerReusableElements(for:)`
+///	- `populateSnapshot(flowIdentifier:)`
+///
+///	You **must** call `super` when overriding these methods.
+///
+@MainActor
 class FieldsDataSource: NSObject, FieldsDataSourceable {
+	typealias GridSource = UICollectionViewDiffableDataSource<FieldSection.ID, FieldModel.ID>
+
+
 	//	Dependencies
 	weak var controller: FieldsCollectionController? {
 		didSet { prepareView() }
@@ -29,54 +37,64 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 	var estimatedFieldHeight: CGFloat = 66
 	var interSectionVerticalSpacing: CGFloat = 0
 
-	var areSeparatorsEnabled = true
-	var lineSeparatorColor: UIColor = UIColor.black.withAlphaComponent(0.12)
+	var areSeparatorsEnabled = false
+
+	///	Map of unique `FieldId` (raw, String) values versus cell registration for each field.
+	///
+	///	This is populated in `registerReusableElements(for:)`.
+	var cellRegistrations: [FieldModel.ID: UICollectionView.CellRegistration<UICollectionViewCell, FieldModel.ID>] = [:]
+
+	///	Map of `elementKind` versus supplementary view registrations.
+	///
+	///	This is populated in `registerReusableElements(for:)`.
+	var supplementaryRegistrations: [String: UICollectionView.SupplementaryRegistration<UICollectionReusableView>] = [:]
 
 	//	Local data model
 
-	private var gridSource: GridSource!
+	private(set) var gridSource: GridSource!
 
 	//	MARK: Override points
 
-	@objc func prepareView() {
-		guard let cv = controller?.collectionView
-		else { return }
+	@objc func prepareView(flowIdentifier fid: String = UUID().uuidString) {
+		guard let cv = controller?.collectionView else { return }
 
 		registerReusableElements(for: cv)
 
 		let layout = createLayout()
 		cv.setCollectionViewLayout(layout, animated: false)
-		configureCVDataSource(for: cv)
+		configureCVDataSource(for: cv, flowIdentifier: fid)
 	}
 
 	///	This is where you register your custom `UICVCell` and `UICVReusableView` subclasses.
 	@objc func registerReusableElements(for cv: UICollectionView) {
-		cv.register(SeparatorLineView.self, kind: SeparatorLineView.kind)
+		supplementaryRegistrations[SeparatorLineView.kind] = UICollectionView.SupplementaryRegistration(elementKind: SeparatorLineView.kind) { _, _, _ in }
 	}
 
-	///	`UICVCell` factory.
-	@objc func cell(collectionView: UICollectionView, indexPath: IndexPath, item: String) -> UICollectionViewCell {
-		preconditionFailure("Must override this method and return proper cell instances.")
+	func cell(collectionView: UICollectionView, indexPath: IndexPath, item: FieldModel) -> UICollectionViewCell {
+		preconditionFailure()
+	}
+	
+	final func cell(collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: FieldModel.ID) -> UICollectionViewCell {
+		guard let cellReg = cellRegistrations[itemIdentifier] else {
+			preconditionFailure("Unknown cell model")
+		}
+		return collectionView.dequeueConfiguredReusableCell(using: cellReg, for: indexPath, item: itemIdentifier)
 	}
 
 	///	`UICVReusableView` factory.
-	@objc func supplementary(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView {
-		switch kind {
-			case SeparatorLineView.kind:
-				let v: SeparatorLineView = collectionView.dequeueReusableView(kind: SeparatorLineView.kind, atIndexPath: indexPath)
-				v.backgroundColor = lineSeparatorColor
-				return v
-
-			default:
-				preconditionFailure("Unexpected supplementary kind: \( kind )")
+	final func supplementary(collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView {
+		guard let supplReg = supplementaryRegistrations[kind] else {
+			preconditionFailure("Unexpected supplementary kind: \( kind )")
 		}
+		
+		return collectionView.dequeueConfiguredReusableSupplementary(using: supplReg, for: indexPath)
 	}
 
-	///	Diffable data source for the UICV: `FieldSection.id, FieldModel.id`
-	typealias Snapshot = NSDiffableDataSourceSnapshot<String, String>
+	///	Diffable data source for the UICV, using same signature as `GridSource` above:
+	typealias Snapshot = NSDiffableDataSourceSnapshot<FieldSection.ID, FieldModel.ID>
 
 	///	`Snapshot` factory
-	@objc func populateSnapshot() -> Snapshot {
+	func populateSnapshot(flowIdentifier fid: String) -> Snapshot {
 		preconditionFailure("Must override this method and return properly populated Snapshot.")
 	}
 
@@ -87,28 +105,42 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 		return []
 	}
 
+	///	By default, returns empty array.
+	///
+	///	Override this and setup *global* header / footer
+	@objc func layoutGlobalSupplementaryItems() -> [NSCollectionLayoutBoundarySupplementaryItem] {
+		return []
+	}
+
+	///	Implement any desired custom configuration for the given section
+	///
+	///	By default, does nothing.
+	func customConfigure(section: NSCollectionLayoutSection, atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) {
+	}
+
 	///	If not overriden, it will create full-width form field layout with estimated height of `estimatedFieldHeight`. Override `layoutSectionSupplementaryItems(atIndex:layoutEnvironment:)` to declare header/footer for section at supplied index.
 	@objc func createLayout() -> UICollectionViewLayout {
-		let layout = UICollectionViewCompositionalLayout {
-			sectionIndex, layoutEnvironment in
-
-			return self.createLayoutSection(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
-		}
-
 		let config = UICollectionViewCompositionalLayoutConfiguration()
 		config.interSectionSpacing = interSectionVerticalSpacing
-		layout.configuration = config
+		config.boundarySupplementaryItems = layoutGlobalSupplementaryItems()
+
+		let layout = UICollectionViewCompositionalLayout(
+			sectionProvider: ({ [weak self] in self?.createLayoutSection(atIndex: $0, layoutEnvironment: $1) }),
+			configuration: config
+		)
 
 		return layout
 	}
 
 	///	If not override, will create simple section
-	@objc func createLayoutSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+	@objc func createLayoutSection(atIndex sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? {
 		var itemSupplementaryItems: [NSCollectionLayoutSupplementaryItem] = []
 		if areSeparatorsEnabled {
 			let lineAnchor = NSCollectionLayoutAnchor(edges: [.bottom, .trailing])
-			let lineSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-												  heightDimension: .absolute(1))
+			let lineSize = NSCollectionLayoutSize(
+				widthDimension: .fractionalWidth(1),
+				heightDimension: .absolute(1)
+			)
 			let line = NSCollectionLayoutSupplementaryItem(
 				layoutSize: lineSize,
 				elementKind: SeparatorLineView.kind,
@@ -135,6 +167,8 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 
 		let section = NSCollectionLayoutSection(group: group)
 		section.boundarySupplementaryItems = layoutSectionSupplementaryItems(atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
+
+		customConfigure(section: section, atIndex: sectionIndex, layoutEnvironment: layoutEnvironment)
 		return section
 	}
 
@@ -146,27 +180,26 @@ class FieldsDataSource: NSObject, FieldsDataSourceable {
 
 	func render(_ snapshot: Snapshot, animated: Bool = true) {
 		if controller == nil { return }
+
 		gridSource.apply(snapshot, animatingDifferences: animated)
 	}
 }
 
 private extension FieldsDataSource {
-	///	`FieldSection.id, FieldModel.id`
-	typealias GridSource = UICollectionViewDiffableDataSource<String, String>
-
-	func configureCVDataSource(for cv: UICollectionView) {
+	func configureCVDataSource(for cv: UICollectionView, flowIdentifier fid: String) {
 		gridSource = GridSource(
 			collectionView: cv,
-			cellProvider: { [unowned self] cv, indexPath, item in
-				return self.cell(collectionView: cv, indexPath: indexPath, item: item)
+			cellProvider: { [unowned self] cv, indexPath, fieldModelId in
+				return self.cell(collectionView: cv, indexPath: indexPath, itemIdentifier: fieldModelId)
 			}
 		)
+
 		gridSource.supplementaryViewProvider = {
 			[unowned self] cv, kind, indexPath in
 			return self.supplementary(collectionView: cv, kind: kind, indexPath: indexPath)
 		}
 
-		let snapshot = populateSnapshot()
+		let snapshot = populateSnapshot(flowIdentifier: fid)
 		render(snapshot, animated: false)
 	}
 }
