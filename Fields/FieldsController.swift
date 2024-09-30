@@ -67,17 +67,23 @@ private extension FieldsController {
 
 		tokenKeyboardWillShow = nc.addObserver(forConvertedDescriptor: KeyboardNotification.willShow, queue: .main) {
 			[weak self] kn in
-			self?.keyboardWillShow(notification: kn)
+			Task { @MainActor in
+				self?.keyboardWillShow(notification: kn)
+			}
 		}
 
 		tokenKeyboardWillHide = nc.addObserver(forConvertedDescriptor: KeyboardNotification.willHide, queue: .main) {
 			[weak self] kn in
-			self?.keyboardWillHide(notification: kn)
+			Task { @MainActor in
+				self?.keyboardWillHide(notification: kn)
+			}
 		}
 
 		tokenContentSizeCategoryChanged = nc.addObserver(forConvertedDescriptor: ContentSizeCategoryNotification.didChange, queue: .main) {
 			[weak self] kn in
-			self?.contentSizeCategoryChanged(notification: kn)
+			Task { @MainActor in
+				self?.contentSizeCategoryChanged(notification: kn)
+			}
 		}
 	}
 }
