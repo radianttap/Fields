@@ -17,8 +17,8 @@ final class TextFieldCell: FormFieldCell, NibLoadableFinalView, NibReusableView 
 }
 
 extension TextFieldCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 
 		textField.addTarget(self, action: #selector(editText), for: .editingDidEnd)

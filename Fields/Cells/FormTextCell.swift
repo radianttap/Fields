@@ -15,8 +15,8 @@ final class FormTextCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 }
 
 extension FormTextCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 

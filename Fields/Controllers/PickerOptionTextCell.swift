@@ -16,14 +16,15 @@ class PickerOptionTextCell: UICollectionViewCell, NibReusableView {
 extension PickerOptionTextCell {
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		
-		selectedBackgroundView = {
-			let v = UIView(frame: .zero)
-			v.backgroundColor = .white
-			return v
-		}()
-		
-		cleanup()
+		MainActor.assumeIsolated {
+			selectedBackgroundView = {
+				let v = UIView(frame: .zero)
+				v.backgroundColor = .white
+				return v
+			}()
+			
+			cleanup()
+		}
 	}
 
 	override func prepareForReuse() {

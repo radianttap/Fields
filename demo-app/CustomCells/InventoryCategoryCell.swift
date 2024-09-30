@@ -1,11 +1,3 @@
-//
-//  InventoryCategoryCell.swift
-//  Fields-demo
-//
-//  Created by Aleksandar Vacić on 8/11/19.
-//  Copyright © 2019 Radiant Tap. All rights reserved.
-//
-
 import UIKit
 
 final class InventoryCategoryCell: FormFieldCell, NibReusableView {
@@ -22,8 +14,8 @@ final class InventoryCategoryCell: FormFieldCell, NibReusableView {
 }
 
 extension InventoryCategoryCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 

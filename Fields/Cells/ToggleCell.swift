@@ -17,8 +17,8 @@ final class ToggleCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 }
 
 extension ToggleCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 
 		toggle.addTarget(self, action: #selector(toggled), for: .valueChanged)

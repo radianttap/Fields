@@ -19,8 +19,8 @@ final class TextViewCell: FormFieldCell, NibReusableView {
 }
 
 extension TextViewCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 
 		textView.delegate = self

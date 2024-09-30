@@ -15,8 +15,8 @@ final class SectionHeaderView: FormSupplementaryView, NibReusableView {
 
 
 extension SectionHeaderView {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 

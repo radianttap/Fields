@@ -18,8 +18,8 @@ final class SegmentsCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 }
 
 extension SegmentsCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 

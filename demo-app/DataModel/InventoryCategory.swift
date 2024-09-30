@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct InventoryCategory: Hashable {
+struct InventoryCategory: Hashable, Identifiable {
 	enum ID: String, CaseIterable {
 		case watch
 		case dress

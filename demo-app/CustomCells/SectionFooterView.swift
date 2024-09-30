@@ -15,8 +15,8 @@ final class SectionFooterView: FormSupplementaryView, NibReusableView {
 
 
 extension SectionFooterView {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 

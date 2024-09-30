@@ -24,8 +24,8 @@ final class DatePickerCell: FormFieldCell, NibReusableView {
 }
 
 extension DatePickerCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 
 		valueField.tintColor = valueField.superview?.backgroundColor

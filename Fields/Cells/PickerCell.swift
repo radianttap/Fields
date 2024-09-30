@@ -17,8 +17,8 @@ final class PickerCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 }
 
 extension PickerCell {
-	override func awakeFromNib() {
-		super.awakeFromNib()
+	override func postAwakeFromNib() {
+		super.postAwakeFromNib()
 		cleanup()
 	}
 
