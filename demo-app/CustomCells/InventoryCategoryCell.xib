@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InventoryCategoryCell" customModule="Fields_demo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="82" height="78"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="InventoryCategoryCell" customModule="Fields_demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="147" height="171"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="82" height="78"/>
+                <rect key="frame" x="0.0" y="0.0" width="147" height="171"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UC-cs-G0n" userLabel="contentView">
-                        <rect key="frame" x="0.0" y="0.0" width="82" height="78"/>
+                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6UC-cs-G0n" userLabel="contentView">
+                        <rect key="frame" x="0.0" y="0.0" width="147" height="171"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYS-sl-aPn" customClass="UIControl">
-                                <rect key="frame" x="8" y="8" width="66" height="62"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYS-sl-aPn" customClass="UIControl">
+                                <rect key="frame" x="8" y="56" width="131" height="73"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
-                                        <rect key="frame" x="10" y="8" width="46" height="46"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" systemColor="darkTextColor"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="light.recessed.3.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MXH-gG-a8m">
+                                        <rect key="frame" x="37" y="10.5" width="57" height="55.5"/>
+                                        <color key="tintColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="MXH-gG-a8m" secondAttribute="height" multiplier="1:1" priority="699" id="WHU-FE-hoV"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="MXH-gG-a8m" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vYS-sl-aPn" secondAttribute="leadingMargin" id="B1J-df-2Nb"/>
                                     <constraint firstItem="MXH-gG-a8m" firstAttribute="centerX" secondItem="vYS-sl-aPn" secondAttribute="centerX" id="iIF-MP-H4S"/>
@@ -61,21 +61,25 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="6UC-cs-G0n" firstAttribute="trailing" secondItem="ZTg-uK-7eu" secondAttribute="trailing" priority="999" id="5og-GF-jBP"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="6UC-cs-G0n" secondAttribute="leading" id="Lxu-12-67Q"/>
+                <constraint firstItem="6UC-cs-G0n" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" priority="999" id="5og-GF-jBP"/>
+                <constraint firstAttribute="leading" secondItem="6UC-cs-G0n" secondAttribute="leading" id="Lxu-12-67Q"/>
                 <constraint firstAttribute="top" secondItem="6UC-cs-G0n" secondAttribute="top" id="agp-NJ-5CJ"/>
                 <constraint firstItem="6UC-cs-G0n" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" priority="999" id="vnc-3m-sIV"/>
             </constraints>
-            <size key="customSize" width="82" height="78"/>
+            <size key="customSize" width="147" height="171"/>
             <connections>
                 <outlet property="iconView" destination="MXH-gG-a8m" id="XH2-Ta-CZf"/>
             </connections>
-            <point key="canvasLocation" x="13.043478260869566" y="119.19642857142857"/>
+            <point key="canvasLocation" x="60.14492753623189" y="106.13839285714285"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="darkTextColor">
+        <image name="light.recessed.3.inverse" catalog="system" width="128" height="74"/>
+        <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

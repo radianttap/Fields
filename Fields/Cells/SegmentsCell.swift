@@ -12,7 +12,6 @@ final class SegmentsCell: FormFieldCell, NibLoadableFinalView, NibReusableView {
 	//	UI
 	@IBOutlet private var titleLabel: UILabel!
 	@IBOutlet private var segmentedControl: UISegmentedControl!
-	@IBOutlet private var separator: UIView!
 
 	private var selectedValueAtIndex: (Int?, SegmentsCell, Bool) -> Void = {_, _, _ in}
 }

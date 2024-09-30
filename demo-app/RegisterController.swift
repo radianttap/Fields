@@ -17,7 +17,7 @@ private extension RegisterController {
 	//	MARK:- Internal
 
 	func applyTheme() {
-		view.backgroundColor = UIColor(hex: "EBEBEB")
+		view.backgroundColor = .systemBackground
 	}
 
 	func setupUI() {
