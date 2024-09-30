@@ -8,6 +8,18 @@
 import UIKit
 
 extension UIResponder {
+	var containingViewController: UIViewController? {
+		if let c = self as? UIViewController {
+			return c
+		}
+
+		if let c = next as? UIViewController {
+			return c
+		}
+
+		return next?.containingViewController
+	}
+
 	var fieldsController: FieldsController? {
 		if let c = self as? FieldsController {
 			return c
