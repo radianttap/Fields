@@ -1,6 +1,6 @@
 ![platforms: iOS](https://img.shields.io/badge/platform-iOS-blue.svg)
 [![](https://img.shields.io/github/license/radianttap/Fields.svg)](https://github.com/radianttap/Coordinator/blob/master/LICENSE)
-![](https://img.shields.io/badge/swift-5+-223344.svg?logo=swift&labelColor=FA7343&logoColor=white)
+![](https://img.shields.io/badge/swift-6-223344.svg?logo=swift&labelColor=FA7343&logoColor=white)
 
 # Fields v2
 
@@ -8,11 +8,11 @@ Good, solid base to build custom forms in iOS apps, using [Compositional Layout]
 
 This is *not a library, nor framework*. It will never be a CocoaPod, Carthage or whatever package. Every form is different so you take this lot and adjust it to suit each specific case.
 
-Each cell is self-sizing, implemented through [`FieldCell`](Fields/Cells/FieldCell.swift), which is base cell for all other specific cells. *It is expected that you use .xib for cell design and use qualified Auto Layout constraints so that self-sizing is possible.*
+Each cell is self-sizing, implemented through `FormFieldCell`, which is base cell for all other specific cells. *It is expected that you use .xib for cell design and use qualified Auto Layout constraints so that self-sizing is possible.*
 
-Each form field is implemented by pairing `Model` and `Cell` instance. Models are distinguished by `id` property; value of this property should be unique across all field. Easiest way to implement this is with `String` enum.
+Each form field is implemented by pairing `Model` and `Cell` instance. Models are distinguished by `id` property; value of this property should be unique across all fields. Easiest way to implement this is with `String` enum.
 
-The most trivial cell model is `BasicModel`, which only has one property, previously mentioned `id`. All other models, have specific additional properties that directly map into cell display. Things like `title`, current field `value`, optional hints and error messages etc.
+The most trivial cell model is `FieldModel` itself which only has one property, previously mentioned `id`. All other models, have specific additional properties that directly map into cell display. Things like `title`, current field `value`, optional hints and error messages etc.
 
 Model properties directly tie-in with Cell design and layout.
 
@@ -27,6 +27,7 @@ Each supported form field has a [reference Cell](Fields/Cells) implementation an
 * `FormButtonCell` + `FormButtonModel` – models submit and other buttons
 * `DatePickerCell` + `DatePickerModel` – shows `UIDatePicker` as “keyboard” for the field.
 * `PickerCell` + `PickerModel` – when you need to show a larger set of items and allow customer to choose one. It has a reference option cell implementation, custom UIVC and DataProvider types.
+* `PickerStackCell` + `PickerModel` – closest we can get to drop-down picker.
 * `SegmentsCell` + `PickerModel` - when you only have few options to choose from and want to display them using `UISegmentedControl`.
 
 ### Sections
@@ -35,7 +36,7 @@ Fields can be grouped into `FieldSection` arrays, where each section is defined 
 
 You can also specify custom header and footer text for the section and adjust their design + model, as you see fit.
 
-Both of these are subclasses of [`FieldSupplementaryView`](Fields/Cells/FieldSupplementaryView.swift) which implements self-sizing support.
+Both of these are subclasses of `FieldSupplementaryView` which implements self-sizing support.
 
 ### Controllers
 
@@ -46,16 +47,6 @@ The base UIVC class is `FieldsController`, which you can use **if** you want to 
 Its subclass, `FieldsCollectionController`, is much more interesting as it builds an UICV instance to which you will add your cells.
 
 (Examples: Login and Register screens in the demo app)
-
-Both controllers expose 3 methods you can call from your data source objects:
-
-`renderContentUpdates()` – you should call this when your form model is updated and you need to re-render the form. In the `FieldsController` this does nothing. In `FieldsCollectionController` it calls `collectionView.reloadData`.
-
-`keyboardWillShow(notification:)` – when field input view shows up.
-
-`keyboardWillHide(notification)` – when field resigns its input view (keyboard).
-
-When you override these methods, you most likely *don’t want* to call `super`.
 
 ## Usage
 
@@ -80,9 +71,11 @@ enum FieldId: String {
 Now, you populate `fields` array with specific Model instance for those fields. Here’s an example of TextFieldModel:
 
 ```swift
-let model = TextFieldModel(id: FieldId.username.rawValue,
-						   title: NSLocalizedString("Username", comment: ""),
-						   value: user?.username)
+let model = TextFieldModel(
+  id: FieldId.username.rawValue,
+	title: NSLocalizedString("Username", comment: ""),
+	value: user?.username
+)
 model.customSetup = { textField in
 	textField.textContentType = .username
 }
@@ -102,25 +95,19 @@ This illustrates general idea:
 
 `User` is actual data model type you use in the app. `TextFieldModel` is _ViewModel_ derivative of `User`, custom tailored for the `TextFieldCell`.
 
-### Boilerplate stuff
+### Form setup
 
-The rest of the LoginDataSource is simply an implementation of the UICVDataSource. 
+The most important aspect is the `registerReusableElements(for:)` method which registers cell/supplementary for each `FieldId` value. This uses [modern diffable data source implementation](https://developer.apple.com/videos/play/wwdc2021/10252/) which is available starting with iOS 15.
 
-The most important aspect is the `prepareView()` method which register UICVCell types for each `FieldId` value. *This effectively disables cell reusability!* Each field you have will likely have custom stuff and setup, thus you don’t want to reuse neither of them, since that leads to problems. Forms generally are not big, a dozen or so fields at most, thus this is not an issue from the memory side.
+Next you need to build the local data source, which is done in the `prepareFields()` method. Using just fields or both section and fields, you instantiate field models and saved them to a dictionary + their IDs in an array to maintain the order.
 
-The rest of the file is just boilerplate UICVDataSource delegate methods.
+Lastly, you need to override `populateSnapshot(flowIdentifier:) -> Snapshot` where you take the mentioned structure and build actual snapshot which will be render by calling `renderContents(_:,animated:)` method.
 
-### Layout
-
-By default, each field will use entire width of the UICV and height will be calculated per content.
+You’ll notice `snapshot.reconfigureItems(fieldIds)`  which is telling UIKit to re-layout / re-populate entire form, as needed.
 
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/), as usual.
-
-## v1
-
-Previous version, using custom `UICollectionViewLayout` subclass is tagged with `v1.0` in source code.
 
 ## Give back
 
