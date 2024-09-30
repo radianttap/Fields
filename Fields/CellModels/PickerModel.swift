@@ -11,10 +11,7 @@ import UIKit
 /// Model that corresponds to PickerCell instance.
 ///
 ///
-class PickerModel<T: Hashable>: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class PickerModel<T: Hashable>: FieldModel, @unchecked Sendable {
 	///	String to display in the title label
 	var title: String?
 
@@ -47,14 +44,12 @@ class PickerModel<T: Hashable>: FieldModel {
 		 displayPicker: @escaping (FormFieldCell) -> Void = {_ in},
 		 selectedValueAtIndex: @escaping (Int?, FormFieldCell) -> Void = {_, _ in}
 	){
-		self.id = id
-
 		self.title = title
         self.placeholder = placeholder
 		self.value = value
 		self.values = values
-
 		self.valueFormatter = valueFormatter
+		super.init(id: id)
 
 		self.displayPicker = displayPicker
 		self.selectedValueAtIndex = selectedValueAtIndex

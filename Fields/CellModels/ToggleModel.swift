@@ -9,10 +9,7 @@
 import UIKit
 
 /// Model that corresponds to ToggleCell instance.
-class ToggleModel: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class ToggleModel: FieldModel, @unchecked Sendable {
 	///	String to next to the `UISwitch`
 	var title: String
 
@@ -35,10 +32,9 @@ class ToggleModel: FieldModel {
 		 customSetup: @escaping (UISwitch) -> Void = {_ in},
 		 valueChanged: @escaping (Bool, FormFieldCell) -> Void = {_, _ in}
 	){
-		self.id = id
-
 		self.title = title
 		self.value = value
+		super.init(id: id)
 
 		self.customSetup = customSetup
 		self.valueChanged = valueChanged

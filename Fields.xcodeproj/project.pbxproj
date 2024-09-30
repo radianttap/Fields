@@ -73,7 +73,6 @@
 		D086575422FEBB1C00256BA6 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575222FEBB1C00256BA6 /* Embeddable.swift */; };
 		D086575D22FEC75A00256BA6 /* ForgotPassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */; };
 		D086575E22FEC75A00256BA6 /* ForgotPassCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */; };
-		D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086575F22FEC8A100256BA6 /* BasicModel.swift */; };
 		D086576322FED1AB00256BA6 /* UIColor-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */; };
 		D086576522FF0D4100256BA6 /* TextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D086576422FF0D4100256BA6 /* TextViewModel.swift */; };
 		D086576822FF0DDA00256BA6 /* TextViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D086576622FF0DDA00256BA6 /* TextViewCell.xib */; };
@@ -155,7 +154,6 @@
 		D086575922FEBBE400256BA6 /* ForgotPasswordDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordDataSource.swift; sourceTree = "<group>"; };
 		D086575B22FEC75A00256BA6 /* ForgotPassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPassCell.swift; sourceTree = "<group>"; };
 		D086575C22FEC75A00256BA6 /* ForgotPassCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgotPassCell.xib; sourceTree = "<group>"; };
-		D086575F22FEC8A100256BA6 /* BasicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicModel.swift; sourceTree = "<group>"; };
 		D086576222FED1AB00256BA6 /* UIColor-Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor-Extensions.swift"; sourceTree = "<group>"; };
 		D086576422FF0D4100256BA6 /* TextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewModel.swift; sourceTree = "<group>"; };
 		D086576622FF0DDA00256BA6 /* TextViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewCell.xib; sourceTree = "<group>"; };
@@ -343,7 +341,6 @@
 			children = (
 				D0628E552300245800D86F63 /* FieldSection.swift */,
 				D0704C3322B18277004A0A25 /* FieldModel.swift */,
-				D086575F22FEC8A100256BA6 /* BasicModel.swift */,
 				D06B0C4422C669CC00372445 /* ToggleModel.swift */,
 				D00A400A22CB41180001625B /* FormTextModel.swift */,
 				D034C77D22A56A8C000FE220 /* TextFieldModel.swift */,
@@ -467,7 +464,6 @@
 				D034C76C22A53A8A000FE220 /* NibLoadable.swift in Sources */,
 				D0628E6523005A7300D86F63 /* InventoryCategory.swift in Sources */,
 				D06B0C3B22C5157000372445 /* SectionFooterView.swift in Sources */,
-				D086576022FEC8A200256BA6 /* BasicModel.swift in Sources */,
 				D0628E5E2300357F00D86F63 /* SingleValueModel.swift in Sources */,
 				D086576922FF0DDA00256BA6 /* TextViewCell.swift in Sources */,
 				D0E131F72703795F0050E109 /* SeparatorLineView.swift in Sources */,

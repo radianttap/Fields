@@ -11,10 +11,7 @@ import UIKit
 /// Model where you pick a particular `value` (out of set of possible values) by selecting the corresponding cell.
 ///
 ///	Each model/cell is mutually exclusive, thus this is most likely to be part of one section.
-class SingleValueModel<T: Hashable>: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class SingleValueModel<T: Hashable>: FieldModel, @unchecked Sendable {
 	///	String to display in the title label
 	var title: String?
 
@@ -34,11 +31,10 @@ class SingleValueModel<T: Hashable>: FieldModel {
 		 isChosen: Bool = false,
 		 valueSelected: @escaping (T, FormFieldCell) -> Void = {_, _ in}
 	){
-		self.id = id
 		self.isChosen = isChosen
-
 		self.title = title
 		self.value = value
+		super.init(id: id)
 
 		self.valueSelected = valueSelected
 	}

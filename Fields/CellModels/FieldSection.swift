@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct FieldSection {
+struct FieldSection: Hashable, Identifiable {
 	let id: String
 
 	var header: String? = nil
-	var fields: [FieldModel] = []
+	var fieldIds: [FieldModel.ID] = []
 	var footer: String? = nil
 
-	init(id: String, header: String? = nil, footer: String? = nil, fields: [FieldModel] = []) {
+	init(id: String, header: String? = nil, footer: String? = nil, fieldIds: [FieldModel.ID] = []) {
 		self.id = id
 		self.header = header
 		self.footer = footer
-		self.fields = fields
+		self.fieldIds = fieldIds
 	}
 }

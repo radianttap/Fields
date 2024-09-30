@@ -9,10 +9,7 @@
 import UIKit
 
 /// Model that corresponds to TextViewCell instance.
-class TextViewModel: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class TextViewModel: FieldModel, @unchecked Sendable {
 	///	Minimal size of the text-view
 	var minimalHeight: CGFloat
 
@@ -39,12 +36,10 @@ class TextViewModel: FieldModel {
 		 customSetup: @escaping (UITextView) -> Void = {_ in},
 		 valueChanged: @escaping (String?, FormFieldCell) -> Void = {_, _ in}
 	){
-		self.id = id
-
 		self.title = title
 		self.value = value
-
 		self.minimalHeight = minimalHeight
+		super.init(id: id)
 
 		self.customSetup = customSetup
 		self.valueChanged = valueChanged

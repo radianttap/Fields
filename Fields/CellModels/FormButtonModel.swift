@@ -9,10 +9,7 @@
 import UIKit
 
 /// Model that corresponds to SubmitCell instance.
-class FormButtonModel: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class FormButtonModel: FieldModel, @unchecked Sendable {
 	///	Button caption
 	var title: String
 
@@ -31,8 +28,8 @@ class FormButtonModel: FieldModel {
 		 customSetup: @escaping (UIButton) -> Void = {_ in},
 		 action: @escaping () -> Void = {}
 	){
-		self.id = id
 		self.title = title
+		super.init(id: id)
 
 		self.customSetup = customSetup
 		self.action = action

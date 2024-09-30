@@ -9,10 +9,7 @@
 import UIKit
 
 /// Model that corresponds to DatePickerCell instance.
-class DatePickerModel: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class DatePickerModel: FieldModel, @unchecked Sendable {
 	///	String to display in the title label
 	var title: String?
 
@@ -43,13 +40,11 @@ class DatePickerModel: FieldModel {
 		 customSetup: @escaping (UIDatePicker, FormFieldCell) -> Void = {_, _ in},
 		 valueChanged: @escaping (Date?, FormFieldCell) -> Void = {_, _ in}
 	){
-		self.id = id
-
 		self.title = title
 		self.value = value
 		self.placeholder = placeholder
-
 		self.formatter = formatter
+		super.init(id: id)
 
 		self.customSetup = customSetup
 		self.valueChanged = valueChanged

@@ -9,10 +9,7 @@
 import UIKit
 
 /// Model that corresponds to TextCell instance.
-class FormTextModel: FieldModel {
-	///	unique identifier (across the containing form) for this field
-	let id: String
-
+class FormTextModel: FieldModel, @unchecked Sendable {
 	///	Title text, explaining what the `value` is
 	var title: String
 
@@ -29,10 +26,9 @@ class FormTextModel: FieldModel {
 		 value: String,
 		 customSetup: @escaping (UILabel) -> Void = {_ in}
 	){
-		self.id = id
-
 		self.title = title
 		self.value = value
+		super.init(id: id)
 
 		self.customSetup = customSetup
 	}
