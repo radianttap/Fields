@@ -13,7 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 
 		let vc = prepareLogin()
-//		let vc = prepareSlideTest()
 
 		//	UIKit setup
 		let nc = UINavigationController(rootViewController: vc)
@@ -39,17 +38,4 @@ private extension AppDelegate {
 		
 		return vc
 	}
-
-//	func prepareSlideTest() -> SlideTestController {
-//		let layout = FieldHeightSizingLayout()
-//		layout.minimumLineSpacing = 8
-//		layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-//		let vc = SlideTestController(layout: layout)
-//
-//		//	Model (data source)
-//		let ds = SlideTestDataSource()
-//		vc.dataSource = ds
-//
-//		return vc
-//	}
 }
