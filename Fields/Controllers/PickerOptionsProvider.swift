@@ -59,7 +59,7 @@ final class PickerOptionsProvider<T: Hashable, Cell: UICollectionViewCell & Reus
 	//	MARK: UICollectionViewDelegate
 
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		model.selectedValueAtIndex(indexPath.item, pickerCell)
+		model.selectedValueAtIndex(indexPath.item, pickerCell, true)
 	}
 }
 
